@@ -202,7 +202,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
   <div>
     <div class="eyebrow">Synapse Tamil · A1</div>
     <h1>வேற்றுமை ஆய்வகம்</h1>
-    <p class="lede">Master all <b>8 case markers</b>. Choose the correct உருபு in sentence context — the same format as Paper 2 Section A1. <b>10 marks</b> up for grabs.</p>
+    <p class="lede">Master all <b>8 case markers</b>. Choose the correct உருபு in sentence context, the same format as Paper 2 Section A1. <b>10 marks</b> up for grabs.</p>
   </div>
 
   <!-- Paper map -->
@@ -294,7 +294,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
         </table>
       </div>
       <div class="card" style="font-size:14px;color:var(--muted);gap:10px">
-        <p style="margin:0"><b style="color:var(--ink)">Exam tip:</b> Read the blank's position relative to the verb. The verb tells you what role the noun plays — subject (1st), object (2nd), instrument (3rd), recipient (4th), ablative (5th), genitive (6th), locative (7th), or vocative (8th).</p>
+        <p style="margin:0"><b style="color:var(--ink)">Exam tip:</b> Read the blank's position relative to the verb. The verb tells you what role the noun plays, subject (1st), object (2nd), instrument (3rd), recipient (4th), ablative (5th), genitive (6th), locative (7th), or vocative (8th).</p>
         <p style="margin:0"><b style="color:var(--ink)">Sandhi note:</b> Many suffixes change with the final phoneme of the noun: ஐ → யை after vowels; இல் / இலிருந்து → ல் / லிருந்து after vowel stems. Watch the junction carefully.</p>
       </div>
     </div>
@@ -306,14 +306,14 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
    VEERRUMAI REFERENCE DATA
 ────────────────────────────────────────────────────────────── */
 const VM_REF = [
-  { num:1, name:"முதனிலை / எழுவாய்", suffix:"—", role:"Subject / nominative — no suffix", ex:"மாணவன் படிக்கிறான்" },
+  { num:1, name:"முதனிலை / எழுவாய்", suffix:", ", role:"Subject / nominative, no suffix", ex:"மாணவன் படிக்கிறான்" },
   { num:2, name:"இரண்டாம் வேற்றுமை", suffix:"ஐ / யை", role:"Direct object", ex:"புத்தகத்தை எடு" },
   { num:3, name:"மூன்றாம் வேற்றுமை", suffix:"ஆல் / ஆலே / இனால்", role:"Instrument / agent (by, with)", ex:"கத்தியால் வெட்டினான்" },
-  { num:4, name:"நான்காம் வேற்றுமை", suffix:"கு / உக்கு / க்காக", role:"Dative — recipient / purpose (to, for)", ex:"அவனுக்கு கொடு · அவனுக்காக" },
-  { num:5, name:"ஐந்தாம் வேற்றுமை", suffix:"இல் இருந்து / ஐ விட / இன்", role:"Ablative — source / comparison (from, than)", ex:"நகரிலிருந்து வந்தான் · அவனைவிட நல்லவன்" },
-  { num:6, name:"ஆறாம் வேற்றுமை", suffix:"இன் / உடைய / அது", role:"Genitive — possession (of, 's)", ex:"மரத்தின் இலை · அவனுடைய வீடு" },
-  { num:7, name:"ஏழாம் வேற்றுமை", suffix:"இல் / இடம் / கண்", role:"Locative — place / time (in, at, on)", ex:"வீட்டில் இருக்கிறான் · அவனிடம்" },
-  { num:8, name:"எட்டாம் வேற்றுமை", suffix:"ஏ / ஓ (விளி)", role:"Vocative — calling / addressing", ex:"அம்மா! · தமிழா!" },
+  { num:4, name:"நான்காம் வேற்றுமை", suffix:"கு / உக்கு / க்காக", role:"Dative, recipient / purpose (to, for)", ex:"அவனுக்கு கொடு · அவனுக்காக" },
+  { num:5, name:"ஐந்தாம் வேற்றுமை", suffix:"இல் இருந்து / ஐ விட / இன்", role:"Ablative, source / comparison (from, than)", ex:"நகரிலிருந்து வந்தான் · அவனைவிட நல்லவன்" },
+  { num:6, name:"ஆறாம் வேற்றுமை", suffix:"இன் / உடைய / அது", role:"Genitive, possession (of, 's)", ex:"மரத்தின் இலை · அவனுடைய வீடு" },
+  { num:7, name:"ஏழாம் வேற்றுமை", suffix:"இல் / இடம் / கண்", role:"Locative, place / time (in, at, on)", ex:"வீட்டில் இருக்கிறான் · அவனிடம்" },
+  { num:8, name:"எட்டாம் வேற்றுமை", suffix:"ஏ / ஓ (விளி)", role:"Vocative, calling / addressing", ex:"அம்மா! · தமிழா!" },
 ];
 
 /* ──────────────────────────────────────────────────────────────
@@ -329,7 +329,7 @@ const ITEMS = [
   { sent:"ஆசிரியர் மாணவர்க___ அழைத்தார்.", blank:"ளை", choices:["ளை","ளுக்கு","ளிடம்","ளால்"], ans:0, vm:2, explain:"மாணவர்கள் = object of அழைத்தார் → plural suffix ளை (2nd வேற்றுமை)", src:"A1 drill" },
 
   /* ── 3rd வேற்றுமை (ஆல்) ── */
-  { sent:"அவன் கையால் பந்த___ பிடித்தான்.", blank:"ை", choices:["ை","இல்","இன்","க்கு"], ans:0, vm:3, explain:"Wait — here கையால் is already present; பந்தை = object (2nd). Reframe: அவன் ___ பந்தை அடித்தான் → Answer: கையால் (3rd வேற்றுமை, instrument)", src:"A1 drill" },
+  { sent:"அவன் கையால் பந்த___ பிடித்தான்.", blank:"ை", choices:["ை","இல்","இன்","க்கு"], ans:0, vm:3, explain:"Wait, here கையால் is already present; பந்தை = object (2nd). Reframe: அவன் ___ பந்தை அடித்தான் → Answer: கையால் (3rd வேற்றுமை, instrument)", src:"A1 drill" },
   { sent:"மரம் காற்றினால்___ விழுந்தது.", blank:"", choices:["காற்றினால்","காற்றில்","காற்றின்","காற்றிற்கு"], ans:0, vm:3, explain:"காற்று = instrument/agent of விழுந்தது → 3rd வேற்றுமை suffix ஆல் / இனால்", src:"A1 drill" },
   { sent:"கத்தி___ அவன் கரும்பை வெட்டினான்.", blank:"யால்", choices:["யால்","யை","யில்","யின்"], ans:0, vm:3, explain:"கத்தி ends in vowel → யால் (3rd வேற்றுமை) = with a knife", src:"A1 drill" },
   { sent:"அவள் தன் விரல்க___ வீணை மீட்டினாள்.", blank:"ளால்", choices:["ளால்","ளை","ளில்","ளுக்கு"], ans:0, vm:3, explain:"விரல்கள் = instrument → plural suffix ளால் (3rd வேற்றுமை)", src:"A1 drill" },
@@ -366,7 +366,7 @@ const ITEMS = [
   { sent:"மேசையின்கண்___ புத்தகம் வைக்கப்பட்டது.", blank:"", choices:["மேசையின்கண்","மேசையை","மேசையால்","மேசைக்கு"], ans:0, vm:7, explain:"கண் = locative 'at/on' → 7th வேற்றுமை variant கண்", src:"A1 drill" },
 
   /* ── 8th வேற்றுமை (விளி) ── */
-  { sent:"___ இங்கே வா!", blank:"அம்மா", choices:["அம்மா","அம்மாவை","அம்மாவால்","அம்மாவிடம்"], ans:0, vm:8, explain:"Direct address (calling mother) → 8th வேற்றுமை (vocative) — no suffix, intonation alone", src:"A1 drill" },
+  { sent:"___ இங்கே வா!", blank:"அம்மா", choices:["அம்மா","அம்மாவை","அம்மாவால்","அம்மாவிடம்"], ans:0, vm:8, explain:"Direct address (calling mother) → 8th வேற்றுமை (vocative), no suffix, intonation alone", src:"A1 drill" },
   { sent:"___, நீ ஏன் அழுகிறாய்?", blank:"தம்பி", choices:["தம்பி","தம்பியை","தம்பியால்","தம்பிக்கு"], ans:0, vm:8, explain:"Calling 'Thambi' → 8th வேற்றுமை (vocative address)", src:"A1 drill" },
 
   /* ── MIXED / harder ── */
@@ -511,7 +511,7 @@ function initDrill() {
   // Sort: due items first, then by index
   deck.sort((a,b) => a.returnAt - b.returnAt);
   if (!deck.length) {
-    // All mastered — reset for another round
+    // All mastered, reset for another round
     state = {};
     saveState(state);
     initDrill();
@@ -541,7 +541,7 @@ function showDrillCard() {
     `<span class="chip src">${item.src}</span>` +
     (vm ? `<span class="chip vm">${item.vm}வது வேற்றுமை</span>` : '');
 
-  // sentence — find blank marker and highlight
+  // sentence, find blank marker and highlight
   let sentHTML = item.sent.replace('___', '<span class="blank" id="blank-word">___</span>');
   document.getElementById('d-sent').innerHTML = sentHTML;
 
@@ -590,7 +590,7 @@ function onChoice(btn, idx, item) {
     <h3>${isCorrect ? '✓ சரி!' : '✗ தவறு'}</h3>
     <div class="pair">
       <span style="color:var(--muted)">வேற்றுமை</span>
-      <span>${item.vm}வது — ${vm ? vm.name : ''}</span>
+      <span>${item.vm}வது, ${vm ? vm.name : ''}</span>
       <span style="color:var(--muted)">உருபு</span>
       <span style="font-family:var(--mono)">${vm ? vm.suffix : ''}</span>
       <span style="color:var(--muted)">ஏன்?</span>

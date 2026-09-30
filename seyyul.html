@@ -542,7 +542,7 @@ function renderTiles(){
 function placeTile(wi,btn){
   if(bcur.done)return;
   const {it,placed}=bcur,need=placed.length;
-  // same word text may repeat (e.g. சொல்லிற்) — accept any tile whose text matches the next word
+  // same word text may repeat (e.g. சொல்லிற்), accept any tile whose text matches the next word
   if(it.words[wi].w===it.words[need].w){
     placed.push(wi);
     renderTiles();
