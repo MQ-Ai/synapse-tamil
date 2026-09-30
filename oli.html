@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Master Tamil sound pair distinctions ல/ள/ழ · ர/ற · ந/ன/ண. C6 Paper 2, 8 marks.">
+<meta property="og:title" content="Synapse Oli Lab">
+<meta property="og:description" content="Master Tamil sound pair distinctions ல/ள/ழ · ர/ற · ந/ன/ண. C6 Paper 2, 8 marks.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Synapse Oli Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+</head>
+<body class="light-nav">
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
+
+:root{
+  --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
+  --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
+  --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE;
+  --mark:#F1D58A; --markink:#3A2A05;
+  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
+  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+    --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+    --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19;
+    --mark:#6B5315; --markink:#FFF1C9;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+  --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+  --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19;
+  --mark:#6B5315; --markink:#FFF1C9;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.lede b{color:var(--ink);font-weight:600}
+
+/* paper map */
+.map{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.seg{background:var(--sunk);border-radius:6px;padding:6px 4px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.3}
+.seg b{display:block;font-size:13px;color:var(--ink)}
+.seg.on{background:var(--accent);color:#fff}
+.seg.on b{color:#fff}
+:root[data-theme="dark"] .seg.on, :root[data-theme="dark"] .seg.on b{color:#1a1206}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .seg.on,:root:not([data-theme="light"]) .seg.on b{color:#1a1206}}
+.mapnote{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{font:600 15px var(--display);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab small{font-family:var(--mono);font-weight:500;font-size:11px;margin-left:6px;opacity:.8}
+button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* drill */
+.meter{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
+.chip.src{background:var(--accent-soft);color:var(--accent)}
+.sent{font-size:19px;line-height:1.9;margin:0}
+.blank{display:inline-block;min-width:5.5em;border-bottom:2px solid var(--ink);text-align:center;padding:0 6px;font-weight:600}
+.blank.good{color:var(--good);border-color:var(--good)}
+.blank.bad{color:var(--bad);border-color:var(--bad)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice{font:700 26px var(--display);padding:16px 8px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;transition:transform .12s,border-color .12s}
+.choice:hover:not(:disabled){border-color:var(--teal);transform:translateY(-1px)}
+.choice.good{border-color:var(--good);background:var(--good-soft)}
+.choice.bad{border-color:var(--bad);background:var(--bad-soft)}
+.choice:disabled{cursor:default}
+mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px}
+.fb{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.fb.good{background:var(--good-soft)} .fb.bad{background:var(--bad-soft)}
+.fb h3{margin:0;font:700 17px var(--display)}
+.fb.good h3{color:var(--good)} .fb.bad h3{color:var(--bad)}
+.pair{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:15px}
+.pair .w{font:700 19px var(--display)}
+.cue{font-size:14px;color:var(--muted);margin:0}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 15px var(--display);padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.ask{font-size:14px;color:var(--ink);margin:0;font-weight:500}
+
+/* exam */
+.paper{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.paperhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
+.paperhead h2{font:700 20px var(--display);margin:0}
+.instr{font-size:14px;color:var(--muted);margin:0}
+.q{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start}
+.qn{font-family:var(--mono);font-size:14px;padding-top:4px;color:var(--muted)}
+.q p{margin:0;font-size:17px;line-height:1.9}
+.q select{font:600 16px var(--mono);border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);padding:0 4px;min-width:3.4em;text-align:center}
+.q .res{font-size:14px;margin-top:4px}
+.q .res.good{color:var(--good)} .q .res.bad{color:var(--bad)}
+.bank{border:1.5px solid var(--ink);padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;max-width:460px;margin-inline:auto;width:100%}
+.bank span{font-size:17px}
+.bank span.used{text-decoration:line-through;text-decoration-color:var(--accent);text-decoration-thickness:2px;color:var(--muted)}
+.score{font:800 34px var(--display);color:var(--teal)}
+.score small{font:500 14px var(--body);color:var(--muted);margin-left:8px}
+
+/* pairs */
+.fam{display:flex;flex-direction:column;gap:10px}
+.fam h2{font:700 20px var(--display);margin:0}
+.fam .cue{max-width:62ch}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:baseline}
+.pc .w{font:700 21px var(--display)}
+.pc .m{font-size:14px;color:var(--muted)}
+.psel{font:500 15px var(--body);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.freq{grid-column:1/-1;font:500 11px var(--mono);color:var(--accent);margin-top:4px}
+.fam h2 .cnt{font:500 12px var(--mono);color:var(--muted);margin-left:6px}
+.seg2{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg2 button{font:600 14px var(--display);padding:8px 14px;border:0;background:var(--surface);color:var(--muted);cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--teal);color:var(--bg)}
+.tags{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font:500 11px var(--mono);padding:2px 8px;border-radius:99px;background:var(--sunk);color:var(--muted)}
+.tag.both{background:var(--teal-soft);color:var(--teal)}
+.tag.hot{background:var(--accent-soft);color:var(--accent)}
+.q-mean{font:600 20px/1.5 var(--body);margin:0}
+.opts3{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.why{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.why h3{font:700 15px var(--display);color:var(--ink);margin:0 0 6px}
+.why ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+@media (max-width:520px){
+  .map{grid-template-columns:repeat(4,1fr)}
+  .card,.paper{padding:16px}
+  .choice{font-size:22px}
+  .bank{grid-template-columns:1fr 1fr;gap:6px 12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
+    <h1>ஒலி வேறுபாட்டுச் சொற்கள்</h1>
+    <p class="lede">Section <b>C6</b>: four sentences, a box of eight look-alike words, <b>8 marks</b>. Every word in the box has a twin that sounds almost the same. Train your ear and eye on the one letter that changes the meaning.</p>
+  </header>
+
+  <section aria-label="Paper 2 map">
+    <div class="map" id="map"></div>
+    <div class="mapnote">Paper 2 sections and marks, as set in the 2026 prelims (90 marks). C6 is the only section where the trap is a single letter.</div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-drill" aria-selected="true" data-p="drill">பயிற்சி <small>Drill</small></button>
+    <button class="tab" role="tab" id="t-core" aria-selected="false" data-p="core">அடிப்படை <small>Core pairs</small></button>
+    <button class="tab" role="tab" id="t-exam" aria-selected="false" data-p="exam">தேர்வு <small>C6 paper</small></button>
+    <button class="tab" role="tab" id="t-pairs" aria-selected="false" data-p="pairs">சொல் இணைகள் <small>Pairs</small></button>
+  </nav>
+
+  <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
+    <div class="meter"><span>Mastered</span><div class="bar"><i id="mbar"></i></div><span class="num" id="mnum"></span></div>
+    <div class="card" id="dcard"></div>
+  </section>
+
+  <section id="p-core" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
+    <p class="cue" style="margin:0">The pairs on <b>both</b> the PLMGPS and RGPS lists, most-tested first. Match each meaning to its spelling before you meet the pair in a sentence.</p>
+    <div class="meter"><span>Core pairs mastered</span><div class="bar"><i id="cbar"></i></div><span class="num" id="cnum"></span></div>
+    <div class="card" id="ccard"></div>
+  </section>
+
+  <section id="p-exam" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div class="paper" id="paper"></div>
+  </section>
+
+  <section id="p-pairs" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:28px"></section>
+
+  <footer class="why">
+    <h3>How the drill trains the brain</h3>
+    <ul>
+      <li><b>Retrieval, not rereading.</b> You pull the word out of memory before you see the answer, which strengthens recall more than reviewing a list.</li>
+      <li><b>Contrast pairs.</b> Both twins appear side by side with the changed letter highlighted, so the brain stores the difference instead of blurring the two.</li>
+      <li><b>Spacing.</b> A missed word returns three cards later, and words you know well come back less often.</li>
+      <li><b>Confidence check.</b> A lucky guess is not counted as mastered. This keeps false confidence out of the exam hall.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const MAP=[["A1","வேற்றுமை",10],["A2","செய்யுள்",10],["A3","அடைமொழி",10],["A4","முன்னுணர்வு",10],["B5","தெரிவுவிடை",10],["C6","ஒலி",8],["D7","விளக்கப்படம்",10],["D8","சுயவிடை",22]];
+document.getElementById('map').innerHTML=MAP.map(([c,n,m])=>`<div class="seg${c==='C6'?' on':''}" title="${n}"><b>${c}</b>${m} m</div>`).join('');
+
+const FAM={
+  l:{label:"ல · ள · ழ",name:"ல, ள, ழ",cue:"ல: tongue tip taps just behind the top teeth (light). ள: tongue tip curls back and touches the roof of the mouth (heavy). ழ: tongue curls back further and does not touch, the sound in தமிழ்."},
+  r:{label:"ர · ற",name:"ர, ற",cue:"ர: a light single tap. ற: a harder, stronger R, the sound in வெற்றி and பறவை."},
+  n:{label:"ந · ன · ண",name:"ந, ன, ண",cue:"ந: mostly starts a word. ன: tongue tip behind the top teeth. ண: tongue curls back to the roof, like ள."}
+};
+const W={
+ "தாழ்":"door latch, bolt","தாள்":"sheet of paper",
+ "பொறித்து":"engraved, carved in","பொரித்து":"fried in oil",
+ "கோள்":"gossip, tale-telling (also planet)","கோல்":"walking stick, staff",
+ "கணம்":"a moment, an instant","கனம்":"weight, heaviness",
+ "மழை":"rain","மலை":"mountain","வலி":"pain","வழி":"way, path",
+ "இலை":"leaf","இழை":"thread, strand","அலை":"wave","அழை":"call, invite",
+ "வலை":"net","வளை":"bend; bangle","விலை":"price","விளை":"grow, yield",
+ "கறை":"stain","கரை":"shore, riverbank","அறை":"room","அரை":"half",
+ "மணம்":"fragrance","மனம்":"mind, heart","கனி":"ripe fruit","கணி":"calculate",
+ "பனி":"dew, mist, snow","பணி":"work, duty","ஆள்வான்":"will rule","ஆழ்வான்":"will sink, go deep",
+ "கிளி":"parrot","கிழி":"tear (verb)","குளம்":"pond","குலம்":"clan, family line",
+ "வாள்":"sword","வால்":"tail",
+ "முன்னால்":"in front of","முன்னாள்":"former; the day before",
+ "அரம்":"a file (tool for sharpening)","அறம்":"virtue, doing right",
+ "பானம்":"a drink","பாணம்":"an arrow","மறித்து":"having blocked the way","மரித்து":"having died"
+};
+const ITEMS=[
+ {s:"விமலன் தன் நண்பனை உரக்க அழைத்தான். அதனால், அவனது நண்பன் தான் செய்துகொண்டிருந்த வேலையை நிறுத்திவிட்டு, அவன் ___ சென்று நின்றான்.",a:"முன்னால்",b:"முன்னாள்",f:"l",src:"Meridian Q26"},
+ {s:"கமலா மழுங்கலான கத்தியைப் பயன்படுத்திக் காய்கறிகளை வெட்டச் சிரமப்பட்டாள். அதனால் அவள் ___ ஒன்றைப் பயன்படுத்திக் கத்தியைத் தீட்டினாள்.",a:"அரம்",b:"அறம்",f:"r",src:"Meridian Q27"},
+ {s:"இளவரசி வேட்டையாடக் காட்டிற்குச் சென்றாள். அவள் அங்குள்ள மான் ஒன்றைக் குறி தவறாமல் ___ எய்து கொன்றாள்.",a:"பாணம்",b:"பானம்",f:"n",src:"Meridian Q28"},
+ {s:"கொள்ளையர்கள் சிலர் வங்கியின் வாசலில் நின்றுகொண்டிருந்தனர். அவர்கள், பணத்துடன் வெளியே வந்த வங்கி அதிகாரியை வழி ___ கொள்ளை அடித்தனர்.",a:"மறித்து",b:"மரித்து",f:"r",src:"Meridian Q29"},
+ {s:"பள்ளியின் ___ மாணவர்கள் ஆண்டு விழாவில் கலந்துகொண்டனர்.",a:"முன்னாள்",b:"முன்னால்",f:"l"},
+ {s:"பிறருக்கு உதவுவதே சிறந்த ___ ஆகும்.",a:"அறம்",b:"அரம்",f:"r"},
+ {s:"வெயில் காலத்தில் நாங்கள் குளிர்ந்த ___ அருந்தினோம்.",a:"பானம்",b:"பாணம்",f:"n"},
+ {s:"இரவு நேரத்தில் முல்லை வீட்டில் தனியாக இருந்தாள். அதனால், அவள் உறங்குவதற்கு முன் கதவை ___ போட்டு விட்டு உறங்கினாள்.",a:"தாழ்",b:"தாள்",f:"l",src:"Xinmin Q26"},
+ {s:"ரவி பேச்சுப்போட்டியில் முதல் பரிசு பெற்றான். வெற்றிக்கோப்பையில் அவனுடைய பெயர் ___ இருந்தது.",a:"பொறித்து",b:"பொரித்து",f:"r",src:"Xinmin Q27"},
+ {s:"மேனகா கல்வியில் சிறந்து விளங்கினாள். இதனால் வனிதா அவள்மீது பொறாமைகொண்டு அவளைப் பற்றிச் சக மாணவர்களிடம் ___ சொல்லித் திரிந்தாள்.",a:"கோள்",b:"கோல்",f:"l",src:"Xinmin Q28"},
+ {s:"இறுதியாண்டு தேர்வு நெருங்கிக்கொண்டிருந்தது. அதனால் ரவி ஒரு ___ கூட வீணாக்காமல் தன்னைத் தயார்ப்படுத்திக் கொண்டான்.",a:"கணம்",b:"கனம்",f:"n",src:"Xinmin Q29"},
+ {s:"அம்மா மாலைச் சிற்றுண்டிக்காக அப்பளத்தை எண்ணெயில் ___ தந்தார்.",a:"பொரித்து",b:"பொறித்து",f:"r"},
+ {s:"வயதான தாத்தா கையில் ஒரு ___ ஊன்றிக்கொண்டு மெதுவாக நடந்தார்.",a:"கோல்",b:"கோள்",f:"l"},
+ {s:"பெட்டியின் ___ தாங்க முடியாமல் சிறுவன் அதைக் கீழே வைத்தான்.",a:"கனம்",b:"கணம்",f:"n"},
+ {s:"ஆசிரியர் ஒவ்வொரு மாணவருக்கும் ஒரு ___ கொடுத்துக் கட்டுரை எழுதச் சொன்னார்.",a:"தாள்",b:"தாழ்",f:"l"},
+ {s:"கனத்த ___ பெய்ததால் விளையாட்டுப் போட்டி ஒத்திவைக்கப்பட்டது.",a:"மழை",b:"மலை",f:"l"},
+ {s:"நாங்கள் ___ உச்சிக்கு ஏறிச் சூரிய உதயத்தைக் கண்டு ரசித்தோம்.",a:"மலை",b:"மழை",f:"l"},
+ {s:"காலில் முள் குத்தியதால் அவனுக்குத் தாங்க முடியாத ___ ஏற்பட்டது.",a:"வலி",b:"வழி",f:"l"},
+ {s:"புதிய பள்ளிக்குச் செல்லும் ___ தெரியாமல் மாலா தவித்தாள்.",a:"வழி",b:"வலி",f:"l"},
+ {s:"காற்றில் மரத்திலிருந்து ஒரு காய்ந்த ___ பறந்து வந்து விழுந்தது.",a:"இலை",b:"இழை",f:"l"},
+ {s:"கடலின் ___ கரையில் வந்து மோதிக்கொண்டிருந்தது.",a:"அலை",b:"அழை",f:"l"},
+ {s:"மீனவர் கடலில் ___ வீசி நிறைய மீன்களைப் பிடித்தார்.",a:"வலை",b:"வளை",f:"l"},
+ {s:"சந்தையில் காய்கறிகளின் ___ திடீரென்று உயர்ந்துவிட்டது.",a:"விலை",b:"விளை",f:"l"},
+ {s:"சட்டையில் படிந்த ___ எவ்வளவு துவைத்தும் போகவில்லை.",a:"கறை",b:"கரை",f:"r"},
+ {s:"நாங்கள் மாலையில் கடல் ___ ஓரமாக நடந்து சென்றோம்.",a:"கரை",b:"கறை",f:"r"},
+ {s:"எங்கள் வீட்டில் ஒவ்வொருவருக்கும் தனி ___ இருக்கிறது.",a:"அறை",b:"அரை",f:"r"},
+ {s:"பேருந்துக்காக அவன் ___ மணி நேரம் காத்திருந்தான்.",a:"அரை",b:"அறை",f:"r"},
+ {s:"தோட்டத்தில் மல்லிகைப் பூக்களின் ___ எங்கும் பரவியது.",a:"மணம்",b:"மனம்",f:"n"},
+ {s:"தேர்வில் குறைந்த மதிப்பெண் பெற்றதால் அவன் ___ உடைந்துபோனான்.",a:"மனம்",b:"மணம்",f:"n"},
+ {s:"பழுத்த ___ மிகவும் இனிப்பாக இருந்தது.",a:"கனி",b:"கணி",f:"n"},
+ {s:"அதிகாலையில் புல்வெளியெங்கும் ___ படர்ந்திருந்தது.",a:"பனி",b:"பணி",f:"n"},
+ {s:"செவிலியர்கள் இரவு பகல் பாராமல் ___ செய்கிறார்கள்.",a:"பணி",b:"பனி",f:"n"},
+ {s:"நல்ல மன்னன் நாட்டை நீதியுடன் ___.",a:"ஆள்வான்",b:"ஆழ்வான்",f:"l"},
+ {s:"கூண்டில் இருந்த பச்சைக் ___ அழகாகப் பேசியது.",a:"கிளி",b:"கிழி",f:"l"},
+ {s:"கிராமத்தின் நடுவே தாமரைகள் நிறைந்த ஒரு பெரிய ___ இருந்தது.",a:"குளம்",b:"குலம்",f:"l"},
+ {s:"வீரன் கையில் கூர்மையான ___ ஏந்திப் போருக்குச் சென்றான்.",a:"வாள்",b:"வால்",f:"l"},
+ {s:"அணிலின் ___ புசுபுசுவென்று இருந்தது.",a:"வால்",b:"வாள்",f:"l"}
+];
+
+const BANKS=[{"id":"F1S1","name":"C6 question bank · Set 1","group":"C6 question bank (4-question format)","short":"Bank set 1","bank":["தலை","உரை","வானத்தில்","அலகை","அழகை","தழை","உறை","வாணத்தில்"],"qs":[{"s":"தேசிய தினக் கொண்டாட்டத்தின்போது, ___ ஒளிக்காட்சிகள் தோன்றின. அதைக் கண்ட பார்வையாளர்கள் பரவசமடைந்தனர்.","a":"வானத்தில்","b":"வாணத்தில்","f":"n","q":26},{"s":"எங்கள் பள்ளிக்குப் புதிய தலைமையாசிரியர் ஒருவர் வந்தார். மாணவர் கூட்டத்தில் அவர் நிகழ்த்திய ___ அனைவரையும் சிந்திக்க வைத்தது.","a":"உரை","b":"உறை","f":"r","q":27},{"s":"நான் விடுமுறையில் மலேசியாவுக்குச் சென்றேன். நான் அங்குள்ள மலைகளின் இயற்கை ___ கண்டு வியந்தேன்.","a":"அழகை","b":"அலகை","f":"l","q":28},{"s":"ஆடு, மாடுகள் கூட்டமாகக் காட்டின் அருகே சென்றன. அவை புல், இலை, ___ முதலியவற்றைத் தின்று மகிழ்ந்தன.","a":"தழை","b":"தலை","f":"l","q":29}],"noexam":false},{"id":"F1S2","name":"C6 question bank · Set 2","group":"C6 question bank (4-question format)","short":"Bank set 2","bank":["மரித்தது","ஊண்","ஊன்","தாழி","தாலி","கொல்லை","கொள்ளை","மறித்தது"],"qs":[{"s":"திருடன் நள்ளிரவில் வீட்டினுள் நுழைந்து நகைகளைத் திருடினான். அதன்பின், அவன் வீட்டின் ___ பக்கம்வழி தப்பி ஓடினான்.","a":"கொல்லை","b":"கொள்ளை","f":"l","q":26},{"s":"மணமகன் மணவறையில் அமர்ந்திருந்தார். அவர் மணமகளின் கழுத்தில் ___ கட்டும்போது அங்குக் கூடியிருந்தோர் அரிசியை அவர்களின் மீது தூவி வாழ்த்தினர்.","a":"தாலி","b":"தாழி","f":"l","q":27},{"s":"குண்டர் கும்பல் ஒன்று வங்கியின் வாசலில் நின்றுகொண்டிருந்தது. அக்கும்பல், பணத்துடன் வெளியே வந்த வங்கி அதிகாரியை வழி ___.","a":"மறித்தது","b":"மரித்தது","f":"r","q":28},{"s":"என் அண்ணன் எங்களுக்காக அல்லும் பகலும் கடுமையாக உழைக்கிறார். அவர் ___ உறக்கமின்றி உழைப்பதைப் பார்த்த என் மனம் நெகிழ்ந்தது.","a":"ஊண்","b":"ஊன்","f":"n","q":29}],"noexam":false},{"id":"F1S3","name":"C6 question bank · Set 3","group":"C6 question bank (4-question format)","short":"Bank set 3","bank":["அரிய","பேண்","பேன்","விலை","அலகால்","அறிய","விளை","அழகால்"],"qs":[{"s":"நாங்கள் நேற்றுப் பறவைப் பூங்காவுக்குச் சென்றோம். அங்கு ஒரு பறவை தனது ___ பழங்களைக் கொத்திச் சாப்பிட்டுக் கொண்டிருந்தது.","a":"அலகால்","b":"அழகால்","f":"l","q":26},{"s":"இன்றைய இளைஞர்கள் அவர்களது பெற்றோர்களுக்கு மதிப்புக் கொடுப்பதில்லை என்று கூறப்படுகிறது. அவர்கள் ஒவ்வொருவரும் 'தந்தை தாய் ___' என்ற ஔவையாரின் கூற்றுக்கு ஏற்ப நடந்து கொள்வது நல்லதாகும்.","a":"பேண்","b":"பேன்","f":"n","q":27},{"s":"சிங்கப்பூரில் இப்போது பொருளாதார நெருக்கடி ஏற்பட்டுள்ளதால் பொருட்களின் ___ பலமடங்கு ஏறியுள்ளது.","a":"விலை","b":"விளை","f":"l","q":28},{"s":"பாரதியார் பல நீதி புகட்டும் பாடல்களைப் பாடியுள்ளார். அவற்றின் வாயிலாக அவர் மாணவர்களுக்குப் பல ___ கருத்துக்களை எடுத்துரைத்துள்ளார்.","a":"அரிய","b":"அறிய","f":"r","q":29}],"noexam":false},{"id":"F1S4","name":"C6 question bank · Set 4","group":"C6 question bank (4-question format)","short":"Bank set 4","bank":["அலகு","களி","மலை","மழை","அழகு","இரை","கழி","பனி","பணி","இறை"],"qs":[{"s":"நவம்பர் மாதம் மழைக்காலமாக இருப்பதால் அதிகாலையில் எங்கும் ___ மூட்டமாக இருக்கும்.","a":"பனி","b":"பணி","f":"n","q":26},{"s":"மரத்திற்கு அடியில் பாம்பு ஒன்று கிடந்ததைப் பார்த்த என் பாட்டி பதறிப்போய் அதை ___ ஒன்றால் அடித்தார்.","a":"கழி","b":"களி","f":"l","q":27},{"s":"என் தாத்தா மலேசியாவிலுள்ள பல கோயில்களுக்குச் சென்றார். ஆனால், வயதான அவரால் ___ மேல் கட்டப்பட்டிருந்த கோயில்களுக்குச் செல்ல இயலவில்லை.","a":"மலை","b":"மழை","f":"l","q":28},{"s":"முத்து கோழிகளுக்கு ___ போட்டான். கோழிகள் அவற்றைக் கொத்திக்கொத்தித் தின்னும் அழகைக் கண்டு இரசித்தான்.","a":"இரை","b":"இறை","f":"r","q":29}],"noexam":false},{"id":"F1S5","name":"C6 question bank · Set 5","group":"C6 question bank (4-question format)","short":"Bank set 5","bank":["உறை","கோள்","அணைத்து","மாறி","கோல்","அனைத்து","மாரி","உரை"],"qs":[{"s":"என் பள்ளிக்குச் சிறப்பு விருந்தினர் ஒருவர் வந்தார். அவர் சிறந்த ___ ஒன்றை ஆற்றினார்.","a":"உரை","b":"உறை","f":"r","q":26},{"s":"மற்றவர்களைப் பற்றி ___ சொல்வது கெட்டப் பழக்கம். இதுபோன்ற கெட்டப் பழக்கத்தைக் கைவிட வேண்டும்.","a":"கோள்","b":"கோல்","f":"l","q":27},{"s":"நேற்றுப் பேரங்காடி ஒன்று திடீரென்று தீப்பிடித்துக் கொண்டது. தீயணைப்பாளர்கள் அரும்பாடுபட்டுத் அத்தீயை ___ அங்குள்ளவர்களைக் காப்பாற்றினார்கள்.","a":"அணைத்து","b":"அனைத்து","f":"n","q":28},{"s":"___ இல்லாமல் பயிர்கள் எல்லாம் வாடிவிட்டன. அதனால், ஊர்மக்கள் பஞ்சத்தால் தவித்தனர்.","a":"மாரி","b":"மாறி","f":"r","q":29}],"noexam":false},{"id":"F1S6","name":"C6 question bank · Set 6","group":"C6 question bank (4-question format)","short":"Bank set 6","bank":["பொரித்த","கன்னி","குழைந்த","உழவு","உளவு","பொறித்த","கண்ணி","குலைந்த"],"qs":[{"s":"பருவநிலை மாற்றத்தினால் ___ தொழில் பாதிப்படைந்துள்ளது. இதனால் விவாசாயிகள் வருத்தம் அடைந்துள்ளனர்.","a":"உழவு","b":"உளவு","f":"l","q":26},{"s":"தாய் ___ சாதத்தில் பருப்பு சேர்த்தார். அவர் அதைத் தன் குழந்தைக்கு ஊட்டினார்.","a":"குழைந்த","b":"குலைந்த","f":"l","q":27},{"s":"தொலைக்காட்சியில் ___ பெண்களுக்காக சேலை அழகு ராணி போட்டி நடைபெற்றது. அந்த நிகழ்ச்சியில் பல பெண்கள் கலந்து கொண்டனர்.","a":"கன்னி","b":"கண்ணி","f":"n","q":28},{"s":"ஆரோக்கியமான உணவு முறை முக்கியம். எனவே, என் தாயார் எனக்கு ___ உணவுகளை வாரத்திற்கு இரு முறை தான் கொடுப்பார்.","a":"பொரித்த","b":"பொறித்த","f":"r","q":29}],"noexam":false},{"id":"F1S7","name":"C6 question bank · Set 7","group":"C6 question bank (4-question format)","short":"Bank set 7","bank":["உரை","அரிந்து","விளக்கி","தணித்து","தனித்து","விலக்கி","அறிந்து","உறை"],"qs":[{"s":"ராமு பந்தயத்தில் வேகமாக ஓடினான். போட்டி முடிந்ததும் அவன் தண்ணீர் குடித்து தன் தாகத்தை ___ கொண்டான்.","a":"தணித்து","b":"தனித்து","f":"n","q":26},{"s":"மாலாவுக்குக் கணக்குப் பாடத்தில் ஐயம் ஏற்பட்டது. அவளுக்குப் புரியாத கணக்கை அவளுடைய தந்தை ___ கூறினார்.","a":"விளக்கி","b":"விலக்கி","f":"l","q":27},{"s":"கமலா காலையில் சந்தைக்குச் சென்று காய்கறிகள் வாங்கி வந்தாள். சமையல் செய்வதற்காக அவற்றை ___ கொண்டிருக்கிறாள்.","a":"அரிந்து","b":"அறிந்து","f":"r","q":28},{"s":"திங்கட்கிழமை அன்று பள்ளி மண்டபத்தில் மாணவர்களுக்குக் கூட்டம் நடந்தது. அப்போது பள்ளி முதல்வர் டெங்கிக் காய்ச்சல் பற்றி ___ நிகழ்த்தினார்.","a":"உரை","b":"உறை","f":"r","q":29}],"noexam":false},{"id":"F1S8","name":"C6 question bank · Set 8","group":"C6 question bank (4-question format)","short":"Bank set 8","bank":["தரி","பானத்தை","பாணத்தை","களி","கழி","விலக்க","விளக்க","தறி"],"qs":[{"s":"இந்தியப் பெண்கள் விரும்பி அணியும் சேலைகள் இந்தியாவில் தயாரிக்கப்படுகின்றன. அவற்றைத் தயாரிக்கும் இயந்திரத்தை மக்கள் ___ என்று அழைப்பார்கள்.","a":"தறி","b":"தரி","f":"r","q":26},{"s":"திருவிழாவின்போது கூட்டம் அதிகமாக இருந்தது. காவலர்கள் கூட்டத்தை ___ நேரம் ஆகிவிட்டது.","a":"விலக்க","b":"விளக்க","f":"l","q":27},{"s":"வேடன் காட்டிற்கு வேட்டையாடச் சென்றான். அவன் ___ கொண்டு மிருகங்களைக் கொன்றான்.","a":"பாணத்தை","b":"பானத்தை","f":"n","q":28},{"s":"மூதாட்டி கையில் ___ வைத்திருந்தார். அதை பிடித்துக் கொண்டு தரையில் மெதுவாக நடந்தார்.","a":"கழி","b":"களி","f":"l","q":29}],"noexam":false},{"id":"F1S9","name":"C6 question bank · Set 9","group":"C6 question bank (4-question format)","short":"Bank set 9","bank":["கொள்ளை","அள்ளி","கனம்","அருந்து","அறுந்து","கொல்லை","அல்லி","கணம்"],"qs":[{"s":"திருடர்கள் வங்கியில் புகுந்து ___ அடித்தனர். காவலர்கள் தக்க சமயத்தில் அவர்களைக் கைது செய்தனர்.","a":"கொள்ளை","b":"கொல்லை","f":"l","q":26},{"s":"மாறன் கடைக்காரரிடம் ஒரு கிலோ கடலை மாவு கேட்டான். உடனே, அவர் மாவை ___ ஒரு பையில் போட்டார்.","a":"அள்ளி","b":"அல்லி","f":"l","q":27},{"s":"சாலையை மெதுவாகக் கடந்துகொண்டிருந்த ஒரு முதியவரை நோக்கி ஒரு வாகனம் வேகமாக வந்தது. அடுத்த ___ என்ன நடக்கப் போகிறதோ என்று நான் பதறிப்போனேன்.","a":"கணம்","b":"கனம்","f":"n","q":28},{"s":"என் தம்பி பட்டம் பறக்கவிட்டுக்கொண்டு இருந்தான். அப்போது பட்டம் மரத்தில் சிக்கிக் கயிறு ___ போனது.","a":"அறுந்து","b":"அருந்து","f":"r","q":29}],"noexam":false},{"id":"F1S10","name":"C6 question bank · Set 10","group":"C6 question bank (4-question format)","short":"Bank set 10","bank":["பொரிக்கப்பட்டுள்ள","ஒழிக்க","குளவி","பொறிக்கப்பட்டுள்ள","ஒலிக்க","வான","வாண","குழவி"],"qs":[{"s":"தேசிய தினத்தன்று வண்ண வண்ண ___ வேடிக்கைகள் வெடிக்கப்பட்டன. அவை பெரியவர்களையும் சிறுவர்களையும் வெகுவாகக் கவர்ந்தன.","a":"வாண","b":"வான","f":"n","q":26},{"s":"அண்டை நாட்டில் வழிப்பறிக்கொள்ளைகள் அதிகரித்துள்ளன. இப்பிரச்சனையை ___ அந்நாட்டின் அரசாங்கம் பல முயற்சிகளைச் செய்து வருகிறது.","a":"ஒழிக்க","b":"ஒலிக்க","f":"l","q":27},{"s":"சரவணன் தோட்டத்தில் உலாவியபோது, ஒரு ___ அவன் கையைக் கொட்டிவிட்டது. அதனால் அவனது கை வீங்கியது.","a":"குளவி","b":"குழவி","f":"l","q":28},{"s":"இந்தியாவிலுள்ள ஒரு கிராமத்தில் பழங்காலத்துக் கல்வெட்டுகள் கண்டெடுக்கப்பட்டன. அவற்றில் ___ வடிவங்கள் தமிழ் எழுத்துகள் என்று ஆய்வாளர்கள் கூறினர்.","a":"பொறிக்கப்பட்டுள்ள","b":"பொரிக்கப்பட்டுள்ள","f":"r","q":29}],"noexam":false},{"id":"F1S11","name":"C6 question bank · Set 11","group":"C6 question bank (4-question format)","short":"Bank set 11","bank":["முன்னாள்","அரிய","அறிய","தண்மை","களித்து","முன்னால்","தன்மை","கழித்து"],"qs":[{"s":"என் பள்ளியின் ___ மாணவர்கள் பள்ளிக்கு வந்தனர். அவர்கள் தங்களின் ஆசிரியர்களைச் சந்தித்துப் பேசினார்கள்.","a":"முன்னாள்","b":"முன்னால்","f":"l","q":26},{"s":"அண்ணன் காலையில் தாமதமாக எழுந்துவிட்டார். அதனால் அவர் நேரம் ___ அலுவலகம் சென்றார்.","a":"கழித்து","b":"களித்து","f":"l","q":27},{"s":"ஆனந்தன் சிறந்த நீச்சல் வீரன். அவன் தனக்குக் கிடைக்கும் ___ வாய்ப்புகளைத் தவறவிடமாட்டான்.","a":"அரிய","b":"அறிய","f":"r","q":28},{"s":"வெண்ணிலா எல்லாரிடமும் பணிவுடன் பழகும் ___ கொண்டவள். அதனால் அவளுக்குப் பணிவன்பு வாரத்தின்போது விருது வழங்கப்பட்டது.","a":"தன்மை","b":"தண்மை","f":"n","q":29}],"noexam":false},{"id":"F1S12","name":"C6 question bank · Set 12","group":"C6 question bank (4-question format)","short":"Bank set 12","bank":["பாலாகியது","பாணத்தை","கணித்துள்ளனர்","பொறித்து","பானத்தை","பாழாகியது","பொரித்து","கனித்துள்ளனர்"],"qs":[{"s":"இம்மாதம் முழுவதும் வறட்சி நீடிக்கும் என்று வானிலை அறிக்கையாளர்கள் ___. ஆகையால் சில நாட்களுக்கு மழை பெய்யாது.","a":"கணித்துள்ளனர்","b":"கனித்துள்ளனர்","f":"n","q":26},{"s":"மாலதி தான் வரைந்த ஓவியத்தைச் சன்னல் ஓரமாக வைத்துவிட்டாள். அந்த ஓவியம் மழை நீர் பட்டு ___.","a":"பாழாகியது","b":"பாலாகியது","f":"l","q":27},{"s":"திரு குமுதன் தன் மகளுக்கு அழகிய மோதிரம் ஒன்றை வாங்கினார். அதில் தன் மகளின் பெயரை ___ தரச் சொன்னார்.","a":"பொறித்து","b":"பொரித்து","f":"r","q":28},{"s":"வேடன் காட்டில் ஒரு சிங்கத்தைக் கண்டான். உடனே, அவன் ___ எடுத்து அதனைக் குறி பார்த்துச் சுட்டான்.","a":"பாணத்தை","b":"பானத்தை","f":"n","q":29}],"noexam":false},{"id":"F1S13","name":"C6 question bank · Set 13","group":"C6 question bank (4-question format)","short":"Bank set 13","bank":["விளை","கூறிய","கரி","கறி","கூரிய","கணம்","கனம்","விலை"],"qs":[{"s":"கத்தரிக்கோலின் ___ முனை என் விரலைக் குத்திவிட்டது. அதிலிருந்து இரத்தம் கசிந்தது.","a":"கூரிய","b":"கூறிய","f":"r","q":26},{"s":"“அம்மா! அந்தக் கடை இன்னும் இரண்டு நாள்களில் மூடப்படும். அதனால், பொருள்களின் ___ குறைக்கப்பட்டுள்ளன,” என்று அக்கா கூறினார்.","a":"விலை","b":"விளை","f":"l","q":27},{"s":"அந்தச் சாலை விபத்து எனக்கு அதிர்ச்சியை ஏற்படுத்தியது. ஒரு ___ என் இதயத் துடிப்பே நின்றுவிட்டதுபோல் இருந்தது.","a":"கணம்","b":"கனம்","f":"n","q":28},{"s":"காட்டு விலங்குகளில் ___ மிகவும் பலமானது. அது மனிதர்களுக்குப் பாரமான பொருள்களைச் சுமக்க உதவும்.","a":"கரி","b":"கறி","f":"r","q":29}],"noexam":false},{"id":"F1S14","name":"C6 question bank · Set 14","group":"C6 question bank (4-question format)","short":"Bank set 14","bank":["நான்","விலா","அல்லி","நரை","விழா","நாண்","நறை","அள்ளி"],"qs":[{"s":"என் தாயாருக்கு நாற்பது வயதாகிவிட்டது. அவருடைய தலையில் ஆங்காங்கே ___ முடியைக் காணலாம்.","a":"நரை","b":"நறை","f":"r","q":26},{"s":"செல்வி கூடையில் வாங்கி வந்த அரிசி கைதவறிக் கீழே கொட்டியது. அவள் அதை ___ கூடையில் வைத்தாள்.","a":"அள்ளி","b":"அல்லி","f":"l","q":27},{"s":"மூதாட்டி பேருந்திலிருந்து இறங்கியபோது வழுக்கிக் கீழே விழுந்தார். அவரைச் சோதித்த மருத்துவர் அவருடைய ___ முறிந்திருப்பதாகக் கூறினார்.","a":"விலா","b":"விழா","f":"l","q":28},{"s":"இசை வகுப்பின்போது ராதா வாசித்துக்கொண்டிருந்த வீணையின் ___ அறுந்தது. அதனால், அவளால் தொடர்ந்து வீணையை வாசிக்க முடியவில்லை.","a":"நாண்","b":"நான்","f":"n","q":29}],"noexam":false},{"id":"F1S15","name":"C6 question bank · Set 15","group":"C6 question bank (4-question format)","short":"Bank set 15","bank":["கொள்ளை","கருத்து","தண்மை","திரைக்கு","திறைக்கு","தன்மை","கொல்லை","கறுத்து"],"qs":[{"s":"மற்றவர்களுக்கு நம்மால் ஆன உதவியைச் செய்யும்போது நம் வாழ்க்கை பயனுள்ளதாக ஆகிறது. ஆகவே உதவி நாடி வருபவர்களுக்கு உதவும் ___ இருக்க வேண்டும்.","a":"தன்மை","b":"தண்மை","f":"n","q":26},{"s":"வண்ண மலர்கள் கண்களுக்கு விருந்தாக அமையும். மணம் வீசும் மலர்களோ மனதை மகிழ்வுறச் செய்யும் என்பது எனது ___ ஆகும்.","a":"கருத்து","b":"கறுத்து","f":"r","q":27},{"s":"குமரனுக்குத் தன் மாமா என்றால் ___ பிரியம். தன்னிடம் அதிக அக்கறை காட்டும் அவரை அவன் பெரிதும் மதித்தான்.","a":"கொள்ளை","b":"கொல்லை","f":"l","q":28},{"s":"வார இறுதி நாட்களில் என் தாத்தாவும் பாட்டியும் தொலைக்காட்சி நிகழ்ச்சிகளைக் கண்டு களிப்பார்கள். அதில் படைப்பாளர் அண்மையில் ___ வந்த பல படங்களைப் பற்றி விமர்சித்தார்.","a":"திரைக்கு","b":"திறைக்கு","f":"r","q":29}],"noexam":false},{"id":"F1S16","name":"C6 question bank · Set 16","group":"C6 question bank (4-question format)","short":"Bank set 16","bank":["மூலையில்","மனம்","மணம்","வேளையில்","வேலையில்","கறை","கரை","மூளையில்"],"qs":[{"s":"மோகன் வாழைத்தண்டுகளை வெட்டிக்கொண்டு இருந்தான். அப்போது அவனுடைய சட்டையில் வாழை ___ பட்டது.","a":"கறை","b":"கரை","f":"r","q":26},{"s":"அருண் பூங்காவில் மெதுவோட்டம் ஓடினான். அதே ___ அவன் தம்பியும் அங்கே பூப்பந்து விளையாடினான்.","a":"வேளையில்","b":"வேலையில்","f":"l","q":27},{"s":"கலையரசி தொலைத்த தன் மோதிரத்தை வீடு முழுவதும் தேடினாள். இறுதியில் அதைச் சமையலறையின் ஒரு ___ கண்டுபிடித்தாள்.","a":"மூலையில்","b":"மூளையில்","f":"l","q":28},{"s":"என் பிறந்தநாள் அன்று அம்மா பிரியாணி சமைத்தார். அந்த உணவின் ___ அனைவருக்கும் பசியைத் தூண்டியது.","a":"மணம்","b":"மனம்","f":"n","q":29}],"noexam":false},{"id":"F1S17","name":"C6 question bank · Set 17","group":"C6 question bank (4-question format)","short":"Bank set 17","bank":["உறை","தனித்து","விளை","ஒழிந்து","விலை","ஒளிந்து","தணித்து","உரை"],"qs":[{"s":"காவலர்களைப் பார்த்தவுடன் திருடன் வேகமாக ஓடினான். அவன் ஒரு கட்டடத்திற்குப் பின்னால் ___ கொண்டான்.","a":"ஒளிந்து","b":"ஒழிந்து","f":"l","q":26},{"s":"செல்வி, கடையில் ஒரு பொம்மையின் ___ மலிவாக இருப்பதைப் பார்த்தாள். அவள் அதைத் தன் தம்பிக்கு வாங்க எண்ணினாள்.","a":"விலை","b":"விளை","f":"l","q":27},{"s":"என் வீட்டிற்கு ஒரு திருமண அழைப்பிதழ் வந்தது. அதன் ___ மிகவும் அழகாக இருந்தது.","a":"உறை","b":"உரை","f":"r","q":28},{"s":"மாதவன் யாருடனும் சேர மாட்டான். அவன் எப்போதும் ___ இருக்கவே விரும்புவான்.","a":"தனித்து","b":"தணித்து","f":"n","q":29}],"noexam":false},{"id":"F1S18","name":"C6 question bank · Set 18","group":"C6 question bank (4-question format)","short":"Bank set 18","bank":["கோல்","நெரி","பேன்","வலையில்","நெறி","பேண்","வளையில்","கோள்"],"qs":[{"s":"இன்றைய இளைஞர்கள் ஒவ்வொருவரும் 'தந்தை தாய் ___' என்ற ஔவையாரின் கூற்றிற்குச் செவிசாய்த்தல் நல்லதாகும்.","a":"பேண்","b":"பேன்","f":"n","q":26},{"s":"சிறுவர்கள் கடற்கரையில் விளையாடிக்கொண்டு இருந்தனர். அப்போது நண்டுகள் ___ இருந்து வெளியே வந்தன.","a":"வளையில்","b":"வலையில்","f":"l","q":27},{"s":"அனைவரும் வாழ்க்கையில் முன்னேற விரும்புகிறோம். எச்சூழ்நிலையிலும் ___ தவறாமல் படிப்படியாக முன்னேறுவதே சிறப்பாகும்.","a":"நெறி","b":"நெரி","f":"r","q":28},{"s":"கந்தனுக்கு மாறனைப் பிடிக்காது. அதனால் அவன் மாறனைப் பற்றி ஆசிரியரிடம் ___ கூறி அவனை வம்பில் மாட்டிவிட முயன்றான்.","a":"கோள்","b":"கோல்","f":"l","q":29}],"noexam":false},{"id":"F1S19","name":"C6 question bank · Set 19","group":"C6 question bank (4-question format)","short":"Bank set 19","bank":["விலங்கு","இறை","ஆனை","எல்லை","இரை","ஆணை","எள்ளை","விளங்கு"],"qs":[{"s":"அம்மா முறுக்கு சுட மாவைத் தயார் செய்தார். அதைச் சுவைமிக்கதாக்க அதில் ___ சேர்த்தார்.","a":"எள்ளை","b":"எல்லை","f":"l","q":26},{"s":"பறவைக்குஞ்சுகளுக்குப் பசி ஏற்பட்டது. அவற்றின் பசியைப் போக்கத் தாய்ப்பறவை ___ தேடி அலைந்தது.","a":"இரை","b":"இறை","f":"r","q":27},{"s":"வீடு புகுந்து திருடிய திருடனைக் காவலர்கள் கைது செய்தனர். காவலர்கள் அவன் கைகளில் ___ மாட்டி அழைத்துச் சென்றனர்.","a":"விலங்கு","b":"விளங்கு","f":"l","q":28},{"s":"அரசன் தன்னிடம் வந்த வழக்கை நன்கு விசாரித்தான். பின்னர், குற்றம் செய்தவனைச் சிறையில் அடைக்கும்படி ___ இட்டான்.","a":"ஆணை","b":"ஆனை","f":"n","q":29}],"noexam":false},{"id":"F1S20","name":"C6 question bank · Set 20","group":"C6 question bank (4-question format)","short":"Bank set 20","bank":["அல்லி","கனை","கோளம்","அள்ளி","அக்கறை","கோலம்","கணை","அக்கரை"],"qs":[{"s":"தீபாவளி அன்று என் அத்தை வாசலில் அழகிய ___ ஒன்றை போட்டார். மாமா அதைப் புகைப்படம் எடுத்தார்.","a":"கோலம்","b":"கோளம்","f":"l","q":26},{"s":"வேடன் எய்த ___ மானின் உடலைத் தைத்தது. அதனால், அது வலியால் துடிதுடித்தது.","a":"கணை","b":"கனை","f":"n","q":27},{"s":"திருமதி சுமதி குவளையால் அரிசியை ___ எடுத்தார். பிறகு அவர் அதை ஒரு பானையில் கொட்டினார்.","a":"அள்ளி","b":"அல்லி","f":"l","q":28},{"s":"முகிலன் உதவி செய்யும் குணம் படைத்தவன். அவன் பிறர் நலனில் அதிக ___ கொண்டவன்.","a":"அக்கறை","b":"அக்கரை","f":"r","q":29}],"noexam":false},{"id":"F1S21","name":"C6 question bank · Set 21","group":"C6 question bank (4-question format)","short":"Bank set 21","bank":["பலி","பாணம்","கரை","அள்ளி","பானம்","பழி","கறை","அல்லி"],"qs":[{"s":"இளைஞர்கள் நீண்ட நேரம் காற்பந்து விளையாடினார்கள். பிறகு, தங்கள் தாகத்தைத் தணிக்க ___ அருந்தினார்கள்.","a":"பானம்","b":"பாணம்","f":"n","q":26},{"s":"அறையில் இருந்த நகை காணாமல் போனது. அறையைச் சுத்தம் செய்த பணிப்பெண் நகையைத் திருடியதாக அவள் மீது ___ சுமத்தப்பட்டது.","a":"பழி","b":"பலி","f":"l","q":27},{"s":"என் மாமாவின் வாகனம் திடீரென்று சாலையில் நின்றது. மாமா வாகனத்தைப் பழுது பார்த்ததால் அவரது கையில் ___ பட்டது.","a":"கறை","b":"கரை","f":"r","q":28},{"s":"கர்ணன் மிக சிறந்த வள்ளல். அவன் தன்னிடம் உதவி நாடி வருபவர்களிடம் இல்லை என்று சொல்லாமல் ___ கொடுக்கும் மனம் உடையவன்.","a":"அள்ளி","b":"அல்லி","f":"l","q":29}],"noexam":false},{"id":"F1S22","name":"C6 question bank · Set 22","group":"C6 question bank (4-question format)","short":"Bank set 22","bank":["வருத்த","கண்ணிகள்","கலைந்து","சொறிந்து","கன்னிகள்","வறுத்த","சொரிந்து","களைந்து"],"qs":[{"s":"நெற்கதிர்கள் செழித்து வளர்ந்திருந்ததைக் கண்ட உழவர்கள் பெரும் மகிழ்ச்சி அடைந்தனர். அறுவடைக் காலம் வரை அவற்றைப் பறவைகளிடமிருந்து பாதுகாக்க வயலைச் சுற்றி ___ அமைத்தனர்.","a":"கண்ணிகள்","b":"கன்னிகள்","f":"n","q":26},{"s":"பாட்டி ___ கோழித்துண்டுகள் சுவையாக இருந்தன. அதனால் நாங்கள் அவற்றை சாப்பிட்டு முடித்துவிட்டோம்.","a":"வறுத்த","b":"வருத்த","f":"r","q":27},{"s":"ஆர்சட் சாலையில் நடந்த சிங்கே ஊர்வலம் மாலை ஆறு மணியளவில் முடிந்தது. அப்போதுதான் கூட்டம் ___ சென்றது.","a":"கலைந்து","b":"களைந்து","f":"l","q":28},{"s":"பேன் அரிப்பு தாங்காமல் தேவி தன் தலையை ___ கொண்டே இருந்தாள். அதனால் அவளது தாயார் அவளை மருத்துவரிடம் அழைத்துச் சென்றார்.","a":"சொறிந்து","b":"சொரிந்து","f":"r","q":29}],"noexam":false},{"id":"CK1","name":"Classkick worksheet · Set 1","group":"Classkick worksheet (5-question format)","short":"Worksheet set 1","bank":["வாலை","குரைக்க","குறைக்க","மனம்","வலை","வாளை","மணம்","பனி","பணி","வளை"],"qs":[{"s":"திரு மாறன் அழகான ஓவியங்களை வரைவார். அவர் இந்த ___யில் பல வருடங்களாக இருக்கிறார்.","a":"பணி","b":"பனி","f":"n","q":24},{"s":"வேடன் காட்டிற்கு வேட்டையாடச் சென்றான். அவன் விரித்த ___யில் மான் ஒன்று சிக்கியது.","a":"வலை","b":"வளை","f":"l","q":25},{"s":"சமையற்காரன் மீனை வெட்டி மசாலா போட்டுக் கறி சமைத்தான். கறியின் ___ முதலாளியின் மூக்கைத் துளைத்தது.","a":"மணம்","b":"மனம்","f":"n","q":26},{"s":"படைவீரன் ஒருவன் தான் போரில் புரிந்த வீரச் செயலைப் பற்றித் தன் நண்பர்களிடம் பேசிக் கொண்டிருந்தான். அப்போது அவன் தன் ___ உருவியதைச் செய்து காட்டினான்.","a":"வாளை","b":"வாலை","f":"l","q":27},{"s":"உலகெங்கும் பொருளியல் மந்த நிலை ஏற்பட்டுள்ளது. மக்களின் பணப் பிரச்சனையை ___ அரசாங்கம் பல முயற்சிகளை எடுக்கிறது.","a":"குறைக்க","b":"குரைக்க","f":"r","q":28}],"noexam":false},{"id":"CK2","name":"Classkick worksheet · Set 2","group":"Classkick worksheet (5-question format)","short":"Worksheet set 2","bank":["மூளையில்","அறிந்து","தழைகளை","ஊனை","அரிந்து","தலைகளை","ஊணை","உறை","உரை","மூலையில்"],"qs":[{"s":"என் தாயார் சந்தைக்குச் சென்று காய்கறிகள் வாங்கி வந்தார். அவற்றை ___ சுவையான கறி சமைத்தார்.","a":"அரிந்து","b":"அறிந்து","f":"r","q":24},{"s":"நமது பிரதமர் தொழிலாளர் தினத்தன்று ___ நிகழ்த்தினார். அதனைத் தொலைக்காட்சியில் ஒளிபரப்பினார்கள்.","a":"உரை","b":"உறை","f":"r","q":25},{"s":"இடையன் ஆடுகளை ஓட்டிக்கொண்டு புல்வெளிக்குச் சென்றான். அங்கு அவை இலை ___ மேய்ந்தன.","a":"தழைகளை","b":"தலைகளை","f":"l","q":26},{"s":"புலி மானை அடித்து வீழ்த்தியது. பின்னர் அதன் ___ உண்டு மகிழ்ந்தது.","a":"ஊனை","b":"ஊணை","f":"n","q":27},{"s":"ராமு தொடர்ந்து பேசிக்கொண்டிருந்தான். கோபம் கொண்ட ஆசிரியர் அவனை அறையின் ___ நிற்க வைத்தார்.","a":"மூலையில்","b":"மூளையில்","f":"l","q":28}],"noexam":false},{"id":"CK3","name":"Classkick worksheet · Set 3","group":"Classkick worksheet (5-question format)","short":"Worksheet set 3","bank":["பாணம்","களை","விலக்கி","பாழ்","கனம்","விளக்கி","பால்","பானம்","கலை","கணம்"],"qs":[{"s":"என் தம்பி என்னுடைய புத்தகத்தில் தண்ணீரைக் கொட்டிவிட்டான். நான் செய்த வீட்டுப்பாடம் எல்லாம் ___ ஆனது.","a":"பாழ்","b":"பால்","f":"l","q":24},{"s":"காட்டில் ஒரு மான் ஓடுவதை வேடன் கண்டான். அவன் தன் வில், ___ ஆகியவற்றை எடுத்து மானைக் கொல்லக் குறி வைத்தான்.","a":"பாணம்","b":"பானம்","f":"n","q":25},{"s":"என் தங்கைக்குக் காய்கறி சாப்பிடப் பிடிக்காது. அவள் தன் உணவில் இருக்கும் காய்கறிகளை ___ வைத்துவிட்டுச் சாப்பிடுவாள்.","a":"விலக்கி","b":"விளக்கி","f":"l","q":26},{"s":"குமரன் ஐம்பது கிலோ ___ தூக்கும் போட்டியில் கலந்துகொண்டான். இறுதியில் அவனுக்கே முதல் பரிசு கிடைத்தது.","a":"கனம்","b":"கணம்","f":"n","q":27},{"s":"பரதநாட்டியம் என்பது ஓர் அற்புதமான இந்திய ___. சிங்கப்பூரில் பலர் பரதநாட்டியத்தை விரும்பிக் கற்கின்றனர்.","a":"கலை","b":"களை","f":"l","q":28}],"noexam":false},{"id":"CK4","name":"Classkick worksheet · Set 4","group":"Classkick worksheet (5-question format)","short":"Worksheet set 4","bank":["குரைத்து","மணம்","அறை","வலி","கோலி","குறைத்து","மனம்","கோழி","வழி","அரை"],"qs":[{"s":"சாலை ஓரமாக சென்ற மாட்டை, லாரி மோதியது. காயம் அடைந்த மாடு ___ தாங்க முடியாமல் துடித்தது.","a":"வலி","b":"வழி","f":"l","q":24},{"s":"அன்று எனக்குப் பிறந்த நாள். அதனால் அம்மா எனக்குப் பிடித்தக் ___ குழம்பை சமைத்தார்.","a":"கோழி","b":"கோலி","f":"l","q":25},{"s":"கலைநிகழ்ச்சி தொடங்குவதற்கு இன்னும் ___ மணி நேரம்தான் இருந்தது. அதனால் நாங்கள் விரைவாக நிகழ்ச்சிக்குத் தயாரானோம்.","a":"அரை","b":"அறை","f":"r","q":26},{"s":"அப்பா நாய்க்குட்டிக்கு உணவு வாங்கி வந்தார். அதைப் பார்த்ததும் நாய்க்குட்டி ___ கொண்டு வாலை ஆட்டியது.","a":"குரைத்து","b":"குறைத்து","f":"r","q":27},{"s":"தேவி மல்லிகை பூ சூடினாள். மல்லிகைப் பூவின் ___ வீடெங்கும் பரவியது.","a":"மணம்","b":"மனம்","f":"n","q":28}],"noexam":false},{"id":"CK5","name":"Classkick worksheet · Set 5","group":"Classkick worksheet (5-question format)","short":"Worksheet set 5","bank":["அழகால்","அணைக்க","உறையில்","இறக்கம்","வெல்லம்","அலகால்","அனைக்க","உரையில்","இரக்கம்","வெள்ளம்"],"qs":[{"s":"பாபு மிகவும் இளகிய மனம் படைத்தவன். அவன் சாலையில் காயமுற்றுக் கிடக்கும் பூனை மீது ___ கொண்டான்.","a":"இரக்கம்","b":"இறக்கம்","f":"r","q":24},{"s":"பறவை ஒன்று மரக்கிளையில் அமர்ந்திருந்தது. அது மரத்திலிருந்த பழங்களைத் தன் ___ கொத்தித்தின்றது.","a":"அலகால்","b":"அழகால்","f":"l","q":25},{"s":"என் வீட்டின் அருகிலுள்ள அடுக்குமாடிக் கட்டடம் தீப்பிடித்துக் கொண்டது. அதை ___ பலரும் பாடுபட்டனர்.","a":"அணைக்க","b":"அனைக்க","f":"n","q":26},{"s":"மாலதி தன் தோழிக்கு ஒரு கடிதம் எழுதினாள். பின் அதை ஓர் ___ போட்டாள்.","a":"உறையில்","b":"உரையில்","f":"r","q":27},{"s":"நேற்று தொடர்ந்து மழை பெய்ததால், பல இடங்களில் பெரு ___ ஏற்பட்டது.","a":"வெள்ளம்","b":"வெல்லம்","f":"l","q":28}],"noexam":false},{"id":"CK6","name":"Classkick worksheet · Set 6","group":"Classkick worksheet (5-question format)","short":"Worksheet set 6","bank":["அணைத்து","பரந்த","தோலை","அனைத்து","எண்ணுடன்","தோளை","என்னுடன்","கோலம்","பறந்த","கோளம்"],"qs":[{"s":"அடுத்த வாரம், பாலா சாரணர் முகாமிற்குச் செல்ல இருக்கிறான். அவன் தனக்குத் தேவையான ___ பொருள்களையும் பையில் எடுத்து வைப்பான்.","a":"அனைத்து","b":"அணைத்து","f":"n","q":24},{"s":"அன்று பொங்கல் திருநாள். என் தாயார் எங்கள் வீட்டு வாசலில் அழகிய ___ ஒன்றை வரைந்தார்.","a":"கோலம்","b":"கோளம்","f":"l","q":25},{"s":"வானத்தில் ___ கழுகை வேடன் குறி வைத்துச் சுட்டான்.","a":"பறந்த","b":"பரந்த","f":"r","q":26},{"s":"நேற்று விரைவுச்சாலையில் ஒரு விபத்து ஏற்பட்டிருந்தது. அதைக் கண்ட பொதுமக்கள் 999 என்ற தொலைபேசி ___ தொடர்பு கொண்டனர்.","a":"எண்ணுடன்","b":"என்னுடன்","f":"n","q":27},{"s":"ஆதிகால மனிதன் மிருகங்களின் ___ ஆடையாகப் பயன்படுத்தினான். இன்றும் மனிதன் அதைப் பயன்படுத்திப் பல பொருள்களைச் செய்கிறான்.","a":"தோலை","b":"தோளை","f":"l","q":28}],"noexam":false},{"id":"CK7","name":"Classkick worksheet · Set 7","group":"Classkick worksheet (5-question format)","short":"Worksheet set 7","bank":["அரிந்து","பனி","காளை","உறை","உரை","அறிந்து","வலியால்","காலை","வழியால்","பணி"],"qs":[{"s":"அருணா சந்தைக்குச் சென்று காய்கறிகள் வாங்கினாள். அவள், அம்மா சமைக்க அவற்றை ___ வைத்தாள்.","a":"அரிந்து","b":"அறிந்து","f":"r","q":24},{"s":"திங்கள்கிழமை அன்று பள்ளி மண்டபத்தில் மாணவர்களுக்குக் கூட்டம் நடந்தது. அப்போது பள்ளி முதல்வர் டெங்கிக் காய்ச்சலைப்பற்றி ___ நிகழ்த்தினார்.","a":"உரை","b":"உறை","f":"r","q":25},{"s":"ஒரு வாகனம் வேகமாக வந்து சாலையில் ஓடிய நாயின் மீது மோதியது. நாய் ___ கத்திக்கொண்டே ஓடி மறைந்தது.","a":"வலியால்","b":"வழியால்","f":"l","q":26},{"s":"பவித்ராவின் தாயார் ஒரு தாதி. அவளும் அவரைப் போல ஒரு தாதியாக ___ புரிய விரும்புகிறாள்.","a":"பணி","b":"பனி","f":"n","q":27},{"s":"பொங்கல் திருநாள் தமிழர்களால் கொண்டாடப்படும் ஒரு விழா. மாட்டுப்பொங்கல் அன்று பசு மற்றும் ___ மாடுகளை அழகாக அலங்கரித்து, பொங்கல் ஊட்டிவிடுவார்கள்.","a":"காளை","b":"காலை","f":"l","q":28}],"noexam":false},{"id":"CK8","name":"Classkick worksheet · Set 8","group":"Classkick worksheet (5-question format)","short":"Worksheet set 8","bank":["வலி","மணம்","அரை","ஒலி","இலை","இளை","மனம்","அறை","ஒளி","வழி"],"qs":[{"s":"என் மாமா பெரிய வீடு வாங்கினார். அதில் படிப்பதற்கு ஒரு சிறிய ___ இருக்கிறது.","a":"அறை","b":"அரை","f":"r","q":24},{"s":"அம்மா மல்லிகைப்பூ வாங்கி வந்தார். பூக்களின் ___ வீடு முழுவதும் பரவியது.","a":"மணம்","b":"மனம்","f":"n","q":25},{"s":"அத்தை ஒரு வைர மோதிரம் வாங்கினார். அந்த வைரம் ___ வீசியது.","a":"ஒளி","b":"ஒலி","f":"l","q":26},{"s":"நான் ஓடும்போது கீழே விழுந்துவிட்டேன். அதனால், காலில் ___ ஏற்பட்டது.","a":"வலி","b":"வழி","f":"l","q":27},{"s":"என் வீட்டுக்கு விருந்தினர் வந்தார். அம்மா வாழை ___ ஒன்றில் உணவு பரிமாறினார்.","a":"இலை","b":"இளை","f":"l","q":28}],"noexam":false},{"id":"CK9","name":"Classkick worksheet · Set 9","group":"Classkick worksheet (5-question format)","short":"Worksheet set 9","bank":["கனமாக","உறை","கணமாக","விழா","உரை","வலியில்","விலா","காளை","காலை","வழியில்"],"qs":[{"s":"வனிதா தன் வீட்டுக்கு நடந்து வரும் ___ ஒரு பாம்பைப் பார்த்தாள். அவள் பயந்து அலறிக்கொண்டே ஓடினாள்.","a":"வழியில்","b":"வலியில்","f":"l","q":24},{"s":"புதிதாக வந்த தலைமையாசிரியர் ஆற்றிய ___ மிகவும் சிறப்பாக இருந்தது. அவருடைய பேச்சு எங்களுக்குப் புத்துணர்ச்சியை ஏற்படுத்தியது.","a":"உரை","b":"உறை","f":"r","q":25},{"s":"சிராங்கூன் பகுதியில் பொங்கல் பண்டிகையை முன்னிட்டுக் கண்காட்சி ஏற்பாடு செய்யப்பட்டிருந்தது. அதற்காக ___ மாடுகளும் கன்றுகளும் கொண்டுவரப்பட்டிருந்தன.","a":"காளை","b":"காலை","f":"l","q":26},{"s":"என் பள்ளிப்பை மிகவும் ___ இருந்தது. அதனால், நான் சில புத்தகங்களை வீட்டில் வைத்துவிட்டுச் சென்றேன்.","a":"கனமாக","b":"கணமாக","f":"n","q":27},{"s":"சாலை விபத்தில் சிக்கிய மாறனுக்கு ___ எலும்பில் முறிவு ஏற்பட்டது. அதனால், அவன் தொடர்ந்து மருத்துவமனைக்குச் சென்று சிகிச்சை பெற்றான்.","a":"விலா","b":"விழா","f":"l","q":28}],"noexam":false},{"id":"CK10","name":"Classkick worksheet · Set 10","group":"Classkick worksheet (5-question format)","short":"Worksheet set 10","bank":["உரைக்கு","வெள்ளம்","கரை","கலை","வெல்லம்","பாணம்","களை","உறைக்கு","பானம்","கறை"],"qs":[{"s":"மாதவன் தவறி சேற்று நீரை மிதித்து விட்டான். அதனால், அவன் சட்டையில் ___ படிந்து விட்டது.","a":"கறை","b":"கரை","f":"r","q":24},{"s":"உடற்பயிற்சி வகுப்பு அப்போதுதான் முடிந்தது. உடனே சில மாணவர்கள் குளிர் ___ விற்கும் கடையை நோக்கி விரைந்தனர்.","a":"பானம்","b":"பாணம்","f":"n","q":25},{"s":"பொங்கல் விழா தை மாதம் முதல் நாள் கொண்டாடப்படுகிறது. அவ்விழாவை முன்னிட்டு சமூக நிலையங்களில் ___ நிகழ்ச்சிகள் ஏற்பாடு செய்யப்பட்டுள்ளன.","a":"கலை","b":"கரை","f":"l","q":26},{"s":"அன்று பள்ளி பரிசளிப்பு விழா. தலைமை ஆசிரியரின் சிறப்பு ___ பிறகு மாணவர்களுக்குப் பரிசுகள் வழங்கப்பட்டன.","a":"உரைக்கு","b":"உறைக்கு","f":"r","q":27},{"s":"டிசம்பர் மாதம் முழுவதும் கனத்த மழை பெய்தது. அதனால் பல இடங்களில் ___ ஏற்பட்டது.","a":"வெள்ளம்","b":"வெல்லம்","f":"l","q":28}],"noexam":false},{"id":"CK11","name":"Classkick worksheet · Set 11","group":"Classkick worksheet (5-question format)","short":"Worksheet set 11","bank":["தோல்","இரை","கொல்லை","பானம்","சிரை","தோள்","இறை","கொள்ளை","பாணம்","சிறை"],"qs":[{"s":"கொலை செய்த குற்றத்திற்காகக் குமரன் நீதிமன்றத்தில் நிறுத்தப்பட்டான். குற்றம் நிரூபிக்கப்பட்டால் அவனுக்கு இருபது ஆண்டுகள் ___ தண்டனை வழங்கப்படும்.","a":"சிறை","b":"சிரை","f":"r","q":24},{"s":"முதலைகளின் ___ கைப்பைகள் செய்யப் பயன்படுத்தப்படுகிறது. ஆகவே தான் முதலைகள் பெருமளவில் கொல்லப்படுகின்றன.","a":"தோல்","b":"தோள்","f":"l","q":25},{"s":"திரு ரவி தன் வீட்டுக்கதவைப் பூட்ட மறந்துவிட்டார். அதனால் முகமூடி அணிந்த சிலர் அவர் வீட்டிற்குள் நுழைந்து விலையுயர்ந்த பொருட்களை ___ அடித்து விட்டுச் சென்றனர்.","a":"கொள்ளை","b":"கொல்லை","f":"l","q":26},{"s":"வெகுதூரம் நடந்ததால் மாலாவுக்குத் தாகம் ஏற்பட்டது. தன் தாகத்தைத் தணிக்க அவள் ___ அருந்தினாள்.","a":"பானம்","b":"பாணம்","f":"n","q":27},{"s":"என் அத்தை ___ நம்பிக்கை அதிகம் உள்ளவர். அதனால் தான் அவர் அன்றாடம் தவறாமல் கோயிலுக்குச் சென்று வருவார்.","a":"இறை","b":"இரை","f":"r","q":28}],"noexam":false},{"id":"CK12","name":"Classkick worksheet · Set 12","group":"Classkick worksheet (5-question format)","short":"Worksheet set 12","bank":["அள்ளி","ஏரி","ஒளி","எரிந்த","ஏறி","வலி","எறிந்த","அல்லி","ஒலி","வழி"],"qs":[{"s":"நேற்று மீரா கடற்கரைக்குச் சென்றாள். அங்கே அவள் மணலை ___ வாளியில் போட்டாள்.","a":"அள்ளி","b":"அல்லி","f":"l","q":24},{"s":"தீபாவளி அன்று என் பெற்றோர் வீடு முழுவதும் தீபங்கள் ஏற்றி வைத்தனர். அவற்றின் ___ மிக பிரகாசமாக இருந்தது.","a":"ஒளி","b":"ஒலி","f":"l","q":25},{"s":"தொழிற்சாலையில் ___ தீயை வெகு விரைவில் தீயணைப்பாளர்கள் அணைத்ததால் எவ்வித சேதமும் ஏற்படவில்லை.","a":"எரிந்த","b":"எறிந்த","f":"r","q":26},{"s":"நான் என் குடும்பத்தோடு மேடான் நகருக்குச் சென்றேன். அங்கே நாங்கள் தோபா ___ என்ற அழகிய நீர்த்தேக்கத்தைக் கண்டோம்.","a":"ஏரி","b":"ஏறி","f":"r","q":27},{"s":"கலா மருத்துவமனைக்குச் சென்று ஊசி போட்டாள். அவள் ___ தாங்க முடியாமல் அழுதாள்.","a":"வலி","b":"வழி","f":"l","q":28}],"noexam":false},{"id":"CK13","name":"Classkick worksheet · Set 13","group":"Classkick worksheet (5-question format)","short":"Worksheet set 13","bank":["அருந்து","பணி","பனி","அறை","மழை","அழகு","அலகு","அறுந்து","அரை","மலை"],"qs":[{"s":"நெடுந்தூரம் நடந்ததால் உனக்குத் தாகம் எடுத்தது. அதனால் நீ தண்ணீர் ___.","a":"அருந்து","b":"அறுந்து","f":"r","q":24},{"s":"என் வீட்டு வரவேற்பு ___ அழகாக இருக்கும். நாங்கள் அங்கு அமர்ந்து தொலைக்காட்சி பார்ப்போம்.","a":"அறை","b":"அரை","f":"r","q":25},{"s":"என் தந்தை தொழிற்சாலையில் ___ புரிகிறார். அவர் அன்றாடம் காலை ஏழு மணிக்கு வேலைக்குச் செல்வார்.","a":"பணி","b":"பனி","f":"n","q":26},{"s":"என் செல்லப்பிராணி ஒரு பச்சைக்கிளி. அதன் ___ வளைந்து இருக்கும்.","a":"அலகு","b":"அழகு","f":"l","q":27},{"s":"எவரஸ்ட் ___ மிகவும் உயரமானது. அதில் ஏறி சிலர் சாதனை படைத்துள்ளனர்.","a":"மலை","b":"மழை","f":"l","q":28}],"noexam":false},{"id":"CK14","name":"Classkick worksheet · Set 14","group":"Classkick worksheet (5-question format)","short":"Worksheet set 14","bank":["விழா","இரங்கினான்","அல்லி","கரை","கணம்","விலா","இறங்கினான்","அள்ளி","கறை","கனம்"],"qs":[{"s":"அந்தப் புதிய ஆடவரைக் கண்டு நான் ஆச்சரியப்பட்டேன். ஒரு ___ யோசித்த பின்னரே அவர் யார் என்று எனக்குப் புரிந்தது.","a":"கணம்","b":"கனம்","f":"n","q":24},{"s":"வர்மன் கால் தடுக்கி சேற்றில் விழுந்தான். அவன் அணிந்திருந்த புதிய சட்டையில் ___ ஏற்பட்டது.","a":"கறை","b":"கரை","f":"r","q":25},{"s":"கவின், ஏழைகளின் நிலைமையைக் கண்டு மனம் ___. அவன் அவர்களுக்குப் பண உதவி செய்ய விரும்பினான்.","a":"இரங்கினான்","b":"இறங்கினான்","f":"r","q":26},{"s":"விபத்தில் சிக்கிய திரு மாறனின் ___ எலும்பு முறிந்தது. அவர் இரண்டு மாதங்களுக்கு நடக்க முடியாமல் அவதிப்பட்டார்.","a":"விலா","b":"விழா","f":"l","q":27},{"s":"சிறுவர்களுக்குக் கடற்கரைக்குச் செல்ல கொள்ளை ஆசை. அங்கு அவர்கள் மகிழ்ச்சியாக மணலை ___ விளையாடுவர்.","a":"அள்ளி","b":"அல்லி","f":"l","q":28}],"noexam":false},{"id":"CK15","name":"Classkick worksheet · Set 15","group":"Classkick worksheet (5-question format)","short":"Worksheet set 15","bank":["பொரித்து","ஆனி","ஆணி","பனி","எரிந்து","மூளை","மூலை","பொறித்து","பணி","எறிந்து"],"qs":[{"s":"வீட்டைச் சுத்தம் செய்யும் வேளையில் அம்மாவின் காலில் ___ ஒன்று குத்தியது. அதனால், அவர் வலி தாங்க முடியாமல் கத்தினார்.","a":"ஆணி","b":"ஆனி","f":"n","q":24},{"s":"அம்மா அன்று பிரியாணி சமைத்து வைத்தார். உணவுக்கு இன்னும் ருசி சேர்க்க கோழியை எண்ணெயில் ___ எடுத்தார்.","a":"பொரித்து","b":"பொறித்து","f":"r","q":25},{"s":"மருத்துவர்கள் பால் அருந்துவதன் முக்கியத்துவத்தை எடுத்துரைத்தனர். அதில் அவர்கள், ஒரு குழந்தையின் ___ வளர்ச்சிக்குப் பால் அருந்துவது மிக முக்கிய அம்சமாக விளங்குகிறது என்று குறிப்பிட்டனர்.","a":"மூளை","b":"மூலை","f":"l","q":26},{"s":"என் அப்பா ___ புரியும் இடத்தில் ஒருவருக்கு H1N1 சளிக்காய்ச்சல் வந்தது. அவர் அப்பாவுடன் ஒரே இடத்தில் வேலை செய்ததால், அப்பா தனிமை படுத்தப்பட்டார்.","a":"பணி","b":"பனி","f":"n","q":27},{"s":"அரசாங்க அலுவலகத்தில் தீ மூண்டதால், நிறைய அரசாங்கத் தகவல்கள் நெருப்பில் ___ சாம்பலாயின.","a":"எரிந்து","b":"எறிந்து","f":"r","q":28}],"noexam":false},{"id":"CK16","name":"Classkick worksheet · Set 16","group":"Classkick worksheet (5-question format)","short":"Worksheet set 16","bank":["கனம்","பொரிக்கப்பட்ட","பொறிக்கப்பட்ட","உறை","பாணம்","வழி","உரை","கணம்","வலி","பானம்"],"qs":[{"s":"நம் பள்ளிக் காற்பந்துக் குழு காற்பந்துப் போட்டியில் முதல் நிலையை அடைந்தது. தலைமையாசிரியர் குழுவினரைப் பாராட்டி ஓர் ___ நிகழ்த்தினார்.","a":"உரை","b":"உறை","f":"r","q":24},{"s":"என் மாமா அதிக பலம் படைத்தவர். ___ தூக்கும் போட்டியில் அவர் வெற்றி பெற்றதால் எனக்கு மகிழ்ச்சி ஏற்பட்டது.","a":"கனம்","b":"கணம்","f":"n","q":25},{"s":"இந்தியாவின் ஒரு பகுதியில் பழங்காலத்துக் கல்வெட்டுகள் கண்டெடுக்கப்பட்டன. அவற்றில் ___ எழுத்துகள் தமிழ் எழுத்துகள் என்று அறிஞர்கள் கூறுகின்றனர்.","a":"பொறிக்கப்பட்ட","b":"பொரிக்கப்பட்ட","f":"r","q":26},{"s":"விஜயன் வேட்டை ஆடுவதில் திறமைசாலி. அவனுடைய வில்லிலிருந்து புறப்பட்ட ___ குறி தவறாமல் மானைத் தாக்கியது.","a":"பாணம்","b":"பானம்","f":"n","q":27},{"s":"குதிரைச் சவாரி செய்த ரகு எதிர்பாராத விதமாகக் கீழே விழுந்தான். அதனால், அவன் ___ தாங்க முடியாமல் அழுதான்.","a":"வலி","b":"வழி","f":"l","q":28}],"noexam":false},{"id":"CK17","name":"Classkick worksheet · Set 17","group":"Classkick worksheet (5-question format)","short":"Worksheet set 17","bank":["இரங்கி","அணைத்து","அனைத்து","இறங்கி","அல்லி","பணியில்","பனியில்","வழி","வலி","அள்ளி"],"qs":[{"s":"பாலன் கருணை உள்ளம் படைத்தவன். அவன் இல்லாதவர்களின் நிலையைக் கண்டு மனம் ___ பல அற நிறுவனங்களுக்கு நன்கொடை வழங்கினான்.","a":"இரங்கி","b":"இறங்கி","f":"r","q":24},{"s":"திருமதி சீத்தா கடந்த பத்து ஆண்டுகளாக ஒரே ___ இருக்கிறார். அதுவே அவருக்கு சலிப்பு ஏற்படக் காரணமாக இருக்கிறது.","a":"பணியில்","b":"பனியில்","f":"n","q":25},{"s":"லீலா மாலை நேரத்தில் பூங்காவில் நடப்பாள். அப்போது அவர் ___ மலர்களின் அழகை ரசிக்கத் தவற மாட்டாள்.","a":"அல்லி","b":"அள்ளி","f":"l","q":26},{"s":"என் அண்ணனுக்குக் கையில் அடிப்பட்டு ஒரு வாரத்துக்கு மேலாகிவிட்டது. ஆனால் ஏனோ ___ மட்டும் குறையவில்லை.","a":"வலி","b":"வழி","f":"l","q":27},{"s":"சிறுமி கீழே விழுந்ததால் வலியால் கத்தினாள். அந்தச் சத்தத்தைக் கேட்ட தாய் ஓடி வந்து அவளை ___ ஆறுதல் கூறினார்.","a":"அணைத்து","b":"அனைத்து","f":"n","q":28}],"noexam":true},{"id":"CK18","name":"Classkick worksheet · Set 18","group":"Classkick worksheet (5-question format)","short":"Worksheet set 18","bank":["உறை","கறை","அணைத்து","உரை","விளக்கு","களித்தனர்","கரை","விலக்கு","கழித்தனர்","அனைத்து"],"qs":[{"s":"ஆசிரியர் மாணவர்களுக்குக் கணக்குப் பயிற்சி கொடுத்தார். மாணவர்கள் பத்திலிருந்து நான்கை ___.","a":"கழித்தனர்","b":"களித்தனர்","f":"l","q":24},{"s":"எங்கள் பள்ளிக்குக் காவலர்கள் வருகை புரிந்தார்கள். அவர்கள் போதைப் புழக்கத்திற்கு ஆளாகாமல் இருப்பதைப்பற்றி ஓர் ___ ஆற்றினார்கள்.","a":"உரை","b":"உறை","f":"r","q":25},{"s":"வாழைத்தோட்டத்தில் பல தொழிலாளிகள் வேலை செய்தார்கள். அவர்கள் ஆடைகளில் வாழை ___ படிந்திருந்தது.","a":"கறை","b":"கரை","f":"r","q":26},{"s":"வீடுகள் தீப்பற்றி எரிந்தன. குடிமைத் தற்காப்புப் படையினர் தீயை ___ மக்களைக் காப்பாற்றினார்கள்.","a":"அணைத்து","b":"அனைத்து","f":"n","q":27},{"s":"அந்த அறையின் ___ பழுதடைந்து இருந்தது. அதனால் அறை முழுவதும் இருட்டாக இருந்தது.","a":"விளக்கு","b":"விலக்கு","f":"l","q":28}],"noexam":false},{"id":"CK19","name":"Classkick worksheet · Set 19","group":"Classkick worksheet (5-question format)","short":"Worksheet set 19","bank":["அக்கறை","எறிந்து","அணைத்து","கலகம்","விளக்கி","அக்கரை","கழகம்","விலக்கி","எரிந்து","அனைத்து"],"qs":[{"s":"சிறு பிள்ளைகள் நெருப்போடு விளையாடுவது ஆபத்தான செயல். அவ்வாறு விளையாடினால் பொருள்கள் தீப்பற்றி ___ சேதத்தை ஏற்படுத்தும்.","a":"எரிந்து","b":"எறிந்து","f":"r","q":24},{"s":"மாணவர்கள் படிப்பில் ___ செலுத்த வேண்டும். அப்போதுதான் அவர்கள் தேர்வுகளில் சிறப்பாகச் செய்து கல்வியில் சிறந்து விளங்குவர்.","a":"அக்கறை","b":"அக்கரை","f":"r","q":25},{"s":"ரவியின் தம்பிகள் இருவரும் சண்டையிட்டனர். ரவியின் தாயார் அவர்களை ___ விடுமாறு ரவியிடம் கூறினார்.","a":"விலக்கி","b":"விளக்கி","f":"l","q":26},{"s":"குழந்தையின் சுட்டித்தனம் தாயாரை மகிழச் செய்தது. அவர் குழந்தையைக் கட்டி ___ முத்தமிட்டார்.","a":"அணைத்து","b":"அனைத்து","f":"n","q":27},{"s":"___ செய்தவர்களைக் காவலர்கள் கைது செய்தார்கள். அவர்கள்மீது சுமத்தப்பட்ட குற்றத்தை நிரூபிக்க நீதிமன்றத்தில் வழக்குத் தொடரப்பட்டுள்ளது.","a":"கலகம்","b":"கழகம்","f":"l","q":28}],"noexam":false},{"id":"CK20","name":"Classkick worksheet · Set 20","group":"Classkick worksheet (5-question format)","short":"Worksheet set 20","bank":["கழித்து","பொறித்த","தோள்","என்பது","அனைத்து","தோல்","எண்பது","அணைத்து","பொரித்த","களித்து"],"qs":[{"s":"அம்மா காணாமல் போன தன் மகளைத் தேடி அலைந்தார். திடீரென்று தன் மகளைக் கண்டதும் அவர் அவளைக் கட்டி ___ முத்தமிட்டார்.","a":"அணைத்து","b":"அனைத்து","f":"n","q":24},{"s":"ஆசிரியர் திருத்திக் கொடுத்த தமிழ் தேர்வுத்தாளைப் பார்த்தேன். அதில் எனக்கு ___ மதிப்பெண்கள் கிடைத்தைக் கண்டு நான் மகிழ்ச்சி அடைந்தேன்.","a":"எண்பது","b":"என்பது","f":"n","q":25},{"s":"ஓய்வு நேரத்தில் நானும் என் குடும்பத்தினரும் திரையரங்கிற்குச் சென்றோம். அங்கே நாங்கள் ஒரு தமிழ் திரைப்படத்தைக் கண்டு ___ வீடு திரும்பினோம்.","a":"களித்து","b":"கழித்து","f":"l","q":26},{"s":"நாங்கள் இரவு உணவிற்காக அம்மா ___ கோழியைச் சாப்பிட்டோம். அது மிகவும் சுவையாக இருந்ததால் நாங்கள் எல்லாவற்றையும் சாப்பிட்டு முடித்தோம்.","a":"பொரித்த","b":"பொறித்த","f":"r","q":27},{"s":"அப்பா சந்தைக்குச் சென்று நிறைய பொருள்கள் வாங்கினார். பை மிகவும் கனமாக இருந்ததால் அதை அவர் தன் ___ மீது தூக்கிக் கொண்டு வந்தார்.","a":"தோள்","b":"தோல்","f":"l","q":28}],"noexam":false},{"id":"CK21","name":"Classkick worksheet · Set 21","group":"Classkick worksheet (5-question format)","short":"Worksheet set 21","bank":["வெல்லத்தால்","முன்னால்","இறக்கம்","பாணங்களை","முன்னாள்","அறிந்து","அரிந்து","வெள்ளத்தால்","பானங்களை","இரக்கம்"],"qs":[{"s":"ராமன் இப்போது உயர்நிலைப் பள்ளியில் படிக்கிறான். அவன் தன் ___ ஆசிரியரைக் காண தொடக்கப்பள்ளிக்குச் சென்றான்.","a":"முன்னாள்","b":"முன்னால்","f":"l","q":24},{"s":"தன் அத்தையின் திருமணத்திற்கு வந்திருந்தோரை அகிலன் அன்போடு வரவேற்று உபசரித்தான். அவன் அனைவருக்கும் பலவகை குளிர்ச்சியான ___ வழங்கினான்.","a":"பானங்களை","b":"பாணங்களை","f":"n","q":25},{"s":"சென்ற மாதம் ஆஸ்திரேலியாவின் பல பகுதிகளில் தொடர்ந்து மழை பெய்தது. அதனால், ஏற்பட்ட ___ மக்கள் பலர் தங்கள் உடைமைகளை இழந்தனர்.","a":"வெள்ளத்தால்","b":"வெல்லத்தால்","f":"l","q":26},{"s":"முதியவர் ஒருவர் சாலையைக் கடக்கச் சிரமப்பட்டார். நான் அவர் மீது ___ கொண்டு அவருக்கு உதவி செய்தேன்.","a":"இரக்கம்","b":"இறக்கம்","f":"r","q":27},{"s":"அம்மா சமையலுக்கு வேண்டிய காய்கறிகளை எடுத்து மேசையில் வைத்தார். நான் அவற்றை ___ வைத்தேன்.","a":"அரிந்து","b":"அறிந்து","f":"r","q":28}],"noexam":false},{"id":"PL2","name":"PL June Break Timed Practice 2","group":"Timed practice papers","short":"PL Practice 2","bank":["வளமுடன்","இரக்கம்","கூரை","அன்னத்தில்","அண்ணத்தில்","கூறை","இறக்கம்","வலமுடன்"],"qs":[{"s":"திருமணத்திற்குச் சென்றிருந்த பெரியோர் பலரும் மணமக்கள் ___ வாழ மனதார வாழ்த்தினர்.","a":"வளமுடன்","b":"வலமுடன்","f":"l","q":26},{"s":"கோழிக்குழம்பை ருசித்துச் சாப்பிட்டுக்கொண்டிருந்த ரவியுடைய வாயின் மேல் ___ கோழியின் எலும்பு குத்தியபோது அவன் துடிதுடித்துப் போனான்.","a":"அண்ணத்தில்","b":"அன்னத்தில்","f":"n","q":27},{"s":"திடீரென்று வீசிய பலத்த காற்றினால் தென்னைமரத்திலிருந்த இளநீர் விழுந்ததும் கண்ணனின் வீட்டுக் ___ சேதமடைந்தது.","a":"கூரை","b":"கூறை","f":"r","q":28},{"s":"மழையில் முழுமையாக நனைந்திருந்த பூனையின்மீது ___ கொண்ட மாலதி அதைத் தன் வீட்டிற்கு எடுத்துச் சென்று பார்த்துக்கொண்டாள்.","a":"இரக்கம்","b":"இறக்கம்","f":"r","q":29}],"noexam":false},{"id":"PL4","name":"PL June Break Timed Practice 4","group":"Timed practice papers","short":"PL Practice 4","bank":["கன்னி","கூறை","கூரை","விலா","விழா","ஆழ்","ஆள்","கண்ணி"],"qs":[{"s":"கடையில் எலித் தொல்லையினால் அவதியுற்ற வியாபாரி அவற்றை ஒழித்துக்கட்ட எண்ணினார். அதனால், அவர் எலிகளைப் பிடிக்கக் கடையில் பல இடங்களில் ___ வைத்தார்.","a":"கண்ணி","b":"கன்னி","f":"n","q":26},{"s":"அந்தக் காலத்தில் வீடுகளின் ___ பெரும்பாலும் ஓடுகளால் அமைக்கப்பட்டது. மழைக் காலங்களில் அந்த ஓடுகள் உடைந்தால் வீட்டினுள் மழை நீர் ஒழுகிப் பெருந்தொந்தரவாக அமையும்.","a":"கூரை","b":"கூறை","f":"r","q":27},{"s":"கால் இடறிக் கீழே விழுந்த குகனின் ___ எலும்பு முறிந்துவிட்டது. அதனால், அவன் மருத்துவமனையில் சிகிச்சை பெற்றுக்கொண்டான்.","a":"விலா","b":"விழா","f":"l","q":28},{"s":"___ கடலில் நீந்தி எடுக்கப்படும் முத்து விலை மதிப்பற்றது. அதை எடுக்க முக்குளிப்பாளர்கள் பல சிரமங்களை எதிர்நோக்குகின்றனர்.","a":"ஆழ்","b":"ஆள்","f":"l","q":29}],"noexam":false},{"id":"PE","name":"2026 P6 prelim (edited scan)","group":"2026 prelims","short":"2026 Prelim (edited)","bank":["பொறித்த","விளக்கி","முன்னாள்","அனைத்து","அணைத்து","முன்னால்","விலக்கி","பொரித்த"],"qs":[{"s":"ரதி சிறுமியாக இருந்தபோது நடந்த ___ சம்பவங்களும் அவள் மனத்தில் பதிந்துள்ளன. அவள் எதையும் மறக்கவில்லை.","a":"அனைத்து","b":"அணைத்து","f":"n","q":26},{"s":"ஆசிரியர் குழுத் தலைவர்களிடம் அவர்களது முக்கியப் பணிகளை ___ கொண்டிருந்தார். எல்லாரும் அவற்றை கவனமாகக் கேட்டுக் குறிப்பு எடுத்துக்கொண்டார்கள்.","a":"விளக்கி","b":"விலக்கி","f":"l","q":27},{"s":"எங்கள் பள்ளியின் ___ தலைமையாசிரியர் இன்று நடைபெற்ற ஆண்டு விழாவிற்குச் சிறப்பு விருந்தினராக வருகை தந்தார்.","a":"முன்னாள்","b":"முன்னால்","f":"l","q":28},{"s":"மருத்துவரின் பட்டறையில் ___ உணவுகளின் தீமைகள் விளக்கப்பட்டன. அதைக் கேட்ட சீதா அவற்றைச் சாப்பிடுவதைத் தவிர்த்தாள்.","a":"பொரித்த","b":"பொறித்த","f":"r","q":29}],"noexam":false}];
+const M2={"அக்கரை":"the far bank or shore","அக்கறை":"care, concern","அணைக்க":"to put out (a fire); to hug","அணைத்து":"having put out; having hugged","அண்ணத்தில்":"on the roof of the mouth (palate)","அனைக்க":"(no such word; a misspelling trap)","அனைத்து":"all","அன்னத்தில்":"in the swan; in cooked rice","அரிந்து":"having cut or chopped","அரிய":"rare, precious","அருந்து":"drink","அரை":"half","அறிந்து":"having come to know","அறிய":"to know","அறுந்து":"having snapped or broken","அறை":"room","அலகால்":"with its beak","அலகு":"beak","அலகை":"the beak (object)","அல்லி":"water lily","அள்ளி":"having scooped up","அழகால்":"because of beauty","அழகு":"beauty","அழகை":"the beauty (object)","ஆணி":"nail (for hammering)","ஆணை":"order, command","ஆனி":"the Tamil month Aani","ஆனை":"elephant","ஆள்":"person; rule","ஆழ்":"deep","இரக்கம்":"pity, compassion","இரங்கி":"having felt pity","இரங்கினான்":"felt pity","இரை":"food for animals, prey","இறக்கம்":"a slope going down","இறங்கி":"having climbed down","இறங்கினான்":"climbed down, got off","இறை":"God","இலை":"leaf","இளை":"become thin","உரை":"speech, talk","உரைக்கு":"to the speech","உரையில்":"in the speech","உறை":"envelope; sheath, cover","உறைக்கு":"to the envelope","உறையில்":"in the envelope","உளவு":"spying","உழவு":"farming, ploughing","ஊணை":"the food (object)","ஊண்":"food","ஊனை":"the flesh (object)","ஊன்":"flesh, meat","எண்ணுடன்":"with the number","எண்பது":"eighty","என்னுடன்":"with me","என்பது":"that which is called","எரிந்த":"burnt","எரிந்து":"having burnt","எறிந்த":"thrown","எறிந்து":"having thrown","எல்லை":"border, boundary","எள்ளை":"sesame (object)","ஏரி":"lake","ஏறி":"having climbed","ஒலி":"sound","ஒலிக்க":"to sound, to ring","ஒளி":"light","ஒளிந்து":"having hidden","ஒழிக்க":"to get rid of, stamp out","ஒழிந்து":"having ended, been destroyed","கணமாக":"for a moment","கணம்":"a moment, an instant","கணித்துள்ளனர்":"have forecast or calculated","கணை":"arrow","கண்ணி":"trap, snare","கண்ணிகள்":"traps, snares","கனமாக":"heavy","கனம்":"weight, heaviness","கனித்துள்ளனர்":"(have ripened; a trap word)","கனை":"neigh (horse sound)","கன்னி":"young woman","கன்னிகள்":"young women","கரி":"charcoal; elephant","கருத்து":"opinion, idea","கரை":"shore, bank","கறி":"curry; meat","கறுத்து":"having turned dark","கறை":"stain","கலகம்":"riot, disorder","கலை":"art","கலைந்து":"having dispersed, broken up","களி":"joy","களித்தனர்":"enjoyed themselves","களித்து":"having enjoyed","களை":"weeds; weariness","களைந்து":"having removed","கழகம்":"association, club","கழி":"stick, rod","கழித்தனர்":"subtracted","கழித்து":"having spent (time); having subtracted","காலை":"morning","காளை":"bull","குரைக்க":"to bark","குரைத்து":"having barked","குறைக்க":"to reduce","குறைத்து":"having reduced","குலைந்த":"spoilt, fallen apart","குளவி":"wasp","குழவி":"baby; grinding stone","குழைந்த":"softened, mashed","கூரிய":"sharp","கூரை":"roof","கூறிய":"said, told","கூறை":"wedding sari","கொல்லை":"backyard","கொள்ளை":"robbery; a great deal","கோலம்":"kolam (floor drawing)","கோலி":"marble (toy)","கோல்":"walking stick","கோளம்":"sphere, globe","கோள்":"gossip, tale-telling","கோழி":"chicken, hen","சிரை":"vein","சிறை":"prison","சொரிந்து":"having poured or showered","சொறிந்து":"having scratched","தணித்து":"having quenched, reduced","தண்மை":"coolness","தனித்து":"alone, on one's own","தன்மை":"nature, quality","தரி":"wear (verb)","தறி":"loom (for weaving)","தலை":"head","தலைகளை":"heads (object)","தழை":"leafy twigs","தழைகளை":"leafy twigs (object)","தாலி":"wedding necklace","தாழி":"large clay pot","திரைக்கு":"to the screen","திறைக்கு":"to the tribute (tax)","தோலை":"the skin (object)","தோல்":"skin, hide","தோளை":"the shoulder (object)","தோள்":"shoulder","நரை":"grey hair","நறை":"fragrance, honey","நாண்":"string (of a bow or veena)","நான்":"I","நெரி":"crush, squeeze","நெறி":"right path, rule of conduct","பணி":"work, duty","பணியில்":"at work","பனி":"dew, mist, snow","பனியில்":"in the mist","பரந்த":"wide, spread out","பறந்த":"flying, flew","பலி":"sacrifice","பழி":"blame","பாணங்களை":"arrows (object)","பாணத்தை":"the arrow; the firework (object)","பாணம்":"arrow; firework","பானங்களை":"drinks (object)","பானத்தை":"the drink (object)","பானம்":"a drink","பாலாகியது":"became milk","பால்":"milk","பாழாகியது":"was ruined","பாழ்":"ruin, waste","பேண்":"take care of","பேன்":"head louse","பொரிக்கப்பட்ட":"fried","பொரிக்கப்பட்டுள்ள":"that has been fried","பொரித்த":"fried","பொரித்து":"having fried","பொறிக்கப்பட்ட":"engraved","பொறிக்கப்பட்டுள்ள":"that has been engraved","பொறித்த":"engraved","பொறித்து":"having engraved","மணம்":"fragrance","மனம்":"mind, heart","மரித்தது":"died","மறித்தது":"blocked the way","மலை":"mountain","மழை":"rain","மாரி":"rain","மாறி":"having changed","முன்னால்":"in front","முன்னாள்":"former","மூலை":"corner","மூலையில்":"in the corner","மூளை":"brain","மூளையில்":"in the brain","வருத்த":"to hurt, sadden","வறுத்த":"fried, roasted","வலமுடன்":"towards the right","வலி":"pain","வலியால்":"because of pain","வலியில்":"in pain","வலை":"net","வலையில்":"in the net","வளமுடன்":"prosperously","வளையில்":"in the burrow or hole","வழி":"way, path","வழியால்":"by way of","வழியில்":"on the way","வாண":"firework (as in வாண வேடிக்கை)","வாணத்தில்":"in the fireworks","வான":"of the sky","வானத்தில்":"in the sky","வாலை":"the tail (object)","வாளை":"the sword (object)","விலக்க":"to separate, keep apart","விலக்கி":"having removed, kept aside","விலக்கு":"exemption; avoid","விலங்கு":"animal; handcuffs","விலா":"rib","விலை":"price","விளக்க":"to explain","விளக்கி":"having explained","விளக்கு":"lamp","விளங்கு":"shine; be clear","விளை":"grow, yield","விழா":"festival, celebration","வெல்லத்தால்":"with jaggery","வெல்லம்":"jaggery","வெள்ளத்தால்":"because of the flood","வெள்ளம்":"flood","வேலையில்":"at work","வேளையில்":"at the time of"};
+
+for(const k in M2) if(!W[k]) W[k]=M2[k];
+W["வளை"]="bangle; burrow (hole)";
+/* tag the first two prelims already in ITEMS */
+ITEMS.forEach(it=>{if(it.src){const m=it.src.match(/^(Xinmin|Meridian) Q(\d+)/);if(m){it.pid=m[1];it.q=+m[2];it.src=m[1]+' 2026 · Q'+m[2];}}});
+const OLD=[
+  {id:"Xinmin",name:"Xinmin Primary 2026 prelim",group:"2026 prelims",short:"Xinmin 2026",bank:["பொரித்து","கோள்","தாள்","கணம்","கோல்","பொறித்து","கனம்","தாழ்"]},
+  {id:"Meridian",name:"Meridian Primary 2026 prelim",group:"2026 prelims",short:"Meridian 2026",bank:["முன்னால்","அரம்","பானம்","மரித்து","அறம்","முன்னாள்","மறித்து","பாணம்"]}
+];
+const PAPERS=OLD.map(P=>({...P,qs:ITEMS.map((it,i)=>it.pid===P.id?i:-1).filter(i=>i>=0).sort((a,b)=>ITEMS[a].q-ITEMS[b].q)}));
+BANKS.forEach(B=>{
+  const idx=B.qs.map(q=>{ITEMS.push({s:q.s,a:q.a,b:q.b,f:q.f,src:B.short+' · Q'+q.q,pid:B.id,q:q.q});return ITEMS.length-1});
+  if(!B.noexam)PAPERS.push({id:B.id,name:B.name,group:B.group,short:B.short,bank:B.bank,qs:idx});
+});
+const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SIGN=/[ா-்ௗ]/;
+function hl(w,o){
+  const A=[...w],B=[...o];let i=0;while(i<A.length&&A[i]===B[i])i++;
+  if(i>=A.length)return esc(w);
+  if(SIGN.test(A[i])&&i>0)i--;
+  let j=i+1;while(j<A.length&&SIGN.test(A[j]))j++;
+  return esc(A.slice(0,i).join(''))+'<mark>'+esc(A.slice(i,j).join(''))+'</mark>'+esc(A.slice(j).join(''));
+}
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const sentHTML=(s,fill,cls)=>esc(s).replace('___',`<span class="blank ${cls||''}">${fill?esc(fill):'&nbsp;'}</span>`);
+
+/* ---------- storage ---------- */
+const KEY='synapse-oli-v1';
+let box={};
+try{box=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){box={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box))}catch(e){}};
+const MASTER=3;
+
+/* ---------- drill ---------- */
+let queue=[],cur=null,round={seen:0,first:0},firstTry=new Set(),answered=false;
+function buildRound(){
+  const byBox=shuffle(ITEMS.map((_,i)=>i)).sort((x,y)=>(box[x]||0)-(box[y]||0));
+  // interleave families among the 10 weakest
+  const pick=byBox.slice(0,10);
+  queue=shuffle(pick);round={seen:0,first:0};firstTry=new Set();
+}
+function meter(){
+  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
+  document.getElementById('mbar').style.width=(m/ITEMS.length*100)+'%';
+  document.getElementById('mnum').textContent=`${m} / ${ITEMS.length}`;
+}
+function nextCard(){
+  if(!queue.length){endRound();return}
+  cur=queue.shift();answered=false;
+  const it=ITEMS[cur];
+  const opts=shuffle([it.a,it.b]);
+  const el=document.getElementById('dcard');
+  el.innerHTML=`
+    <div class="chips"><span class="chip">${FAM[it.f].label}</span>${it.src?`<span class="chip src">${esc(it.src)}</span>`:''}</div>
+    <p class="sent" id="sent">${sentHTML(it.s)}</p>
+    <div class="choices">${opts.map(o=>`<button class="choice" data-w="${esc(o)}">${esc(o)}</button>`).join('')}</div>
+    <div id="fb"></div>`;
+  el.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.w)));
+}
+function choose(w){
+  if(answered)return;answered=true;
+  const it=ITEMS[cur],ok=w===it.a;
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.w===it.a)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad');
+  });
+  document.getElementById('sent').innerHTML=sentHTML(it.s,it.a,ok?'good':'bad');
+  const pair=`<div class="pair">
+      <span class="w">${hl(it.a,it.b)}</span><span>${esc(W[it.a]||'')}</span>
+      <span class="w">${hl(it.b,it.a)}</span><span>${esc(W[it.b]||'')}</span></div>
+    <p class="cue">${esc(FAM[it.f].cue)}</p>`;
+  const fb=document.getElementById('fb');
+  if(ok){
+    fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(it.a)} fits here.</h3>${pair}
+      <p class="ask">Were you sure, or did you guess?</p>
+      <div class="row"><button class="btn primary" id="sure">I was sure</button><button class="btn" id="guess">I guessed</button></div></div>`;
+    document.getElementById('sure').onclick=()=>grade(true);
+    document.getElementById('guess').onclick=()=>grade(false);
+    document.getElementById('sure').focus();
+  }else{
+    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(it.a)}. You chose ${esc(w)}.</h3>${pair}
+      <p class="ask">This sentence comes back in three cards.</p>
+      <div class="row"><button class="btn primary" id="nx">Next</button></div></div>`;
+    box[cur]=0;save();
+    queue.splice(Math.min(3,queue.length),0,cur);
+    document.getElementById('nx').onclick=advance;
+    document.getElementById('nx').focus();
+  }
+  if(!firstTry.has(cur)){firstTry.add(cur);round.seen++;if(ok)round.first++;}
+}
+function grade(sure){
+  box[cur]=sure?Math.min(MASTER,(box[cur]||0)+1):Math.max(1,box[cur]||0);
+  save();advance();
+}
+function advance(){meter();nextCard()}
+function endRound(){
+  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
+  document.getElementById('dcard').innerHTML=`
+    <div class="chips"><span class="chip">Round complete</span></div>
+    <div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
+    <p class="cue">${m} of ${ITEMS.length} sentences mastered. A sentence counts as mastered after you get it right and feel sure three times.</p>
+    <div class="row"><button class="btn primary" id="again">Start next round</button><button class="btn" id="toexam">Try a full C6 paper</button></div>`;
+  document.getElementById('again').onclick=()=>{buildRound();nextCard()};
+  document.getElementById('toexam').onclick=()=>show('exam');
+}
+
+/* ---------- exam ---------- */
+const pairKey=it=>[it.a,it.b].sort().join('|');
+let exam=null,examN=0;
+function makeExam(pi){
+  let qs,bank,label,paper=pi!=null;
+  if(paper){const P=PAPERS[pi];qs=P.qs;bank=P.bank;label=P.name;}
+  else{
+    const used=new Set();qs=[];
+    for(const i of shuffle(ITEMS.map((_,k)=>k))){const k=pairKey(ITEMS[i]);if(!used.has(k)){used.add(k);qs.push(i)}if(qs.length===4)break}
+    bank=shuffle(qs.flatMap(i=>[ITEMS[i].a,ITEMS[i].b]));examN++;label='Random set '+examN;
+  }
+  const start=paper&&ITEMS[qs[0]].q?ITEMS[qs[0]].q:26;
+  exam={qs,bank,paper,label,pi,start,marks:qs.length*2};
+  renderExam();
+}
+function renderExam(){
+  const p=document.getElementById('paper'),n=exam.qs.length,st=exam.start,en=st+n-1;
+  const groups=[...new Set(PAPERS.map(P=>P.group))];
+  p.innerHTML=`
+    <div class="row">
+      <label class="hint" for="papersel">Paper</label>
+      <select id="papersel" class="psel">${groups.map(g=>`<optgroup label="${esc(g)}">${PAPERS.map((P,i)=>P.group===g?`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.short)}</option>`:'').join('')}</optgroup>`).join('')}</select>
+      <button class="btn" id="newset">Random set</button>
+    </div>
+    <div class="paperhead"><h2>C6 ஒலி வேறுபாட்டுச் சொற்கள்</h2><span class="chip ${exam.paper?'src':''}">${esc(exam.label)}</span></div>
+    <p class="instr">பின்வரும் பகுதியில் Q${st} முதல் Q${en} வரையுள்ள கோடிட்ட இடங்களை நிரப்புவதற்குப் பொருத்தமான சொல்லின் எண்ணைத் தேர்ந்தெடு. (${exam.marks} மதிப்பெண்கள்)</p>
+    ${exam.qs.map((i,k)=>`<div class="q"><span class="qn">Q${st+k}</span><div>
+      <p>${esc(ITEMS[i].s).replace('___',`<select id="ex-${k}" aria-label="Q${st+k} answer"><option value="">__</option>${exam.bank.map((_,m)=>`<option value="${m}">${m+1}</option>`).join('')}</select>`)}</p>
+      <div class="res" id="res-${k}"></div></div></div>`).join('')}
+    <div class="bank" id="bank">${exam.bank.map((w,m)=>`<span data-n="${m}">(${m+1}) ${esc(w)}</span>`).join('')}</div>
+    <div class="row" style="align-items:center;justify-content:space-between">
+      <div id="escore"></div>
+      <button class="btn primary" id="check">சரிபார் · Check</button>
+    </div>`;
+  exam.qs.forEach((_,k)=>document.getElementById('ex-'+k).addEventListener('change',strike));
+  document.getElementById('check').onclick=checkExam;
+  document.getElementById('newset').onclick=()=>makeExam(null);
+  document.getElementById('papersel').onchange=e=>makeExam(+e.target.value);
+}
+function strike(){
+  const chosen=new Set(exam.qs.map((_,k)=>document.getElementById('ex-'+k).value).filter(v=>v!==''));
+  document.querySelectorAll('#bank span').forEach(s=>s.classList.toggle('used',chosen.has(s.dataset.n)));
+}
+function checkExam(){
+  let score=0;
+  exam.qs.forEach((i,k)=>{
+    const it=ITEMS[i],v=document.getElementById('ex-'+k).value,res=document.getElementById('res-'+k);
+    const right=exam.bank.indexOf(it.a);
+    if(v!==''&&+v===right){score+=2;res.className='res good';res.innerHTML=`✓ (${right+1}) ${hl(it.a,it.b)}: ${esc(W[it.a])}`}
+    else{
+      res.className='res bad';
+      const picked=v===''?'No answer':`You chose (${+v+1}) ${esc(exam.bank[+v])}`;
+      res.innerHTML=`✗ ${picked}. Answer: (${right+1}) ${hl(it.a,it.b)}, ${esc(W[it.a])}. Its twin ${hl(it.b,it.a)} means ${esc(W[it.b])}.`;
+      box[i]=0;
+    }
+  });
+  save();meter();
+  document.getElementById('escore').innerHTML=`<div class="score">${score} / ${exam.marks}<small>${score===exam.marks?'Full marks':'Missed sentences go back into your drill'}</small></div>`;
+}
+
+/* ---------- pairs ---------- */
+const LIST=[{"w":["அகல","அகழ"],"m":["wide","dig up"],"src":"both-form","alt":["அகழ்","அகல்"],"f":"l","t":0},{"w":["அலகு","அழகு"],"m":["beak","beauty"],"src":"P","alt":null,"f":"l","t":1},{"w":["அளி","அழி","அலி"],"m":["give","destroy","a name (Ali)"],"src":"both","alt":null,"f":"l","t":0},{"w":["அலை","அழை"],"m":["waves","call, invite"],"src":"both","alt":null,"f":"l","t":0},{"w":["அல்லி","அள்ளி"],"m":["a type of flower","scoop with hands"],"src":"both","alt":null,"f":"l","t":7},{"w":["அவல்","அவள்"],"m":["flattened rice snack","she"],"src":"P","alt":null,"f":"l","t":0},{"w":["ஆல்","ஆள்","ஆழ்"],"m":["banyan tree","person; to rule","deep"],"src":"P","alt":null,"f":"l","t":1},{"w":["இலை","இளை","இழை"],"m":["leaf","lose weight","thread; smoothen wood"],"src":"both-form","alt":["இழைத்து","இளைத்து"],"f":"l","t":1},{"w":["உலவு","உளவு","உழவு"],"m":["walk around","spy","agriculture"],"src":"both","alt":null,"f":"l","t":1},{"w":["உலர","உளற"],"m":["dry","blabber"],"src":"P","alt":null,"f":"l","t":0},{"w":["எலும்பு","எழும்பு"],"m":["bone","rise"],"src":"P","alt":null,"f":"l","t":0},{"w":["ஒலி","ஒளி","ஒழி"],"m":["sound","light","destroy"],"src":"both","alt":null,"f":"l","t":4},{"w":["கல்","கள்"],"m":["stone","toddy"],"src":"P","alt":null,"f":"l","t":0},{"w":["கலகம்","கழகம்"],"m":["trouble, riot","association"],"src":"both","alt":null,"f":"l","t":1,"v":[["கலகம்","சண்டை"]]},{"w":["களி","கழி"],"m":["traditional food; clay; happiness","deduct; stick"],"src":"P","alt":null,"f":"l","t":3},{"w":["களித்தான்","கழித்தான்"],"m":["enjoyed","spent (time)"],"src":"both-form","alt":["கழித்து","களித்து"],"f":"l","t":2},{"w":["கலம்","களம்"],"m":["vessel; instrument; ship","field, place"],"src":"P","alt":null,"f":"l","t":0},{"w":["கலை","களை"],"m":["the arts; mess up","weeds"],"src":"both","alt":null,"f":"l","t":3},{"w":["கலைத்து","களைத்து"],"m":["mess up, break up a crowd","tired"],"src":"both-form","alt":["கலைத்தனர்","களைத்தனர்"],"f":"l","t":0},{"w":["காலை","காளை"],"m":["morning; leg","bull"],"src":"P","alt":null,"f":"l","t":2},{"w":["கிலி","கிளி","கிழி"],"m":["fear","parrot","tear something"],"src":"both","alt":null,"f":"l","t":0},{"w":["கிளவி","கிழவி"],"m":["word","old woman"],"src":"P","alt":null,"f":"l","t":0},{"w":["குலம்","குளம்"],"m":["category, clan","pond"],"src":"both","alt":null,"f":"l","t":0},{"w":["குளம்பு","குழம்பு"],"m":["hooves","curry; confuse"],"src":"both","alt":null,"f":"l","t":0},{"w":["குளவி","குழவி"],"m":["hornet","baby; grinding stone"],"src":"both","alt":null,"f":"l","t":1},{"w":["குலை","குழை"],"m":["bunch; break, disband","overcook, mix into a paste"],"src":"both-form","alt":["குலைந்த","குழைந்த"],"f":"l","t":1},{"w":["குரல்","குறள்"],"m":["voice","Thirukkural"],"src":"both","alt":null,"f":"l","t":0},{"w":["குளி","குழி"],"m":["bathe","pit"],"src":"both","alt":null,"f":"l","t":0},{"w":["கொல்","கொள்"],"m":["kill","take, accept"],"src":"P","alt":null,"f":"l","t":0},{"w":["கொல்லை","கொள்ளை"],"m":["backyard","rob; a great deal"],"src":"both","alt":null,"f":"l","t":4},{"w":["கோல்","கோள்"],"m":["stick, wand; pen","tell-tale; planet"],"src":"both","alt":null,"f":"l","t":3,"v":[["கோல்","கம்பு / தடி"]]},{"w":["கோலம்","கோளம்"],"m":["kolam decoration","sphere, world"],"src":"both","alt":null,"f":"l","t":2},{"w":["கோலி","கோழி"],"m":["marble","chicken"],"src":"P","alt":null,"f":"l","t":1},{"w":["சலி","சளி"],"m":["bored","cold (illness)"],"src":"P","alt":null,"f":"l","t":0},{"w":["சோளம்","சோழம்"],"m":["corn","Chola kingdom"],"src":"P","alt":null,"f":"l","t":0},{"w":["தலை","தழை"],"m":["head","leaves"],"src":"P","alt":null,"f":"l","t":2},{"w":["தால்","தாள்","தாழ்"],"m":["tongue","paper","lower; bolt"],"src":"both","alt":null,"f":"l","t":1},{"w":["தாலி","தாழி","தாளி"],"m":["nuptial chain","huge earthen pot","seasoning"],"src":"both","alt":null,"f":"l","t":1},{"w":["துலை","துளை"],"m":["far, distance","make a hole"],"src":"P","alt":null,"f":"l","t":0},{"w":["தெளி","தெழி"],"m":["clear; sprinkle","make a loud noise"],"src":"P","alt":null,"f":"l","t":0},{"w":["நீலம்","நீளம்"],"m":["blue","length"],"src":"P","alt":null,"f":"l","t":0},{"w":["பலம்","பழம்"],"m":["strength","ripe fruit"],"src":"P","alt":null,"f":"l","t":0},{"w":["பலி","பழி"],"m":["sacrifice","blame"],"src":"both","alt":null,"f":"l","t":1},{"w":["பல்லி","பள்ளி"],"m":["lizard","school"],"src":"P","alt":null,"f":"l","t":0},{"w":["பால்","பாழ்"],"m":["milk","ruin"],"src":"both-form","alt":["பாலாகி","பாழாகி"],"f":"l","t":2},{"w":["பாலம்","பாளம்"],"m":["bridge","piece of metal"],"src":"P","alt":null,"f":"l","t":0},{"w":["புல்","புள்"],"m":["grass","bird"],"src":"P","alt":null,"f":"l","t":0},{"w":["புலி","புளி"],"m":["tiger","tamarind"],"src":"P","alt":null,"f":"l","t":0},{"w":["பொலி","பொளி","பொழி"],"m":["beauty, shine","sculpt with chisel","rain down, shower"],"src":"P","alt":null,"f":"l","t":0},{"w":["மலை","மழை"],"m":["mountain","rain"],"src":"P","alt":null,"f":"l","t":2},{"w":["முன்னால்","முன்னாள்"],"m":["in front","former"],"src":"both","alt":null,"f":"l","t":4},{"w":["மூலை","மூளை"],"m":["corner","brain"],"src":"both","alt":null,"f":"l","t":3},{"w":["வலி","வழி","வளி"],"m":["pain","way","wind, hurricane"],"src":"both","alt":null,"f":"l","t":7},{"w":["வலு","வழு"],"m":["strength","fault, mistake"],"src":"both","alt":null,"f":"l","t":0},{"w":["வலம்","வளம்"],"m":["walk around","resources"],"src":"both","alt":null,"f":"l","t":0},{"w":["வலை","வளை"],"m":["net","bend, bangle; burrow"],"src":"both","alt":null,"f":"l","t":2},{"w":["வாலை","வாளை","வாழை"],"m":["its tail","a fish; the sword","banana"],"src":"both","alt":null,"f":"l","t":1},{"w":["வால்","வாள்","வாழ்"],"m":["tail","sword","live"],"src":"P","alt":null,"f":"l","t":0},{"w":["விலக்கு","விளக்கு"],"m":["remove, separate","explain; polish; lamp"],"src":"both-form","alt":["விளக்க","விலக்க"],"f":"l","t":6},{"w":["விலங்கு","விளங்கு"],"m":["animal","shine, excel"],"src":"both","alt":null,"f":"l","t":1},{"w":["விலா","விழா"],"m":["rib","festival"],"src":"both","alt":null,"f":"l","t":4},{"w":["விளி","விழி"],"m":["call out","eye; open eyes wide"],"src":"both","alt":null,"f":"l","t":0},{"w":["விலை","விளை","விழை"],"m":["price","harvest","desire"],"src":"both","alt":null,"f":"l","t":3},{"w":["விளைவு","விழைவு"],"m":["consequence","desire"],"src":"P","alt":null,"f":"l","t":0},{"w":["வெல்லம்","வெள்ளம்"],"m":["palm sugar","flood"],"src":"both","alt":null,"f":"l","t":2},{"w":["வேலை","வேளை"],"m":["work","time, period"],"src":"both","alt":null,"f":"l","t":1},{"w":["தலம்","தளம்"],"m":["holy place","floor, platform"],"src":"P","alt":null,"f":"l","t":0},{"w":["தோல்","தோள்"],"m":["skin","shoulder"],"src":"both","alt":null,"f":"l","t":2},{"w":["அரம்","அறம்"],"m":["tool to sharpen blades","virtue, charity"],"src":"both","alt":null,"f":"r","t":1},{"w":["அரி","அறி"],"m":["cut, slice","to know"],"src":"P","alt":null,"f":"r","t":0},{"w":["அரு","அறு"],"m":["leech","snap (string/rope)"],"src":"P","alt":null,"f":"r","t":0},{"w":["அருகு","அறுகு"],"m":["come close; lessen","a type of grass"],"src":"P","alt":null,"f":"r","t":0},{"w":["அரிய","அறிய"],"m":["rare","to know"],"src":"both","alt":null,"f":"r","t":2},{"w":["அரிந்து","அறிந்து"],"m":["having cut","having known"],"src":"both","alt":null,"f":"r","t":4},{"w":["அரிவாள்","அறிவாள்"],"m":["sickle","she will know"],"src":"P","alt":null,"f":"r","t":0},{"w":["அருந்து","அறுந்து"],"m":["drink","snapped"],"src":"P","alt":null,"f":"r","t":2},{"w":["அரை","அறை"],"m":["half; grind","room; slap"],"src":"both","alt":null,"f":"r","t":3},{"w":["அக்கரை","அக்கறை"],"m":["opposite river bank","concern"],"src":"P","alt":null,"f":"r","t":2},{"w":["அலரி","அலறி"],"m":["oleander flower","scream"],"src":"P","alt":null,"f":"r","t":0},{"w":["இரை","இறை"],"m":["food for animals","God"],"src":"both","alt":null,"f":"r","t":3},{"w":["இரங்கு","இறங்கு"],"m":["pity","get down"],"src":"both-form","alt":["இரங்கி","இறங்கி"],"f":"r","t":2},{"w":["இரத்தல்","இறத்தல்"],"m":["beg","die"],"src":"both-form","alt":["இரந்து","இறந்து"],"f":"r","t":0},{"w":["உரை","உறை"],"m":["speech","cover, envelope"],"src":"both","alt":null,"f":"r","t":11},{"w":["உரம்","உறம்"],"m":["fertiliser","strength"],"src":"P","alt":null,"f":"r","t":0},{"w":["உரி","உறி"],"m":["peel; deserving","suck; hanging pot"],"src":"both","alt":null,"f":"r","t":0},{"w":["எரி","எறி"],"m":["burn; irritated","throw"],"src":"both","alt":null,"f":"r","t":3},{"w":["ஏரி","ஏறி"],"m":["lake","climb"],"src":"both","alt":null,"f":"r","t":1},{"w":["கரி","கறி"],"m":["elephant; charcoal","curry"],"src":"both","alt":null,"f":"r","t":1},{"w":["கரை","கறை"],"m":["shore","stain"],"src":"both","alt":null,"f":"r","t":5},{"w":["கீரி","கீறி"],"m":["mongoose","scratch"],"src":"both","alt":null,"f":"r","t":0},{"w":["குரை","குறை"],"m":["bark","lessen, lacking"],"src":"both-form","alt":["குறைத்து","குரைத்து"],"f":"r","t":2},{"w":["கூரை","கூறை"],"m":["roof","wedding saree"],"src":"both","alt":null,"f":"r","t":2},{"w":["கூரிய","கூறிய"],"m":["sharp","said"],"src":"both","alt":null,"f":"r","t":1},{"w":["சொரி","சொறி"],"m":["pour, downpour","scratch"],"src":"both-form","alt":["சொரிய","சொறிய"],"f":"r","t":1},{"w":["நெரி","நெறி"],"m":["strangle","morals"],"src":"both","alt":null,"f":"r","t":1},{"w":["சிரை","சிறை"],"m":["shave","prison"],"src":"both","alt":null,"f":"r","t":1},{"w":["திரை","திறை"],"m":["curtain; screen","tax, tribute"],"src":"both","alt":null,"f":"r","t":1},{"w":["தினை","திணை"],"m":["a type of grain","earth, land"],"src":"P","alt":null,"f":"n","t":0},{"w":["துர","துற"],"m":["throw hard","give up"],"src":"P","alt":null,"f":"r","t":0},{"w":["துரு","துறு"],"m":["rust","cram, pack tightly"],"src":"P","alt":null,"f":"r","t":0},{"w":["துரவு","துறவு"],"m":["well","renunciation (monk)"],"src":"P","alt":null,"f":"r","t":0},{"w":["துரை","துறை"],"m":["Mr Durai (a name)","department"],"src":"P","alt":null,"f":"r","t":0},{"w":["தெரி","தெறி"],"m":["to know","splatter"],"src":"P","alt":null,"f":"r","t":0},{"w":["தெரு","தெறு"],"m":["street","destroy, cause harm"],"src":"P","alt":null,"f":"r","t":0},{"w":["நரை","நறை"],"m":["grey hair","honey; fragrance"],"src":"both","alt":null,"f":"r","t":1},{"w":["பாரை","பாறை"],"m":["the world","boulder"],"src":"P","alt":null,"f":"r","t":0},{"w":["பரி","பறி"],"m":["horse","pluck, snatch"],"src":"both","alt":null,"f":"r","t":0,"v":[["பரி","குதிரை"]]},{"w":["பரவை","பறவை"],"m":["ocean","bird"],"src":"P","alt":null,"f":"r","t":0,"v":[["பரவை","கடல்"]]},{"w":["பிரை","பிறை"],"m":["buttermilk starter","crescent moon"],"src":"P","alt":null,"f":"r","t":0},{"w":["பறந்த","பரந்த"],"m":["flew","spread, wide"],"src":"both","alt":null,"f":"r","t":1},{"w":["பெரும்","பெறும்"],"m":["big","receive"],"src":"both","alt":null,"f":"r","t":0},{"w":["பொரி","பொறி"],"m":["puffed rice; fry; hatch","spark; trap; engrave"],"src":"both-form","alt":["பொரித்து","பொறித்து"],"f":"r","t":8},{"w":["பொருத்து","பொறுத்து"],"m":["depends; affix","be patient"],"src":"P","alt":null,"f":"r","t":0},{"w":["பொருப்பு","பொறுப்பு"],"m":["hill","responsibility"],"src":"P","alt":null,"f":"r","t":0},{"w":["மரித்து","மறித்து"],"m":["die","block the way"],"src":"both","alt":null,"f":"r","t":1},{"w":["மாரி","மாறி"],"m":["rain","change"],"src":"both","alt":null,"f":"r","t":1,"v":[["மாரி","மழை"]]},{"w":["அன்னம்","அண்ணம்"],"m":["swan","roof of mouth"],"src":"both","alt":null,"f":"n","t":0},{"w":["அனைத்து","அணைத்து"],"m":["every","hug; extinguish fire"],"src":"both","alt":null,"f":"n","t":7},{"w":["ஆனி","ஆணி"],"m":["a Tamil month","nail"],"src":"both","alt":null,"f":"n","t":1},{"w":["ஆனை","ஆணை"],"m":["elephant","command"],"src":"P","alt":null,"f":"n","t":1,"v":[["ஆணை","கட்டளை"]]},{"w":["உன்","உண்"],"m":["your","eat"],"src":"both","alt":null,"f":"n","t":0},{"w":["ஊன்","ஊண்"],"m":["meat; lean on","food"],"src":"both","alt":null,"f":"n","t":1,"v":[["ஊன்","மாமிசம் / இறைச்சி"]]},{"w":["என்ன","எண்ண"],"m":["what","think; count"],"src":"both","alt":null,"f":"n","t":1},{"w":["என்","எண்"],"m":["my","number"],"src":"P","alt":null,"f":"n","t":0},{"w":["என்பது","எண்பது"],"m":["means","eighty"],"src":"both","alt":null,"f":"n","t":1},{"w":["கன்னி","கண்ணி"],"m":["virgin, maiden","landmine; snare"],"src":"both","alt":null,"f":"n","t":3},{"w":["கனம்","கணம்"],"m":["weight, heavy","moment"],"src":"both","alt":null,"f":"n","t":6},{"w":["கனி","கணி"],"m":["ripe fruit","predict"],"src":"both-form","alt":["கணிக்க","கனிக்க"],"f":"n","t":1},{"w":["கனை","கணை"],"m":["neigh","arrow"],"src":"both","alt":null,"f":"n","t":1},{"w":["தன்மை","தண்மை"],"m":["characteristic","coolness, kind"],"src":"both","alt":null,"f":"n","t":2,"v":[["தண்மை","குளிர்ச்சி"]]},{"w":["தனி","தணி"],"m":["alone","quench, appease"],"src":"both-form","alt":["தணித்து","தனித்து"],"f":"n","t":2},{"w":["தின்","திண்"],"m":["eat","firm, determined"],"src":"P","alt":null,"f":"n","t":0},{"w":["துனி","துணி"],"m":["to hate","cloth; be brave"],"src":"P","alt":null,"f":"n","t":0},{"w":["பனி","பணி"],"m":["fog, snow, dew","work; obey"],"src":"both","alt":null,"f":"n","t":6,"v":[["பணி","வேலை"]]},{"w":["பனை","பணை"],"m":["palm tree","bamboo"],"src":"P","alt":null,"f":"n","t":0},{"w":["பானம்","பாணம்"],"m":["drink","arrow"],"src":"both","alt":null,"f":"n","t":6},{"w":["பேன்","பேண்"],"m":["lice","care for"],"src":"both","alt":null,"f":"n","t":2},{"w":["மனம்","மணம்"],"m":["heart","fragrance; marriage"],"src":"both","alt":null,"f":"n","t":4},{"w":["மனை","மணை"],"m":["plot of land","low seat"],"src":"both","alt":null,"f":"n","t":0,"v":[["மனை","வீடு"]]},{"w":["வானம்","வாணம்"],"m":["sky","fireworks"],"src":"both","alt":null,"f":"n","t":0},{"w":["நான்","நாண்"],"m":["I","chord, string"],"src":"both","alt":null,"f":"n","t":1},{"w":["வன்மை","வண்மை"],"m":["strict, hard","generosity"],"src":"P","alt":null,"f":"n","t":0},{"w":["அரணாக","அரனாக"],"m":["protection, castle, fort","(given as) to be scared"],"src":"R","alt":null,"f":"n","t":0},{"w":["எந்நாளும்","என்னாலும்"],"m":["all the time","by me"],"src":"R","alt":null,"f":"l","t":0},{"w":["ஒலிபரப்பப்படும்","ஒளிபரப்பப்படும்"],"m":["broadcast","telecast"],"src":"both-form","alt":null,"f":"l","t":0},{"w":["கொள்ளி","கொல்லி"],"m":["torch-fire","insecticide, to kill"],"src":"R","alt":null,"f":"l","t":0},{"w":["கொழுத்து","கொளுத்து"],"m":["be fat","light up fire"],"src":"R","alt":null,"f":"l","t":0},{"w":["ஆலை","ஆளை"],"m":["factory","that person"],"src":"R","alt":null,"f":"l","t":0},{"w":["உலை","உளை","உழை"],"m":["oven, furnace","mane","work hard"],"src":"R","alt":null,"f":"l","t":0},{"w":["அளித்த","அழித்த"],"m":["give","destroy"],"src":"both-form","alt":null,"f":"l","t":0},{"w":["போலி","போளி"],"m":["not real","snack"],"src":"R","alt":null,"f":"l","t":0},{"w":["உரிய","உறிய"],"m":["appropriate","to suck"],"src":"R","alt":null,"f":"r","t":0},{"w":["நெறித்து","நெரித்து"],"m":["knit eyebrows","strangle"],"src":"both-form","alt":null,"f":"r","t":0},{"w":["இரக்கம்","இறக்கம்"],"m":["pity","low land"],"src":"R","alt":null,"f":"r","t":3,"v":[["இரக்கம்","கருணை"]]},{"w":["உறைந்து","உரைந்து"],"m":["frozen","to rub against"],"src":"R","alt":null,"f":"r","t":0,"v":[["உறைந்து","இறுகி"]]},{"w":["பொருக்க","பொறுக்க"],"m":["to pick up","to tolerate"],"src":"R","alt":null,"f":"r","t":0},{"w":["உறித்து","உரித்து"],"m":["suck from straw","to peel"],"src":"R","alt":null,"f":"r","t":0},{"w":["சீரிய","சீறிய"],"m":["excellent","hiss"],"src":"R","alt":null,"f":"r","t":0}];
+
+const SRCLBL={both:'Both lists','both-form':'Both lists (another form)',P:'PLMGPS only',R:'RGPS only'};
+const isShared=o=>o.src==='both'||o.src==='both-form';
+LIST.forEach(o=>{o.w.forEach((w,i)=>{if(!W[w])W[w]=o.m[i]})});
+let pairFilter='shared';
+function hlG(w,ws){const o=ws.find(x=>x!==w&&[...x].length===[...w].length)||ws.find(x=>x!==w);return hl(w,o)}
+function renderPairs(){
+  const sh=LIST.filter(isShared).length;
+  const shown=LIST.filter(o=>pairFilter==='all'||isShared(o));
+  const groups={l:[],r:[],n:[]};shown.forEach(o=>groups[o.f].push(o));
+  const card=o=>`<div class="pc">${o.w.map((w,i)=>`<span class="w">${hlG(w,o.w)}</span><span class="m">${esc(o.m[i]||W[w]||'')}</span>`).join('')}
+      <div class="tags"><span class="tag ${isShared(o)?'both':''}">${SRCLBL[o.src]}${o.alt?': '+esc(o.alt.join('/')):''}</span>${o.t?`<span class="tag hot">Tested ${o.t}×</span>`:''}${o.v?o.v.map(([w,m])=>`<span class="tag">P6 vocab: ${esc(w)} = ${esc(m)}</span>`).join(''):''}</div></div>`;
+  document.getElementById('p-pairs').innerHTML=`
+    <div class="fam"><h2>Word pairs from two school lists</h2>
+    <p class="cue">PLMGPS and RGPS P5–P6 lists merged: ${LIST.length} pairs, ${sh} on both lists. "Tested" counts the C6 questions in this lab's ${PAPERS.length} papers and worksheet sets that use the pair.</p>
+    <div class="row"><div class="seg2" role="group" aria-label="Filter pairs"><button id="pf-shared" aria-pressed="${pairFilter==='shared'}">On both lists · ${sh}</button><button id="pf-all" aria-pressed="${pairFilter==='all'}">All · ${LIST.length}</button></div></div></div>`+
+    Object.entries(groups).map(([f,list])=>`
+    <div class="fam"><h2>${FAM[f].name} <span class="cnt">${list.length} pairs</span></h2><p class="cue">${esc(FAM[f].cue)}</p>
+    <div class="pgrid">${list.sort((x,y)=>y.t-x.t||(isShared(y)-isShared(x))).map(card).join('')}</div></div>`).join('');
+  document.getElementById('pf-shared').onclick=()=>{pairFilter='shared';renderPairs()};
+  document.getElementById('pf-all').onclick=()=>{pairFilter='all';renderPairs()};
+}
+
+/* ---------- core pairs drill ---------- */
+const CORE=LIST.filter(isShared).sort((a,b)=>b.t-a.t);
+const CKEY='synapse-oli-core-v1';let cbox={};
+try{cbox=JSON.parse(localStorage.getItem(CKEY)||'{}')||{}}catch(e){cbox={}}
+const csave=()=>{try{localStorage.setItem(CKEY,JSON.stringify(cbox))}catch(e){}};
+const cid=o=>o.w.join('|');
+let cq=[],ccur=null,cround={seen:0,first:0},cfirst=new Set();
+function cmeter(){const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length;
+  document.getElementById('cbar').style.width=(m/CORE.length*100)+'%';document.getElementById('cnum').textContent=`${m} / ${CORE.length}`;}
+function cstart(){
+  // weakest first; ties keep most-tested order
+  const pool=CORE.map((o,i)=>({o,i})).sort((a,b)=>(cbox[cid(a.o)]||0)-(cbox[cid(b.o)]||0)||a.i-b.i).slice(0,10).map(x=>x.o);
+  cq=pool.map(o=>({o,k:Math.random()*o.w.length|0}));cround={seen:0,first:0};cfirst=new Set();cnext();
+}
+function cnext(){
+  const el=document.getElementById('ccard');
+  if(!cq.length){
+    const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length;
+    el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
+      <div class="score">${cround.first} / ${cround.seen}<small>right on the first try</small></div>
+      <p class="cue">${m} of ${CORE.length} core pairs mastered.</p>
+      <div class="row"><button class="btn primary" id="cagain">Next round</button><button class="btn" id="ctodrill">Practise them in sentences</button></div>`;
+    document.getElementById('cagain').onclick=cstart;document.getElementById('ctodrill').onclick=()=>show('drill');return;
+  }
+  ccur=cq.shift();ccur.done=false;const {o,k}=ccur;
+  const opts=shuffle(o.w.slice());
+  el.innerHTML=`<div class="chips"><span class="chip">${FAM[o.f].label}</span>${o.t?`<span class="chip src">Tested ${o.t}× in papers</span>`:''}</div>
+    <p class="hint" style="margin:0">Which spelling means…</p>
+    <p class="q-mean">${esc(o.m[k]||W[o.w[k]]||'')}</p>
+    <div class="opts3">${opts.map(w=>`<button class="choice" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>
+    <div id="cfb"></div>`;
+  el.querySelectorAll('.choice').forEach(b=>b.onclick=()=>canswer(b.dataset.w));
+}
+function canswer(w){
+  if(ccur.done)return;ccur.done=true;const {o,k}=ccur,ans=o.w[k],ok=w===ans;
+  document.querySelectorAll('#ccard .choice').forEach(b=>{b.disabled=true;if(b.dataset.w===ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
+  const key=cid(o);if(!cfirst.has(key)){cfirst.add(key);cround.seen++;if(ok)cround.first++}
+  const pair=`<div class="pair">${o.w.map((x,i)=>`<span class="w">${hlG(x,o.w)}</span><span>${esc(o.m[i]||'')}</span>`).join('')}</div><p class="cue">${esc(FAM[o.f].cue)}</p>`;
+  const fb=document.getElementById('cfb');
+  if(ok){
+    fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(ans)}</h3>${pair}<p class="ask">Were you sure, or did you guess?</p>
+      <div class="row"><button class="btn primary" id="cs">I was sure</button><button class="btn" id="cg">I guessed</button></div></div>`;
+    document.getElementById('cs').onclick=()=>{cbox[key]=Math.min(MASTER,(cbox[key]||0)+1);csave();cmeter();cnext()};
+    document.getElementById('cg').onclick=()=>{cbox[key]=Math.max(1,cbox[key]||0);csave();cmeter();cnext()};
+    document.getElementById('cs').focus();
+  }else{
+    cbox[key]=0;csave();cmeter();cq.splice(Math.min(3,cq.length),0,{o,k:(k+1)%o.w.length});
+    fb.innerHTML=`<div class="fb bad"><h3>It is ${esc(ans)}, not ${esc(w)}.</h3>${pair}<p class="ask">This pair comes back in three cards, asking for the other word.</p>
+      <div class="row"><button class="btn primary" id="cn">Next</button></div></div>`;
+    document.getElementById('cn').onclick=cnext;document.getElementById('cn').focus();
+  }
+}
+
+/* ---------- tabs ---------- */
+function show(p){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
+  ['drill','core','exam','pairs'].forEach(x=>{const el=document.getElementById('p-'+x);el.hidden=x!==p;el.style.display=x===p?'flex':''});
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>show(t.dataset.p)));
+
+buildRound();meter();nextCard();makeExam(0);renderPairs();cmeter();cstart();
+</script>
+
+</body>
+</html>

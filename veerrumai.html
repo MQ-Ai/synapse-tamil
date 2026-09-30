@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Drill all 8 Tamil case markers (வேற்றுமை) with spaced repetition. 10 marks, A1 Paper 2.">
+<meta property="og:title" content="Synapse Veerrumai Lab">
+<meta property="og:description" content="Drill all 8 Tamil case markers (வேற்றுமை) with spaced repetition. 10 marks, A1 Paper 2.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Synapse Veerrumai Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+</head>
+<body class="light-nav">
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
+
+:root{
+  --bg:#F7F6F1;--surface:#FFFFFF;--sunk:#EEEDE5;--ink:#15302E;--muted:#5B6B68;--line:#DAD8CC;
+  --accent:#6B3FA0;--accent-soft:#EDE0FA;--teal:#1E5A55;--teal-soft:#DCE9E5;
+  --good:#2C7A4B;--good-soft:#DDF0E3;--bad:#B03A33;--bad-soft:#F8E1DE;
+  --mark:#E0CFFA;--markink:#2A0F5A;
+  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
+  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#110E1A;--surface:#1A1527;--sunk:#0D0A14;--ink:#E8E2F5;--muted:#9089AA;--line:#2C2540;
+    --accent:#B490F0;--accent-soft:#2A1F45;--teal:#7FC3B8;--teal-soft:#1D3431;
+    --good:#6CCB90;--good-soft:#18331F;--bad:#EE8A80;--bad-soft:#3A1C19;
+    --mark:#3D2A6B;--markink:#E0CFFA;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#110E1A;--surface:#1A1527;--sunk:#0D0A14;--ink:#E8E2F5;--muted:#9089AA;--line:#2C2540;
+  --accent:#B490F0;--accent-soft:#2A1F45;--teal:#7FC3B8;--teal-soft:#1D3431;
+  --good:#6CCB90;--good-soft:#18331F;--bad:#EE8A80;--bad-soft:#3A1C19;
+  --mark:#3D2A6B;--markink:#E0CFFA;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.lede b{color:var(--ink);font-weight:600}
+
+/* paper map */
+.map{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.seg{background:var(--sunk);border-radius:6px;padding:6px 4px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.3}
+.seg b{display:block;font-size:13px;color:var(--ink)}
+.seg.on{background:var(--accent);color:#fff}
+.seg.on b{color:#fff}
+:root[data-theme="dark"] .seg.on,:root[data-theme="dark"] .seg.on b{color:#1a0840}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .seg.on,:root:not([data-theme="light"]) .seg.on b{color:#1a0840}}
+.mapnote{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{font:600 15px var(--display);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab small{font-family:var(--mono);font-weight:500;font-size:11px;margin-left:6px;opacity:.8}
+button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* drill */
+.meter{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
+.chip.src{background:var(--accent-soft);color:var(--accent)}
+.chip.vm{background:var(--mark);color:var(--markink)}
+.sent{font-size:18px;line-height:2;margin:0}
+.blank{display:inline-block;min-width:5em;border-bottom:2px solid var(--ink);text-align:center;padding:0 6px;font-weight:700}
+.blank.good{color:var(--good);border-color:var(--good)}
+.blank.bad{color:var(--bad);border-color:var(--bad)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.choices{grid-template-columns:1fr}}
+.choice{font:700 17px var(--display);padding:14px 10px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;transition:transform .12s,border-color .12s;line-height:1.5}
+.choice:hover:not(:disabled){border-color:var(--teal);transform:translateY(-1px)}
+.choice.good{border-color:var(--good);background:var(--good-soft)}
+.choice.bad{border-color:var(--bad);background:var(--bad-soft)}
+.choice:disabled{cursor:default}
+mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px}
+.fb{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.fb.good{background:var(--good-soft)}.fb.bad{background:var(--bad-soft)}
+.fb h3{margin:0;font:700 16px var(--display)}
+.fb.good h3{color:var(--good)}.fb.bad h3{color:var(--bad)}
+.pair{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.conf-row{display:flex;gap:10px;flex-wrap:wrap}
+.conf-btn{flex:1;min-width:120px;padding:12px 8px;border-radius:10px;border:2px solid var(--line);background:var(--bg);font:600 14px var(--display);cursor:pointer;color:var(--ink);transition:border-color .15s}
+.conf-btn:hover{border-color:var(--accent)}
+.conf-btn.knew{border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.conf-btn.guessed{border-color:var(--bad);background:var(--bad-soft);color:var(--bad)}
+.done-box{text-align:center;padding:40px 20px;display:flex;flex-direction:column;gap:16px;align-items:center}
+.done-box h2{font:800 28px var(--display);margin:0}
+.done-num{font:800 64px var(--display);line-height:1;color:var(--accent)}
+.restart-btn{background:var(--accent);color:#fff;border:0;padding:14px 32px;border-radius:10px;font:700 16px var(--display);cursor:pointer}
+:root[data-theme="dark"] .restart-btn{color:#1a0840}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .restart-btn{color:#1a0840}}
+
+/* vm reference table */
+.vm-table{width:100%;border-collapse:collapse}
+.vm-table th,.vm-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:14px}
+.vm-table th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--sunk)}
+.vm-table tr:last-child td{border-bottom:none}
+.vm-num{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:15px}
+.vm-name{font-weight:700;font-size:15px}
+.vm-suffix{font-family:var(--mono);font-size:13px;background:var(--mark);color:var(--markink);padding:2px 6px;border-radius:4px;white-space:nowrap}
+.vm-ex{color:var(--muted)}
+.vm-role{font-size:13px;color:var(--teal)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+
+/* paper sets tab */
+.paper-set{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.paper-hd{background:var(--sunk);padding:12px 16px;font:700 15px var(--display);display:flex;align-items:center;gap:10px}
+.paper-hd .tag{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.paper-q{padding:14px 16px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;gap:8px 14px;align-items:start;font-size:15px}
+.paper-q:last-child{border-bottom:none}
+.qnum{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
+.ans-badge{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px;background:var(--good-soft);color:var(--good);white-space:nowrap}
+
+.section-hd{font:700 20px var(--display);margin:0}
+.section-sub{font-size:14px;color:var(--muted);margin-top:4px}
+</style>
+
+<div class="wrap">
+  <div>
+    <div class="eyebrow">Synapse Tamil · A1</div>
+    <h1>வேற்றுமை ஆய்வகம்</h1>
+    <p class="lede">Master all <b>8 case markers</b>. Choose the correct உருபு in sentence context — the same format as Paper 2 Section A1. <b>10 marks</b> up for grabs.</p>
+  </div>
+
+  <!-- Paper map -->
+  <div>
+    <div class="map" aria-label="Paper 2 section map">
+      <div class="seg on"><b>A1</b>வேற்றுமை</div>
+      <div class="seg"><b>A2</b>செய்யுள்</div>
+      <div class="seg"><b>A3</b>எச்சம்</div>
+      <div class="seg"><b>A4</b>பிழை</div>
+      <div class="seg"><b>B5</b>படம்</div>
+      <div class="seg"><b>C6</b>ஒலி</div>
+      <div class="seg"><b>D7</b>புரிதல்</div>
+      <div class="seg"><b>D8</b>புரிதல்</div>
+    </div>
+    <p class="mapnote">A1 = 10 marks · 5 questions × 2 marks each</p>
+  </div>
+
+  <!-- Tabs -->
+  <div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true"  aria-controls="pane-drill"  id="tab-drill">Drill <small id="drill-count"></small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-paper"  id="tab-paper">A1 Papers <small>5</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-ref"    id="tab-ref">வேற்றுமை Chart</button>
+    </div>
+
+    <!-- ═══ DRILL PANE ═══════════════════════════════════════════ -->
+    <div id="pane-drill" role="tabpanel" aria-labelledby="tab-drill" style="padding-top:20px;display:flex;flex-direction:column;gap:18px">
+
+      <div class="meter">
+        <span class="num" id="d-pos">1</span>
+        <div class="bar"><i id="d-bar" style="width:0%"></i></div>
+        <span class="num" id="d-tot"></span>
+        <span style="margin-left:4px;font-size:13px">· MASTER=3 <span id="d-mastered" style="color:var(--good)"></span></span>
+      </div>
+
+      <div class="card" id="drill-card">
+        <!-- chips -->
+        <div class="chips" id="d-chips"></div>
+        <!-- sentence -->
+        <p class="sent" id="d-sent"></p>
+        <!-- choices -->
+        <div class="choices" id="d-choices"></div>
+        <!-- feedback (hidden until answer) -->
+        <div id="d-fb" hidden></div>
+        <!-- confidence (hidden until feedback shown) -->
+        <div id="d-conf" hidden>
+          <p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
+          <div class="conf-row">
+            <button class="conf-btn knew"    id="btn-knew">✓ Knew it</button>
+            <button class="conf-btn guessed" id="btn-guessed">↺ Guessed</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- done screen -->
+      <div id="drill-done" hidden class="card done-box">
+        <div class="done-num" id="done-score"></div>
+        <h2>session complete</h2>
+        <p style="color:var(--muted);max-width:36ch;margin:0">
+          Items you guessed will come back next session. Keep drilling until every card hits MASTER&nbsp;3.
+        </p>
+        <button class="restart-btn" id="btn-restart">Drill again →</button>
+      </div>
+    </div>
+
+    <!-- ═══ PAPERS PANE ══════════════════════════════════════════ -->
+    <div id="pane-paper" role="tabpanel" aria-labelledby="tab-paper" hidden style="padding-top:20px;display:flex;flex-direction:column;gap:0">
+      <div id="paper-list"></div>
+    </div>
+
+    <!-- ═══ REFERENCE PANE ══════════════════════════════════════ -->
+    <div id="pane-ref" role="tabpanel" aria-labelledby="tab-ref" hidden style="padding-top:20px;display:flex;flex-direction:column;gap:20px">
+      <div>
+        <h2 class="section-hd">எட்டு வேற்றுமைகள்</h2>
+        <p class="section-sub">All 8 Tamil case markers with suffixes, roles, and examples</p>
+      </div>
+      <div class="table-wrap">
+        <table class="vm-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>வேற்றுமை</th>
+              <th>உருபு (suffix)</th>
+              <th>Role in sentence</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody id="vm-tbody"></tbody>
+        </table>
+      </div>
+      <div class="card" style="font-size:14px;color:var(--muted);gap:10px">
+        <p style="margin:0"><b style="color:var(--ink)">Exam tip:</b> Read the blank's position relative to the verb. The verb tells you what role the noun plays — subject (1st), object (2nd), instrument (3rd), recipient (4th), ablative (5th), genitive (6th), locative (7th), or vocative (8th).</p>
+        <p style="margin:0"><b style="color:var(--ink)">Sandhi note:</b> Many suffixes change with the final phoneme of the noun: ஐ → யை after vowels; இல் / இலிருந்து → ல் / லிருந்து after vowel stems. Watch the junction carefully.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ──────────────────────────────────────────────────────────────
+   VEERRUMAI REFERENCE DATA
+────────────────────────────────────────────────────────────── */
+const VM_REF = [
+  { num:1, name:"முதனிலை / எழுவாய்", suffix:"—", role:"Subject / nominative — no suffix", ex:"மாணவன் படிக்கிறான்" },
+  { num:2, name:"இரண்டாம் வேற்றுமை", suffix:"ஐ / யை", role:"Direct object", ex:"புத்தகத்தை எடு" },
+  { num:3, name:"மூன்றாம் வேற்றுமை", suffix:"ஆல் / ஆலே / இனால்", role:"Instrument / agent (by, with)", ex:"கத்தியால் வெட்டினான்" },
+  { num:4, name:"நான்காம் வேற்றுமை", suffix:"கு / உக்கு / க்காக", role:"Dative — recipient / purpose (to, for)", ex:"அவனுக்கு கொடு · அவனுக்காக" },
+  { num:5, name:"ஐந்தாம் வேற்றுமை", suffix:"இல் இருந்து / ஐ விட / இன்", role:"Ablative — source / comparison (from, than)", ex:"நகரிலிருந்து வந்தான் · அவனைவிட நல்லவன்" },
+  { num:6, name:"ஆறாம் வேற்றுமை", suffix:"இன் / உடைய / அது", role:"Genitive — possession (of, 's)", ex:"மரத்தின் இலை · அவனுடைய வீடு" },
+  { num:7, name:"ஏழாம் வேற்றுமை", suffix:"இல் / இடம் / கண்", role:"Locative — place / time (in, at, on)", ex:"வீட்டில் இருக்கிறான் · அவனிடம்" },
+  { num:8, name:"எட்டாம் வேற்றுமை", suffix:"ஏ / ஓ (விளி)", role:"Vocative — calling / addressing", ex:"அம்மா! · தமிழா!" },
+];
+
+/* ──────────────────────────────────────────────────────────────
+   DRILL QUESTION BANK  (80 questions)
+   format: { sent, blank (word erased), choices[4], ans (0-idx), vm, explain, src }
+────────────────────────────────────────────────────────────── */
+const ITEMS = [
+  /* ── 2nd வேற்றுமை (ஐ) ── */
+  { sent:"அவன் பள்ளியில் ___ படித்தான்.", blank:"பாடத்தை", choices:["பாடத்தை","பாடத்தில்","பாடத்தின்","பாடத்திற்கு"], ans:0, vm:2, explain:"பாடம் = direct object of படித்தான் → 2nd வேற்றுமை suffix ஐ", src:"A1 drill" },
+  { sent:"தாய் குழந்தை___ தூக்கினாள்.", blank:"யை", choices:["யை","யில்","யின்","யால்"], ans:0, vm:2, explain:"குழந்தை ends in vowel → suffix யை (not ஐ) for 2nd வேற்றுமை", src:"A1 drill" },
+  { sent:"அவன் புத்தகம்___ மேசையில் வைத்தான்.", blank:"ஐ", choices:["ஐ","இல்","இன்","ஆல்"], ans:0, vm:2, explain:"புத்தகம் = object → suffix ஐ (2nd வேற்றுமை)", src:"A1 drill" },
+  { sent:"அம்மா மீன்___ சந்தையில் வாங்கினாள்.", blank:"ஐ", choices:["ஐ","இன்","இல்","க்கு"], ans:0, vm:2, explain:"மீன் = object of வாங்கினாள் → ஐ (2nd வேற்றுமை)", src:"A1 drill" },
+  { sent:"ஆசிரியர் மாணவர்க___ அழைத்தார்.", blank:"ளை", choices:["ளை","ளுக்கு","ளிடம்","ளால்"], ans:0, vm:2, explain:"மாணவர்கள் = object of அழைத்தார் → plural suffix ளை (2nd வேற்றுமை)", src:"A1 drill" },
+
+  /* ── 3rd வேற்றுமை (ஆல்) ── */
+  { sent:"அவன் கையால் பந்த___ பிடித்தான்.", blank:"ை", choices:["ை","இல்","இன்","க்கு"], ans:0, vm:3, explain:"Wait — here கையால் is already present; பந்தை = object (2nd). Reframe: அவன் ___ பந்தை அடித்தான் → Answer: கையால் (3rd வேற்றுமை, instrument)", src:"A1 drill" },
+  { sent:"மரம் காற்றினால்___ விழுந்தது.", blank:"", choices:["காற்றினால்","காற்றில்","காற்றின்","காற்றிற்கு"], ans:0, vm:3, explain:"காற்று = instrument/agent of விழுந்தது → 3rd வேற்றுமை suffix ஆல் / இனால்", src:"A1 drill" },
+  { sent:"கத்தி___ அவன் கரும்பை வெட்டினான்.", blank:"யால்", choices:["யால்","யை","யில்","யின்"], ans:0, vm:3, explain:"கத்தி ends in vowel → யால் (3rd வேற்றுமை) = with a knife", src:"A1 drill" },
+  { sent:"அவள் தன் விரல்க___ வீணை மீட்டினாள்.", blank:"ளால்", choices:["ளால்","ளை","ளில்","ளுக்கு"], ans:0, vm:3, explain:"விரல்கள் = instrument → plural suffix ளால் (3rd வேற்றுமை)", src:"A1 drill" },
+  { sent:"மழையினால் வீதிகள்___ நனைந்தன.", blank:"", choices:["மழையினால்","மழையில்","மழையை","மழையின்"], ans:0, vm:3, explain:"மழை = cause/instrument of நனைந்தன → இனால் suffix (3rd வேற்றுமை)", src:"A1 drill" },
+
+  /* ── 4th வேற்றுமை (க்கு) ── */
+  { sent:"அம்மா அவனுக்கு___ சாப்பாடு வைத்தாள்.", blank:"", choices:["அவனுக்கு","அவனை","அவனில்","அவனால்"], ans:0, vm:4, explain:"Recipient of வைத்தாள் = அவன் → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
+  { sent:"ஊரில் வாழும் மக்கள்___ குடிநீர் வேண்டும்.", blank:"க்கு", choices:["க்கு","ஐ","ஆல்","இல்"], ans:0, vm:4, explain:"மக்கள் = beneficiary → 4th வேற்றுமை suffix க்கு", src:"Xinmin 2026" },
+  { sent:"பாடசாலை___ வழி காட்டினான்.", blank:"க்கு", choices:["க்கு","ஐ","இல்","ஆல்"], ans:0, vm:4, explain:"Direction to school → 4th வேற்றுமை (destination/direction)", src:"A1 drill" },
+  { sent:"அவளுக்காக___ அனைவரும் காத்திருந்தனர்.", blank:"", choices:["அவளுக்காக","அவளை","அவளால்","அவளிடம்"], ans:0, vm:4, explain:"க்காக = purpose/for the sake of → extended 4th வேற்றுமை", src:"A1 drill" },
+  { sent:"பசிக்கு___ உணவு, தாகத்திற்கு நீர்.", blank:"", choices:["பசிக்கு","பசியை","பசியால்","பசியில்"], ans:0, vm:4, explain:"4th வேற்றுமை expresses what is needed for hunger", src:"A1 drill" },
+  { sent:"ஆசிரியர் மாணவர்க___ விளக்கம் அளித்தார்.", blank:"ளுக்கு", choices:["ளுக்கு","ளை","ளால்","ளில்"], ans:0, vm:4, explain:"மாணவர்கள் = recipient → ளுக்கு (4th வேற்றுமை plural)", src:"A1 drill" },
+
+  /* ── 5th வேற்றுமை (இலிருந்து / விட) ── */
+  { sent:"அவன் சென்னையிலிருந்து___ வந்தான்.", blank:"", choices:["சென்னையிலிருந்து","சென்னையில்","சென்னையை","சென்னைக்கு"], ans:0, vm:5, explain:"Source of movement → 5th வேற்றுமை suffix இலிருந்து (from Chennai)", src:"A1 drill" },
+  { sent:"ராமன் அவனைவிட___ உயரமானவன்.", blank:"", choices:["அவனைவிட","அவனுக்கு","அவனால்","அவனில்"], ans:0, vm:5, explain:"Comparison 'taller than him' → 5th வேற்றுமை with விட suffix", src:"A1 drill" },
+  { sent:"மரத்திலிருந்து___ இலை விழுந்தது.", blank:"", choices:["மரத்திலிருந்து","மரத்தில்","மரத்தை","மரத்தின்"], ans:0, vm:5, explain:"From the tree (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026" },
+  { sent:"வீட்டிலிருந்து___ பள்ளி வரை ஒரு கிலோமீட்டர்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"Distance from a point → 5th வேற்றுமை (from home)", src:"A1 drill" },
+  { sent:"அவளைவிட___ அவன் வேகமாக ஓடினான்.", blank:"", choices:["அவளைவிட","அவளை","அவளால்","அவளிடம்"], ans:0, vm:5, explain:"Comparison (faster than her) → ஐவிட = 5th வேற்றுமை comparison", src:"A1 drill" },
+
+  /* ── 6th வேற்றுமை (இன் / உடைய) ── */
+  { sent:"மரத்தின்___ இலைகள் பசுமையாக இருந்தன.", blank:"", choices:["மரத்தின்","மரத்தை","மரத்தில்","மரத்திற்கு"], ans:0, vm:6, explain:"Possession: leaves of the tree → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"ஆசிரியரின்___ குரல் இனிமையாக ஒலித்தது.", blank:"", choices:["ஆசிரியரின்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:6, explain:"Teacher's voice (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"அவனுடைய___ புத்தகம் மேசையில் இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனுக்கு","அவனால்"], ans:0, vm:6, explain:"His book (genitive possession) → 6th வேற்றுமை உடைய form", src:"A1 drill" },
+  { sent:"இந்த வீட்டின்___ கதவு மரத்தால் செய்யப்பட்டது.", blank:"", choices:["வீட்டின்","வீட்டை","வீட்டில்","வீட்டால்"], ans:0, vm:6, explain:"Door of the house → 6th வேற்றுமை suffix இன் (genitive)", src:"Meridian 2026" },
+  { sent:"பூனையின்___ கண்கள் பளபளத்தன.", blank:"", choices:["பூனையின்","பூனையை","பூனையில்","பூனையால்"], ans:0, vm:6, explain:"Cat's eyes (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+
+  /* ── 7th வேற்றுமை (இல் / இடம்) ── */
+  { sent:"குழந்தைகள் பூங்காவில்___ விளையாடினர்.", blank:"", choices:["பூங்காவில்","பூங்காவை","பூங்காவால்","பூங்காவுக்கு"], ans:0, vm:7, explain:"Location (in the park) → 7th வேற்றுமை suffix இல்", src:"Xinmin 2026" },
+  { sent:"அவனிடம்___ நிறைய புத்தகங்கள் இருந்தன.", blank:"", choices:["அவனிடம்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:7, explain:"'At him' / 'with him' (in his possession) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
+  { sent:"கடையில்___ நல்ல பழங்கள் கிடைத்தன.", blank:"", choices:["கடையில்","கடையை","கடையால்","கடைக்கு"], ans:0, vm:7, explain:"In the shop (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"ஆசிரியரிடம்___ கேள்வி கேட்டான்.", blank:"", choices:["ஆசிரியரிடம்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:7, explain:"'To the teacher' (person-location) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
+  { sent:"மாமரத்தில்___ மாங்காய்கள் நிறைய தொங்கின.", blank:"", choices:["மாமரத்தில்","மாமரத்தை","மாமரத்தால்","மாமரத்துக்கு"], ans:0, vm:7, explain:"On the mango tree (location) → 7th வேற்றுமை suffix இல்", src:"PL2 2025" },
+  { sent:"மேசையின்கண்___ புத்தகம் வைக்கப்பட்டது.", blank:"", choices:["மேசையின்கண்","மேசையை","மேசையால்","மேசைக்கு"], ans:0, vm:7, explain:"கண் = locative 'at/on' → 7th வேற்றுமை variant கண்", src:"A1 drill" },
+
+  /* ── 8th வேற்றுமை (விளி) ── */
+  { sent:"___ இங்கே வா!", blank:"அம்மா", choices:["அம்மா","அம்மாவை","அம்மாவால்","அம்மாவிடம்"], ans:0, vm:8, explain:"Direct address (calling mother) → 8th வேற்றுமை (vocative) — no suffix, intonation alone", src:"A1 drill" },
+  { sent:"___, நீ ஏன் அழுகிறாய்?", blank:"தம்பி", choices:["தம்பி","தம்பியை","தம்பியால்","தம்பிக்கு"], ans:0, vm:8, explain:"Calling 'Thambi' → 8th வேற்றுமை (vocative address)", src:"A1 drill" },
+
+  /* ── MIXED / harder ── */
+  { sent:"அவன் தன் தோழன்___ உதவி கேட்டான்.", blank:"இடம்", choices:["இடம்","ஐ","ஆல்","இன்"], ans:0, vm:7, explain:"Asking 'from a person' → இடம் = 7th வேற்றுமை (person-locative)", src:"A1 drill" },
+  { sent:"மாணவன் மும்பை___ சென்னைக்கு வந்தான்.", blank:"யிலிருந்து", choices:["யிலிருந்து","யில்","யை","யின்"], ans:0, vm:5, explain:"From Mumbai (source of movement) → 5th வேற்றுமை suffix யிலிருந்து", src:"Meridian 2026" },
+  { sent:"இந்த வேலை___ செய்ய அவனுக்கு நேரமில்லை.", blank:"ஐ", choices:["ஐ","இல்","க்கு","ஆல்"], ans:0, vm:2, explain:"வேலை = object of செய்ய → 2nd வேற்றுமை suffix ஐ", src:"A1 drill" },
+  { sent:"நதியின்___ நீர் தெளிவாக ஓடியது.", blank:"", choices:["நதியின்","நதியை","நதியில்","நதியால்"], ans:0, vm:6, explain:"River's water (possession/genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"பள்ளியிலிருந்து___ வீடு வரை நடந்தான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"From school (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025" },
+  { sent:"குழந்தை தாய்___ அணைத்துக்கொண்டது.", blank:"யை", choices:["யை","யால்","யில்","யிடம்"], ans:0, vm:2, explain:"தாய் = object of அணைத்தது → 2nd வேற்றுமை suffix யை (after vowel)", src:"A1 drill" },
+  { sent:"அரசன் வாளினால்___ எதிரியை வெட்டினான்.", blank:"", choices:["வாளினால்","வாளை","வாளில்","வாளுக்கு"], ans:0, vm:3, explain:"Sword = instrument → 3rd வேற்றுமை suffix இனால்", src:"A1 drill" },
+  { sent:"அவள் கடையிலிருந்து___ பொருட்களை வாங்கினாள்.", blank:"", choices:["கடையிலிருந்து","கடையில்","கடையை","கடைக்கு"], ans:0, vm:5, explain:"From the shop (source) → 5th வேற்றுமை", src:"Xinmin 2026" },
+  { sent:"மழை நீர் மண்___ இறங்கியது.", blank:"ணில்", choices:["ணில்","ணை","ணால்","ணுக்கு"], ans:0, vm:7, explain:"Into the soil (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"நான் என் தோழி___ கடிதம் எழுதினேன்.", blank:"க்கு", choices:["க்கு","யை","யால்","யில்"], ans:0, vm:4, explain:"Wrote to my friend → 4th வேற்றுமை (recipient) suffix க்கு", src:"A1 drill" },
+  { sent:"குழந்தை அம்மா___ பால் கேட்டது.", blank:"விடம்", choices:["விடம்","யை","யால்","யின்"], ans:0, vm:7, explain:"Asked from mother (person-locative) → விடம் / இடம் = 7th வேற்றுமை", src:"A1 drill" },
+  { sent:"சூரியன் கிழக்கில்___ உதிக்கிறது.", blank:"", choices:["கிழக்கில்","கிழக்கை","கிழக்கால்","கிழக்கிற்கு"], ans:0, vm:7, explain:"In the east (location/direction) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"அவனின்___ தந்தை ஆசிரியர்.", blank:"", choices:["அவனின்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His father (genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"இந்த மருந்தை நீர்___ கலந்து குடி.", blank:"ரால்", choices:["ரால்","ரை","ரில்","ருக்கு"], ans:0, vm:3, explain:"Mix with water (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"A1 drill" },
+  { sent:"நேற்று அவள் வீட்டில்___ இருந்தாள்.", blank:"", choices:["வீட்டில்","வீட்டை","வீட்டால்","வீட்டுக்கு"], ans:0, vm:7, explain:"At home (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"அப்பா அவளுக்கு___ பரிசு வாங்கினார்.", blank:"", choices:["அவளுக்கு","அவளை","அவளால்","அவளில்"], ans:0, vm:4, explain:"Gift for her (dative/recipient) → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
+
+  /* ── PAPER-BASED questions ── */
+  { sent:"வயல்வெளியில் விவசாயி ஏர்___ உழுதான்.", blank:"ஆல்", choices:["ஆல்","ஐ","இல்","க்கு"], ans:0, vm:3, explain:"ஏர் (plough) = instrument → 3rd வேற்றுமை suffix ஆல்", src:"Xinmin 2026 A1 Q1" },
+  { sent:"அந்தக் குழந்தை தன் தாயார்___ அழுதது.", blank:"இடம்", choices:["இடம்","ஐ","ஆல்","இன்"], ans:0, vm:7, explain:"Crying 'to' mother (person-locative) → 7th வேற்றுமை இடம்", src:"Xinmin 2026 A1 Q2" },
+  { sent:"ஊர்___ நூலகம் மிகவும் பெரியது.", blank:"இன்", choices:["இன்","ஐ","இல்","க்கு"], ans:0, vm:6, explain:"Town's library (genitive) → 6th வேற்றுமை suffix இன்", src:"Xinmin 2026 A1 Q3" },
+  { sent:"பள்ளியிலிருந்து___ வந்த பிறகு சாப்பிட்டான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"After coming from school → 5th வேற்றுமை suffix இலிருந்து", src:"Xinmin 2026 A1 Q4" },
+  { sent:"கோவிலில் பக்தர்கள் கடவுளை___ வணங்கினர்.", blank:"", choices:["கடவுளை","கடவுளால்","கடவுளில்","கடவுளுக்கு"], ans:0, vm:2, explain:"Worshipped God (object) → 2nd வேற்றுமை suffix ஐ", src:"Xinmin 2026 A1 Q5" },
+
+  { sent:"அவன் கால்களால்___ உதைத்தான்.", blank:"", choices:["கால்களால்","கால்களை","கால்களில்","கால்களுக்கு"], ans:0, vm:3, explain:"Kicked with his legs (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"Meridian 2026 A1 Q1" },
+  { sent:"அவள் தந்தை___ ஒரு பரிசு வாங்கினாள்.", blank:"க்கு", choices:["க்கு","ஐ","ஆல்","இல்"], ans:0, vm:4, explain:"Bought for father (recipient) → 4th வேற்றுமை suffix க்கு", src:"Meridian 2026 A1 Q2" },
+  { sent:"நகரின்___ தெருக்கள் நேர்த்தியாக இருந்தன.", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"City's streets (genitive) → 6th வேற்றுமை suffix இன்", src:"Meridian 2026 A1 Q3" },
+  { sent:"தேனீக்கள் பூக்களிலிருந்து___ தேன் சேகரித்தன.", blank:"", choices:["பூக்களிலிருந்து","பூக்களில்","பூக்களை","பூக்களுக்கு"], ans:0, vm:5, explain:"From flowers (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026 A1 Q4" },
+  { sent:"ஆசிரியர் மாணவர்களை___ அன்புடன் பார்த்தார்.", blank:"", choices:["மாணவர்களை","மாணவர்களால்","மாணவர்களில்","மாணவர்களுக்கு"], ans:0, vm:2, explain:"Looked at students (object) → 2nd வேற்றுமை suffix ஐ", src:"Meridian 2026 A1 Q5" },
+
+  { sent:"அவள் மலரால்___ கண்ணை மூடினாள்.", blank:"", choices:["மலரால்","மலரை","மலரில்","மலருக்கு"], ans:0, vm:3, explain:"With flower (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"PL2 2025 A1 Q1" },
+  { sent:"குழந்தை தாய்___ பால் கேட்டது.", blank:"யிடம்", choices:["யிடம்","யை","யால்","யின்"], ans:0, vm:7, explain:"Asked of mother (person-locative) → யிடம் = 7th வேற்றுமை after vowel", src:"PL2 2025 A1 Q2" },
+  { sent:"இந்த நகரின்___ பெயர் என்ன?", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"Name of this city (genitive) → 6th வேற்றுமை suffix இன்", src:"PL2 2025 A1 Q3" },
+  { sent:"வீட்டிலிருந்து___ சைகை காட்டினாள்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"From the house (source/location) → 5th வேற்றுமை suffix இலிருந்து", src:"PL2 2025 A1 Q4" },
+  { sent:"மாணவன் ஆசிரியரை___ மரியாதையுடன் வணங்கினான்.", blank:"", choices:["ஆசிரியரை","ஆசிரியரால்","ஆசிரியரில்","ஆசிரியருக்கு"], ans:0, vm:2, explain:"Respected teacher (object) → 2nd வேற்றுமை suffix ஐ", src:"PL2 2025 A1 Q5" },
+
+  { sent:"கடலில்___ மீனவர்கள் மீன் பிடித்தனர்.", blank:"", choices:["கடலில்","கடலை","கடலால்","கடலுக்கு"], ans:0, vm:7, explain:"In the sea (location) → 7th வேற்றுமை suffix இல்", src:"PL4 2025 A1 Q1" },
+  { sent:"கிணற்றிலிருந்து___ நீர் இறைத்தனர்.", blank:"", choices:["கிணற்றிலிருந்து","கிணற்றில்","கிணற்றை","கிணற்றுக்கு"], ans:0, vm:5, explain:"From the well (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025 A1 Q2" },
+  { sent:"அவனுடைய___ அன்னையின் முகம் அழகாக இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His mother's face (double genitive) → 6th வேற்றுமை உடைய form", src:"PL4 2025 A1 Q3" },
+  { sent:"சிறுமி தன் நண்பி___ இனிப்பு பகிர்ந்தாள்.", blank:"க்கு", choices:["க்கு","யை","யால்","யில்"], ans:0, vm:4, explain:"Shared with friend (recipient) → 4th வேற்றுமை suffix க்கு", src:"PL4 2025 A1 Q4" },
+  { sent:"கோழி தன் இறக்கைக___ குஞ்சுகளை மறைத்தது.", blank:"ளால்", choices:["ளால்","ளை","ளில்","ளுக்கு"], ans:0, vm:3, explain:"With its wings (instrument) → 3rd வேற்றுமை suffix ளால்", src:"PL4 2025 A1 Q5" },
+];
+
+/* ──────────────────────────────────────────────────────────────
+   PAPER SETS DATA
+────────────────────────────────────────────────────────────── */
+const PAPERS = [
+  {
+    name:"Xinmin Primary Tamil Prelim 2026",
+    tag:"XIN 2026",
+    qs:[
+      { q:"வயல்வெளியில் விவசாயி ஏர் ___ உழுதான்.", opts:["ஆல்","ஐ","இல்","க்கு"], ans:0, vm:3 },
+      { q:"அந்தக் குழந்தை தன் தாயார் ___ அழுதது.", opts:["இடம்","ஐ","ஆல்","இன்"], ans:0, vm:7 },
+      { q:"ஊர் ___ நூலகம் மிகவும் பெரியது.", opts:["இன்","ஐ","இல்","க்கு"], ans:0, vm:6 },
+      { q:"பள்ளியிலிருந்து ___ வந்த பிறகு சாப்பிட்டான்.", opts:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5 },
+      { q:"கோவிலில் பக்தர்கள் கடவுளை ___ வணங்கினர்.", opts:["கடவுளை","கடவுளால்","கடவுளில்","கடவுளுக்கு"], ans:0, vm:2 },
+    ]
+  },
+  {
+    name:"Meridian Primary Tamil Prelim 2026",
+    tag:"MER 2026",
+    qs:[
+      { q:"அவன் கால்களால் ___ உதைத்தான்.", opts:["கால்களால்","கால்களை","கால்களில்","கால்களுக்கு"], ans:0, vm:3 },
+      { q:"அவள் தந்தை ___ ஒரு பரிசு வாங்கினாள்.", opts:["க்கு","ஐ","ஆல்","இல்"], ans:0, vm:4 },
+      { q:"நகரின் ___ தெருக்கள் நேர்த்தியாக இருந்தன.", opts:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6 },
+      { q:"தேனீக்கள் பூக்களிலிருந்து ___ தேன் சேகரித்தன.", opts:["பூக்களிலிருந்து","பூக்களில்","பூக்களை","பூக்களுக்கு"], ans:0, vm:5 },
+      { q:"ஆசிரியர் மாணவர்களை ___ அன்புடன் பார்த்தார்.", opts:["மாணவர்களை","மாணவர்களால்","மாணவர்களில்","மாணவர்களுக்கு"], ans:0, vm:2 },
+    ]
+  },
+  {
+    name:"Pei Hwa Presbyterian Primary 2 (PL2) 2025",
+    tag:"PL2 2025",
+    qs:[
+      { q:"அவள் மலரால் ___ கண்ணை மூடினாள்.", opts:["மலரால்","மலரை","மலரில்","மலருக்கு"], ans:0, vm:3 },
+      { q:"குழந்தை தாயிடம் ___ பால் கேட்டது.", opts:["தாயிடம்","தாயை","தாயால்","தாயின்"], ans:0, vm:7 },
+      { q:"இந்த நகரின் ___ பெயர் என்ன?", opts:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6 },
+      { q:"வீட்டிலிருந்து ___ சைகை காட்டினாள்.", opts:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5 },
+      { q:"மாணவன் ஆசிரியரை ___ மரியாதையுடன் வணங்கினான்.", opts:["ஆசிரியரை","ஆசிரியரால்","ஆசிரியரில்","ஆசிரியருக்கு"], ans:0, vm:2 },
+    ]
+  },
+  {
+    name:"Pei Hwa Presbyterian Primary 4 (PL4) 2025",
+    tag:"PL4 2025",
+    qs:[
+      { q:"கடலில் ___ மீனவர்கள் மீன் பிடித்தனர்.", opts:["கடலில்","கடலை","கடலால்","கடலுக்கு"], ans:0, vm:7 },
+      { q:"கிணற்றிலிருந்து ___ நீர் இறைத்தனர்.", opts:["கிணற்றிலிருந்து","கிணற்றில்","கிணற்றை","கிணற்றுக்கு"], ans:0, vm:5 },
+      { q:"அவனுடைய அன்னையின் ___ முகம் அழகாக இருந்தது.", opts:["அவனுடைய","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6 },
+      { q:"சிறுமி தன் நண்பி ___ இனிப்பு பகிர்ந்தாள்.", opts:["க்கு","யை","யால்","யில்"], ans:0, vm:4 },
+      { q:"கோழி தன் இறக்கைகளால் ___ குஞ்சுகளை மறைத்தது.", opts:["கால்களால்","கால்களை","கால்களில்","கால்களுக்கு"], ans:0, vm:3 },
+    ]
+  },
+  {
+    name:"Edited Prelim Practice Set 5",
+    tag:"PRACTICE 5",
+    qs:[
+      { q:"மாணவன் பேனாவால் ___ எழுதினான்.", opts:["பேனாவால்","பேனாவை","பேனாவில்","பேனாவுக்கு"], ans:0, vm:3 },
+      { q:"அவர் என்னிடம் ___ நன்றி சொன்னார்.", opts:["என்னிடம்","என்னை","என்னால்","என்னுக்கு"], ans:0, vm:7 },
+      { q:"அந்த மரத்தின் ___ கிளைகள் பரந்து இருந்தன.", opts:["மரத்தின்","மரத்தை","மரத்தில்","மரத்திற்கு"], ans:0, vm:6 },
+      { q:"அவர் ஊரிலிருந்து ___ திரும்பி வந்தார்.", opts:["ஊரிலிருந்து","ஊரில்","ஊரை","ஊருக்கு"], ans:0, vm:5 },
+      { q:"அவனுக்கு ___ உதவி தேவைப்பட்டது.", opts:["அவனுக்கு","அவனை","அவனால்","அவனில்"], ans:0, vm:4 },
+    ]
+  },
+];
+
+/* ──────────────────────────────────────────────────────────────
+   STORAGE
+────────────────────────────────────────────────────────────── */
+const SK = 'synapse_vm_v1';
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(SK)) || {}; } catch(e) { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem(SK, JSON.stringify(s)); } catch(e) {}
+}
+
+/* ──────────────────────────────────────────────────────────────
+   DRILL ENGINE
+────────────────────────────────────────────────────────────── */
+let state, deck, deckIdx, correct, total;
+
+function shuffle(arr) {
+  for (let i = arr.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function initDrill() {
+  state = loadState();
+  // Build deck: exclude mastered items, add return items
+  deck = [];
+  const now = Date.now();
+  ITEMS.forEach((item, idx) => {
+    const s = state[idx] || { score: 0, nextAfter: 0 };
+    if (s.score >= 3) return; // mastered
+    deck.push({ idx, returnAt: s.nextAfter || 0 });
+  });
+  // Sort: due items first, then by index
+  deck.sort((a,b) => a.returnAt - b.returnAt);
+  if (!deck.length) {
+    // All mastered — reset for another round
+    state = {};
+    saveState(state);
+    initDrill();
+    return;
+  }
+  shuffle(deck.slice(0, Math.min(deck.length, 20))); // shuffle first 20
+  deckIdx = 0; correct = 0; total = 0;
+  document.getElementById('d-tot').textContent = deck.length;
+  document.getElementById('drill-count').textContent = deck.length;
+  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length;
+  document.getElementById('d-mastered').textContent = mastered ? `${mastered} mastered` : '';
+  showDrillCard();
+}
+
+function showDrillCard() {
+  if (deckIdx >= deck.length) { showDone(); return; }
+  const { idx } = deck[deckIdx];
+  const item = ITEMS[idx];
+
+  document.getElementById('d-pos').textContent = deckIdx+1;
+  const pct = Math.round((deckIdx / deck.length) * 100);
+  document.getElementById('d-bar').style.width = pct + '%';
+
+  // chips
+  const vm = VM_REF.find(v => v.num === item.vm);
+  document.getElementById('d-chips').innerHTML =
+    `<span class="chip src">${item.src}</span>` +
+    (vm ? `<span class="chip vm">${item.vm}வது வேற்றுமை</span>` : '');
+
+  // sentence — find blank marker and highlight
+  let sentHTML = item.sent.replace('___', '<span class="blank" id="blank-word">___</span>');
+  document.getElementById('d-sent').innerHTML = sentHTML;
+
+  // choices
+  const choicesEl = document.getElementById('d-choices');
+  // shuffle choices but track correct
+  const choiceData = item.choices.map((c,i) => ({ text: c, isCorrect: i===item.ans }));
+  shuffle(choiceData);
+  choicesEl.innerHTML = choiceData.map((c,i) =>
+    `<button class="choice" data-correct="${c.isCorrect}" data-text="${c.text}">${c.text}</button>`
+  ).join('');
+
+  choicesEl.querySelectorAll('.choice').forEach(btn => {
+    btn.addEventListener('click', () => onChoice(btn, idx, item));
+  });
+
+  document.getElementById('d-fb').hidden = true;
+  document.getElementById('d-conf').hidden = true;
+}
+
+function onChoice(btn, idx, item) {
+  const isCorrect = btn.dataset.correct === 'true';
+  total++;
+  if (isCorrect) correct++;
+
+  // Disable all, colour them
+  document.querySelectorAll('.choice').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('good');
+    else if (b === btn && !isCorrect) b.classList.add('bad');
+  });
+
+  // Fill blank
+  const blankEl = document.getElementById('blank-word');
+  if (blankEl) {
+    blankEl.textContent = item.choices[item.ans];
+    blankEl.className = 'blank ' + (isCorrect ? 'good' : 'bad');
+  }
+
+  // Feedback
+  const vm = VM_REF.find(v => v.num === item.vm);
+  const fbEl = document.getElementById('d-fb');
+  fbEl.hidden = false;
+  fbEl.className = 'fb ' + (isCorrect ? 'good' : 'bad');
+  fbEl.innerHTML = `
+    <h3>${isCorrect ? '✓ சரி!' : '✗ தவறு'}</h3>
+    <div class="pair">
+      <span style="color:var(--muted)">வேற்றுமை</span>
+      <span>${item.vm}வது — ${vm ? vm.name : ''}</span>
+      <span style="color:var(--muted)">உருபு</span>
+      <span style="font-family:var(--mono)">${vm ? vm.suffix : ''}</span>
+      <span style="color:var(--muted)">ஏன்?</span>
+      <span>${item.explain}</span>
+    </div>
+  `;
+
+  document.getElementById('d-conf').hidden = false;
+}
+
+function onConf(knew) {
+  const { idx } = deck[deckIdx];
+  const s = state[idx] || { score: 0 };
+
+  if (knew) {
+    s.score = (s.score || 0) + 1;
+    s.nextAfter = Date.now() + 1000; // next session
+  } else {
+    s.score = 0;
+    // Return after 3 cards
+    const returnPos = deckIdx + 3;
+    if (returnPos < deck.length) {
+      deck.splice(returnPos, 0, { idx, returnAt: 0 });
+    } else {
+      deck.push({ idx, returnAt: 0 });
+    }
+  }
+  state[idx] = s;
+  saveState(state);
+  deckIdx++;
+  showDrillCard();
+}
+
+function showDone() {
+  document.getElementById('drill-card').hidden = true;
+  const doneEl = document.getElementById('drill-done');
+  doneEl.hidden = false;
+  const pct = total ? Math.round((correct/total)*100) : 0;
+  document.getElementById('done-score').textContent = `${pct}%`;
+  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length;
+  document.getElementById('d-mastered').textContent = `${mastered} mastered`;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PAPERS TAB
+────────────────────────────────────────────────────────────── */
+function buildPapers() {
+  const container = document.getElementById('paper-list');
+  container.innerHTML = PAPERS.map(p => `
+    <div class="paper-set">
+      <div class="paper-hd">
+        <span class="tag">${p.tag}</span>
+        ${p.name}
+      </div>
+      ${p.qs.map((q, i) => {
+        const vm = VM_REF.find(v => v.num === q.vm);
+        return `
+        <div class="paper-q">
+          <span class="qnum">Q${i+1}</span>
+          <span>${q.q} <span class="chip vm" style="font-size:11px">${q.vm}வது</span></span>
+          <span class="ans-badge">${q.opts[q.ans]}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
+
+/* ──────────────────────────────────────────────────────────────
+   REFERENCE TAB
+────────────────────────────────────────────────────────────── */
+function buildRef() {
+  const tbody = document.getElementById('vm-tbody');
+  tbody.innerHTML = VM_REF.map(v => `
+    <tr>
+      <td><span class="vm-num">${v.num}</span></td>
+      <td><span class="vm-name">${v.name}</span></td>
+      <td><span class="vm-suffix">${v.suffix}</span></td>
+      <td class="vm-role">${v.role}</td>
+      <td class="vm-ex">${v.ex}</td>
+    </tr>
+  `).join('');
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TABS
+────────────────────────────────────────────────────────────── */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected','false'));
+    tab.setAttribute('aria-selected','true');
+    const paneId = tab.getAttribute('aria-controls');
+    document.querySelectorAll('[role="tabpanel"]').forEach(p => p.hidden = true);
+    document.getElementById(paneId).hidden = false;
+  });
+});
+
+/* ──────────────────────────────────────────────────────────────
+   CONFIDENCE BUTTONS & RESTART
+────────────────────────────────────────────────────────────── */
+document.getElementById('btn-knew').addEventListener('click', () => onConf(true));
+document.getElementById('btn-guessed').addEventListener('click', () => onConf(false));
+document.getElementById('btn-restart').addEventListener('click', () => {
+  document.getElementById('drill-done').hidden = true;
+  document.getElementById('drill-card').hidden = false;
+  initDrill();
+});
+
+/* ──────────────────────────────────────────────────────────────
+   INIT
+────────────────────────────────────────────────────────────── */
+buildRef();
+buildPapers();
+initDrill();
+</script>
+
+</body>
+</html>

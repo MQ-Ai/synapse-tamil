@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Memorise PSLE Tamil verse lines with fill-gap and build-the-line drills. A2 Paper 2.">
+<meta property="og:title" content="Synapse Seyyul Lab">
+<meta property="og:description" content="Memorise PSLE Tamil verse lines with fill-gap and build-the-line drills. A2 Paper 2.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Synapse Seyyul Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+</head>
+<body class="light-nav">
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
+
+:root{
+  --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
+  --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
+  --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
+  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
+  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+    --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+    --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+  --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+  --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.lede b{color:var(--ink);font-weight:600}
+.types{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.types span{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--sunk);padding:3px 9px;border-radius:6px}
+.types b{color:var(--ink);font-weight:500}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{font:600 15px var(--display);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab small{font-family:var(--mono);font-weight:500;font-size:11px;margin-left:6px;opacity:.8}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.levels{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.levels .lab{font-size:13px;color:var(--muted);margin-right:4px}
+.lv{font:500 13px var(--mono);padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.lv[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.meter{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
+.chip.src{background:var(--accent-soft);color:var(--accent)}
+.verse{font:600 22px/1.9 var(--display);margin:0}
+.verse .l2{display:block}
+.blank{display:inline-block;min-width:5em;border-bottom:2px solid var(--ink);text-align:center;padding:0 6px}
+.blank.good{color:var(--good);border-color:var(--good)} .blank.bad{color:var(--bad);border-color:var(--bad)}
+.meaning{font-size:15px;color:var(--muted);margin:0;border-left:3px solid var(--accent);padding-left:12px}
+.meaning b{color:var(--ink);font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{font:700 20px var(--display);padding:14px 8px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;gap:10px;align-items:center;justify-content:center;transition:transform .12s,border-color .12s}
+.opt .n{font:500 13px var(--mono);color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--teal);transform:translateY(-1px)}
+.opt.good{border-color:var(--good);background:var(--good-soft)} .opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.fb.good{background:var(--good-soft)} .fb.bad{background:var(--bad-soft)}
+.fb h3{margin:0;font:700 17px var(--display)}
+.fb.good h3{color:var(--good)} .fb.bad h3{color:var(--bad)}
+.fb .full{font:600 18px/1.8 var(--display);margin:0}
+.ask{font-size:14px;margin:0;font-weight:500}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 15px var(--display);padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted);padding-inline:8px}
+.hint{font-size:14px;color:var(--muted);margin:0}
+
+/* build */
+.slots{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.slots.good{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.slots.bad{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.brk{flex-basis:100%;height:0}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{font:600 18px var(--display);padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);cursor:pointer}
+.tile.placed{background:var(--surface);border-color:var(--teal)}
+.tile.wrong{border-color:var(--bad);color:var(--bad)}
+.tile:disabled{opacity:.25;cursor:default}
+
+/* exam */
+.paper{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:20px}
+.paperhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
+.paperhead h2{font:700 20px var(--display);margin:0}
+.instr{font-size:14px;color:var(--muted);margin:0}
+.q{display:grid;grid-template-columns:44px 1fr;gap:10px}
+.qn{font-family:var(--mono);font-size:14px;padding-top:4px;color:var(--muted)}
+.q .verse{font-size:18px}
+.qopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin-top:6px}
+.qopts label{display:flex;gap:8px;align-items:center;font-size:16px;cursor:pointer;padding:3px 6px;border-radius:6px}
+.qopts label.good{background:var(--good-soft);color:var(--good)} .qopts label.bad{background:var(--bad-soft);color:var(--bad)}
+.qopts input{accent-color:var(--teal)}
+.res{font-size:14px;margin-top:6px;color:var(--muted)}
+.score{font:800 34px var(--display);color:var(--teal)}
+.score small{font:500 14px var(--body);color:var(--muted);margin-left:8px}
+
+/* book */
+.lvhead{font:700 18px var(--display);margin:8px 0 0;display:flex;gap:10px;align-items:baseline}
+.lvhead span{font:500 12px var(--mono);color:var(--muted)}
+.entry{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.entry .t{font:500 11px var(--mono);color:var(--accent);padding-top:6px;min-width:5.5em}
+.entry .v{font:600 18px/1.7 var(--display);margin:0;cursor:default}
+.entry .m{grid-column:2;font-size:14px;color:var(--muted)}
+.entry .tested{color:var(--accent);font-weight:500;font-family:var(--mono);font-size:12px}
+body.cover .entry .v{filter:blur(7px);cursor:pointer;user-select:none}
+body.cover .entry .v.show{filter:none}
+.psel{font:500 15px var(--body);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.topbox{background:var(--accent-soft);border-radius:12px;padding:6px 14px 10px;margin-bottom:10px}
+.topbox .entry{border-color:var(--line)}
+.why{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.why h3{font:700 15px var(--display);color:var(--ink);margin:0 0 6px}
+.why ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+@media (max-width:520px){
+  .card,.paper{padding:16px}
+  .verse{font-size:19px}
+  .opt{font-size:17px}
+  .qopts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
+    <h1>செய்யுள் / பழமொழி</h1>
+    <p class="lede">Section <b>A2</b>: five lines from the syllabus list, each with one word missing, <b>10 marks</b>. Students know the line but lose marks on a look-alike word, like திருத்தி for திருந்த. This lab trains the exact word, using the real options from five 2026 prelim and practice papers.</p>
+    <div class="types" id="types"></div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="drill">நிரப்பு <small>Fill the gap</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="build">அடுக்கு <small>Build the line</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="exam">தேர்வு <small>A2 paper</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="book">நூல் <small>Full list</small></button>
+  </nav>
+
+  <div class="levels" id="levels"><span class="lab">Levels</span></div>
+
+  <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
+    <div class="meter"><span>Word-perfect</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="card" id="dcard"></div>
+  </section>
+
+  <section id="p-build" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div class="meter"><span>Word-perfect</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="card" id="bcard"></div>
+  </section>
+
+  <section id="p-exam" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div class="paper" id="paper"></div>
+  </section>
+
+  <section id="p-book" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:8px">
+    <div class="row"><button class="btn" id="cover" aria-pressed="false">Cover the lines</button><span class="hint">Say each line from its meaning, then tap it to check.</span></div>
+    <div id="book"></div>
+  </section>
+
+  <footer class="why">
+    <h3>How this trains the brain</h3>
+    <ul>
+      <li><b>Meaning first.</b> Every line comes with what it means. A line you understand is stored with more hooks than a string of sounds.</li>
+      <li><b>A different gap each time.</b> The missing word moves around the line, so recall does not depend on one cue.</li>
+      <li><b>Build the line.</b> Putting the words in order forces exact recall of every word, which is the skill A2 marks.</li>
+      <li><b>Spacing and a confidence check.</b> Missed lines return soon. A lucky guess does not count as word-perfect.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+/* level, type, text ("/" = line break), meaning */
+const RAW=[
+["P2B","ஆத்திசூடி","அறம் செய விரும்பு","Love doing good deeds."],
+["P2B","ஆத்திசூடி","ஆறுவது சினம்","Anger is something to cool down."],
+["P2B","ஆத்திசூடி","இயல்வது கரவேல்","Do not hide or hold back what you are able to give."],
+["P2B","ஆத்திசூடி","ஈவது விலக்கேல்","Do not stop anyone from giving to others."],
+["P2B","ஆத்திசூடி","உடையது விளம்பேல்","Do not boast about what you own."],
+["P2B","ஆத்திசூடி","ஊக்கமது கைவிடேல்","Never give up your drive and effort."],
+["P2B","ஆத்திசூடி","எண் எழுத்து இகழேல்","Never look down on numbers and letters (learning)."],
+["P2B","ஆத்திசூடி","ஏற்பது இகழ்ச்சி","Living on what others give you is shameful."],
+["P2B","ஆத்திசூடி","ஐயம் இட்டு உண்","Give to those in need, then eat."],
+["P2B","ஆத்திசூடி","ஒப்புரவு ஒழுகு","Live helpfully and in harmony with others."],
+["P2B","ஆத்திசூடி","ஓதுவது ஒழியேல்","Never stop learning."],
+["P2B","ஆத்திசூடி","ஔவியம் பேசேல்","Do not speak out of jealousy."],
+["P3A","ஆத்திசூடி","தந்தை தாய்ப் பேண்","Take care of your father and mother."],
+["P3A","ஆத்திசூடி","செய்வன திருந்தச் செய்","Whatever you do, do it properly."],
+["P3A","ஆத்திசூடி","சோம்பித் திரியேல்","Do not wander about being lazy."],
+["P3A","ஆத்திசூடி","தேசத்தோடு ஒத்து வாழ்","Live in harmony with your country."],
+["P3A","ஆத்திசூடி","நன்மை கடைப்பிடி","Hold fast to goodness."],
+["P3A","ஆத்திசூடி","நூல் பல கல்","Learn from many books."],
+["P3A","ஆத்திசூடி","நோய்க்கு இடங்கொடேல்","Do not give illness a chance."],
+["P3A","ஆத்திசூடி","மீதூண் விரும்பேல்","Do not crave overeating."],
+["P3B","ஆத்திசூடி","மேன்மக்கள் சொல் கேள்","Listen to the words of noble people."],
+["P3B","ஆத்திசூடி","வைகறைத் துயில் எழு","Wake up at dawn."],
+["P3B","உலகநீதி","போகவிட்டுப் புறம் சொல்லித் திரிய வேண்டாம்","Do not go around speaking ill of people behind their backs."],
+["P3B","உலகநீதி","நெஞ்சாரப் பொய் தன்னைச் சொல்ல வேண்டாம்","Do not knowingly tell lies."],
+["P3B","உலகநீதி","மனம்போன போக்கு எல்லாம் போக வேண்டாம்","Do not follow wherever your mind wanders."],
+["P3B","உலகநீதி","குற்றம் ஒன்றும் பாராட்டித் திரிய வேண்டாம்","Do not go around dwelling on others' faults."],
+["P3B","உலகநீதி","மூத்தோர் சொல் வார்த்தைகளை மறக்க வேண்டாம்","Do not forget the words of your elders."],
+["P4A","கொன்றைவேந்தன்","கீழோர் ஆயினும் தாழ உரை","Speak humbly, even to those below you."],
+["P4A","கொன்றைவேந்தன்","கைப்பொருள் தன்னின் மெய்ப்பொருள் கல்வி","Education is the true wealth, greater than money in hand."],
+["P4A","கொன்றைவேந்தன்","தேடாது அழிக்கின் பாடாய் முடியும்","Spending without earning ends in hardship."],
+["P4A","கொன்றைவேந்தன்","நல்லிணக்கம் அல்லது அல்லற்படுத்தும்","Anything but good harmony with others brings trouble."],
+["P4A","கொன்றைவேந்தன்","நுண்ணிய கருமமும் எண்ணித் துணிக","Think carefully before starting even a small task."],
+["P4A","பழமொழி","அகத்தின் அழகு முகத்தில் தெரியும்","The beauty of the heart shows on the face."],
+["P4A","பழமொழி","அளவுக்கு மிஞ்சினால் அமுதமும் நஞ்சு","Too much of even nectar becomes poison."],
+["P4A","பழமொழி","ஆழம் அறியாமல் காலை இடாதே","Do not step in without knowing the depth."],
+["P4A","பழமொழி","ஆனைக்கும் அடி சறுக்கும்","Even an elephant can slip."],
+["P4A","பழமொழி","இளமையில் சோம்பல் முதுமையில் வறுமை","Laziness in youth brings poverty in old age."],
+["P4B","வெற்றிவேற்கை","கல்விக்கு அழகு கசடற மொழிதல்","The beauty of learning is speaking without faults."],
+["P4B","வெற்றிவேற்கை","அறிஞர்க்கு அழகு கற்றுணர்ந்து அடங்கல்","The beauty of the wise is to learn deeply and stay humble."],
+["P4B","வெற்றிவேற்கை","சுடினும் செம்பொன் தன்னொளி கெடாது","Even when heated, pure gold keeps its shine."],
+["P4B","வெற்றிவேற்கை","பெருமையும் சிறுமையும் தான் தர வருமே","Greatness and smallness both come from your own actions."],
+["P4B","வெற்றிவேற்கை","துணையோடு அல்லது நெடுவழி போகேல்","Do not go on a long journey without a companion."],
+["P4B","பழமொழி","ஐந்திலே வளையாதது ஐம்பதில் வளையுமா?","What does not bend at five, will it bend at fifty?"],
+["P4B","பழமொழி","ஒன்றுபட்டால் உண்டு வாழ்வு","If we unite, we thrive."],
+["P4B","பழமொழி","கற்றது கைமண்ணளவு கல்லாதது உலகளவு","What we have learnt is a handful of sand; what we have not is the size of the world."],
+["P4B","பழமொழி","சிறு துளி பெரு வெள்ளம்","Small drops make a great flood."],
+["P4B","பழமொழி","நொறுங்கத் தின்றால் நூறு வயது","Chew your food well and live to a hundred."],
+["P5A","பழமொழி","அன்பு இருந்தால் ஆகாததும் ஆகும்","With love, even the impossible becomes possible."],
+["P5A","பழமொழி","எரிகிற விளக்கானாலும் தூண்டுகோல் வேண்டும்","Even a burning lamp needs its wick raised: the able still need encouragement."],
+["P5A","பழமொழி","ஒருவர் பொறை இருவர் நட்பு","One person's patience keeps two people friends."],
+["P5A","பழமொழி","காற்றுள்ளபோதே தூற்றிக்கொள்","Winnow while the wind blows: use the chance while you have it."],
+["P5A","பழமொழி","கெடுவான் கேடு நினைப்பான்","One who plots harm for others brings about his own ruin."],
+["P5A","திருக்குறள்","செயற்கரிய செய்வார் பெரியர் / சிறியர் செயற்கரிய செய்கலா தார்","The great do what is hard to do; the small cannot."],
+["P5A","திருக்குறள்","அழுக்காறு அவாவெகுளி இன்னாச்சொல் / நான்கும் இழுக்கா இயன்றது அறம்","Virtue is living free of envy, greed, anger and harsh words."],
+["P5A","திருக்குறள்","ஈன்ற பொழுதின் பெரிதுவக்கும் / தன்மகனைச் சான்றோன் எனக் கேட்ட தாய்","A mother is happier hearing her son called wise than on the day he was born."],
+["P5A","திருக்குறள்","அன்பிலார் எல்லாம் தமக்குரியர் / அன்புடையார் என்பும் உரியர் பிறர்க்கு","The loveless keep everything for themselves; the loving would give even their bones to others."],
+["P5A","திருக்குறள்","மோப்பக் குழையும் அனிச்சம் / முகந்திரிந்து நோக்கக் குழையும் விருந்து","The anicham flower wilts when smelled; a guest wilts at an unwelcoming look."],
+["P5B","பழமொழி","தன் கையே தனக்கு உதவி","Your own hands are your best help."],
+["P5B","பழமொழி","தன் முதுகு தனக்குத் தெரியாது","You cannot see your own back: we miss our own faults."],
+["P5B","பழமொழி","தான் பிடித்த முயலுக்கு மூன்றே கால்","\"The hare I caught has three legs\": stubbornly insisting you are right."],
+["P5B","பழமொழி","பதறாத காரியம் சிதறாது","A task done calmly does not fall apart."],
+["P5B","பழமொழி","பலநாள் திருடன் ஒருநாள் அகப்படுவான்","A thief who steals for many days is caught one day."],
+["P5B","திருக்குறள்","நன்றி மறப்பது நன்றன்று நன்றல்லது / அன்றே மறப்பது நன்று","Forgetting a kindness is wrong; forgetting a harm the same day is right."],
+["P5B","திருக்குறள்","யாகாவா ராயினும் நாகாக்க காவாக்கால் / சோகாப்பர் சொல்லிழுக்குப் பட்டு","Whatever else you fail to guard, guard your tongue, or careless words will bring you grief."],
+["P5B","திருக்குறள்","சொல்லுக சொல்லிற் பயனுடைய சொல்லற்க / சொல்லிற் பயனிலாச் சொல்","Speak only useful words; never speak useless ones."],
+["P5B","திருக்குறள்","தன்னைத்தான் காக்கின் சினங்காக்க காவாக்கால் / தன்னையே கொல்லும் சினம்","To protect yourself, guard against anger; if you don't, anger will destroy you."],
+["P5B","திருக்குறள்","கற்க கசடற கற்பவைக் கற்றபின் / நிற்க அதற்குத் தக","Learn thoroughly what should be learnt, then live by it."],
+["P6A","பழமொழி","ஆக்கப் பொறுத்தவன் ஆறப் பொறுக்க வேண்டும்","If you waited for the food to cook, wait for it to cool."],
+["P6A","பழமொழி","ஒரு கை தட்டினால் ஓசை எழும்புமா?","Can one hand clapping make a sound?"],
+["P6A","பழமொழி","கனவில் கண்ட பொருள் கைக்குக் கிட்டுமா?","Can something seen in a dream come into your hand?"],
+["P6A","பழமொழி","காலம் பொன் போன்றது","Time is like gold."],
+["P6A","திருக்குறள்","மகன் தந்தைக்கு ஆற்றும் உதவி இவன்தந்தை / என்நோற்றான் கொல்எனுஞ் சொல்","A son repays his father when people ask, \"What good did his father do to have such a son?\""],
+["P6A","திருக்குறள்","பணிவுடையன் இன்சொலன் ஆதல் ஒருவற்கு / அணியல்ல மற்றுப் பிற","Humility and kind speech are a person's true ornaments; nothing else is."],
+["P6A","திருக்குறள்","காலத்தி னாற்செய்த நன்றி சிறிதெனினும் / ஞாலத்தின் மாணப் பெரிது","Help given at the right time, however small, is greater than the whole world."],
+["P6A","திருக்குறள்","நன்றிக்கு வித்தாகும் நல்லொழுக்கம் தீயொழுக்கம் / என்றும் இடும்பைத் தரும்","Good conduct is the seed of good; bad conduct always brings suffering."],
+["P6A","திருக்குறள்","ஒறுத்தார்க்கு ஒருநாளை இன்பம் பொறுத்தார்க்குப் / பொன்றுந் துணையும் புகழ்","Revenge gives one day's pleasure; patience brings fame until death."],
+["P6A","திருக்குறள்","இன்னாசெய் தாரை ஒறுத்தல் அவர்நாண / நன்னயம் செய்து விடல்","Punish those who hurt you by doing them good, so they feel ashamed."],
+["P6A","திருக்குறள்","கேடில் விழுச்செல்வம் கல்வி ஒருவற்கு / மாடல்ல மற்றை யவை","Education is wealth that never perishes; other things are not true wealth."],
+["P6A","திருக்குறள்","எப்பொருள் யார்யார்வாய்க் கேட்பினும் அப்பொருள் / மெய்ப்பொருள் காண்ப தறிவு","Wisdom is finding the truth in whatever you hear, whoever says it."],
+["P6B","பழமொழி","நிழலின் அருமை வெயிலில் தெரியும்","You value shade only when you stand in the sun."],
+["P6B","பழமொழி","பகுத்தறியாமல் துணியாதே","Do not act before thinking it through."],
+["P6B","பழமொழி","மனம் உண்டானால் வழி உண்டு","Where there is a will, there is a way."],
+["P6B","பழமொழி","மின்னுவதெல்லாம் பொன் அல்ல","All that glitters is not gold."],
+["P6B","பழமொழி","வல்லவனுக்குப் புல்லும் ஆயுதம்","To a skilled person, even grass is a weapon."],
+["P6B","பழமொழி","வெள்ளம் வருமுன் அணைகோல வேண்டும்","Build the dam before the flood comes."],
+["P6B","திருக்குறள்","முயற்சி திருவினை ஆக்கும் முயற்றின்மை / இன்மை புகுத்தி விடும்","Effort brings wealth; lack of effort brings poverty."],
+["P6B","திருக்குறள்","சொல்லுதல் யார்க்கும் எளிய அரியவாம் / சொல்லிய வண்ணம் செயல்","Saying is easy for anyone; doing what you said is hard."]
+];
+const ITEMS=RAW.map(([lv,t,x,m],id)=>{
+  const lines=x.split(' / ');
+  const words=[];lines.forEach((ln,li)=>ln.split(/\s+/).forEach(w=>words.push({w,li})));
+  return {id,lv,t,m,lines,words};
+});
+const LEVELS=["P2B","P3A","P3B","P4A","P4B","P5A","P5B","P6A","P6B"];
+const find=s=>ITEMS.findIndex(it=>it.lines.join(' ').startsWith(s));
+const PAPERS=[
+ {name:"Xinmin 2026 prelim",src:"Xinmin",qs:[
+  {id:find("செய்வன திருந்த"),w:"திருந்தச்",show:"செய்வன ___ செய்",opts:["சரியாக","தவறாக","திருத்தி","திருந்த"],a:3},
+  {id:find("ஒறுத்தார்க்கு"),w:"இன்பம்",opts:["இன்பம்","துன்பம்","சினம்","நன்னயம்"],a:0},
+  {id:find("கைப்பொருள்"),w:"கல்வி",opts:["புகழ்","கல்வி","அறிவு","செல்வம்"],a:1},
+  {id:find("அகத்தின்"),w:"அகத்தின்",opts:["நகத்தின்","அகத்தின்","புறத்தின்","மனத்தின்"],a:1},
+  {id:find("முயற்சி திருவினை"),w:"முயற்றின்மை",opts:["வறுமை","பெருமை","பொறுமை","முயற்றின்மை"],a:3}]},
+ {name:"Meridian 2026 prelim",src:"Meridian",qs:[
+  {id:find("பணிவுடையன்"),w:"பணிவுடையன்",opts:["அன்புடையன்","பெருமையுடன்","பணிவுடையன்","பொறுமையுடன்"],a:2},
+  {id:find("போகவிட்டுப்"),w:"புறம்",opts:["புறம்","மெய்","பொய்","உண்மை"],a:0},
+  {id:find("நன்றி மறப்பது"),w:"அன்றே",opts:["இன்றே","அன்றே","இப்போதே","அப்போதே"],a:1},
+  {id:find("நொறுங்கத்"),w:"நொறுங்கத்",show:"___ தின்றால் நூறு வயது",opts:["பார்த்து","ருசித்து","பகிர்ந்து","நொறுங்க"],a:3},
+  {id:find("வல்லவனுக்குப்"),w:"புல்லும்",opts:["புல்லும்","கல்லும்","எள்ளும்","சொல்லும்"],a:0}]}
+ ,{name:"PL June Break Timed Practice 2",src:"PL Practice 2",qs:[
+  {id:find("சோம்பித் திரியேல்"),show:"___ திரியேல்.",opts:["ஏங்கி", "தூங்கி", "தேம்பி", "சோம்பி"],a:3},
+  {id:find("பலநாள் திருடன்"),show:"பலநாள் திருடன் ___ அகப்படுவான்.",opts:["மறுநாள்", "ஒருநாள்", "என்னால்", "உன்னால்"],a:1},
+  {id:find("குற்றம் ஒன்றும்"),show:"குற்றம் ஒன்றும் ___ திரிய வேண்டாம்.",opts:["தேற்றி", "போற்றி", "சீராட்டி", "பாராட்டி"],a:3},
+  {id:find("நன்றி மறப்பது"),show:"நன்றி மறப்பது நன்றன்று நன்றல்லது / அன்றே ___ நன்று.",opts:["மறப்பது", "வெறுப்பது", "மறைப்பது", "நினைப்பது"],a:0},
+  {id:find("எப்பொருள் யார்யார்"),show:"எப்பொருள் யார்யார்வாய்க் கேட்பினும் ___ / மெய்ப்பொருள் காண்ப தறிவு.",opts:["முப்பொருள்", "எப்பொருள்", "அப்பொருள்", "இப்பொருள்"],a:2}]}
+ ,{name:"PL June Break Timed Practice 4",src:"PL Practice 4",qs:[
+  {id:find("சோம்பித் திரியேல்"),show:"___ திரியேல்.",opts:["ஏங்கி", "தூங்கி", "தேம்பி", "சோம்பி"],a:3},
+  {id:find("ஔவியம் பேசேல்"),show:"ஔவியம் ___.",opts:["பேசேல்", "கூறேல்", "மொழியேல்", "சொல்லேல்"],a:0},
+  {id:find("அறிஞர்க்கு அழகு"),show:"___ அழகு கற்றுணர்ந்து அடங்கல்.",opts:["பதவிக்கு", "கல்விக்கு", "அறிஞர்க்கு", "வல்லவனுக்கு"],a:2},
+  {id:find("நன்றி மறப்பது"),show:"நன்றி மறப்பது நன்றன்று நன்றல்லது / அன்றே ___ நன்று.",opts:["மறப்பது", "வெறுப்பது", "மறைப்பது", "நினைப்பது"],a:0},
+  {id:find("எப்பொருள் யார்யார்"),show:"எப்பொருள் யார்யார்வாய்க் கேட்பினும் ___ / மெய்ப்பொருள் காண்ப தறிவு.",opts:["முப்பொருள்", "எப்பொருள்", "அப்பொருள்", "இப்பொருள்"],a:2}]}
+ ,{name:"2026 P6 prelim (edited scan)",src:"2026 Prelim (edited)",qs:[
+  {id:find("நிழலின் அருமை"),show:"நிழலின் ___ வெயிலில் தெரியும்.",opts:["தண்மை", "அருமை", "பெருமை", "குளுமை"],a:1},
+  {id:find("சொல்லுதல் யார்க்கும்"),show:"சொல்லுதல் ___ எளிய அரியவாம் / சொல்லிய வண்ணம் செயல்.",opts:["யார்க்கும்", "எவர்க்கும்", "யாவருக்கும்", "அனைவருக்கும்"],a:0},
+  {id:find("அன்பிலார் எல்லாம்"),show:"அன்பிலார் எல்லாம் தமக்குரியர் ___ / என்பும் உரியர் பிறர்க்கு.",opts:["அன்பானவர்", "அன்பற்றவர்", "அன்புடையார்", "அன்புடையவர்"],a:2},
+  {id:find("மோப்பக் குழையும்"),show:"மோப்பக் குழையும் அனிச்சம் முகந்திரிந்து / நோக்கக் குழையும் ___.",opts:["நட்பு", "உறவு", "விருந்து", "மருந்து"],a:2},
+  {id:find("மனம்போன போக்கு"),show:"மனம்போன ___ எல்லாம் போக வேண்டாம்.",opts:["வழி", "திசை", "இடம்", "போக்கு"],a:3}]}
+];
+const TESTED={};
+PAPERS.forEach(P=>P.qs.forEach((q,k)=>{(TESTED[q.id]=TESTED[q.id]||[]).push(`${P.src} Q${6+k}`);q.src=`${P.src} Q${6+k}`}));
+const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.random()*a.length|0];
+
+/* header chips */
+const TYPES={};ITEMS.forEach(it=>TYPES[it.t]=(TYPES[it.t]||0)+1);
+document.getElementById('types').innerHTML=Object.entries(TYPES).map(([t,n])=>`<span><b>${t}</b> ${n}</span>`).join('')+`<span><b>Total</b> ${ITEMS.length}</span>`;
+
+/* storage */
+const KEY='synapse-seyyul-v1';
+let st={box:{},lv:LEVELS.slice()};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.box)st={box:s.box,lv:Array.isArray(s.lv)&&s.lv.length?s.lv:LEVELS.slice()}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const MASTER=3;
+const pool=()=>ITEMS.filter(it=>st.lv.includes(it.lv));
+
+/* level chips */
+const lvEl=document.getElementById('levels');
+LEVELS.forEach(l=>{const b=document.createElement('button');b.className='lv';b.textContent=l;b.dataset.l=l;
+  b.setAttribute('aria-pressed',st.lv.includes(l));
+  b.onclick=()=>{const on=st.lv.includes(l);if(on&&st.lv.length===1)return;
+    st.lv=on?st.lv.filter(x=>x!==l):LEVELS.filter(x=>x===l||st.lv.includes(x));
+    b.setAttribute('aria-pressed',!on);save();meter();startDrill();startBuild();renderBook();};
+  lvEl.appendChild(b)});
+function meter(){
+  const P=pool(),m=P.filter(it=>(st.box[it.id]||0)>=MASTER).length;
+  document.querySelectorAll('.mbar').forEach(e=>e.style.width=(P.length?m/P.length*100:0)+'%');
+  document.querySelectorAll('.mnum').forEach(e=>e.textContent=`${m} / ${P.length}`);
+}
+
+/* distractors: other syllabus words with a similar ending and length */
+const ALLW=[...new Set(ITEMS.flatMap(it=>it.words.map(x=>x.w.replace(/[?]/g,''))))];
+function distractors(ans,it){
+  const own=new Set(it.words.map(x=>x.w));
+  const A=[...ans];
+  const scored=ALLW.filter(w=>w!==ans&&!own.has(w)).map(w=>{
+    const B=[...w];let s=0;
+    if(B.slice(-2).join('')===A.slice(-2).join(''))s+=3;else if(B[B.length-1]===A[A.length-1])s+=1;
+    if(B[0]===A[0])s+=1;
+    s-=Math.abs(B.length-A.length)*.4;s+=Math.random()*1.2;return [w,s]});
+  return scored.sort((x,y)=>y[1]-x[1]).slice(0,3).map(x=>x[0]);
+}
+function verseHTML(it,bi,fill,cls){
+  return it.lines.map((ln,li)=>{
+    const parts=it.words.map((x,i)=>({x,i})).filter(o=>o.x.li===li).map(o=>o.i===bi?`<span class="blank ${cls||''}">${fill?esc(fill):'&nbsp;'}</span>`:esc(o.x.w));
+    return `<span class="${li?'l2':''}">${parts.join(' ')}</span>`}).join('');
+}
+const fullHTML=it=>it.lines.map((l,i)=>`<span class="${i?'l2':''}">${esc(l)}</span>`).join('');
+function weakest(n){
+  return shuffle(pool()).sort((a,b)=>(st.box[a.id]||0)-(st.box[b.id]||0)).slice(0,n);
+}
+function grade(id,ok,sure){
+  if(!ok)st.box[id]=0;
+  else st.box[id]=sure?Math.min(MASTER,(st.box[id]||0)+1):Math.max(1,st.box[id]||0);
+  save();meter();
+}
+
+/* ---------- fill-the-gap drill ---------- */
+let dq=[],dcur=null,dround={seen:0,first:0},dfirst=new Set(),lastBlank={};
+function startDrill(){dq=weakest(10);dround={seen:0,first:0};dfirst=new Set();nextDrill()}
+function nextDrill(){
+  const el=document.getElementById('dcard');
+  if(!dq.length){
+    el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
+      <div class="score">${dround.first} / ${dround.seen}<small>right on the first try</small></div>
+      <p class="hint">A line counts as word-perfect after three sure, correct answers.</p>
+      <div class="row"><button class="btn primary" id="dagain">Next round</button><button class="btn" id="tobuild">Build the lines instead</button></div>`;
+    document.getElementById('dagain').onclick=startDrill;
+    document.getElementById('tobuild').onclick=()=>show('build');return;
+  }
+  const it=dq.shift();
+  const real=PAPERS.flatMap(P=>P.qs).filter(q=>q.id===it.id);
+  if(real.length&&Math.random()<.5){
+    const q=pick(real),bi=q.w?it.words.findIndex(x=>x.w===q.w):0;
+    dcur={it,bi,ans:q.opts[q.a],done:false,show:q.show};
+    renderDrill(it,q.opts,q.src);return;
+  }
+  const cands=it.words.map((x,i)=>i).filter(i=>[...it.words[i].w].length>=3&&i!==lastBlank[it.id]);
+  const bi=cands.length?pick(cands):0;lastBlank[it.id]=bi;
+  const ans=it.words[bi].w;
+  const opts=shuffle([ans,...distractors(ans,it)]);
+  dcur={it,bi,ans,done:false};
+  renderDrill(it,opts,null);
+}
+function blankHTML(show,fill,cls){return esc(show).replace('___',`<span class="blank ${cls||''}">${fill?esc(fill):'&nbsp;'}</span>`).replace(' / ','<br>')}
+function renderDrill(it,opts,src){
+  const el=document.getElementById('dcard'),{bi}=dcur;
+  el.innerHTML=`
+    <div class="chips"><span class="chip">${it.t}</span><span class="chip">${it.lv}</span>${src?`<span class="chip src">Exam options · ${src}</span>`:(TESTED[it.id]?`<span class="chip src">Tested: ${TESTED[it.id].join(', ')}</span>`:'')}</div>
+    <p class="verse" id="dv">${dcur.show?blankHTML(dcur.show):verseHTML(it,bi)}</p>
+    <p class="meaning"><b>Meaning:</b> ${esc(it.m)}</p>
+    <div class="opts">${opts.map((o,k)=>`<button class="opt" data-w="${esc(o)}"><span class="n">(${k+1})</span>${esc(o)}</button>`).join('')}</div>
+    <div id="dfb"></div>`;
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answerDrill(b.dataset.w));
+}
+function answerDrill(w){
+  if(dcur.done)return;dcur.done=true;
+  const {it,bi,ans}=dcur,ok=w===ans;
+  document.querySelectorAll('#dcard .opt').forEach(b=>{b.disabled=true;
+    if(b.dataset.w===ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
+  document.getElementById('dv').innerHTML=dcur.show?blankHTML(dcur.show,ans,ok?'good':'bad'):verseHTML(it,bi,ans,ok?'good':'bad');
+  if(!dfirst.has(it.id)){dfirst.add(it.id);dround.seen++;if(ok)dround.first++}
+  const fb=document.getElementById('dfb');
+  if(ok){
+    fb.innerHTML=`<div class="fb good"><h3>சரி! Say the whole line once aloud.</h3>
+      <p class="ask">Were you sure, or did you guess?</p>
+      <div class="row"><button class="btn primary" id="ds">I was sure</button><button class="btn" id="dg">I guessed</button></div></div>`;
+    document.getElementById('ds').onclick=()=>{grade(it.id,true,true);nextDrill()};
+    document.getElementById('dg').onclick=()=>{grade(it.id,true,false);nextDrill()};
+    document.getElementById('ds').focus();
+  }else{
+    grade(it.id,false);dq.splice(Math.min(3,dq.length),0,it);
+    fb.innerHTML=`<div class="fb bad"><h3>The word is ${esc(ans)}, not ${esc(w)}.</h3>
+      <p class="full">${fullHTML(it)}</p>
+      <p class="ask">Read the line twice, then look away and say it. It comes back in three cards.</p>
+      <div class="row"><button class="btn primary" id="dn">Next</button></div></div>`;
+    document.getElementById('dn').onclick=nextDrill;document.getElementById('dn').focus();
+  }
+}
+
+/* ---------- build the line ---------- */
+let bq=[],bcur=null;
+function startBuild(){bq=weakest(8);nextBuild()}
+function nextBuild(){
+  const el=document.getElementById('bcard');
+  if(!bq.length){startBuild();return}
+  const it=bq.shift();
+  bcur={it,placed:[],order:shuffle(it.words.map((_,i)=>i)),mistakes:0,done:false};
+  el.innerHTML=`
+    <div class="chips"><span class="chip">${it.t}</span><span class="chip">${it.lv}</span><span class="chip src">${it.words.length} words</span></div>
+    <p class="meaning"><b>Meaning:</b> ${esc(it.m)}</p>
+    <div class="slots" id="slots" aria-live="polite"></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="row"><button class="btn ghost" id="bundo">Undo</button><button class="btn ghost" id="bpeek">Show first word</button></div>
+    <div id="bfb"></div>`;
+  renderTiles();
+  document.getElementById('bundo').onclick=()=>{if(bcur.done)return;bcur.placed.pop();renderTiles()};
+  document.getElementById('bpeek').onclick=()=>{if(bcur.done||bcur.placed.length)return;bcur.placed=[0];bcur.mistakes++;renderTiles()};
+}
+function renderTiles(){
+  const {it,placed,order}=bcur;
+  const s=document.getElementById('slots');
+  const l2=it.words.findIndex(x=>x.li===1);
+  s.innerHTML=placed.map((wi,k)=>(k>0&&k===l2?'<span class="brk"></span>':'')+`<span class="tile placed">${esc(it.words[wi].w)}</span>`).join('');
+  const used=new Set(placed);
+  const t=document.getElementById('tiles');
+  t.innerHTML=order.map(wi=>`<button class="tile" data-i="${wi}" ${used.has(wi)?'disabled':''}>${esc(it.words[wi].w)}</button>`).join('');
+  t.querySelectorAll('.tile').forEach(b=>b.onclick=()=>placeTile(+b.dataset.i,b));
+}
+function placeTile(wi,btn){
+  if(bcur.done)return;
+  const {it,placed}=bcur,need=placed.length;
+  // same word text may repeat (e.g. சொல்லிற்) — accept any tile whose text matches the next word
+  if(it.words[wi].w===it.words[need].w){
+    placed.push(wi);
+    renderTiles();
+    if(placed.length===it.words.length)finishBuild();
+  }else{
+    bcur.mistakes++;btn.classList.add('wrong');setTimeout(()=>btn.classList.remove('wrong'),450);
+  }
+}
+function finishBuild(){
+  bcur.done=true;const {it,mistakes}=bcur,ok=mistakes===0;
+  document.getElementById('slots').classList.add(ok?'good':'bad');
+  document.getElementById('tiles').innerHTML='';
+  const fb=document.getElementById('bfb');
+  if(ok){
+    fb.innerHTML=`<div class="fb good"><h3>Word-perfect, no slips.</h3>
+      <p class="ask">Were you sure of every word?</p>
+      <div class="row"><button class="btn primary" id="bs">Yes, sure</button><button class="btn" id="bg">Some guessing</button></div></div>`;
+    document.getElementById('bs').onclick=()=>{grade(it.id,true,true);nextBuild()};
+    document.getElementById('bg').onclick=()=>{grade(it.id,true,false);nextBuild()};
+  }else{
+    grade(it.id,false);bq.splice(Math.min(2,bq.length),0,it);
+    fb.innerHTML=`<div class="fb bad"><h3>Done with ${mistakes} slip${mistakes>1?'s':''}.</h3>
+      <p class="ask">The line comes back soon. Say it aloud once before moving on.</p>
+      <div class="row"><button class="btn primary" id="bn">Next line</button></div></div>`;
+    document.getElementById('bn').onclick=nextBuild;
+  }
+}
+
+/* ---------- exam ---------- */
+let exam=null,examN=0;
+function makeExam(pi){
+  let qs,label,paper=pi!=null;
+  if(paper){const P=PAPERS[pi];qs=P.qs.map(q=>({it:ITEMS[q.id],bi:q.w?ITEMS[q.id].words.findIndex(x=>x.w===q.w):0,opts:q.opts,a:q.a,show:q.show}));label=P.name+' · Q6 to Q10'}
+  else{
+    qs=shuffle(pool()).slice(0,5).map(it=>{
+      const c=it.words.map((x,i)=>i).filter(i=>[...it.words[i].w].length>=3);const bi=c.length?pick(c):0;
+      const ans=it.words[bi].w;const opts=shuffle([ans,...distractors(ans,it)]);
+      return {it,bi,opts,a:opts.indexOf(ans)}});
+    examN++;label='Practice set '+examN;
+  }
+  exam={qs,paper,label,pi};renderExam();
+}
+function renderExam(){
+  const p=document.getElementById('paper');
+  p.innerHTML=`
+    <div class="row"><label class="hint" for="papersel">Paper</label><select id="papersel" class="psel">${PAPERS.map((P,i)=>`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.name)}</option>`).join('')}</select><button class="btn" id="enew">Random set</button></div>
+    <div class="paperhead"><h2>A2 செய்யுள்/பழமொழி</h2><span class="chip ${exam.paper?'src':''}">${exam.label}</span></div>
+    <p class="instr">Q6 முதல் Q10 வரையுள்ள செய்யுளை/பழமொழியை நிறைவு செய்வதற்கு ஏற்ற சொல்லைத் தேர்ந்தெடு. (10 மதிப்பெண்கள்)</p>
+    ${exam.qs.map((q,k)=>`<div class="q"><span class="qn">Q${6+k}</span><div>
+      <p class="verse">${q.show?blankHTML(q.show):verseHTML(q.it,q.bi)}</p>
+      <div class="qopts">${q.opts.map((o,n)=>`<label id="lb-${k}-${n}"><input type="radio" name="eq-${k}" id="eq-${k}-${n}" value="${n}"> (${n+1}) ${esc(o)}</label>`).join('')}</div>
+      <div class="res" id="er-${k}"></div></div></div>`).join('')}
+    <div class="row" style="justify-content:space-between">
+      <div id="escore"></div>
+      <button class="btn primary" id="echeck">சரிபார் · Check</button>
+    </div>`;
+  document.getElementById('echeck').onclick=checkExam;
+  document.getElementById('enew').onclick=()=>makeExam(null);
+  document.getElementById('papersel').onchange=e=>makeExam(+e.target.value);
+}
+function checkExam(){
+  let score=0;
+  exam.qs.forEach((q,k)=>{
+    const sel=document.querySelector(`input[name="eq-${k}"]:checked`);const v=sel?+sel.value:-1;
+    document.getElementById(`lb-${k}-${q.a}`).classList.add('good');
+    const r=document.getElementById('er-'+k);
+    if(v===q.a){score+=2;r.textContent='✓ '+q.it.m}
+    else{if(v>=0)document.getElementById(`lb-${k}-${v}`).classList.add('bad');
+      r.innerHTML=`✗ ${v<0?'No answer.':'You chose ('+(v+1)+').'} Full line: <b>${esc(q.it.lines.join(' '))}</b>. ${esc(q.it.m)}`;
+      st.box[q.it.id]=0}
+  });
+  save();meter();
+  document.getElementById('escore').innerHTML=`<div class="score">${score} / 10<small>${score===10?'Full marks':'Missed lines go back into your drill'}</small></div>`;
+}
+
+/* ---------- full list ---------- */
+function renderBook(){
+  const top=Object.entries(TESTED).sort((x,y)=>y[1].length-x[1].length).filter(e=>e[1].length>1);
+  const topHTML=top.length?`<div class="topbox"><h3 class="lvhead">Tested more than once<span>${top.length} lines · ${PAPERS.length} papers</span></h3>`+top.map(([id,t])=>`<div class="entry"><span class="t">×${t.length}</span><p class="v" tabindex="0">${fullHTML(ITEMS[id])}</p><span class="m">${esc(ITEMS[id].m)} <b class="tested">· ${t.join(', ')}</b></span></div>`).join('')+'</div>':'';
+  document.getElementById('book').innerHTML=topHTML+LEVELS.filter(l=>st.lv.includes(l)).map(l=>{
+    const list=ITEMS.filter(it=>it.lv===l);
+    return `<h3 class="lvhead">தொடக்கநிலை ${l.slice(1)}<span>${list.length} lines</span></h3>`+list.map(it=>`
+      <div class="entry"><span class="t">${it.t}</span><p class="v" tabindex="0">${fullHTML(it)}</p><span class="m">${esc(it.m)}${TESTED[it.id]?` <b class="tested">· Tested: ${TESTED[it.id].join(', ')}</b>`:''}</span></div>`).join('')}).join('');
+  document.querySelectorAll('#book .v').forEach(v=>{const t=()=>v.classList.toggle('show');v.onclick=t;v.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+}
+document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Show all lines':'Cover the lines';document.querySelectorAll('#book .v.show').forEach(v=>v.classList.remove('show'))};
+
+/* tabs */
+function show(p){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
+  ['drill','build','exam','book'].forEach(x=>{const el=document.getElementById('p-'+x);el.hidden=x!==p;el.style.display=x===p?'flex':''});
+  document.getElementById('levels').hidden=p==='exam';
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
+
+meter();startDrill();startBuild();makeExam(0);renderBook();
+</script>
+
+</body>
+</html>

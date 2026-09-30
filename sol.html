@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="315 P6 vocabulary words and 108 composition phrases across 25 emotional themes.">
+<meta property="og:title" content="Synapse Sol Lab">
+<meta property="og:description" content="315 P6 vocabulary words and 108 composition phrases across 25 emotional themes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Synapse Sol Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+</head>
+<body class="light-nav">
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
+
+:root{
+  --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
+  --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
+  --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
+  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
+  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+    --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+    --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+  --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+  --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.lede b{color:var(--ink);font-weight:600}
+.types{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.types span{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--sunk);padding:3px 9px;border-radius:6px}
+.types b{color:var(--ink);font-weight:500}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{font:600 15px var(--display);background:none;border:0;color:var(--muted);padding:10px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab small{font-family:var(--mono);font-weight:500;font-size:11px;margin-left:6px;opacity:.8}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.levels{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.levels .lab{font-size:13px;color:var(--muted);margin-right:4px}
+.lv{font:500 13px var(--mono);padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.lv[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.meter{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
+.chip.src{background:var(--accent-soft);color:var(--accent)}
+.verse{font:600 22px/1.9 var(--display);margin:0}
+.verse .l2{display:block}
+.blank{display:inline-block;min-width:5em;border-bottom:2px solid var(--ink);text-align:center;padding:0 6px}
+.blank.good{color:var(--good);border-color:var(--good)} .blank.bad{color:var(--bad);border-color:var(--bad)}
+.meaning{font-size:15px;color:var(--muted);margin:0;border-left:3px solid var(--accent);padding-left:12px}
+.meaning b{color:var(--ink);font-weight:600}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{font:700 20px var(--display);padding:14px 8px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;gap:10px;align-items:center;justify-content:center;transition:transform .12s,border-color .12s}
+.opt .n{font:500 13px var(--mono);color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--teal);transform:translateY(-1px)}
+.opt.good{border-color:var(--good);background:var(--good-soft)} .opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.fb.good{background:var(--good-soft)} .fb.bad{background:var(--bad-soft)}
+.fb h3{margin:0;font:700 17px var(--display)}
+.fb.good h3{color:var(--good)} .fb.bad h3{color:var(--bad)}
+.fb .full{font:600 18px/1.8 var(--display);margin:0}
+.ask{font-size:14px;margin:0;font-weight:500}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 15px var(--display);padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted);padding-inline:8px}
+.hint{font-size:14px;color:var(--muted);margin:0}
+
+/* build */
+.slots{min-height:64px;border:2px dashed var(--line);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.slots.good{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.slots.bad{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.brk{flex-basis:100%;height:0}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{font:600 18px var(--display);padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);cursor:pointer}
+.tile.placed{background:var(--surface);border-color:var(--teal)}
+.tile.wrong{border-color:var(--bad);color:var(--bad)}
+.tile:disabled{opacity:.25;cursor:default}
+
+/* exam */
+.paper{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:20px}
+.paperhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
+.paperhead h2{font:700 20px var(--display);margin:0}
+.instr{font-size:14px;color:var(--muted);margin:0}
+.q{display:grid;grid-template-columns:44px 1fr;gap:10px}
+.qn{font-family:var(--mono);font-size:14px;padding-top:4px;color:var(--muted)}
+.q .verse{font-size:18px}
+.qopts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin-top:6px}
+.qopts label{display:flex;gap:8px;align-items:center;font-size:16px;cursor:pointer;padding:3px 6px;border-radius:6px}
+.qopts label.good{background:var(--good-soft);color:var(--good)} .qopts label.bad{background:var(--bad-soft);color:var(--bad)}
+.qopts input{accent-color:var(--teal)}
+.res{font-size:14px;margin-top:6px;color:var(--muted)}
+.score{font:800 34px var(--display);color:var(--teal)}
+.score small{font:500 14px var(--body);color:var(--muted);margin-left:8px}
+
+/* book */
+.lvhead{font:700 18px var(--display);margin:8px 0 0;display:flex;gap:10px;align-items:baseline}
+.lvhead span{font:500 12px var(--mono);color:var(--muted)}
+.entry{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.entry .t{font:500 11px var(--mono);color:var(--accent);padding-top:6px;min-width:5.5em}
+.entry .v{font:600 18px/1.7 var(--display);margin:0;cursor:default}
+.entry .m{grid-column:2;font-size:14px;color:var(--muted)}
+.entry .tested{color:var(--accent);font-weight:500;font-family:var(--mono);font-size:12px}
+body.cover .entry .v{filter:blur(7px);cursor:pointer;user-select:none}
+body.cover .entry .v.show{filter:none}
+.psel{font:500 15px var(--body);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.topbox{background:var(--accent-soft);border-radius:12px;padding:6px 14px 10px;margin-bottom:10px}
+.topbox .entry{border-color:var(--line)}
+.why{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.why h3{font:700 15px var(--display);color:var(--ink);margin:0 0 6px}
+.why ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+@media (max-width:520px){
+  .card,.paper{padding:16px}
+  .verse{font-size:19px}
+  .opt{font-size:17px}
+  .qopts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.opts4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.word{font:800 clamp(30px,8vw,40px)/1.2 var(--display);margin:0}
+.syns{display:flex;flex-wrap:wrap;gap:6px}
+.syn{font:600 16px var(--body);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:3px 10px}
+.eng{font-size:14px;color:var(--muted)}
+.seg2{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg2 button{font:600 14px var(--display);padding:8px 14px;border:0;background:var(--surface);color:var(--muted);cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--teal);color:var(--bg)}
+.theme{display:flex;flex-direction:column;gap:8px;padding:14px 0;border-bottom:1px solid var(--line)}
+.theme h3{font:700 18px var(--display);margin:0;display:flex;gap:10px;align-items:baseline}
+.theme h3 span{font:500 12px var(--mono);color:var(--muted)}
+.theme ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:16px}
+.phrase{font:600 20px/1.6 var(--body);margin:0;border-left:3px solid var(--accent);padding-left:12px}
+.vrow{display:grid;grid-template-columns:2.4em minmax(7em,auto) 1fr;gap:4px 12px;padding:8px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.vrow .n{font:500 12px var(--mono);color:var(--muted)}
+.vrow .w{font:700 17px var(--display)}
+.vrow .d{font-size:15px}
+.vrow .d small{display:block;color:var(--muted);font-size:13px}
+body.cover .vrow .d{filter:blur(6px);cursor:pointer}
+body.cover .vrow .d.show{filter:none}
+[hidden]{display:none!important}
+@media (max-width:520px){.opts4{grid-template-columns:1fr}.vrow{grid-template-columns:2.2em 1fr}.vrow .d{grid-column:2}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Synapse · PSLE Tamil · Vocabulary</div>
+    <h1>சொல்வளம்</h1>
+    <p class="lede">The P5–P6 vocabulary list: <b>315 words</b> with their Tamil meanings, in the same pages as the handout. Comprehension questions ask for the word that means the same (<b>ஈடான சொல்</b>), and the phrase bank feeds <b>Paper 1</b> compositions.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="drill">பொருள் <small>Meaning drill</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="phr">சொற்றொடர் <small>Composition phrases</small></button>
+    <button class="tab" role="tab" aria-selected="false" data-p="list">பட்டியல் <small>Full list</small></button>
+  </nav>
+
+  <div class="levels" id="pages"><span class="lab">Handout pages</span></div>
+
+  <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
+    <div class="row" style="justify-content:space-between">
+      <div class="seg2" role="group" aria-label="Direction"><button id="d-fwd" aria-pressed="true">Word → meaning</button><button id="d-rev" aria-pressed="false">Meaning → word</button></div>
+    </div>
+    <div class="meter"><span>Mastered</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="card" id="dcard"></div>
+  </section>
+
+  <section id="p-phr" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
+    <div class="card" id="pcard"></div>
+    <div id="themes"></div>
+  </section>
+
+  <section id="p-list" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:8px">
+    <div class="row"><button class="btn" id="cover" aria-pressed="false">Cover the meanings</button><span class="hint">Say the meaning, then tap to check.</span></div>
+    <div id="vlist"></div>
+  </section>
+
+  <footer class="why">
+    <h3>How this trains the brain</h3>
+    <ul>
+      <li><b>Both directions.</b> Word → meaning builds reading; meaning → word builds the recall you need when writing.</li>
+      <li><b>Look-alike choices.</b> Wrong options are real meanings from the same list, so you must know the word, not guess from shape.</li>
+      <li><b>Spacing and a confidence check.</b> Missed words return three cards later. A lucky guess is not counted as mastered.</li>
+      <li><b>Phrases by feeling.</b> Composition phrases are grouped by the emotion or scene they describe, the way you will look for them while writing.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const VOCAB=[{"w":"சூறாவளி","s":["புயற்காற்று"],"e":"storm","p":1},{"w":"நோன்பு","s":["விரதம்"],"e":"fasting","p":1},{"w":"சபை","s":["அவை"],"e":"audience, assembly","p":1},{"w":"மரபு","s":["வழக்கம்"],"e":"tradition","p":1},{"w":"நாளிதழ்","s":["செய்தித்தாள்"],"e":"newspaper","p":1},{"w":"விடுதலை","s":["சுதந்திரம்"],"e":"freedom","p":1},{"w":"அயலார்","s":["மற்றவர்"],"e":"stranger, others","p":1},{"w":"முன்னணி","s":["தலைசிறந்த"],"e":"top, leading","p":1},{"w":"புரிந்தான்","s":["செய்தான்"],"e":"did","p":1},{"w":"புதிர்","s":["விடுகதை"],"e":"riddle","p":1},{"w":"புண்","s":["காயம்"],"e":"wound, injury","p":1},{"w":"வினவினார்","s":["கேட்டார்"],"e":"asked","p":1},{"w":"கருவிகள்","s":["சாதனங்கள்"],"e":"tools, equipment","p":1},{"w":"நட்டார்","s":["பயிரிட்டார்"],"e":"planted","p":1},{"w":"விழைகின்றனர்","s":["விரும்புகின்றனர்","ஆசைப்படுகின்றனர்"],"e":"wish, desire","p":1},{"w":"சேதம்","s":["அழிவு"],"e":"damage","p":1},{"w":"பொருத்தமான","s":["ஏற்ற"],"e":"suitable","p":1},{"w":"மதிநுட்பம்","s":["அறிவுக்கூர்மை"],"e":"sharp intelligence","p":1},{"w":"ஐக்கியம்","s":["ஒற்றுமை"],"e":"unity","p":1},{"w":"ஆலயம்","s":["கோயில்"],"e":"temple","p":1},{"w":"ஏளனமாக","s":["கேவலமாக","கேலியாக","பகடியாக"],"e":"mockingly","p":2},{"w":"அச்சுறுத்தினான்","s":["பயமுறுத்தினான்"],"e":"threatened","p":2},{"w":"முதன்மையானது","s":["தலைசிறந்தது","முக்கியமானது"],"e":"foremost","p":2},{"w":"உடைமை","s":["பொருள்","சொத்து"],"e":"belongings","p":2},{"w":"கசிந்தது","s":["ஒழுகியது","வழிந்தது"],"e":"leaked","p":2},{"w":"துவாரம்","s":["ஓட்டை"],"e":"hole","p":2},{"w":"தண்மை","s":["குளிர்ச்சி"],"e":"coolness","p":2},{"w":"நித்திரை","s":["தூக்கம்","உறக்கம்"],"e":"sleep","p":2},{"w":"நிபந்தனை","s":["கட்டுப்பாடு"],"e":"condition","p":2},{"w":"சஞ்சிகை","s":["வார மாத இதழ்கள்"],"e":"magazine","p":2},{"w":"பதின்ம","s":["இளைய"],"e":"teenage","p":2},{"w":"முன்னோர்","s":["மூதாதையர்"],"e":"ancestors","p":2},{"w":"கூச்சலிட்டனர்","s":["கத்தினர்","சத்தமிட்டனர்"],"e":"shouted","p":2},{"w":"பொறாமை","s":["அழுக்காறு"],"e":"jealousy","p":2},{"w":"களங்கம்","s":["வீண்பழி"],"e":"stain on name","p":2},{"w":"சன்மானம்","s":["வெகுமதி"],"e":"reward","p":2},{"w":"திரண்டு","s":["கூடி"],"e":"gathered","p":2},{"w":"ஈந்து","s":["கொடுத்து"],"e":"gave","p":2},{"w":"நாணயமாக","s":["நேர்மையாக"],"e":"honestly","p":2},{"w":"தனயன்","s":["மகன்"],"e":"son","p":2},{"w":"இறைந்து","s":["சிதறி"],"e":"scattered","p":2},{"w":"மிருதுவான","s":["மென்மையான"],"e":"soft","p":2},{"w":"எய்தினார்","s":["அடைந்தார்"],"e":"attained","p":2},{"w":"குழைந்து","s":["கனிவாக"],"e":"softly, kindly","p":2},{"w":"தடாகம்","s":["பொய்கை"],"e":"pond","p":2},{"w":"தோன்றி","s":["உதித்து"],"e":"appeared","p":2},{"w":"பேணுதல்","s":["காப்பாற்றுதல்"],"e":"caring for","p":2},{"w":"வாய்ப்பு","s":["சந்தர்ப்பம்"],"e":"opportunity","p":2},{"w":"களவு","s":["திருட்டு"],"e":"theft","p":3},{"w":"ஒப்பந்தம்","s":["உடன்படிக்கை"],"e":"agreement","p":3},{"w":"வாகை","s":["வெற்றி"],"e":"victory","p":3},{"w":"திரட்டினோம்","s":["சேகரித்தோம்"],"e":"collected","p":3},{"w":"உன்ன","s":["நினைக்க"],"e":"to think","p":3},{"w":"இலக்கு","s":["குறிக்கோள்"],"e":"goal","p":3},{"w":"விந்தையான","s":["வேடிக்கையான","விநோதமான"],"e":"strange","p":3},{"w":"அணுகி","s":["நெருங்கி"],"e":"approached","p":3},{"w":"ஊன்","s":["மாமிசம்","இறைச்சி"],"e":"meat","p":3},{"w":"உத்தரவு","s":["கட்டளை"],"e":"order","p":3},{"w":"அக்கினி","s":["நெருப்பு"],"e":"fire","p":3},{"w":"அறிகுறி","s":["அடையாளம்"],"e":"sign","p":3},{"w":"மதுரமான","s":["இனிப்பான"],"e":"sweet","p":3},{"w":"ஆணவம்","s":["இறுமாப்பு","திமிர்","கர்வம்","செருக்கு"],"e":"arrogance","p":3},{"w":"கைதேர்ந்தவர்","s":["கெட்டிக்காரர்"],"e":"expert","p":3},{"w":"ஏனைய","s":["மற்ற"],"e":"other","p":3},{"w":"பூரணமாக","s":["முழுமையாக","முற்றிலும்"],"e":"completely","p":3},{"w":"சூழ்நிலை","s":["சந்தர்ப்பம்"],"e":"situation","p":3},{"w":"நோக்கம்","s":["எண்ணம்","குறிக்கோள்"],"e":"purpose","p":3},{"w":"கோரினார்","s":["வேண்டினார்"],"e":"requested","p":3},{"w":"மகிமை","s":["சிறப்பு","பெருமை"],"e":"glory","p":3},{"w":"பிரமித்து","s":["மலைத்து"],"e":"amazed","p":3},{"w":"சாளரம்","s":["சன்னல்"],"e":"window","p":3},{"w":"நிர்ணயம்","s":["முடிவு"],"e":"decision","p":3},{"w":"ஏக்கம்","s":["கவலை"],"e":"longing, worry","p":3},{"w":"மறைந்தார்","s":["இறந்தார்","ஒளிந்தார்","மரித்தார்"],"e":"passed away; hid","p":3},{"w":"ஆறுவதற்கு","s":["குணமாவதற்கு","சூடு தணிவதற்கு"],"e":"to heal; to cool","p":3},{"w":"வல்லவர்","s":["கெட்டிக்காரர்"],"e":"capable person","p":4},{"w":"ஒடிந்த","s":["முறிந்த"],"e":"broken","p":4},{"w":"வற்புறுத்தி","s":["கட்டாயப்படுத்தி"],"e":"insisted","p":4},{"w":"மலிந்து","s":["அதிகரித்து"],"e":"abounded","p":4},{"w":"மலிவு","s":["விலை குறைவு"],"e":"cheap","p":4},{"w":"நுட்பமாக","s":["நுணுக்கமாக"],"e":"precisely","p":4},{"w":"வரைந்த","s":["தீட்டிய"],"e":"drew, painted","p":4},{"w":"இயற்பெயர்","s":["சொந்தப்பெயர்"],"e":"real name","p":4},{"w":"பெறுமானம்","s":["மதிப்பு"],"e":"value","p":4},{"w":"சீற்றம்","s":["கோபம்","சினம்"],"e":"rage","p":4},{"w":"தூர்த்தனர்","s":["மூடினர்"],"e":"filled in (a pit)","p":4},{"w":"அகழ்ந்தான்","s":["தோண்டினான்"],"e":"dug","p":4},{"w":"அயர்ந்து","s":["சோர்ந்து","தளர்ந்து"],"e":"tired","p":4},{"w":"திறமையானவன்","s":["கெட்டிக்காரன்"],"e":"skilled person","p":4},{"w":"நிறைவேற","s":["முடிவடைய","பூர்த்தியாக"],"e":"to be fulfilled","p":4},{"w":"மாய்ந்து","s":["இறந்து"],"e":"died","p":4},{"w":"நீங்கியது","s":["அகன்றது","விலகியது"],"e":"went away","p":4},{"w":"ஆறுதல்","s":["சமாதானம்"],"e":"comfort","p":4},{"w":"பலியானார்","s":["மாண்டார்"],"e":"was killed","p":4},{"w":"பாமரர்","s":["படிக்காதவர்"],"e":"uneducated people","p":4},{"w":"அனுபவம்","s":["பட்டறிவு"],"e":"experience","p":4},{"w":"வரைமுறை","s":["எல்லை"],"e":"limit","p":4},{"w":"கணக்கற்ற","s":["எல்லையற்ற","அளவற்ற"],"e":"countless","p":4},{"w":"துரிதம்","s":["விரைவு","வேகமாக"],"e":"speed","p":4},{"w":"நட்சத்திரம்","s":["விண்மீன்","உடுக்கள்"],"e":"star","p":4},{"w":"அண்மை","s":["சமீபத்தில்"],"e":"recently","p":4},{"w":"நாணம்","s":["வெட்கம்"],"e":"shyness","p":4},{"w":"நடவடிக்கை","s":["செயல்"],"e":"action","p":5},{"w":"அவதியுற்றார்","s":["துன்பப்பட்டார்"],"e":"suffered","p":5},{"w":"புராதனம்","s":["பழமை"],"e":"ancient","p":5},{"w":"தளர்ந்து","s":["சோர்ந்து","அயர்ந்து"],"e":"weary","p":5},{"w":"உறுதுணையாக","s":["பக்கபலமாக"],"e":"supportive","p":5},{"w":"நிறுவினார்","s":["அமைத்தார்"],"e":"established","p":5},{"w":"கலங்கினார்","s":["வருந்தினார்"],"e":"was distressed","p":5},{"w":"தப்பியது","s":["பிழைத்தது"],"e":"escaped","p":5},{"w":"அழித்தான்","s":["ஒழித்தான்"],"e":"destroyed","p":5},{"w":"புகார்","s":["முறையீடு"],"e":"complaint","p":5},{"w":"குதூகலம்","s":["மகிழ்ச்சி"],"e":"joy","p":5},{"w":"மெய்ப்பிக்க","s":["நிரூபிக்க","உண்மையாக்க"],"e":"to prove","p":5},{"w":"யாசித்தான்","s":["இரந்தான்","பிச்சையெடுத்தான்"],"e":"begged","p":5},{"w":"நெகிழ்ந்து","s":["உருகி","இரங்கி"],"e":"moved, touched","p":5},{"w":"அகிலம்","s":["உலகம்","வையகம்","ஞாலம்","புவி"],"e":"world","p":5},{"w":"சிசு / சேய்","s":["குழந்தை"],"e":"baby","p":5},{"w":"அந்தகன்","s":["குருடன்"],"e":"blind man","p":5},{"w":"பருமனாக","s":["தடித்து","கொழுத்து"],"e":"fat","p":5},{"w":"அரவம்","s":["சத்தம்","இரைச்சல்","பாம்பு"],"e":"noise; snake","p":5},{"w":"வேண்டினான்","s":["கெஞ்சினான்","மன்றாடினான்"],"e":"pleaded","p":5},{"w":"இறக்கை","s":["சிறகு"],"e":"wing","p":5},{"w":"ஊர்ந்து","s":["நகர்ந்து"],"e":"crawled","p":5},{"w":"மாரி","s":["மழை"],"e":"rain","p":5},{"w":"தவித்தான்","s":["திண்டாடினான்"],"e":"struggled","p":5},{"w":"பரி","s":["குதிரை"],"e":"horse","p":5},{"w":"களிறு","s":["ஆண் யானை"],"e":"male elephant","p":5},{"w":"பிடி","s":["பெண் யானை"],"e":"female elephant","p":5},{"w":"ஆணை","s":["கட்டளை"],"e":"command","p":5},{"w":"தமையன்","s":["அண்ணன்"],"e":"elder brother","p":6},{"w":"தமக்கை","s":["அக்காள்"],"e":"elder sister","p":6},{"w":"ஞாபகம்","s":["நினைவு"],"e":"memory","p":6},{"w":"இறைவன்","s":["ஆண்டவன்","கடவுள்"],"e":"God","p":6},{"w":"தீர்மானித்தான்","s":["முடிவெடுத்தான்"],"e":"decided","p":6},{"w":"புகுந்து","s":["நுழைந்து"],"e":"entered","p":6},{"w":"தூக்கி","s":["சுமந்து"],"e":"carried","p":6},{"w":"வணிகன்","s":["வியாபாரி"],"e":"merchant","p":6},{"w":"நலமாக","s":["சுகமாக","ஆரோக்கியமாக"],"e":"well","p":6},{"w":"மிரண்டது","s":["பயந்தது","அஞ்சியது"],"e":"was frightened","p":6},{"w":"மாண்டது","s":["இறந்தது"],"e":"died","p":6},{"w":"அவா","s":["ஆசை"],"e":"desire","p":6},{"w":"குற்றம்","s":["தவறு"],"e":"wrongdoing","p":6},{"w":"வரலாறு","s":["சரித்திரம்"],"e":"history","p":6},{"w":"கடிந்தார்","s":["கோபித்தார்"],"e":"scolded","p":6},{"w":"கலகம்","s":["சண்டை"],"e":"riot, fight","p":6},{"w":"அனல்","s":["நெருப்பு"],"e":"fire, heat","p":6},{"w":"நட்பு","s":["தோழமை","உறவு"],"e":"friendship","p":6},{"w":"கோல்","s":["கம்பு","தடி"],"e":"stick","p":6},{"w":"மடல்","s":["கடிதம்","அஞ்சல்"],"e":"letter","p":6},{"w":"இளைத்து","s":["மெலிந்து"],"e":"became thin","p":6},{"w":"உரியது","s":["ஏற்றது"],"e":"appropriate","p":6},{"w":"பரவை","s":["கடல்"],"e":"sea","p":6},{"w":"மொழிந்தார்","s":["கூறினார்"],"e":"said","p":6},{"w":"உதவி","s":["கைமாறு"],"e":"help in return","p":6},{"w":"தொல்லை","s":["தொந்தரவு"],"e":"trouble","p":6},{"w":"துப்புரவு","s":["சுத்தம்","தூய்மை"],"e":"cleanliness","p":6},{"w":"நஞ்சு","s":["விஷம்"],"e":"poison","p":7},{"w":"பரிசு","s":["அன்பளிப்பு"],"e":"gift","p":7},{"w":"காகிதம்","s":["தாள்"],"e":"paper","p":7},{"w":"ஆகாரம்","s":["உணவு"],"e":"food","p":7},{"w":"வியந்தான்","s":["ஆச்சரியப்பட்டான்"],"e":"was amazed","p":7},{"w":"அமைச்சர்","s":["மந்திரி"],"e":"minister","p":7},{"w":"புத்திரன்","s":["மகன்","மைந்தன்","புதல்வன்"],"e":"son","p":7},{"w":"குருதி","s":["இரத்தம்","செந்நீர்"],"e":"blood","p":7},{"w":"வேந்தன்","s":["அரசன்","மன்னன்","கோ"],"e":"king","p":7},{"w":"தேசம்","s":["நாடு"],"e":"country","p":7},{"w":"இரக்கம்","s":["கருணை"],"e":"compassion","p":7},{"w":"தருணம்","s":["வேளை","சமயம்","நேரம்"],"e":"moment","p":7},{"w":"வலுவான","s":["பலமான"],"e":"strong","p":7},{"w":"ஆற்றல்","s":["திறமை","வல்லமை"],"e":"ability","p":7},{"w":"உற்சாகம்","s":["ஊக்கம்","ஆர்வம்"],"e":"enthusiasm","p":7},{"w":"அயர்வு","s":["சோர்வு","அசதி"],"e":"tiredness","p":7},{"w":"ஐயம்","s":["சந்தேகம்"],"e":"doubt","p":7},{"w":"நகைப்பு","s":["சிரிப்பு"],"e":"laughter","p":7},{"w":"உதவி","s":["உபாயம்","தொண்டு"],"e":"help, service","p":7},{"w":"சூழ்ச்சி","s":["தந்திரம்"],"e":"trick","p":7},{"w":"வனப்பு","s":["அழகு","கவின்","எழில்"],"e":"beauty","p":7},{"w":"ஆரவாரம்","s":["சத்தம்","இரைச்சல்"],"e":"uproar","p":7},{"w":"புசித்து","s":["தின்று"],"e":"ate","p":7},{"w":"நையப்புடைத்தான்","s":["அடித்தான்"],"e":"beat up","p":7},{"w":"நையாண்டி","s":["கேலி"],"e":"mockery","p":7},{"w":"விளைவிக்கும்","s":["ஏற்படுத்தும்","உண்டாக்கும்"],"e":"will cause","p":7},{"w":"ஊறு","s":["கெடுதி"],"e":"harm","p":7},{"w":"அருமையான","s":["சிறப்பான"],"e":"excellent","p":8},{"w":"இழைத்த","s":["செய்த"],"e":"committed (a wrong)","p":8},{"w":"மீட்டான்","s":["காப்பாற்றினான்"],"e":"rescued","p":8},{"w":"மிகையாகாது","s":["பொய்யாகாது"],"e":"not an exaggeration","p":8},{"w":"செவிமடுத்த","s":["கேட்ட"],"e":"listened","p":8},{"w":"முகவரி","s":["விலாசம்"],"e":"address","p":8},{"w":"நாட்டம்","s":["விருப்பம்","ஆர்வம்"],"e":"interest","p":8},{"w":"கடைப்பிடி","s":["பின்பற்று"],"e":"follow","p":8},{"w":"வழிபட்டான்","s":["வணங்கினான்"],"e":"worshipped","p":8},{"w":"பதறினான்","s":["திகைத்தான்"],"e":"panicked","p":8},{"w":"அகவை","s":["வயது","பிராயம்"],"e":"age","p":8},{"w":"திகழ்ந்தான்","s":["விளங்கினான்"],"e":"shone, excelled","p":8},{"w":"நன்கொடை","s":["நிதி"],"e":"donation","p":8},{"w":"வெகுமதி","s":["அன்பளிப்பு"],"e":"reward","p":8},{"w":"திண்ணம்","s":["உறுதி"],"e":"certainty","p":8},{"w":"இகழ்ந்தான்","s":["தூற்றினான்"],"e":"insulted","p":8},{"w":"பூரித்தான்","s":["மகிழ்ந்தான்"],"e":"was overjoyed","p":8},{"w":"எடுத்துக்காட்டாக","s":["முன்மாதிரியாக"],"e":"as an example","p":8},{"w":"கதிரவன்","s":["சூரியன்","ஞாயிறு","வெய்யோன்","பரிதி"],"e":"sun","p":8},{"w":"சந்திரன்","s":["திங்கள்","நிலவு"],"e":"moon","p":8},{"w":"தஞ்சம்","s":["அடைக்கலம்"],"e":"refuge","p":8},{"w":"வன்மையாக","s":["கடுமையாக"],"e":"harshly","p":8},{"w":"வாய்மை","s":["உண்மை","மெய்ம்மை"],"e":"truth","p":8},{"w":"சமீபத்தில்","s":["அண்மையில்"],"e":"recently","p":8},{"w":"இசைவு","s":["சம்மதம்","உடன்பாடு"],"e":"consent","p":8},{"w":"கானகம்","s":["காடு","அடவி"],"e":"forest","p":8},{"w":"குழுமினர்","s":["கூடினர்","திரண்டனர்"],"e":"gathered","p":8},{"w":"உவகை","s":["மகிழ்ச்சி"],"e":"joy","p":9},{"w":"அல்லல்","s":["துன்பம்","இன்னல்","இடர்"],"e":"hardship","p":9},{"w":"ஈட்டுகின்றனர்","s":["சம்பாதிக்கின்றனர்"],"e":"earn","p":9},{"w":"நிகரற்ற","s":["இணையற்ற"],"e":"unequalled","p":9},{"w":"மலைத்து","s":["திகைத்து"],"e":"stunned","p":9},{"w":"கோரிக்கை","s":["வேண்டுகோள்"],"e":"request","p":9},{"w":"வாயிலாக","s":["மூலமாக","வழியாக"],"e":"through","p":9},{"w":"சீற்றம்","s":["கோபம்"],"e":"rage","p":9},{"w":"முறிந்து","s":["ஒடிந்து"],"e":"broke","p":9},{"w":"அவலம்","s":["துன்பம்"],"e":"misery","p":9},{"w":"கருத்து","s":["பொருள்"],"e":"meaning, idea","p":9},{"w":"பணிவு","s":["அடக்கம்"],"e":"humility","p":9},{"w":"கவிழ்ந்து","s":["சாய்ந்து"],"e":"overturned","p":9},{"w":"அமிழ்ந்து","s":["மூழ்கி"],"e":"sank","p":9},{"w":"கொடிய","s":["பொல்லாத","பயங்கரமான"],"e":"cruel, terrible","p":9},{"w":"தீர்ந்து","s":["முடிந்து"],"e":"ran out","p":9},{"w":"துணிவு","s":["தைரியம்"],"e":"courage","p":9},{"w":"புலால்","s":["மாமிசம்","இறைச்சி"],"e":"meat","p":9},{"w":"பாரமான","s":["கனமான"],"e":"heavy","p":9},{"w":"நோய்","s":["பிணி"],"e":"disease","p":9},{"w":"தகவல்","s":["செய்தி"],"e":"information","p":9},{"w":"சேவை","s":["தொண்டு"],"e":"service","p":9},{"w":"கவர்ந்து","s":["ஈர்த்து"],"e":"attracted","p":9},{"w":"அனுமதி","s":["உத்தரவு"],"e":"permission","p":9},{"w":"போற்றி","s":["புகழ்ந்து"],"e":"praised","p":9},{"w":"போதித்தார்","s":["கற்பித்தார்"],"e":"taught","p":9},{"w":"இசைந்தார்","s":["சம்மதித்தார்"],"e":"agreed","p":9},{"w":"ஆபத்து","s":["அபாயம்","இடர்"],"e":"danger","p":9},{"w":"செல்வாக்கு","s":["மதிப்பு"],"e":"influence","p":10},{"w":"அலட்சியமாக","s":["பொருட்படுத்தாது","உதாசீனமாக"],"e":"carelessly","p":10},{"w":"கைகொடுத்தான்","s":["உதவினான்"],"e":"helped","p":10},{"w":"வெகுண்டான்","s":["கோபப்பட்டான்"],"e":"became angry","p":10},{"w":"ஆயத்தமானார்","s":["தயாரானார்"],"e":"got ready","p":10},{"w":"உறைந்து","s":["இறுகி"],"e":"froze","p":10},{"w":"கருதினார்","s":["எண்ணினார்"],"e":"considered","p":10},{"w":"வலுக்கட்டாயமாக","s":["பலவந்தமாக"],"e":"by force","p":10},{"w":"சடலத்தை","s":["பிணத்தை"],"e":"the corpse","p":10},{"w":"ஒளிர்ந்தது","s":["மின்னியது"],"e":"shone","p":10},{"w":"காப்பாற்றார்","s":["மீட்டார்"],"e":"rescued","p":10},{"w":"ஊக்கமூட்டினார்","s":["ஆர்வமூட்டினார்"],"e":"encouraged","p":10},{"w":"பயின்றார்","s":["கற்றார்"],"e":"studied","p":10},{"w":"தேர்ச்சி","s":["வெற்றி"],"e":"pass, success","p":10},{"w":"அடர்ந்த","s":["நிறைந்த"],"e":"dense","p":10},{"w":"பக்கபலமாக","s":["ஆதரவாக"],"e":"supportive","p":10},{"w":"சோகத்தில்","s":["துயரத்தில்"],"e":"in sorrow","p":10},{"w":"வேதனை","s":["துன்பம்"],"e":"pain, anguish","p":10},{"w":"வலிமையுடன்","s":["பலத்துடன்"],"e":"with strength","p":10},{"w":"பணி","s":["வேலை"],"e":"work","p":10},{"w":"அச்சமுற்றார்","s":["பயமடைந்தார்"],"e":"was afraid","p":10},{"w":"தகுதியானவர்","s":["பொருத்தமானவர்"],"e":"qualified person","p":10},{"w":"சோர்வு","s":["களைப்பு"],"e":"fatigue","p":10},{"w":"சிரமமாக","s":["கடினமாக"],"e":"with difficulty","p":10},{"w":"உரியவரிடம்","s":["சொந்தக்காரரிடம்"],"e":"to the owner","p":10},{"w":"வியப்பூட்டியது","s":["ஆச்சரியப்படுத்தியது"],"e":"amazed","p":10},{"w":"திகழ்ந்தார்","s":["விளங்கினார்"],"e":"excelled","p":10},{"w":"நிபுணர்","s":["வல்லுனர்"],"e":"expert","p":10},{"w":"பிழைகள்","s":["குற்றங்கள்","தவறுகள்"],"e":"mistakes","p":11},{"w":"கண்ணுற்றார்","s":["பார்த்தார்"],"e":"saw","p":11},{"w":"அரும்புகள்","s":["மொட்டுகள்"],"e":"buds","p":11},{"w":"விசாலமாய்","s":["பெரிதாய்"],"e":"spacious","p":11},{"w":"பருகுவர்","s":["அருந்துவர்"],"e":"will drink","p":11},{"w":"கோரிக்கைகளை","s":["வேண்டுகோளை"],"e":"requests","p":11},{"w":"பரவசம்","s":["மகிழ்ச்சி"],"e":"elation","p":11},{"w":"கைமாறாக","s":["நன்றிக்கடனாக"],"e":"in return","p":11},{"w":"சைகை","s":["சமிக்கை"],"e":"gesture, signal","p":11},{"w":"தடயத்துடன்","s":["சான்றுடன்"],"e":"with evidence","p":11},{"w":"தயக்கத்துடன்","s":["தடுமாற்றத்துடன்"],"e":"hesitantly","p":11},{"w":"அபாரமாக","s":["பிரமாதமாக"],"e":"superbly","p":11},{"w":"மௌனமாக","s":["அமைதியாக"],"e":"silently","p":11},{"w":"தரித்து","s":["உடுத்தி"],"e":"wore","p":11},{"w":"அகற்றினார்","s":["நீக்கினார்"],"e":"removed","p":11},{"w":"மிரட்டினார்","s":["அச்சுறுத்தினார்"],"e":"threatened","p":11},{"w":"இடையூறுகள்","s":["தொல்லைகள்"],"e":"obstacles","p":11},{"w":"இறுமாப்பு","s":["கர்வம்"],"e":"pride, arrogance","p":11},{"w":"துண்டிக்கப்பட்டது","s":["வெட்டப்பட்டது"],"e":"was cut off","p":11},{"w":"பொழுதை","s":["நேரத்தை"],"e":"the time","p":11},{"w":"கபடமற்ற","s":["வஞ்சகமற்ற"],"e":"innocent","p":11},{"w":"பஞ்சம்","s":["வறுமை"],"e":"famine, poverty","p":11},{"w":"திகைத்து","s":["வியந்து"],"e":"stunned","p":11},{"w":"சுமார்","s":["ஏறக்குறைய"],"e":"about","p":11},{"w":"தயாராக","s":["ஆயத்தமாக"],"e":"ready","p":11},{"w":"பளுவான","s":["கனமான"],"e":"heavy","p":11},{"w":"மென்மையாக","s":["மிருதுவாக"],"e":"gently","p":11},{"w":"வருவாய்","s":["ஊதியம்"],"e":"income","p":12},{"w":"செப்பனிடுதல்","s":["பழுதுபார்த்தல்"],"e":"repairing","p":12},{"w":"அவதியுறுதல்","s":["துன்புறுதல்"],"e":"suffering","p":12},{"w":"வரவு","s":["வருமானம்"],"e":"income","p":12},{"w":"கட்டாயம்","s":["நிச்சயம்"],"e":"certainly","p":12},{"w":"தட்டாமல்","s":["மறுக்காமல்"],"e":"without refusing","p":12},{"w":"தீர்மானித்தார்","s":["முடிவு செய்தார்"],"e":"decided","p":12},{"w":"தாளை","s":["பாதத்தை"],"e":"the foot","p":12},{"w":"இதழ்","s":["பூவிதழ்","ஏடு","நூல்"],"e":"petal; magazine","p":12},{"w":"மனை","s":["வீடு"],"e":"house","p":12},{"w":"உற்சாகத்துடன்","s":["ஆர்வத்துடன்"],"e":"enthusiastically","p":12},{"w":"தென்பட்டதாக","s":["காணப்பட்டதாக"],"e":"was seen","p":12},{"w":"மெய்ப்பித்து","s":["உண்மையாக்கி"],"e":"proved","p":12},{"w":"நேர்மையாக","s":["நாணயமாக"],"e":"honestly","p":12},{"w":"கூக்குரலிட்டனர்","s":["கதறினர்"],"e":"cried out","p":12},{"w":"பௌர்ணமி","s":["பூரணச்சந்திரன்"],"e":"full moon","p":12},{"w":"வஞ்சித்து","s":["ஏமாற்றி"],"e":"cheated","p":12},{"w":"அடிதடியில்","s":["சண்டையில்"],"e":"in a brawl","p":12},{"w":"கிண்டல்","s":["நையாண்டி"],"e":"teasing","p":12},{"w":"பறிகொடுத்தான்","s":["இழந்தான்"],"e":"lost (was robbed of)","p":12},{"w":"கவிதை","s":["பாடல்","செய்யுள்"],"e":"poem","p":12}];
+const THEMES=[{"t":"வியப்பு / ஆச்சரியம்","e":"Surprise","x":["ஒரு கணம் சிலை போல் திடுக்கிட்டு நின்றேன்.","அவனின் செயல் என்னை வியப்பில் ஆழ்த்தியது."]},{"t":"அமைதி","e":"Quiet","x":["எங்கும் நிசப்தம் நிலவியது.","ஆள் நடமாட்டம் ஒன்றும் இல்லை."]},{"t":"அதிர்ச்சி","e":"Shock","x":["என் கண்களை என்னால் நம்ப முடியவில்லை.","அதிர்ச்சியால் வாயைப் பிளந்து சிலையாய் நின்றார்.","அடி வயிற்றில் இடி விழுந்தது.","தூக்கிவாரிப் போட்டது.","வார்த்தைகள் தொண்டைக்குழிக்குள் மாட்டிக்கொண்டு வெளிவரத் தவித்தன.","அதிர்ந்து போய் தயக்கத்துடன் கண்களை மூடிக்கொண்டு திரும்பினேன்.","ஒவ்வொரு வார்த்தையும் கேட்கக் கேட்க என் உடல் நடுங்கியது."]},{"t":"தைரியம்","e":"Brave","x":["அஞ்சா நெஞ்சம் கொண்ட","சிங்கத்தின் வலிமையுடன் போராடினான்."]},{"t":"இன்னல் படுவது / துன்பம்","e":"Suffer","x":["வலையில் அகப்பட்ட மீனைப் போல வேதனையில் துடித்தான்.","துக்கம் தொண்டையை அடைக்க கண்களில் நீர் அருவி என வழிந்தது.","சிங்கத்திடம் சிக்கிய மானைப் போல மிரண்டான்.","கண்ணீர் கடலில் மூழ்கினான்."]},{"t":"இயற்கை","e":"Nature","x":["சிலு சிலு என்று தென்றல் காற்று வீசிக்கொண்டிருந்த வேளை.","காற்று இதமாக வீசியது.","அவன் மெய்மறந்து அக்காட்சியைக் கண்டு ரசித்தான்.","நிலவு பூத்த சோலை போல அமைதி வாய்ந்த நேரம்."]},{"t":"கூட்டம்","e":"Crowd","x":["அங்கே மக்கள் கூட்டமாக மொய்த்தனர்.","வெள்ளம் போல் மக்கள் கூட்டம்.","அங்கு ஒரு பெரிய கூட்டமே திரண்டு வந்தது.","பலாப்பழத்தைக் கண்ட ஈக்கள் போல"]},{"t":"மாலை / இரவு நேரம்","e":"Evening / Night","x":["இருள் எங்கும் பரவத் தொடங்கியது.","அல்லும் பகலும்.","கதிரவனின் ஒளி மென்மையாகவும் மாலை காற்று ஜில்லென்று இதமாகவும் இருந்தது.","கதிரவன் கோபம் தணிந்து பூமியிலிருந்து ஒதுங்கிட காற்று ஜில்லென்று வீசியது.","சன்னல் திரையை திறந்த போது கதிரவன் தன் வேலையை சந்திரனிடம் ஒப்படைத்துச் சென்றான்.","நீல வானத்தில் அங்கொன்றும் இங்கொன்றும் நட்சத்திரங்கள் கண் சிமிட்டின.","மாலை மங்கி இலேசான இருள் கௌவத் தொடங்கியது.","கதிரவன் தன் பணியைப் பூர்த்தி செய்து விட்டு சற்று ஓய்வு எடுக்க மேற்கே சென்று கொண்டிருந்தான்."]},{"t":"இரக்கம்","e":"Pity","x":["உள்ளம் உருகியது.","மனம் சூரியனின் ஒளிபட்டு இளகும் பனி போல் இளகியது."]},{"t":"கடல் / அலை","e":"Sea","x":["கடல் அமைதியாக இருந்தது.","கடல் கொந்தளிப்பாக மாறியது.","கடல் அலை கரையைத் தொட்டு விளையாடியது.","கடல் அலை கரையை முத்தமிட்டுச் சென்றது."]},{"t":"காதில் விழுவது","e":"Hear","x":["செவியுற்றான்.","செவிக்கு எட்டியது."]},{"t":"கத்துதல்","e":"Shout","x":["தொண்டை கிழிய கத்தினான்.","தொண்டை வறண்டு போகும் வரை கத்தினான்."]},{"t":"கவலை","e":"Sorrow","x":["சோகக்கடலில் மூழ்கி இருந்தான்.","துக்கம் தொண்டையை அடைத்தது.","ஓ வென்று அழத் தொடங்கினான்.","கண்ணீர் ஆற்று வெள்ளம் போல பெருக்கெடுத்து ஓடியது.","முகத்தில் சோகம் நிழலாடியது.","அனலில் பட்ட புழுவாகத் துடித்தான்.","முகத்தை தொங்கப் போட்டுக்கொண்டு."]},{"t":"கோபம்","e":"Angry","x":["முகம் சிவந்து பற்களை நற நற வென்று கடித்தான்.","சினம் பொங்கியது.","அவன் வாய்க்கு வந்தபடி திட்டினான்.","ஆத்திரம் அவன் கண்ணையும் கருத்தையும் மறைத்தது.","எந்த நேரத்திலும் எரிமலை போல் வெடித்து விடுவார் என்பதை உணர்ந்தேன்.","கண்களால் சுட்டு எரிப்பது போல் முறைத்தான்.","கண்கள் கோவைப்பழம் போல் சிவந்து விட்டன.","என் உள்ளமும் உடலும் கொதித்தன.","சினம் தீப் போல் கொழுந்து விட்டு எரிந்தது.","அவன் வாயிலிருந்து சொற்கள் எரிமலை போல் வெடித்தன."]},{"t":"குரல்","e":"Voice","x":["மெலிந்த குரலில் கூறினான்.","நா தழுதழுக்கப் பேசினான்.","தணிந்த குரலில் கேட்டான்.","கம்பீரக்குரல் என் செவிகளுக்கு எட்டியது.","அவன் குரல் தேனைப் போல் என் செவிகளுக்குப் பாய்ந்தது."]},{"t":"நிகழ்ச்சி மறவாமல் இருப்பது","e":"To remember forever","x":["பசுமரத்தாணி போல் மனதில் பதிந்தது.","இந்நிகழ்ச்சி அவன் மனதில் என்றென்றும் நீங்கா இடத்தைப் பிடித்துவிட்டது.","பழைய ஞாபகம் அவன் மனத்திரையில் நிழலாடியது.","அந்தச் சம்பவம் அவன் நினைவுக்கு வந்து கொண்டே இருந்தது."]},{"t":"கொண்டாட்டம் / மகிழ்ச்சி","e":"Celebration / Happiness","x":["மகிழ்ச்சியால் துள்ளிக் குதித்தான்.","வயிறு வலிக்க சிரித்தான்.","மகிழ்ச்சி கடலில் மிதந்தான்.","நான் சூரியனைக் கண்ட தாமரை போல முகம் மலர்ந்தேன்.","ஆனந்த வெள்ளத்தில் மிதந்தான்.","மானைப் போல் துள்ளிக் குதித்தான்.","அவன் தலையில் பனிக்கட்டியை வைத்தது போன்ற உணர்வு உண்டாயிற்று.","ஆனந்த கடலில் மூழ்குவது போல் ஓர் உணர்வு.","உல்லாச வானில் சிறகடித்து பறப்பது போல","மகிழ்ச்சி வெள்ளம் அவன் மனதில் கரை புரண்டு ஓடியது"]},{"t":"மற்றவர்களுக்கு உதவுதல்","e":"Helping Others","x":["பெண்மணியின் கூக்குரலைக் கேட்ட ஆடவர் தலைதெறிக்க ஓடிவந்து உதவ முன் வந்தார்.","என் நண்பன் தக்க சமயத்தில் உதவிக்கு வந்தான்.","உதவி கரம் நீட்டினான்.","தன் கையே தனக்கு உதவி என்பதைப் போல அவர் வேலையை அவரே செய்து வந்தார்.","அன்பான நண்பனை ஆபத்தில் அறியலாம் என்பதற்கு ஏற்ப என் நண்பன் தக்க தருணத்தில் உதவிக்கு வந்தான்."]},{"t":"மெதுவாக","e":"Slowly","x":["ஆமைபோல் நகர்ந்து.","மெல்ல மெல்ல பதுங்கி.","கூட்டமாக இருந்ததால் மக்கள் எறும்பு போல ஊர்ந்தனர்."]},{"t":"வேகம் / ஓட்டம்","e":"Fast","x":["மின்னல் வேகத்தில் சீறிப்பாய்ந்து ஓடினான்.","வேகமாக ஓடி வந்ததால் அவனுக்கு மேல் மூச்சு கீழ் மூச்சு வாங்கியது.","தலைதெறிக்க ஓடினான்.","முயல் போல் துள்ளிக் குதித்து ஓடினான்.","மின்னல் வேகத்தில் ஓடினான்.","புயல் வேகத்தில்."]},{"t":"பயம்","e":"Scared","x":["கால்களும் கைகளும் நடுங்கின.","மனம் பயத்தில் 'பட் பட்' என்று தாளம் போட்டது.","சிலைபோல் வாயடைத்து நின்றான்.","பயத்தால் அவன் முகம் குப்பென்று வியர்த்தது."]},{"t":"பசி","e":"Hunger","x":["பசி அவன் வயிற்றைக் கிள்ளியது.","நாவில் எச்சில் ஊறுகிறது.","பசியும் தாகமும் அவனை வாட்டியது."]},{"t":"விபத்து","e":"Accident","x":["அவன் இரத்த வெள்ளத்தில் கிடந்தான்.","அவன் பேச்சு மூச்சின்றி கிடந்தான்.","கண்களில் கண்ணீர் ஆறாய் பெருகியது."]},{"t":"விருப்பம்","e":"Like","x":["ஆர்வம் மிகுந்து.","கொள்ளை ஆசை."]},{"t":"வெயில் நேரம் / காலை","e":"Sunny / Morning","x":["வெயில் சுள் என்று காய்ந்தது.","காலைப் பொழுது கதிரவன் பொன்னொளி வீசி எழுந்தான்.","அன்று சூரியனுக்கு என்ன கோபமோ தெரியவில்லை; தன் வெம்மையான கதிர்களால் இந்த உலகை வாட்டிக் கொண்டிருந்தான்."]}];
+
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.random()*a.length|0];
+VOCAB.forEach((v,i)=>v.id=i);
+const KEY='synapse-sol-v1';let st={box:{},pg:[1,2,3,4,5,6,7,8,9,10,11,12],dir:'fwd'};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.box)st=Object.assign(st,s)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const MASTER=3;const pool=()=>VOCAB.filter(v=>st.pg.includes(v.p));
+
+const pgEl=document.getElementById('pages');
+for(let p=1;p<=12;p++){const b=document.createElement('button');b.className='lv';b.textContent=p;b.setAttribute('aria-pressed',st.pg.includes(p));
+  b.onclick=()=>{const on=st.pg.includes(p);if(on&&st.pg.length===1)return;st.pg=on?st.pg.filter(x=>x!==p):[...st.pg,p].sort((a,b)=>a-b);b.setAttribute('aria-pressed',!on);save();meter();startDrill();renderList()};pgEl.appendChild(b)}
+const allBtn=document.createElement('button');allBtn.className='lv';allBtn.textContent='All';allBtn.onclick=()=>{st.pg=[1,2,3,4,5,6,7,8,9,10,11,12];pgEl.querySelectorAll('.lv').forEach(b=>b!==allBtn&&b.setAttribute('aria-pressed',true));save();meter();startDrill();renderList()};pgEl.appendChild(allBtn);
+
+function meter(){const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;
+  document.querySelector('.mbar').style.width=(P.length?m/P.length*100:0)+'%';document.querySelector('.mnum').textContent=`${m} / ${P.length}`}
+
+/* ---------- drill ---------- */
+let dq=[],cur=null,round={seen:0,first:0},firstSet=new Set();
+function startDrill(){dq=shuffle(pool()).sort((a,b)=>(st.box[a.id]||0)-(st.box[b.id]||0)).slice(0,10);round={seen:0,first:0};firstSet=new Set();next()}
+function makeQ(v){
+  const fwd=st.dir==='fwd';
+  const own=new Set([v.w,...v.s]);
+  const others=shuffle(VOCAB.filter(o=>o.id!==v.id&&!o.s.some(x=>own.has(x))&&!own.has(o.w)));
+  if(fwd){
+    const ans=pick(v.s);const ds=[];for(const o of others){const c=pick(o.s);if(!ds.includes(c)&&!own.has(c))ds.push(c);if(ds.length===3)break}
+    return {prompt:v.w,ans,opts:shuffle([ans,...ds]),hint:'Which word means the same?'};
+  }else{
+    const ans=v.w;const ds=others.slice(0,3).map(o=>o.w);
+    return {prompt:pick(v.s),ans,opts:shuffle([ans,...ds]),hint:'Which list word has this meaning?'};
+  }
+}
+function next(){
+  const el=document.getElementById('dcard');
+  if(!dq.length){
+    const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;
+    el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div><div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
+      <p class="hint">${m} of ${P.length} words mastered on the selected pages.</p><div class="row"><button class="btn primary" id="again">Next round</button></div>`;
+    document.getElementById('again').onclick=startDrill;return}
+  const v=dq.shift();const q=makeQ(v);cur={v,q,done:false};
+  el.innerHTML=`<div class="chips"><span class="chip">Page ${v.p}</span></div>
+    <p class="hint" style="margin:0">${q.hint}</p><p class="word">${esc(q.prompt)}</p>
+    <div class="opts4">${q.opts.map((o,k)=>`<button class="opt" data-w="${esc(o)}"><span class="n">(${k+1})</span>${esc(o)}</button>`).join('')}</div><div id="fb"></div>`;
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(b.dataset.w));
+}
+function answer(w){
+  if(cur.done)return;cur.done=true;const {v,q}=cur,ok=w===q.ans;
+  document.querySelectorAll('#dcard .opt').forEach(b=>{b.disabled=true;if(b.dataset.w===q.ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
+  if(!firstSet.has(v.id)){firstSet.add(v.id);round.seen++;if(ok)round.first++}
+  const card=`<div class="row" style="align-items:baseline"><span class="word" style="font-size:24px">${esc(v.w)}</span><span class="eng">${esc(v.e)}</span></div><div class="syns">${v.s.map(x=>`<span class="syn">${esc(x)}</span>`).join('')}</div>`;
+  const fb=document.getElementById('fb');
+  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி!</h3>${card}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">I was sure</button><button class="btn" id="g">I guessed</button></div></div>`;
+    document.getElementById('s').onclick=()=>{st.box[v.id]=Math.min(MASTER,(st.box[v.id]||0)+1);save();meter();next()};
+    document.getElementById('g').onclick=()=>{st.box[v.id]=Math.max(1,st.box[v.id]||0);save();meter();next()};document.getElementById('s').focus();}
+  else{st.box[v.id]=0;save();meter();dq.splice(Math.min(3,dq.length),0,v);
+    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(q.ans)}.</h3>${card}<p class="ask">This word comes back in three cards.</p><div class="row"><button class="btn primary" id="n">Next</button></div></div>`;
+    document.getElementById('n').onclick=next;document.getElementById('n').focus();}
+}
+function setDir(d){st.dir=d;save();document.getElementById('d-fwd').setAttribute('aria-pressed',d==='fwd');document.getElementById('d-rev').setAttribute('aria-pressed',d==='rev');startDrill()}
+document.getElementById('d-fwd').onclick=()=>setDir('fwd');document.getElementById('d-rev').onclick=()=>setDir('rev');
+document.getElementById('d-fwd').setAttribute('aria-pressed',st.dir==='fwd');document.getElementById('d-rev').setAttribute('aria-pressed',st.dir==='rev');
+
+/* ---------- phrases ---------- */
+let pr={seen:0,ok:0};
+function nextPhrase(){
+  const t=pick(THEMES),x=pick(t.x);const opts=shuffle([t,...shuffle(THEMES.filter(o=>o!==t)).slice(0,3)]);
+  const el=document.getElementById('pcard');
+  el.innerHTML=`<div class="chips"><span class="chip">Paper 1 · Phrase bank</span>${pr.seen?`<span class="chip src">${pr.ok} / ${pr.seen} this session</span>`:''}</div>
+    <p class="hint" style="margin:0">Which feeling or scene does this phrase describe?</p><p class="phrase">${esc(x)}</p>
+    <div class="opts4">${opts.map(o=>`<button class="opt" data-t="${esc(o.t)}" style="font-size:16px">${esc(o.t)}<span class="n">${esc(o.e)}</span></button>`).join('')}</div><div id="pfb"></div>`;
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    const ok=b.dataset.t===t.t;pr.seen++;if(ok)pr.ok++;
+    el.querySelectorAll('.opt').forEach(c=>{c.disabled=true;if(c.dataset.t===t.t)c.classList.add('good');else if(c===b)c.classList.add('bad')});
+    document.getElementById('pfb').innerHTML=`<div class="fb ${ok?'good':'bad'}"><h3>${ok?'சரி!':'It describes '+esc(t.t)+'.'} Other ways to write ${esc(t.e.toLowerCase())}:</h3><ul style="margin:0;padding-left:18px">${t.x.filter(y=>y!==x).slice(0,3).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="row"><button class="btn primary" id="pn">Next phrase</button></div></div>`;
+    document.getElementById('pn').onclick=nextPhrase;document.getElementById('pn').focus();
+  });
+}
+document.getElementById('themes').innerHTML=`<h2 class="lvhead" style="font:700 20px var(--display)">Phrase bank <span style="font:500 12px var(--mono);color:var(--muted)">${THEMES.length} themes · ${THEMES.reduce((a,t)=>a+t.x.length,0)} phrases</span></h2>`+
+  THEMES.map(t=>`<div class="theme"><h3>${esc(t.t)} <span>${esc(t.e)}</span></h3><ul>${t.x.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+
+/* ---------- list ---------- */
+function renderList(){
+  document.getElementById('vlist').innerHTML=st.pg.map(p=>`<h3 class="lvhead">Page ${p}<span>${VOCAB.filter(v=>v.p===p).length} words</span></h3>`+
+    VOCAB.filter(v=>v.p===p).map((v,i)=>`<div class="vrow"><span class="n">${i+1}</span><span class="w">${esc(v.w)}</span><span class="d" tabindex="0">${esc(v.s.join(' / '))}<small>${esc(v.e)}</small></span></div>`).join('')).join('');
+  document.querySelectorAll('#vlist .d').forEach(d=>{const t=()=>d.classList.toggle('show');d.onclick=t;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+}
+document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Show all meanings':'Cover the meanings'};
+
+function show(p){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
+  ['drill','phr','list'].forEach(x=>{const el=document.getElementById('p-'+x);el.hidden=x!==p;el.style.display=x===p?'flex':''});
+  document.getElementById('pages').hidden=p==='phr';
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
+meter();startDrill();nextPhrase();renderList();
+</script>
+
+</body>
+</html>
