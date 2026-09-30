@@ -54,44 +54,13 @@ body.light-nav .nav-logo{color:#A8741A}
 body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
 body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
 body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
-
-        .lab-card[data-accent="purple"]:hover { border-color: #B490F0; }
-        .lab-card[data-accent="purple"] .lab-section-tag { color: #B490F0; background: rgba(180,144,240,0.12); }
-        .lab-card[data-accent="purple"] .lab-marks { color: #B490F0; }
-        .lab-card[data-accent="purple"] .lab-action-text { color: #B490F0; }
-        .lab-card[data-accent="purple"] .lab-arrow { background: rgba(180,144,240,0.15); color: #B490F0; }
-
 </style>
 
 <title>Synapse Tamil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Tiro+Tamil:ital@0;1&display=swap">
-
 <style>
-</head>
-<body>
-
-<nav id="site-nav" aria-label="Synapse Tamil navigation">
-  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
-  <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
-    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
-    <a href="oli.html" data-page="oli">C6 ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-  </div>
-</nav>
-<script>
-(function(){
-  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
-  var cur=location.pathname.split('/').pop().replace('.html','');
-  if(!cur||cur==='')cur='home';
-  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
-})();
-</script>
-
 /* ─── TOKENS ─────────────────────────────────────────── */
 :root {
   --bg:         #0D1B2A;
@@ -707,6 +676,28 @@ footer {
   .fade-in { opacity: 1; transform: none; transition: none; }
 }
 </style>
+</head>
+<body>
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
 
 <!-- ═══ HERO ═══════════════════════════════════════════════════ -->
 <div class="hero">
@@ -725,7 +716,7 @@ footer {
 
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num" id="stat-marks">48</div>
+      <div class="stat-num" id="stat-marks">38</div>
       <div class="stat-label">marks covered</div>
     </div>
     <div class="stat">
@@ -894,13 +885,13 @@ footer {
 <section id="labs" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="section-inner">
     <div class="eyebrow">Practice Labs</div>
-    <h2 class="section-title fade-in">38 marks. Four labs. Zero excuses.</h2>
+    <h2 class="section-title fade-in">48 marks. Five labs. Zero excuses.</h2>
     <p class="section-lead fade-in">Each lab targets a specific Paper 2 section — built with real past-year questions, school worksheets, and teacher-compiled word lists. Open any lab and start drilling immediately.</p>
 
     <div class="labs-grid">
 
       <!-- OLI LAB -->
-      <a class="lab-card fade-in" data-accent="teal" href="oli.html">
+      <a class="lab-card fade-in" data-accent="teal" href="#" target="_blank" rel="noopener">
         <div class="lab-header">
           <div class="lab-section-tag">C6 · ஒலி வேறுபாடு</div>
           <div class="lab-marks">8<span>marks</span></div>
@@ -923,7 +914,7 @@ footer {
       </a>
 
       <!-- SEYYUL LAB -->
-      <a class="lab-card fade-in" data-accent="gold" href="seyyul.html">
+      <a class="lab-card fade-in" data-accent="gold" href="#" target="_blank" rel="noopener">
         <div class="lab-header">
           <div class="lab-section-tag">A2 · செய்யுள் / பழமொழி</div>
           <div class="lab-marks">10<span>marks</span></div>
@@ -946,7 +937,7 @@ footer {
       </a>
 
       <!-- ECHAM LAB -->
-      <a class="lab-card fade-in" data-accent="red" href="echam.html">
+      <a class="lab-card fade-in" data-accent="red" href="#" target="_blank" rel="noopener">
         <div class="lab-header">
           <div class="lab-section-tag">A3 · அடைமொழி / எச்சம்</div>
           <div class="lab-marks">10<span>marks</span></div>
@@ -969,118 +960,18 @@ footer {
       </a>
 
       <!-- SOL LAB -->
-      <a class="lab-card fade-in" data-accent="green" href="sol.html">
-        <div class="lab-header">
-          <div class="lab-section-tag">சொல் திறன் · Vocabulary</div>
-          <div class="lab-marks">315<span>words</span></div>
-        </div>
-        <div class="lab-body">
-          <div class="lab-name-tamil">சினாப்ஸ் சொல் ஆய்வகம்</div>
-          <div class="lab-name-en">Synapse Sol Lab — Words</div>
-          <p class="lab-desc">Master 315 P6-level vocabulary words with synonyms and English meanings. Plus 108 high-impact composition phrases across 25 emotional themes — ready for Paper 1 and comprehension.</p>
-          <div class="lab-features">
-            <span class="lab-feature">315 vocabulary</span>
-            <span class="lab-feature">108 phrases</span>
-            <span class="lab-feature">25 themes</span>
-            <span class="lab-feature">Synonym drill</span>
-          </div>
-          <div class="lab-action">
-            <span class="lab-action-text">Open Lab →</span>
-            <div class="lab-arrow">→</div>
-          </div>
-        </div>
-      </a>
-
-<!-- VEERRUMAI LAB -->
-      <a class="lab-card fade-in" data-accent="purple" href="veerrumai.html">
-        <div class="lab-header">
-          <div class="lab-section-tag">A1 · வேற்றுமை</div>
-          <div class="lab-marks">10<span>marks</span></div>
-        </div>
-        <div class="lab-body">
-          <div class="lab-name-tamil">சினாப்ஸ் வேற்றுமை ஆய்வகம்</div>
-          <div class="lab-name-en">Synapse Veerrumai Lab — Case markers</div>
-          <p class="lab-desc">Drill all 8 case markers with suffix rules and sentence context. 60+ questions from 5 prelim papers, spaced repetition, and a full reference chart.</p>
-          <div class="lab-features">
-            <span class="lab-feature">60+ questions</span>
-            <span class="lab-feature">8 case markers</span>
-            <span class="lab-feature">5 paper sets</span>
-            <span class="lab-feature">SRS spacing</span>
-          </div>
-          <div class="lab-action">
-            <span class="lab-action-text">Open Lab →</span>
-            <div class="lab-arrow">→</div>
-          </div>
-        </div>
-      </a>
-
-      <!-- COMING SOON: D8 -->
-      <div class="lab-card coming-soon fade-in" data-accent="teal">
-        <div class="lab-header">
-          <div class="lab-section-tag" style="color:var(--text3);background:var(--bg2)">D7/D8 · புரிதல் — Coming soon</div>
-          <div class="lab-marks" style="color:var(--text3)">22<span>marks</span></div>
-        </div>
-        <div class="lab-body">
-          <div class="lab-name-tamil">சினாப்ஸ் புரிதல் ஆய்வகம்</div>
-          <div class="lab-name-en">Synapse Puridal Lab — Comprehension</div>
-          <p class="lab-desc">The biggest mark block in Paper 2. Structured practice for inference, summarisation, and open-ended response. In development.</p>
-          <div class="lab-action">
-            <span class="lab-action-text" style="color:var(--text3)">In development</span>
-            <div class="lab-arrow" style="color:var(--text3)">⏳</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ HOW IT WORKS ════════════════════════════════════════════ -->
-<section class="how-section">
-  <div class="section-inner">
-    <div class="eyebrow">How It Works</div>
-    <h2 class="section-title fade-in">The Synapse method in four moves</h2>
-    <div class="steps fade-in">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">See the prompt</div>
-        <p class="step-body">A question appears — fill a gap, name a pattern, pick a word. No multiple choice first. You produce the answer.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Retrieve, then reveal</div>
-        <p class="step-body">Think before you flip. The act of searching your memory — even if you fail — is itself the learning event.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Judge your confidence</div>
-        <p class="step-body">Rate yourself honestly: did you know it, or were you guessing? This metacognitive signal tells the system where to focus next.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-title">The system adapts</div>
-        <p class="step-body">Items you know move to the back. Items you guessed return in 3 cards. Session by session, your weak spots shrink.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Synapse <em>Tamil</em></div>
-    <div class="footer-tagline">மூளை விஞ்ஞானத்துடன் கற்போம்</div>
-    <p class="footer-note">
-      Built for P6 students preparing for PSLE Tamil Language Paper 2. Every lab uses real prelim questions from Singapore primary schools. All neuroscience citations refer to peer-reviewed published research.
-    </p>
-    <div class="footer-links">
-      <a href="#labs">Labs</a>
+      <a href="veerrumai.html" class="lab-card" data-accent="purple">
+          <div class="lab-section-tag" style="color:#B490F0;background:rgba(180,144,240,0.12)">A1 · வேற்றுமை</div>
+          <h3 class="lab-name">வேற்றுமை Lab</h3>
+          <p class="lab-desc">Master all 8 case markers with spaced repetition — suffixes, sandhi changes, role identification. 10 marks.</p>
+          <div class="lab-meta"><span>60 items</span><span>•</span><span>SRS engine</span><span>•</span><span>5 past papers</span></div>
+          <div class="lab-arrow" style="background:rgba(180,144,240,0.15);color:#B490F0">→</div>
+        </a>
       <a href="#science">The Science</a>
-      <a href="veerrumai.html">Veerrumai Lab (A1)</a>
-      <a href="oli.html">Oli Lab (C6)</a>
-      <a href="seyyul.html">Seyyul Lab (A2)</a>
-      <a href="echam.html">Echam Lab (A3)</a>
-      <a href="sol.html">Sol Lab</a>
+      <a href="#" target="_blank">Oli Lab (C6)</a>
+      <a href="#" target="_blank">Seyyul Lab (A2)</a>
+      <a href="#" target="_blank">Echam Lab (A3)</a>
+      <a href="#" target="_blank">Sol Lab</a>
     </div>
   </div>
 </footer>
@@ -1179,6 +1070,5 @@ footer {
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 })();
 </script>
-
 </body>
 </html>
