@@ -495,7 +495,7 @@ function blankHTML(show,fill,cls){return esc(show).replace('___',`<span class="b
 function renderDrill(it,opts,src){
   const el=document.getElementById('dcard'),{bi}=dcur;
   el.innerHTML=`
-    <div class="chips"><span class="chip">${it.t}</span><span class="chip">${it.lv}</span>${ARCHITECT?(src?`<span class="chip src">Exam options · ${src}</span>`:(TESTED[it.id]?`<span class="chip src">Tested: ${TESTED[it.id].join(', ')}</span>`:'')):''}</div>
+    <div class="chips"><span class="chip">${it.t}</span><span class="chip">${it.lv}</span>${src?`<span class="chip src">Exam options · ${src}</span>`:(TESTED[it.id]?`<span class="chip src">Tested: ${TESTED[it.id].join(', ')}</span>`:'')}</div>
     <p class="verse" id="dv">${dcur.show?blankHTML(dcur.show):verseHTML(it,bi)}</p>
     <p class="meaning"><b>Meaning:</b> ${esc(it.m)}</p>
     <div class="opts">${opts.map((o,k)=>`<button class="opt" data-w="${esc(o)}"><span class="n">(${k+1})</span>${esc(o)}</button>`).join('')}</div>
@@ -638,11 +638,11 @@ function checkExam(){
 /* ---------- full list ---------- */
 function renderBook(){
   const top=Object.entries(TESTED).sort((x,y)=>y[1].length-x[1].length).filter(e=>e[1].length>1);
-  const topHTML=ARCHITECT&&top.length?`<div class="topbox"><h3 class="lvhead">Tested more than once<span>${top.length} lines · ${PAPERS.length} papers</span></h3>`+top.map(([id,t])=>`<div class="entry"><span class="t">×${t.length}</span><p class="v" tabindex="0">${fullHTML(ITEMS[id])}</p><span class="m">${esc(ITEMS[id].m)} <b class="tested">· ${t.join(', ')}</b></span></div>`).join('')+'</div>':'';
+  const topHTML=top.length?`<div class="topbox"><h3 class="lvhead">Tested more than once<span>${top.length} lines · ${PAPERS.length} papers</span></h3>`+top.map(([id,t])=>`<div class="entry"><span class="t">×${t.length}</span><p class="v" tabindex="0">${fullHTML(ITEMS[id])}</p><span class="m">${esc(ITEMS[id].m)} <b class="tested">· ${t.join(', ')}</b></span></div>`).join('')+'</div>':'';
   document.getElementById('book').innerHTML=topHTML+LEVELS.filter(l=>st.lv.includes(l)).map(l=>{
     const list=ITEMS.filter(it=>it.lv===l);
     return `<h3 class="lvhead">தொடக்கநிலை ${l.slice(1)}<span>${list.length} lines</span></h3>`+list.map(it=>`
-      <div class="entry"><span class="t">${it.t}</span><p class="v" tabindex="0">${fullHTML(it)}</p><span class="m">${esc(it.m)}${ARCHITECT&&TESTED[it.id]?` <b class="tested">· Tested: ${TESTED[it.id].join(', ')}</b>`:''}</span></div>`).join('')}).join('');
+      <div class="entry"><span class="t">${it.t}</span><p class="v" tabindex="0">${fullHTML(it)}</p><span class="m">${esc(it.m)}${TESTED[it.id]?` <b class="tested">· Tested: ${TESTED[it.id].join(', ')}</b>`:''}</span></div>`).join('')}).join('');
   document.querySelectorAll('#book .v').forEach(v=>{const t=()=>v.classList.toggle('show');v.onclick=t;v.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
 }
 document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Show all lines':'Cover the lines';document.querySelectorAll('#book .v.show').forEach(v=>v.classList.remove('show'))};
