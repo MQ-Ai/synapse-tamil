@@ -31,7 +31,7 @@ var HEADERS = {
   Payments: ['received', 'app', 'session', 'email', 'uid', 'pass', 'amount', 'until', 'status', 'payment_intent'],
   Devices: ['linked', 'app', 'session', 'uid', 'email'],
   Codes: ['created', 'app', 'email', 'code', 'tries'],
-  Flags: ['received', 'uid', 'app', 'lab', 'src', 'sent', 'vm', 'choices', 'ans']
+  Flags: ['received', 'uid', 'app', 'lab', 'src', 'sent', 'vm', 'choices', 'ans', 'note']
 };
 var UID_RE = /^[0-9a-f-]{16,64}$/i;
 var EVENTS_OK = { view: 1, round: 1, 'case': 1, paper: 1 };
@@ -76,7 +76,7 @@ function doPost(e) {
     if (p && /^push_/.test(String(p.event))) return pushPost_(p); // reminders: apps-script-push.gs
     if (p && String(p.event) === 'question_flag' && LEVELS_OK.hasOwnProperty(p.app) && p.v === 1) {
       var d = p.data || {};
-      sheet_('Flags').appendRow([new Date(), String(p.uid || ''), p.app, String(d.lab || ''), String(d.src || ''), String(d.sent || ''), String(d.vm || ''), JSON.stringify(d.choices || []), String(d.ans || '')]);
+      sheet_('Flags').appendRow([new Date(), String(p.uid || ''), p.app, String(d.lab || ''), String(d.src || ''), String(d.sent || ''), String(d.vm || ''), JSON.stringify(d.choices || []), String(d.ans || ''), String(d.note || '')]);
       return json_({ ok: true });
     }
     if (!p || !LEVELS_OK.hasOwnProperty(p.app) || p.v !== 1 || !UID_RE.test(String(p.uid))) return json_({ ok: false });

@@ -140,6 +140,13 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outlin
 .flag-btn{position:absolute;top:10px;right:12px;background:none;border:none;font-size:13px;color:var(--muted);cursor:pointer;padding:2px 5px;border-radius:4px;opacity:0.55;line-height:1}
 .flag-btn:hover{opacity:1}
 .flag-btn.flagged{color:var(--bad);opacity:1;cursor:default}
+.flag-form{display:none;margin-top:4px;gap:8px;flex-direction:column}
+.flag-form.open{display:flex}
+.flag-form textarea{font-family:inherit;font-size:13px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:none;height:60px}
+.flag-form-row{display:flex;gap:8px;align-items:center}
+.flag-send{font-size:13px;padding:5px 12px;border-radius:6px;border:none;background:var(--bad);color:#fff;cursor:pointer}
+.flag-send:disabled{opacity:0.4;cursor:default}
+.flag-cancel{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline}
 .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
 .chip.src{background:var(--accent-soft);color:var(--accent)}
@@ -262,6 +269,13 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
 
       <div class="card" id="drill-card">
         <button class="flag-btn" id="btn-flag" title="Report a mistake in this question">🚩</button>
+        <div class="flag-form" id="flag-form">
+          <textarea id="flag-note" placeholder="What's wrong with this question?" maxlength="300"></textarea>
+          <div class="flag-form-row">
+            <button class="flag-send" id="flag-send" disabled>Send report</button>
+            <button class="flag-cancel" id="flag-cancel">Cancel</button>
+          </div>
+        </div>
         <!-- chips -->
         <div class="chips" id="d-chips"></div>
         <!-- sentence -->
@@ -575,6 +589,8 @@ function showDrillCard() {
   // reset flag button
   const flagBtn = document.getElementById('btn-flag');
   if (flagBtn) { flagBtn.classList.remove('flagged'); flagBtn.title = 'Report a mistake in this question'; flagBtn.textContent = '🚩'; flagBtn.disabled = false; }
+  const flagForm = document.getElementById('flag-form');
+  if (flagForm) { flagForm.classList.remove('open'); document.getElementById('flag-note').value = ''; document.getElementById('flag-send').disabled = true; }
 
   // sentence, find blank marker and highlight
   let sentHTML = item.sent.replace('___', '<span class="blank" id="blank-word">___</span>');
@@ -742,16 +758,33 @@ document.querySelectorAll('.tab').forEach(tab => {
    FLAG BUTTON
 ────────────────────────────────────────────────────────────── */
 document.getElementById('btn-flag').addEventListener('click', () => {
+  const btn = document.getElementById('btn-flag');
+  if (btn.classList.contains('flagged')) return;
+  const form = document.getElementById('flag-form');
+  form.classList.toggle('open');
+  if (form.classList.contains('open')) document.getElementById('flag-note').focus();
+});
+document.getElementById('flag-note').addEventListener('input', function () {
+  document.getElementById('flag-send').disabled = this.value.trim().length === 0;
+});
+document.getElementById('flag-cancel').addEventListener('click', () => {
+  document.getElementById('flag-form').classList.remove('open');
+  document.getElementById('flag-note').value = '';
+  document.getElementById('flag-send').disabled = true;
+});
+document.getElementById('flag-send').addEventListener('click', () => {
   const entry = deck[deckIdx];
   if (!entry) return;
   const item = ITEMS[entry.idx];
+  const note = document.getElementById('flag-note').value.trim();
+  if (!note) return;
   const btn = document.getElementById('btn-flag');
-  if (btn.classList.contains('flagged')) return;
   btn.classList.add('flagged');
   btn.textContent = '🚩 Reported';
   btn.title = 'Thanks — we will review this question';
   btn.disabled = true;
-  window.synTrack && synTrack('question_flag', { lab: 'veerrumai', src: item.src || '', sent: item.sent, vm: item.vm, choices: item.choices, ans: item.ans });
+  document.getElementById('flag-form').classList.remove('open');
+  window.synTrack && synTrack('question_flag', { lab: 'veerrumai', src: item.src || '', sent: item.sent, vm: item.vm, choices: item.choices, ans: item.ans, note: note });
 });
 
 /* ──────────────────────────────────────────────────────────────
