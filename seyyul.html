@@ -400,6 +400,10 @@ const PAPERS=[
   {id:find("மோப்பக் குழையும்"),show:"மோப்பக் குழையும் அனிச்சம் முகந்திரிந்து / நோக்கக் குழையும் ___.",opts:["நட்பு", "உறவு", "விருந்து", "மருந்து"],a:2},
   {id:find("மனம்போன போக்கு"),show:"மனம்போன ___ எல்லாம் போக வேண்டாம்.",opts:["வழி", "திசை", "இடம்", "போக்கு"],a:3}]}
 ];
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
+PAPERS.forEach(P=>P.full=P.name);
+if(!ARCHITECT)PAPERS.forEach((P,n)=>{P.name=P.src='Paper '+(n+1)});
 const TESTED={};
 PAPERS.forEach(P=>P.qs.forEach((q,k)=>{(TESTED[q.id]=TESTED[q.id]||[]).push(`${P.src} Q${6+k}`);q.src=`${P.src} Q${6+k}`}));
 const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -587,8 +591,8 @@ function finishBuild(){
 /* ---------- exam ---------- */
 let exam=null,examN=0;
 function makeExam(pi){
-  let qs,label,paper=pi!=null;
-  if(paper){const P=PAPERS[pi];qs=P.qs.map(q=>({it:ITEMS[q.id],bi:q.w?ITEMS[q.id].words.findIndex(x=>x.w===q.w):0,opts:q.opts,a:q.a,show:q.show}));label=P.name+' · Q6 to Q10'}
+  let qs,label,full,paper=pi!=null;
+  if(paper){const P=PAPERS[pi];full=P.full+' · Q6 to Q10';qs=P.qs.map(q=>({it:ITEMS[q.id],bi:q.w?ITEMS[q.id].words.findIndex(x=>x.w===q.w):0,opts:q.opts,a:q.a,show:q.show}));label=P.name+' · Q6 to Q10'}
   else{
     qs=shuffle(pool()).slice(0,5).map(it=>{
       const c=it.words.map((x,i)=>i).filter(i=>[...it.words[i].w].length>=3);const bi=c.length?pick(c):0;
@@ -596,7 +600,7 @@ function makeExam(pi){
       return {it,bi,opts,a:opts.indexOf(ans)}});
     examN++;label='Practice set '+examN;
   }
-  exam={qs,paper,label,pi};renderExam();
+  exam={qs,paper,label,full,pi};renderExam();
 }
 function renderExam(){
   const p=document.getElementById('paper');
@@ -627,7 +631,7 @@ function checkExam(){
       r.innerHTML=`✗ ${v<0?'No answer.':'You chose ('+(v+1)+').'} Full line: <b>${esc(q.it.lines.join(' '))}</b>. ${esc(q.it.m)}`;
       st.box[q.it.id]=0}
   });
-  save();meter();window.synTrack&&synTrack('paper',{lab:'seyyul',set:exam.label,score,of:10});
+  save();meter();window.synTrack&&synTrack('paper',{lab:'seyyul',set:exam.full||exam.label,score,of:10});
   document.getElementById('escore').innerHTML=`<div class="score">${score} / 10<small>${score===10?'Full marks':'Missed lines go back into your drill'}</small></div>`;
 }
 
