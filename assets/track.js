@@ -104,7 +104,7 @@
       '<form id="syn-card" role="dialog" aria-modal="true" aria-labelledby="syn-h" novalidate>' +
       '<h2 id="syn-h">' + (gate ? 'Sign up to keep going' : 'Welcome to Synapse Tamil') + '</h2>' +
       '<p>' + (
-        gate ? 'Your first question was free. Enter your details to keep practising. It takes 30 seconds.' : 'Enter your details to start. It takes 30 seconds.') + '</p>' +
+        gate ? 'Enter your details to keep practising. It takes 30 seconds.' : 'Enter your details to start. It takes 30 seconds.') + '</p>' +
       '<label class="f" for="syn-name">Name</label><input id="syn-name" type="text" autocomplete="name" maxlength="80" required>' +
       '<label class="f" for="syn-school">School</label><input id="syn-school" type="text" autocomplete="organization" maxlength="80" required>' +
       '<label class="f" for="syn-level">Level</label><select id="syn-level" required><option value="">Choose…</option><option>Primary 3</option><option>Primary 4</option><option>Primary 5</option><option>Primary 6</option><option>Other</option></select>' +
