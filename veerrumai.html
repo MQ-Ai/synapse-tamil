@@ -563,6 +563,7 @@ function showDrillCard() {
 }
 
 function onChoice(btn, idx, item) {
+  if (window.synAllow && !synAllow('veerrumai:' + idx, () => onChoice(btn, idx, item))) return;
   const isCorrect = btn.dataset.correct === 'true';
   total++;
   if (isCorrect) correct++;
@@ -625,6 +626,7 @@ function onConf(knew) {
 }
 
 function showDone() {
+  window.synTrack && synTrack('round', { lab: 'veerrumai', score: correct, of: total });
   document.getElementById('drill-card').hidden = true;
   const doneEl = document.getElementById('drill-done');
   doneEl.hidden = false;
@@ -705,5 +707,7 @@ buildRef();
 buildPapers();
 initDrill();
 </script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
 </body>
 </html>
