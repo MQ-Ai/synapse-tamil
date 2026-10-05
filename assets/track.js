@@ -107,7 +107,7 @@
       '<label class="f" for="syn-school">School</label><input id="syn-school" type="text" autocomplete="organization" maxlength="80" required>' +
       '<label class="f" for="syn-level">Level</label><select id="syn-level" required><option value="">Choose…</option><option>Primary 3</option><option>Primary 4</option><option>Primary 5</option><option>Primary 6</option><option>Other</option></select>' +
       '<label class="f" for="syn-email">Email (yours or a parent\'s)</label><input id="syn-email" type="email" autocomplete="email" maxlength="120" required>' +
-      '<p class="small">We use your details to see who is using Synapse Tamil and how, and keep them private. Your details cannot be changed here after you sign in' + (CFG.contact ? '. To see, correct or delete them, email ' + CFG.contact.replace(/[<>&"]/g, '') : '') + '.</p>' +
+      (CFG.contact ? '<p class="small">Questions? Email ' + CFG.contact.replace(/[<>&"]/g, '') + '.</p>' : '') +
       '<div id="syn-err" role="alert"></div>' +
       '<div class="row"><button type="submit" class="p">' + 'Continue' + '</button>' +
       (gate ? '' : '<button type="button" id="syn-skip">Close</button>') +
