@@ -309,12 +309,14 @@ const KEY='synapse-echam-v1';let box={};
 try{box=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){box={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box))}catch(e){}};
 const MASTER=3;
-function meter(){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
-  document.querySelector('.mbar').style.width=(m/ITEMS.length*100)+'%';document.querySelector('.mnum').textContent=`${m} / ${ITEMS.length}`}
+/* each round: up to 6 words already in progress (closest to mastered first), then new ones, so progress builds instead of every word waiting for the whole list */
+const pickRound=(ids,lv)=>{const s=shuffle(ids),learn=s.filter(i=>lv(i)>0&&lv(i)<MASTER).sort((x,y)=>lv(y)-lv(x)).slice(0,6);return shuffle([...learn,...s.filter(i=>lv(i)===0),...s.filter(i=>lv(i)>=MASTER)].slice(0,10))};
+function meter(){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;
+  document.querySelector('.mbar').style.width=(m/ITEMS.length*100)+'%';document.querySelector('.mnum').textContent=`${m} / ${ITEMS.length}`+(l?` · ${l} learning`:'')}
 
 /* drill */
 let dq=[],cur=null,round={seen:0,first:0},firstSet=new Set();
-function startDrill(){dq=shuffle(ITEMS.map((_,i)=>i)).sort((a,b)=>(box[a]||0)-(box[b]||0)).slice(0,10);round={seen:0,first:0};firstSet=new Set();next()}
+function startDrill(){dq=pickRound(ITEMS.map((_,i)=>i),i=>box[i]||0);round={seen:0,first:0};firstSet=new Set();next()}
 function next(){
   const el=document.getElementById('dcard');
   if(!dq.length){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;window.synTrack&&synTrack('round',{lab:'echam',score:round.first,of:round.seen});

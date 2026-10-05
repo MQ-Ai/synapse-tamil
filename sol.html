@@ -302,18 +302,20 @@ const KEY='synapse-sol-v1';let st={box:{},pg:[1,2,3,4,5,6,7,8,9,10,11,12],dir:'f
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.box)st=Object.assign(st,s)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const MASTER=3;const pool=()=>VOCAB.filter(v=>st.pg.includes(v.p));
+/* each round: up to 6 words already in progress (closest to mastered first), then new ones, so progress builds instead of every word waiting for the whole list */
+const pickRound=(ids,lv)=>{const s=shuffle(ids),learn=s.filter(i=>lv(i)>0&&lv(i)<MASTER).sort((x,y)=>lv(y)-lv(x)).slice(0,6);return shuffle([...learn,...s.filter(i=>lv(i)===0),...s.filter(i=>lv(i)>=MASTER)].slice(0,10))};
 
 const pgEl=document.getElementById('pages');
 for(let p=1;p<=12;p++){const b=document.createElement('button');b.className='lv';b.textContent=p;b.setAttribute('aria-pressed',st.pg.includes(p));
   b.onclick=()=>{const on=st.pg.includes(p);if(on&&st.pg.length===1)return;st.pg=on?st.pg.filter(x=>x!==p):[...st.pg,p].sort((a,b)=>a-b);b.setAttribute('aria-pressed',!on);save();meter();startDrill();renderList()};pgEl.appendChild(b)}
 const allBtn=document.createElement('button');allBtn.className='lv';allBtn.textContent='All';allBtn.onclick=()=>{st.pg=[1,2,3,4,5,6,7,8,9,10,11,12];pgEl.querySelectorAll('.lv').forEach(b=>b!==allBtn&&b.setAttribute('aria-pressed',true));save();meter();startDrill();renderList()};pgEl.appendChild(allBtn);
 
-function meter(){const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;
-  document.querySelector('.mbar').style.width=(P.length?m/P.length*100:0)+'%';document.querySelector('.mnum').textContent=`${m} / ${P.length}`}
+function meter(){const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length,l=P.filter(v=>(st.box[v.id]||0)>0).length-m;
+  document.querySelector('.mbar').style.width=(P.length?m/P.length*100:0)+'%';document.querySelector('.mnum').textContent=`${m} / ${P.length}`+(l?` · ${l} learning`:'')}
 
 /* ---------- drill ---------- */
 let dq=[],cur=null,round={seen:0,first:0},firstSet=new Set();
-function startDrill(){dq=shuffle(pool()).sort((a,b)=>(st.box[a.id]||0)-(st.box[b.id]||0)).slice(0,10);round={seen:0,first:0};firstSet=new Set();next()}
+function startDrill(){dq=pickRound(pool(),v=>st.box[v.id]||0);round={seen:0,first:0};firstSet=new Set();next()}
 function makeQ(v){
   const fwd=st.dir==='fwd';
   const own=new Set([v.w,...v.s]);
