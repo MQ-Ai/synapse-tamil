@@ -361,19 +361,18 @@ let box={};
 try{box=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){box={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box))}catch(e){}};
 const MASTER=3;
+/* each round: up to 6 sentences already in progress (closest to mastered first), then new ones, so progress builds instead of every word waiting for the whole list */
+const pickRound=(ids,lv)=>{const s=shuffle(ids),learn=s.filter(i=>lv(i)>0&&lv(i)<MASTER).sort((x,y)=>lv(y)-lv(x)).slice(0,6);return shuffle([...learn,...s.filter(i=>lv(i)===0),...s.filter(i=>lv(i)>=MASTER)].slice(0,10))};
 
 /* ---------- drill ---------- */
 let queue=[],cur=null,round={seen:0,first:0},firstTry=new Set(),answered=false;
 function buildRound(){
-  const byBox=shuffle(ITEMS.map((_,i)=>i)).sort((x,y)=>(box[x]||0)-(box[y]||0));
-  // interleave families among the 10 weakest
-  const pick=byBox.slice(0,10);
-  queue=shuffle(pick);round={seen:0,first:0};firstTry=new Set();
+  queue=pickRound(ITEMS.map((_,i)=>i),i=>box[i]||0);round={seen:0,first:0};firstTry=new Set();
 }
 function meter(){
-  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
+  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;
   document.getElementById('mbar').style.width=(m/ITEMS.length*100)+'%';
-  document.getElementById('mnum').textContent=`${m} / ${ITEMS.length}`;
+  document.getElementById('mnum').textContent=`${m} / ${ITEMS.length}`+(l?` · ${l} learning`:'');
 }
 function nextCard(){
   if(!queue.length){endRound();return}
@@ -530,11 +529,12 @@ try{cbox=JSON.parse(localStorage.getItem(CKEY)||'{}')||{}}catch(e){cbox={}}
 const csave=()=>{try{localStorage.setItem(CKEY,JSON.stringify(cbox))}catch(e){}};
 const cid=o=>o.w.join('|');
 let cq=[],ccur=null,cround={seen:0,first:0},cfirst=new Set();
-function cmeter(){const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length;
-  document.getElementById('cbar').style.width=(m/CORE.length*100)+'%';document.getElementById('cnum').textContent=`${m} / ${CORE.length}`;}
+function cmeter(){const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length,l=CORE.filter(o=>(cbox[cid(o)]||0)>0).length-m;
+  document.getElementById('cbar').style.width=(m/CORE.length*100)+'%';document.getElementById('cnum').textContent=`${m} / ${CORE.length}`+(l?` · ${l} learning`:'');}
 function cstart(){
-  // weakest first; ties keep most-tested order
-  const pool=CORE.map((o,i)=>({o,i})).sort((a,b)=>(cbox[cid(a.o)]||0)-(cbox[cid(b.o)]||0)||a.i-b.i).slice(0,10).map(x=>x.o);
+  // words in progress first, then new pairs in most-tested order
+  const lv=o=>cbox[cid(o)]||0,learn=shuffle(CORE.filter(o=>lv(o)>0&&lv(o)<MASTER)).sort((a,b)=>lv(b)-lv(a)).slice(0,6);
+  const pool=shuffle([...learn,...CORE.filter(o=>lv(o)===0),...CORE.filter(o=>lv(o)>=MASTER)].slice(0,10));
   cq=pool.map(o=>({o,k:Math.random()*o.w.length|0}));cround={seen:0,first:0};cfirst=new Set();cnext();
 }
 function cnext(){
