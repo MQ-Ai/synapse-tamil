@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Snap your composition question and build your story step by step: understand it, plan it, gather phrases, write, then check.">
+<meta property="og:title" content="Synapse Katturai Guide">
+<meta property="og:description" content="Snap your composition question and build your story step by step: understand it, plan it, gather phrases, write, then check.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Synapse Tamil">
+<meta property="og:url" content="https://synapse-tamil.vercel.app/katturai">
+<meta property="og:image" content="https://synapse-tamil.vercel.app/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Synapse Tamil: learn Tamil for fun, remember it for longer. 850+ bite-sized challenges for upper primary.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Synapse Katturai Guide">
+<meta name="twitter:description" content="Snap your composition question and build your story step by step: understand it, plan it, gather phrases, write, then check.">
+<meta name="twitter:image" content="https://synapse-tamil.vercel.app/assets/og-image.png">
+<meta name="twitter:image:alt" content="Synapse Tamil: learn Tamil for fun, remember it for longer. 850+ bite-sized challenges for upper primary.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Synapse Katturai Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
+  --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
+  --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
+  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
+  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+    --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+    --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101816; --surface:#17221F; --sunk:#0C1311; --ink:#E6EEEA; --muted:#98A9A4; --line:#2A3834;
+  --accent:#DDAA48; --accent-soft:#3A2F17; --teal:#7FC3B8; --teal-soft:#1D3431;
+  --good:#6CCB90; --good-soft:#18331F; --bad:#EE8A80; --bad-soft:#3A1C19; --onacc:#1A1206;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,44px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+h2{font:700 21px/1.3 var(--display);margin:0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+h2 small,h3 small{font:500 12px var(--mono);color:var(--muted)}
+h3{font:700 17px/1.4 var(--display);margin:0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.lede{color:var(--muted);margin:0;max-width:62ch}
+.lede b{color:var(--ink);font-weight:600}
+button:focus-visible,input:focus-visible,textarea:focus-visible,label.up:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;position:sticky;top:48px;z-index:5;background:var(--bg);padding:8px 0}
+.steps button{font:600 13px var(--display);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 4px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.25}
+.steps button span{font:500 10px var(--mono);letter-spacing:.04em}
+.steps button[aria-current="step"]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.steps button.done{border-color:var(--teal);color:var(--teal)}
+.steps button:disabled{opacity:.45;cursor:default}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.hint{font-size:14px;color:var(--muted);margin:0}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 15px var(--display);padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted);padding-inline:8px}
+.btn.sm{font-size:13px;padding:6px 12px}
+.btn:disabled{opacity:.5;cursor:default}
+.seg2{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+.seg2 button{font:600 14px var(--display);padding:8px 14px;border:0;background:var(--surface);color:var(--muted);cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--teal);color:var(--bg)}
+
+label.f{display:flex;flex-direction:column;gap:4px;font:600 15px var(--display)}
+label.f small{font:400 13px var(--body);color:var(--muted)}
+input[type=text],textarea{font:16px/1.7 var(--body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{resize:vertical;min-height:3.4em}
+textarea.big{min-height:9em}
+label.up{display:flex;align-items:center;justify-content:center;gap:10px;border:2px dashed var(--line);border-radius:12px;padding:18px;cursor:pointer;font:600 16px var(--display);color:var(--teal);text-align:center}
+label.up input{position:absolute;opacity:0;width:1px;height:1px}
+.photo{display:flex;flex-direction:column;gap:10px}
+.photo img{max-width:100%;max-height:460px;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:var(--sunk)}
+.ocr{font-size:14px;color:var(--muted)}
+
+.tip{background:var(--accent-soft);border-radius:12px;padding:12px 16px;font-size:15px}
+.tip b{font-family:var(--display)}
+.tip ul{margin:6px 0 0;padding-left:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font:600 14px var(--body);padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.pill small{font:500 11px var(--mono);color:var(--muted);margin-left:6px}
+.pill[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.pill[aria-pressed="true"] small{color:var(--bg);opacity:.8}
+.pill.sug{border-color:var(--accent)}
+
+.para{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.para .goal{font-size:14px;color:var(--muted);margin:0}
+.para ul.ask{margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+.notes{font-size:14px;background:var(--sunk);border-radius:8px;padding:8px 12px;white-space:pre-wrap}
+.notes b{font-family:var(--display)}
+
+.theme{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.ph{display:flex;gap:10px;align-items:flex-start;font-size:16px}
+.ph button{flex:none;font:700 14px var(--mono);width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--teal);cursor:pointer}
+.ph button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.ph span{padding-top:3px}
+.ph em{font-style:normal;font-size:13px;color:var(--muted);display:block}
+
+.bank{display:flex;flex-wrap:wrap;gap:6px}
+.bk{font:500 14px var(--body);padding:4px 10px;border-radius:8px;background:var(--accent-soft);color:var(--ink);border:1px solid transparent;cursor:pointer;text-align:left}
+.bk.used{background:var(--good-soft);color:var(--good)}
+.bk.used::before{content:"✓ "}
+.dock{position:sticky;bottom:0;z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 -6px 20px rgba(0,0,0,.06);max-height:40vh;overflow:auto}
+.dock .stats{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 13px var(--mono);color:var(--muted)}
+.dock .stats b{color:var(--ink)}
+
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.chk li{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:15px}
+.chk .m{font:700 16px var(--mono);text-align:center;border-radius:6px;padding:1px 0}
+.chk .ok{color:var(--good);background:var(--good-soft)}
+.chk .no{color:var(--bad);background:var(--bad-soft)}
+.chk .na{color:var(--muted);background:var(--sunk)}
+.chk small{display:block;color:var(--muted);font-size:13px}
+.chk label{display:contents;cursor:pointer}
+.chk input{width:20px;height:20px;margin:2px 3px;accent-color:var(--teal)}
+.score{font:800 34px var(--display);color:var(--teal)}
+.score small{font:500 14px var(--body);color:var(--muted);margin-left:8px}
+.clean{font:17px/1.9 var(--body);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px}
+.clean p{margin:0 0 1em;text-indent:2em;white-space:pre-wrap}
+.past{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:8px;font-size:15px}
+.why{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.why h3{font:700 15px var(--display);color:var(--ink);margin:0 0 6px}
+.why ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+[hidden]{display:none!important}
+@media (max-width:560px){
+  .card{padding:16px}
+  .grid2{grid-template-columns:1fr}
+  .steps button{font-size:11px;padding:5px 2px}
+  .steps button span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  #site-nav,.steps,header,.why,.noprint,#syn-nav{display:none!important}
+  body{background:#fff;color:#000}
+  .card{border:0;padding:0}
+  .clean{border:0;padding:0;background:#fff}
+}
+</style>
+</head>
+<body class="light-nav">
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+  </div>
+</nav>
+<script>
+(function(){
+  var p=document.currentScript.closest('body').querySelectorAll('[data-page]');
+  var cur=location.pathname.split('/').pop().replace('.html','');
+  if(!cur||cur==='')cur='home';
+  p.forEach(function(a){if(a.dataset.page===cur)a.classList.add('active')});
+})();
+</script>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Synapse · PSLE Tamil · Paper 1</div>
+    <h1>கட்டுரை வழிகாட்டி</h1>
+    <p class="lede">Snap your composition question, then build the story one step at a time: <b>understand</b> it, <b>plan</b> it, gather <b>phrases</b>, <b>write</b>, and <b>check</b> it against what markers look for. Your work saves on this device as you go.</p>
+  </header>
+
+  <nav class="steps" id="steps" aria-label="Steps"></nav>
+  <main id="stage" style="display:flex;flex-direction:column;gap:16px"></main>
+
+  <footer class="why">
+    <h3>How this builds a better composition</h3>
+    <ul>
+      <li><b>Think before you write.</b> Answering who, where, when, what went wrong and what was learnt first keeps the story on the question.</li>
+      <li><b>One paragraph, one job.</b> Every picture or event gets its own paragraph, so nothing is left out.</li>
+      <li><b>Collect, then use.</b> Phrases from the phrase bank and a proverb are chosen before writing, and the write step ticks them off as you use them.</li>
+      <li><b>Check like a marker.</b> The last step checks content, language and organisation, partly automatically and partly by you.</li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+const THEMES=[{"t":"வியப்பு / ஆச்சரியம்","e":"Surprise","x":["ஒரு கணம் சிலை போல் திடுக்கிட்டு நின்றேன்.","அவனின் செயல் என்னை வியப்பில் ஆழ்த்தியது."]},{"t":"அமைதி","e":"Quiet","x":["எங்கும் நிசப்தம் நிலவியது.","ஆள் நடமாட்டம் ஒன்றும் இல்லை."]},{"t":"அதிர்ச்சி","e":"Shock","x":["என் கண்களை என்னால் நம்ப முடியவில்லை.","அதிர்ச்சியால் வாயைப் பிளந்து சிலையாய் நின்றார்.","அடி வயிற்றில் இடி விழுந்தது.","தூக்கிவாரிப் போட்டது.","வார்த்தைகள் தொண்டைக்குழிக்குள் மாட்டிக்கொண்டு வெளிவரத் தவித்தன.","அதிர்ந்து போய் தயக்கத்துடன் கண்களை மூடிக்கொண்டு திரும்பினேன்.","ஒவ்வொரு வார்த்தையும் கேட்கக் கேட்க என் உடல் நடுங்கியது."]},{"t":"தைரியம்","e":"Brave","x":["அஞ்சா நெஞ்சம் கொண்ட","சிங்கத்தின் வலிமையுடன் போராடினான்."]},{"t":"இன்னல் படுவது / துன்பம்","e":"Suffer","x":["வலையில் அகப்பட்ட மீனைப் போல வேதனையில் துடித்தான்.","துக்கம் தொண்டையை அடைக்க கண்களில் நீர் அருவி என வழிந்தது.","சிங்கத்திடம் சிக்கிய மானைப் போல மிரண்டான்.","கண்ணீர் கடலில் மூழ்கினான்."]},{"t":"இயற்கை","e":"Nature","x":["சிலு சிலு என்று தென்றல் காற்று வீசிக்கொண்டிருந்த வேளை.","காற்று இதமாக வீசியது.","அவன் மெய்மறந்து அக்காட்சியைக் கண்டு ரசித்தான்.","நிலவு பூத்த சோலை போல அமைதி வாய்ந்த நேரம்."]},{"t":"கூட்டம்","e":"Crowd","x":["அங்கே மக்கள் கூட்டமாக மொய்த்தனர்.","வெள்ளம் போல் மக்கள் கூட்டம்.","அங்கு ஒரு பெரிய கூட்டமே திரண்டு வந்தது.","பலாப்பழத்தைக் கண்ட ஈக்கள் போல"]},{"t":"மாலை / இரவு நேரம்","e":"Evening / Night","x":["இருள் எங்கும் பரவத் தொடங்கியது.","அல்லும் பகலும்.","கதிரவனின் ஒளி மென்மையாகவும் மாலை காற்று ஜில்லென்று இதமாகவும் இருந்தது.","கதிரவன் கோபம் தணிந்து பூமியிலிருந்து ஒதுங்கிட காற்று ஜில்லென்று வீசியது.","சன்னல் திரையை திறந்த போது கதிரவன் தன் வேலையை சந்திரனிடம் ஒப்படைத்துச் சென்றான்.","நீல வானத்தில் அங்கொன்றும் இங்கொன்றும் நட்சத்திரங்கள் கண் சிமிட்டின.","மாலை மங்கி இலேசான இருள் கௌவத் தொடங்கியது.","கதிரவன் தன் பணியைப் பூர்த்தி செய்து விட்டு சற்று ஓய்வு எடுக்க மேற்கே சென்று கொண்டிருந்தான்."]},{"t":"இரக்கம்","e":"Pity","x":["உள்ளம் உருகியது.","மனம் சூரியனின் ஒளிபட்டு இளகும் பனி போல் இளகியது."]},{"t":"கடல் / அலை","e":"Sea","x":["கடல் அமைதியாக இருந்தது.","கடல் கொந்தளிப்பாக மாறியது.","கடல் அலை கரையைத் தொட்டு விளையாடியது.","கடல் அலை கரையை முத்தமிட்டுச் சென்றது."]},{"t":"காதில் விழுவது","e":"Hear","x":["செவியுற்றான்.","செவிக்கு எட்டியது."]},{"t":"கத்துதல்","e":"Shout","x":["தொண்டை கிழிய கத்தினான்.","தொண்டை வறண்டு போகும் வரை கத்தினான்."]},{"t":"கவலை","e":"Sorrow","x":["சோகக்கடலில் மூழ்கி இருந்தான்.","துக்கம் தொண்டையை அடைத்தது.","ஓ வென்று அழத் தொடங்கினான்.","கண்ணீர் ஆற்று வெள்ளம் போல பெருக்கெடுத்து ஓடியது.","முகத்தில் சோகம் நிழலாடியது.","அனலில் பட்ட புழுவாகத் துடித்தான்.","முகத்தை தொங்கப் போட்டுக்கொண்டு."]},{"t":"கோபம்","e":"Angry","x":["முகம் சிவந்து பற்களை நற நற வென்று கடித்தான்.","சினம் பொங்கியது.","அவன் வாய்க்கு வந்தபடி திட்டினான்.","ஆத்திரம் அவன் கண்ணையும் கருத்தையும் மறைத்தது.","எந்த நேரத்திலும் எரிமலை போல் வெடித்து விடுவார் என்பதை உணர்ந்தேன்.","கண்களால் சுட்டு எரிப்பது போல் முறைத்தான்.","கண்கள் கோவைப்பழம் போல் சிவந்து விட்டன.","என் உள்ளமும் உடலும் கொதித்தன.","சினம் தீப் போல் கொழுந்து விட்டு எரிந்தது.","அவன் வாயிலிருந்து சொற்கள் எரிமலை போல் வெடித்தன."]},{"t":"குரல்","e":"Voice","x":["மெலிந்த குரலில் கூறினான்.","நா தழுதழுக்கப் பேசினான்.","தணிந்த குரலில் கேட்டான்.","கம்பீரக்குரல் என் செவிகளுக்கு எட்டியது.","அவன் குரல் தேனைப் போல் என் செவிகளுக்குப் பாய்ந்தது."]},{"t":"நிகழ்ச்சி மறவாமல் இருப்பது","e":"To remember forever","x":["பசுமரத்தாணி போல் மனதில் பதிந்தது.","இந்நிகழ்ச்சி அவன் மனதில் என்றென்றும் நீங்கா இடத்தைப் பிடித்துவிட்டது.","பழைய ஞாபகம் அவன் மனத்திரையில் நிழலாடியது.","அந்தச் சம்பவம் அவன் நினைவுக்கு வந்து கொண்டே இருந்தது."]},{"t":"கொண்டாட்டம் / மகிழ்ச்சி","e":"Celebration / Happiness","x":["மகிழ்ச்சியால் துள்ளிக் குதித்தான்.","வயிறு வலிக்க சிரித்தான்.","மகிழ்ச்சி கடலில் மிதந்தான்.","நான் சூரியனைக் கண்ட தாமரை போல முகம் மலர்ந்தேன்.","ஆனந்த வெள்ளத்தில் மிதந்தான்.","மானைப் போல் துள்ளிக் குதித்தான்.","அவன் தலையில் பனிக்கட்டியை வைத்தது போன்ற உணர்வு உண்டாயிற்று.","ஆனந்த கடலில் மூழ்குவது போல் ஓர் உணர்வு.","உல்லாச வானில் சிறகடித்து பறப்பது போல","மகிழ்ச்சி வெள்ளம் அவன் மனதில் கரை புரண்டு ஓடியது"]},{"t":"மற்றவர்களுக்கு உதவுதல்","e":"Helping Others","x":["பெண்மணியின் கூக்குரலைக் கேட்ட ஆடவர் தலைதெறிக்க ஓடிவந்து உதவ முன் வந்தார்.","என் நண்பன் தக்க சமயத்தில் உதவிக்கு வந்தான்.","உதவி கரம் நீட்டினான்.","தன் கையே தனக்கு உதவி என்பதைப் போல அவர் வேலையை அவரே செய்து வந்தார்.","அன்பான நண்பனை ஆபத்தில் அறியலாம் என்பதற்கு ஏற்ப என் நண்பன் தக்க தருணத்தில் உதவிக்கு வந்தான்."]},{"t":"மெதுவாக","e":"Slowly","x":["ஆமைபோல் நகர்ந்து.","மெல்ல மெல்ல பதுங்கி.","கூட்டமாக இருந்ததால் மக்கள் எறும்பு போல ஊர்ந்தனர்."]},{"t":"வேகம் / ஓட்டம்","e":"Fast","x":["மின்னல் வேகத்தில் சீறிப்பாய்ந்து ஓடினான்.","வேகமாக ஓடி வந்ததால் அவனுக்கு மேல் மூச்சு கீழ் மூச்சு வாங்கியது.","தலைதெறிக்க ஓடினான்.","முயல் போல் துள்ளிக் குதித்து ஓடினான்.","மின்னல் வேகத்தில் ஓடினான்.","புயல் வேகத்தில்."]},{"t":"பயம்","e":"Scared","x":["கால்களும் கைகளும் நடுங்கின.","மனம் பயத்தில் 'பட் பட்' என்று தாளம் போட்டது.","சிலைபோல் வாயடைத்து நின்றான்.","பயத்தால் அவன் முகம் குப்பென்று வியர்த்தது."]},{"t":"பசி","e":"Hunger","x":["பசி அவன் வயிற்றைக் கிள்ளியது.","நாவில் எச்சில் ஊறுகிறது.","பசியும் தாகமும் அவனை வாட்டியது."]},{"t":"விபத்து","e":"Accident","x":["அவன் இரத்த வெள்ளத்தில் கிடந்தான்.","அவன் பேச்சு மூச்சின்றி கிடந்தான்.","கண்களில் கண்ணீர் ஆறாய் பெருகியது."]},{"t":"விருப்பம்","e":"Like","x":["ஆர்வம் மிகுந்து.","கொள்ளை ஆசை."]},{"t":"வெயில் நேரம் / காலை","e":"Sunny / Morning","x":["வெயில் சுள் என்று காய்ந்தது.","காலைப் பொழுது கதிரவன் பொன்னொளி வீசி எழுந்தான்.","அன்று சூரியனுக்கு என்ன கோபமோ தெரியவில்லை; தன் வெம்மையான கதிர்களால் இந்த உலகை வாட்டிக் கொண்டிருந்தான்."]}];
+const PROVERBS=[{"p": "அகத்தின் அழகு முகத்தில் தெரியும்", "e": "The beauty of the heart shows on the face.", "v": ["kind", "honest"]}, {"p": "அளவுக்கு மிஞ்சினால் அமுதமும் நஞ்சு", "e": "Too much of even nectar becomes poison.", "v": ["safe", "patience"]}, {"p": "ஆழம் அறியாமல் காலை இடாதே", "e": "Do not step in without knowing the depth.", "v": ["safe"]}, {"p": "ஆனைக்கும் அடி சறுக்கும்", "e": "Even an elephant can slip.", "v": ["humble"]}, {"p": "இளமையில் சோம்பல் முதுமையில் வறுமை", "e": "Laziness in youth brings poverty in old age.", "v": ["resp", "persevere"]}, {"p": "ஐந்திலே வளையாதது ஐம்பதில் வளையுமா?", "e": "What does not bend at five, will it bend at fifty?", "v": ["resp"]}, {"p": "ஒன்றுபட்டால் உண்டு வாழ்வு", "e": "If we unite, we thrive.", "v": ["unity"]}, {"p": "கற்றது கைமண்ணளவு கல்லாதது உலகளவு", "e": "What we have learnt is a handful of sand; what we have not is the size of the world.", "v": ["humble"]}, {"p": "சிறு துளி பெரு வெள்ளம்", "e": "Small drops make a great flood.", "v": ["persevere", "unity"]}, {"p": "நொறுங்கத் தின்றால் நூறு வயது", "e": "Chew your food well and live to a hundred.", "v": ["safe"]}, {"p": "அன்பு இருந்தால் ஆகாததும் ஆகும்", "e": "With love, even the impossible becomes possible.", "v": ["kind", "friend"]}, {"p": "எரிகிற விளக்கானாலும் தூண்டுகோல் வேண்டும்", "e": "Even a burning lamp needs its wick raised: the able still need encouragement.", "v": ["friend", "persevere"]}, {"p": "ஒருவர் பொறை இருவர் நட்பு", "e": "One person's patience keeps two people friends.", "v": ["friend", "patience"]}, {"p": "காற்றுள்ளபோதே தூற்றிக்கொள்", "e": "Winnow while the wind blows: use the chance while you have it.", "v": ["resp"]}, {"p": "கெடுவான் கேடு நினைப்பான்", "e": "One who plots harm for others brings about his own ruin.", "v": ["honest"]}, {"p": "தன் கையே தனக்கு உதவி", "e": "Your own hands are your best help.", "v": ["resp"]}, {"p": "தன் முதுகு தனக்குத் தெரியாது", "e": "You cannot see your own back: we miss our own faults.", "v": ["humble"]}, {"p": "தான் பிடித்த முயலுக்கு மூன்றே கால்", "e": "\"The hare I caught has three legs\": stubbornly insisting you are right.", "v": ["humble", "friend"]}, {"p": "பதறாத காரியம் சிதறாது", "e": "A task done calmly does not fall apart.", "v": ["safe", "patience"]}, {"p": "பலநாள் திருடன் ஒருநாள் அகப்படுவான்", "e": "A thief who steals for many days is caught one day.", "v": ["honest"]}, {"p": "ஆக்கப் பொறுத்தவன் ஆறப் பொறுக்க வேண்டும்", "e": "If you waited for the food to cook, wait for it to cool.", "v": ["patience"]}, {"p": "ஒரு கை தட்டினால் ஓசை எழும்புமா?", "e": "Can one hand clapping make a sound?", "v": ["unity"]}, {"p": "கனவில் கண்ட பொருள் கைக்குக் கிட்டுமா?", "e": "Can something seen in a dream come into your hand?", "v": ["persevere"]}, {"p": "காலம் பொன் போன்றது", "e": "Time is like gold.", "v": ["resp"]}, {"p": "நிழலின் அருமை வெயிலில் தெரியும்", "e": "You value shade only when you stand in the sun.", "v": ["grat"]}, {"p": "பகுத்தறியாமல் துணியாதே", "e": "Do not act before thinking it through.", "v": ["safe"]}, {"p": "மனம் உண்டானால் வழி உண்டு", "e": "Where there is a will, there is a way.", "v": ["persevere"]}, {"p": "மின்னுவதெல்லாம் பொன் அல்ல", "e": "All that glitters is not gold.", "v": ["honest", "safe"]}, {"p": "வல்லவனுக்குப் புல்லும் ஆயுதம்", "e": "To a skilled person, even grass is a weapon.", "v": ["persevere"]}, {"p": "வெள்ளம் வருமுன் அணைகோல வேண்டும்", "e": "Build the dam before the flood comes.", "v": ["safe", "resp"]}];
+const VALUES=[
+  {k:'honest',t:'நேர்மை',e:'Honesty'},
+  {k:'kind',t:'இரக்கம் / உதவி',e:'Kindness, helping'},
+  {k:'resp',t:'பொறுப்பு',e:'Responsibility'},
+  {k:'unity',t:'ஒற்றுமை',e:'Teamwork'},
+  {k:'persevere',t:'விடாமுயற்சி',e:'Never giving up'},
+  {k:'safe',t:'கவனம் / பாதுகாப்பு',e:'Being careful, safety'},
+  {k:'friend',t:'நட்பு / மன்னிப்பு',e:'Friendship, forgiving'},
+  {k:'grat',t:'நன்றியுணர்வு',e:'Gratitude'},
+  {k:'humble',t:'பணிவு',e:'Humility'},
+  {k:'patience',t:'பொறுமை',e:'Patience'}
+];
+/* phrase-bank themes worth suggesting for each value (English theme names from THEMES) */
+const SUGGEST={honest:['Shock','Sorrow','Scared'],kind:['Pity','Helping Others','Suffer'],resp:['Fast','Sorrow','Celebration / Happiness'],unity:['Crowd','Helping Others','Celebration / Happiness'],
+  persevere:['Suffer','Celebration / Happiness','Brave'],safe:['Accident','Scared','Shock','Fast'],friend:['Angry','Sorrow','Celebration / Happiness'],grat:['Pity','Helping Others','To remember forever'],
+  humble:['Shock','Sorrow','To remember forever'],patience:['Slowly','Angry','Celebration / Happiness']};
+const SCENES=['Evening / Night','Sunny / Morning','Nature','Sea','Quiet','Crowd'];
+const LINKS=['ஒரு நாள்','அன்று','திடீரென்று','அப்பொழுது','உடனே','சிறிது நேரத்தில்','அதன் பிறகு','மறுநாள்','ஆனால்','இருந்தபோதிலும்','அதனால்','எனவே','இறுதியில்'];
+const HOOKS=[
+  {k:'scene',t:'Time and weather',x:'Open with when it happened and what the sky or weather was like.'},
+  {k:'sound',t:'A sound',x:'Open with a sound: a crash, a shout, the rain.'},
+  {k:'talk',t:'Someone speaking',x:'Open with a line of speech in quotation marks.'},
+  {k:'feel',t:'A feeling',x:'Open with how you (or the main character) felt.'},
+  {k:'prov',t:'A proverb',x:'Open with the proverb your story will prove.'}
+];
+const TARGET=200; /* suggested minimum words; change here if teachers ask for a different length */
+
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=s=>document.querySelector(s);
+const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
+const blank=()=>({type:'pic',n:4,q:'',hw:'',photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
+let d=blank();
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step)d=Object.assign(blank(),s)}catch(e){}
+let photoMem=d.photo;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){try{localStorage.setItem(KEY,JSON.stringify(Object.assign({},d,{photo:''})))}catch(e2){}}};
+const past=()=>{try{return JSON.parse(localStorage.getItem(HKEY)||'[]')}catch(e){return[]}};
+
+function getK(k){return k.split('.').reduce((o,p)=>o==null?undefined:o[p],d)}
+function setK(k,v){const ps=k.split('.');let o=d;ps.slice(0,-1).forEach(p=>{if(o[p]==null)o[p]=/^\d+$/.test(p)?[]:{};o=o[p]});o[ps[ps.length-1]]=v}
+const val=k=>esc(getK(k)||'');
+
+/* paragraphs depend on the question type */
+function paras(){
+  const out=[{id:'intro',ta:'முன்னுரை',en:'Opening',goal:'Set the scene: when, where, who, and a hook that makes the reader want more.',
+    ask:['When did it happen? What was the weather or the time of day like?','Where were you, and who was with you?','Which hook will you use?']}];
+  const n=d.type==='pic'?Math.max(3,Math.min(5,+d.n||4)):3;
+  for(let i=0;i<n;i++){
+    const role=i===0?'build':(i===n-1?'solve':'problem');
+    const R={build:{en:'What happened first',goal:'Start the action. Show what the characters were doing before things changed.',ask:['What were the characters doing?','What did they see, hear or say?']},
+      problem:{en:'The problem',goal:'The most exciting moment. Slow down: describe what happened, how people felt, and what they said.',ask:['What went wrong?','How did the characters feel? Use a phrase from your bank.','What did someone say? Write it as speech.']},
+      solve:{en:'How it was solved',goal:'Show how the problem was solved and who helped.',ask:['Who acted, and what did they do?','How did the characters feel afterwards?']}}[role];
+    out.push({id:'b'+i,ta:d.type==='pic'?'படம் '+(i+1):'நிகழ்வு '+(i+1),en:R.en,goal:R.goal,ask:R.ask,pic:d.type==='pic'?i:-1});
+  }
+  out.push({id:'end',ta:'முடிவுரை',en:'Ending',goal:'Close the story: how it ended for everyone, how you feel now, and the lesson, ideally with your proverb.',
+    ask:['How did it end? How do you feel when you think about it now?','What lesson did you learn? What will you do differently?','Where does your proverb fit?']});
+  return out;
+}
+const helping=()=>d.hw.split(/[,،;\n]+/).map(s=>s.trim()).filter(Boolean);
+const allText=()=>paras().map(p=>(d.text[p.id]||'').trim()).filter(Boolean);
+/* Tamil words change their endings (பந்து → பந்தை), so match on the word without its last letter or two */
+function stem(w){const c=[...w];return c.length>=4?c.slice(0,c.length-2).join(''):w}
+const uses=(t,w)=>t.includes(w)||t.includes(stem(w));
+const words=t=>t.split(/\s+/).filter(Boolean).length;
+
+const STEPS=[['கேள்வி','Question'],['புரிதல்','Understand'],['திட்டம்','Plan'],['சொல்வளம்','Phrases'],['எழுது','Write'],['சரிபார்','Check']];
+function renderSteps(){
+  $('#steps').innerHTML=STEPS.map((s,i)=>`<button data-go="${i+1}" ${d.step===i+1?'aria-current="step"':''} class="${i+1<d.step?'done':''}" ${i>0&&!d.ok?'disabled':''}>${s[0]}<span>${i+1} ${s[1]}</span></button>`).join('');
+}
+function go(n){
+  if(n>1&&!d.ok){
+    if(window.synAllow&&!synAllow('katturai:new',()=>{d.ok=1;save();go(n)}))return;
+    d.ok=1;
+  }
+  d.step=n;save();render();window.scrollTo({top:0,behavior:'smooth'});
+}
+const nav=(back,next,label)=>`<div class="row noprint" style="justify-content:space-between">${back?`<button class="btn ghost" data-go="${back}">← Back</button>`:'<span></span>'}${next?`<button class="btn primary" data-go="${next}">${label} →</button>`:''}</div>`;
+
+/* ---------- 1 question ---------- */
+function sQuestion(){
+  const P=past();
+  return `<section class="card">
+    <h2>உன் கேள்வி <small>Step 1 · Your question</small></h2>
+    <p class="hint">Snap the composition question, or type it in. The photo stays on this device.</p>
+    <div class="seg2" role="group" aria-label="Type of composition">
+      <button data-set="type" data-v="pic" aria-pressed="${d.type==='pic'}">படக்கட்டுரை · pictures</button>
+      <button data-set="type" data-v="topic" aria-pressed="${d.type==='topic'}">தலைப்புக் கட்டுரை · topic</button>
+    </div>
+    <div class="photo">
+      ${photoMem?`<img src="${photoMem}" alt="Your question paper">
+        <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
+      :`<label class="up"><input type="file" accept="image/*" id="file">📷 Take or upload a photo of the question</label>`}
+    </div>
+    <label class="f">The question <small>Type it, or tap “Read the words from the photo”, then fix any mistakes.</small>
+      <textarea data-k="q" rows="4" placeholder="${d.type==='pic'?'எ.கா. கீழே கொடுக்கப்பட்டுள்ள படங்களைப் பார்த்துக் கட்டுரை எழுதுக.':'எ.கா. தலைப்பு: மறக்க முடியாத ஒரு நாள்'}">${val('q')}</textarea></label>
+    <label class="f">Helping words <small>If the paper gives words you must use, type them here, separated by commas.</small>
+      <input type="text" data-k="hw" value="${val('hw')}" placeholder="எ.கா. பூங்கா, மழை, உதவி"></label>
+    ${d.type==='pic'?`<div class="row"><span class="hint">How many pictures?</span><div class="seg2" role="group" aria-label="Number of pictures">${[3,4,5].map(n=>`<button data-set="n" data-v="${n}" aria-pressed="${+d.n===n}">${n}</button>`).join('')}</div></div>`:''}
+    ${nav(0,2,'Understand the question')}
+  </section>
+  ${P.length?`<section class="card"><h3>Finished compositions <small>${P.length}</small></h3>${P.slice(0,8).map((c,i)=>`<div class="past"><span>${esc(c.title)} <small class="hint">${new Date(c.at).toLocaleDateString('en-SG',{day:'numeric',month:'short'})} · ${c.words} words</small></span><button class="btn sm" data-past="${i}">Read</button></div>`).join('')}<div id="pastview"></div></section>`:''}`;
+}
+
+/* ---------- 2 understand ---------- */
+function sUnderstand(){
+  const n=+d.n||4;
+  const Q=(k,ta,en,ph)=>`<label class="f">${ta} <small>${en}</small><input type="text" data-k="${k}" value="${val(k)}" placeholder="${esc(ph||'')}"></label>`;
+  return `<section class="card">
+    <h2>கேள்வியைப் புரிந்துகொள் <small>Step 2 · Understand it</small></h2>
+    ${d.q?`<div class="notes"><b>Question:</b> ${esc(d.q)}${helping().length?`\n<b>Helping words:</b> ${esc(helping().join(', '))}`:''}</div>`:''}
+    <div class="tip"><b>Read the question twice.</b> Find the topic words and any helping words. ${d.type==='pic'?'Every picture must appear in your story, in order.':'Your whole story must answer the topic, not just touch it.'}</div>
+    ${d.type==='pic'?`<h3>Look at each picture <small>Who is there? What are they doing? How do they feel?</small></h3>
+      ${Array.from({length:n},(_,i)=>`<label class="f">படம் ${i+1}<textarea data-k="pics.${i}" rows="2" placeholder="Who, doing what, feeling how?">${val('pics.'+i)}</textarea></label>`).join('')}`:''}
+    <h3>Your story in six answers</h3>
+    <div class="grid2">
+      ${Q('who','யார்?','Who is the main character? Give them a name.','எ.கா. நான், என் தம்பி கவின்')}
+      ${Q('where','எங்கே?','Where does it happen?','எ.கா. வீட்டருகே உள்ள பூங்கா')}
+      ${Q('when','எப்போது?','When? Time of day, weather.','எ.கா. ஒரு சனிக்கிழமை மாலை')}
+      ${Q('problem','என்ன சிக்கல்?','What goes wrong?','எ.கா. தம்பி மிதிவண்டியிலிருந்து விழுந்தான்')}
+      ${Q('end','எப்படி முடிந்தது?','How is it solved?','எ.கா. ஒரு பெரியவர் உதவினார்')}
+      ${Q('lesson','என்ன பாடம்?','What lesson is learnt?','எ.கா. கவனமாக இருக்க வேண்டும்')}
+    </div>
+    <h3>What is the story really about? <small>Pick one value</small></h3>
+    <div class="pills">${VALUES.map(v=>`<button class="pill" data-set="value" data-v="${v.k}" aria-pressed="${d.value===v.k}">${v.t}<small>${v.e}</small></button>`).join('')}</div>
+    <h3>Who tells the story?</h3>
+    <div class="seg2" role="group" aria-label="Point of view"><button data-set="pov" data-v="first" aria-pressed="${d.pov==='first'}">நான் · I was there</button><button data-set="pov" data-v="third" aria-pressed="${d.pov==='third'}">அவன் / அவள் · about someone else</button></div>
+    <p class="hint">Follow the question if it says which. Whichever you pick, keep it the same all the way through.</p>
+    ${nav(1,3,'Plan the paragraphs')}
+  </section>`;
+}
+
+/* ---------- 3 plan ---------- */
+function sPlan(){
+  const P=paras();
+  return `<section class="card">
+    <h2>திட்டமிடு <small>Step 3 · Plan</small></h2>
+    <p class="hint">${P.length} paragraphs, one job each. Jot a few words for each, in Tamil or English. These notes are only for you.</p>
+    ${P.map(p=>`<div class="para">
+      <h3>${p.ta} <small>${p.en}</small></h3>
+      <p class="goal">${p.goal}</p>
+      ${p.pic>=0&&d.pics[p.pic]?`<div class="notes"><b>Picture ${p.pic+1}:</b> ${esc(d.pics[p.pic])}</div>`:''}
+      ${p.id==='intro'&&(d.when||d.where||d.who)?`<div class="notes">${[d.when&&'<b>When:</b> '+esc(d.when),d.where&&'<b>Where:</b> '+esc(d.where),d.who&&'<b>Who:</b> '+esc(d.who)].filter(Boolean).join(' · ')}</div>`:''}
+      ${p.en==='The problem'&&d.problem?`<div class="notes"><b>Problem:</b> ${esc(d.problem)}</div>`:''}
+      ${p.en==='How it was solved'&&d.end?`<div class="notes"><b>Solved by:</b> ${esc(d.end)}</div>`:''}
+      ${p.id==='end'&&d.lesson?`<div class="notes"><b>Lesson:</b> ${esc(d.lesson)}</div>`:''}
+      ${p.id==='intro'?`<div class="pills" role="group" aria-label="Opening hook">${HOOKS.map(h=>`<button class="pill" data-set="hook" data-v="${h.k}" aria-pressed="${d.hook===h.k}" title="${esc(h.x)}">${h.t}</button>`).join('')}</div><p class="goal">${esc((HOOKS.find(h=>h.k===d.hook)||HOOKS[0]).x)}</p>`:''}
+      <ul class="ask">${p.ask.map(a=>`<li>${a}</li>`).join('')}</ul>
+      <textarea data-k="plan.${p.id}" rows="2" placeholder="Notes for this paragraph">${val('plan.'+p.id)}</textarea>
+    </div>`).join('')}
+    ${nav(2,4,'Collect phrases')}
+  </section>`;
+}
+
+/* ---------- 4 phrases ---------- */
+function sPhrases(){
+  const sug=new Set([...(SUGGEST[d.value]||['Shock','Scared','Celebration / Happiness']),...SCENES.slice(0,3)]);
+  const order=[...THEMES].sort((a,b)=>(sug.has(b.e)-sug.has(a.e)));
+  const provs=PROVERBS.filter(p=>!d.value||p.v.includes(d.value));
+  const rest=PROVERBS.filter(p=>!provs.includes(p));
+  return `<section class="card">
+    <h2>சொல்வளம் <small>Step 4 · Phrases</small></h2>
+    <p class="hint">Tap <b>+</b> to put a phrase in your bank. Aim for <b>5 or more</b>: one for the scene, a few for feelings at the problem, one for the ending. Themes with a gold edge suit your story.</p>
+    <div class="pills" id="tpills">${order.map(t=>`<button class="pill${sug.has(t.e)?' sug':''}" data-theme="${esc(t.e)}" aria-pressed="false">${esc(t.t)}<small>${esc(t.e)}</small></button>`).join('')}</div>
+    <div id="tview"></div>
+    <h3>Your bank <small id="bcount">${d.bank.length} phrases</small></h3>
+    <div class="bank" id="bank">${bankHtml()}</div>
+  </section>
+  <section class="card">
+    <h2>பழமொழி <small>A proverb for your ending</small></h2>
+    <p class="hint">${d.value?'These fit the value you picked. ':''}A proverb that matches the lesson makes a strong last line. Pick one, or none.</p>
+    <div class="chk" id="provs">${provs.map(provHtml).join('')}</div>
+    ${d.value&&rest.length?`<details><summary class="hint" style="cursor:pointer">Show all ${PROVERBS.length} proverbs</summary><div class="chk" style="margin-top:8px">${rest.map(provHtml).join('')}</div></details>`:''}
+  </section>
+  <section class="card">
+    <h2>இணைப்புச் சொற்கள் <small>Linking words</small></h2>
+    <p class="hint">Use at least three to move the story along. The check step counts them.</p>
+    <div class="bank">${LINKS.map(l=>`<span class="bk" style="cursor:default">${l}</span>`).join('')}</div>
+    ${nav(3,5,'Start writing')}
+  </section>`;
+}
+const provHtml=p=>`<label class="ph" style="cursor:pointer"><input type="radio" name="prov" value="${esc(p.p)}" ${d.prov===p.p?'checked':''} style="accent-color:var(--teal);width:18px;height:18px;margin-top:5px"><span>${esc(p.p)}<em>${esc(p.e)}</em></span></label>`;
+function bankHtml(){
+  if(!d.bank.length)return '<span class="hint">Nothing yet. Tap + next to a phrase.</span>';
+  return d.bank.map((x,i)=>`<button class="bk" data-rm="${i}" title="Remove">${esc(x)} ✕</button>`).join('');
+}
+function themeView(e){
+  const t=THEMES.find(x=>x.e===e);if(!t)return '';
+  return `<div class="theme"><h3>${esc(t.t)} <small>${esc(t.e)}</small></h3>${t.x.map(x=>`<div class="ph"><button data-add="${esc(x)}" aria-pressed="${d.bank.includes(x)}" aria-label="Add to bank">${d.bank.includes(x)?'✓':'+'}</button><span>${esc(x)}</span></div>`).join('')}</div>`;
+}
+
+/* ---------- 5 write ---------- */
+function sWrite(){
+  const P=paras(),hw=helping();
+  return `<section class="card">
+    <h2>எழுது <small>Step 5 · Write</small></h2>
+    <p class="hint">Write one paragraph at a time with your notes beside you. Tap a phrase in the box at the bottom to drop it in where your cursor is, then make it fit your sentence.</p>
+    ${hw.length?`<div class="tip"><b>Helping words to use:</b> ${esc(hw.join(', '))}</div>`:''}
+    ${P.map(p=>`<div class="para">
+      <h3>${p.ta} <small>${p.en}</small></h3>
+      ${(d.plan[p.id]||(p.pic>=0&&d.pics[p.pic]))?`<div class="notes">${p.pic>=0&&d.pics[p.pic]?`<b>Picture:</b> ${esc(d.pics[p.pic])}\n`:''}${d.plan[p.id]?`<b>Plan:</b> ${esc(d.plan[p.id])}`:''}</div>`:`<p class="goal">${p.goal}</p>`}
+      ${p.id==='end'&&d.prov?`<div class="notes"><b>Your proverb:</b> ${esc(d.prov)}</div>`:''}
+      <textarea class="big" data-k="text.${p.id}" lang="ta" placeholder="${p.ta}…">${val('text.'+p.id)}</textarea>
+    </div>`).join('')}
+    ${nav(4,6,'Check my composition')}
+  </section>
+  <div class="dock noprint" id="dock"></div>`;
+}
+let lastTa=null;
+function dock(){
+  const el=$('#dock');if(!el)return;
+  const T=allText().join('\n'),hw=helping(),hu=hw.filter(w=>uses(T,w)).length,bu=d.bank.filter(x=>T.includes(x)).length;
+  el.innerHTML=`<div class="stats"><span><b>${words(T)}</b> / ${TARGET} words</span>${hw.length?`<span>helping words <b>${hu}/${hw.length}</b></span>`:''}<span>phrases used <b>${bu}/${d.bank.length}</b></span>${d.prov?`<span>proverb <b>${T.includes(d.prov)?'✓':'–'}</b></span>`:''}</div>
+    <div class="bank">${d.bank.map(x=>`<button class="bk${T.includes(x)?' used':''}" data-ins="${esc(x)}">${esc(x)}</button>`).join('')}${d.prov?`<button class="bk${T.includes(d.prov)?' used':''}" data-ins="${esc(d.prov)}">${esc(d.prov)}</button>`:''}</div>`;
+}
+
+/* ---------- 6 check ---------- */
+function checks(){
+  const P=paras(),T=allText().join('\n'),hw=helping(),W=words(T);
+  const sents=T.split(/[.!?।\n]+/).map(s=>s.trim()).filter(s=>words(s)>0);
+  const starts={};sents.forEach(s=>{const f=s.split(/\s+/)[0];starts[f]=(starts[f]||0)+1});
+  const rep=Object.entries(starts).filter(([,c])=>c>=3&&c>=sents.length*0.3).map(([w])=>w);
+  const long=sents.filter(s=>words(s)>22).length;
+  const empty=P.filter(p=>words(d.text[p.id]||'')<15);
+  const links=LINKS.filter(l=>T.includes(l));
+  const bu=d.bank.filter(x=>T.includes(x)).length;
+  const endT=d.text.end||'';
+  const out=[
+    {g:'அமைப்பு · Organisation',t:`Every paragraph written (${P.length - empty.length}/${P.length})`,ok:!empty.length,why:empty.length?`Still short: ${empty.map(p=>p.ta).join(', ')}. Aim for at least 3 sentences each.`:''},
+    {g:'உள்ளடக்கம் · Content',t:`Length: ${W} words`,ok:W>=TARGET,why:W<TARGET?`Aim for about ${TARGET}. Add detail at the problem: feelings, sounds, what people said.`:''},
+    hw.length?{g:'உள்ளடக்கம் · Content',t:`Helping words used (${hw.filter(w=>uses(T,w)).length}/${hw.length})`,ok:hw.every(w=>uses(T,w)),why:hw.filter(w=>!uses(T,w)).length?'Not found yet: '+hw.filter(w=>!uses(T,w)).join(', '):''}:null,
+    {g:'உள்ளடக்கம் · Content',t:'Someone speaks in the story',ok:/["“”‘’']/.test(T),why:'A line or two of speech in quotation marks makes the problem come alive.'},
+    {g:'மொழி · Language',t:`Phrases from your bank used (${bu})`,ok:bu>=3,why:bu<3?'Use at least 3, especially for feelings at the problem.':''},
+    {g:'அமைப்பு · Organisation',t:`Linking words (${links.length})`,ok:links.length>=3,why:links.length<3?'Try: '+LINKS.filter(l=>!links.includes(l)).slice(0,4).join(', '):''},
+    {g:'உள்ளடக்கம் · Content',t:'The ending gives a lesson or proverb',ok:!!(d.prov&&endT.includes(d.prov))||words(endT)>=25,why:'Say what you learnt, and finish with your proverb if you chose one.'},
+    {g:'மொழி · Language',t:'Sentences start in different ways',ok:!rep.length,why:rep.length?`Many sentences start with “${rep.join('”, “')}”. Start some with a time, a sound or a feeling instead.`:''},
+    {g:'மொழி · Language',t:'No very long sentences',ok:!long,why:long?`${long} sentence${long>1?'s are':' is'} over 22 words. Split ${long>1?'them':'it'} in two.`:''}
+  ].filter(Boolean);
+  return out;
+}
+const SELF=[
+  {g:'உள்ளடக்கம் · Content',k:'q',t:'My story answers the question, not just the topic in general.'},
+  d.type==='pic'?{g:'உள்ளடக்கம் · Content',k:'pics',t:'Every picture is in the story, in order.'}:null,
+  {g:'உள்ளடக்கம் · Content',k:'feel',t:'I showed feelings, not just events.'},
+  {g:'மொழி · Language',k:'tense',t:'I kept to past tense for what happened.',s:'எ.கா. சென்றேன், பார்த்தேன், கூறினான்'},
+  {g:'மொழி · Language',k:'pov',t:'I kept to the same narrator (நான் or அவன்/அவள்) all through.'},
+  {g:'மொழி · Language',k:'sound',t:'I checked ல / ள / ழ, ர / ற and ந / ன / ண in every word I was unsure of.',l:'oli.html',lt:'Practise in C6 ஒலி'},
+  {g:'மொழி · Language',k:'case',t:'I checked case endings: -ஐ, -ஆல், -க்கு, -இல், -உடைய.',l:'veerrumai.html',lt:'Practise in A1 வேற்றுமை'},
+  {g:'மொழி · Language',k:'spell',t:'I checked spelling and full stops.'},
+  {g:'அமைப்பு · Organisation',k:'aloud',t:'I read the whole composition aloud once and fixed what sounded wrong.'}
+];
+function sCheck(){
+  const C=checks(),S=SELF.filter(Boolean),ok=C.filter(c=>c.ok).length,so=S.filter(s=>d.self[s.k]).length;
+  const groups=['உள்ளடக்கம் · Content','மொழி · Language','அமைப்பு · Organisation'];
+  return `<section class="card">
+    <h2>சரிபார் <small>Step 6 · Check</small></h2>
+    <p class="hint">Markers look at three things: <b>content</b> (உள்ளடக்கம்), <b>language</b> (மொழி) and <b>organisation</b> (அமைப்பு). The first list is checked for you; the second is yours to tick honestly.</p>
+    <div class="score">${ok+so} / ${C.length+S.length}<small>checks passed</small></div>
+    ${groups.map(g=>{const c=C.filter(x=>x.g===g),s=S.filter(x=>x.g===g);if(!c.length&&!s.length)return '';
+      return `<h3>${g}</h3><ul class="chk">${c.map(x=>`<li><span class="m ${x.ok?'ok':'no'}">${x.ok?'✓':'!'}</span><span>${esc(x.t)}${!x.ok&&x.why?`<small>${esc(x.why)}</small>`:''}</span></li>`).join('')}
+        ${s.map(x=>`<li><label><input type="checkbox" data-k="self.${x.k}" ${d.self[x.k]?'checked':''}><span>${esc(x.t)}${x.s?`<small>${esc(x.s)}</small>`:''}${x.l?`<small><a href="${x.l}" style="color:var(--teal)">${esc(x.lt)}</a></small>`:''}</span></label></li>`).join('')}</ul>`}).join('')}
+    <div class="row noprint" style="justify-content:space-between"><button class="btn ghost" data-go="5">← Back to writing</button><button class="btn primary" id="finish">${d.done?'Show my clean copy':'I’m done: show my clean copy'}</button></div>
+  </section>
+  <section class="card" id="cleancard" ${d.done?'':'hidden'}>
+    <h2>${esc(title())} <small>${words(allText().join(' '))} words</small></h2>
+    <div class="clean" id="clean">${allText().map(t=>`<p>${esc(t)}</p>`).join('')}</div>
+    <div class="row noprint"><button class="btn" id="copy">Copy</button><button class="btn" onclick="print()">Print</button><a class="btn" id="wa" target="_blank" rel="noopener">Send to a parent or teacher</a><button class="btn ghost" id="new">Start a new composition</button></div>
+  </section>`;
+}
+function title(){const q=(d.q||'').split('\n').map(s=>s.trim()).find(s=>s.length>3)||'';return q?q.slice(0,60):(d.type==='pic'?'படக்கட்டுரை':'கட்டுரை')}
+
+/* ---------- photo + reading the words ---------- */
+function loadPhoto(file){
+  const img=new Image(),url=URL.createObjectURL(file);
+  img.onload=()=>{const m=1600,s=Math.min(1,m/Math.max(img.width,img.height)),c=document.createElement('canvas');
+    c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    photoMem=c.toDataURL('image/jpeg',.8);d.photo=photoMem;URL.revokeObjectURL(url);save();render()};
+  img.src=url;
+}
+function loadScript(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+async function readPhoto(){
+  const msg=$('#ocrmsg'),b=$('#ocr');b.disabled=true;
+  try{
+    msg.textContent='Getting the reader ready (first time takes a little while)…';
+    if(!window.Tesseract)await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
+    const w=await Tesseract.createWorker('tam+eng',1,{logger:m=>{if(m.status==='recognizing text')msg.textContent='Reading… '+Math.round(m.progress*100)+'%'}});
+    const r=await w.recognize(photoMem);await w.terminate();
+    const t=r.data.text.replace(/[\u200c\u200d]/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+    if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
+    d.q=(d.q?d.q.trim()+'\n':'')+t;save();render();
+    $('#ocrmsg').textContent='Done. Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
+  }catch(e){msg.textContent='Could not load the reader. Check your connection, or type the question instead.';b.disabled=false}
+}
+
+/* ---------- render + events ---------- */
+function render(){
+  renderSteps();
+  $('#stage').innerHTML=[null,sQuestion,sUnderstand,sPlan,sPhrases,sWrite,sCheck][d.step]();
+  if(d.step===5)dock();
+  if(d.step===6&&d.done)share();
+}
+function share(){const a=$('#wa');if(a)a.href='https://wa.me/?text='+encodeURIComponent(title()+'\n\n'+allText().join('\n\n'))}
+let tm;
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(!k)return;
+  setK(k,e.target.type==='checkbox'?e.target.checked:e.target.value);clearTimeout(tm);tm=setTimeout(save,300);
+  if(d.step===5)dock();
+  if(d.step===6&&e.target.type==='checkbox'){save();const y=scrollY;render();scrollTo(0,y)}});
+document.addEventListener('focusin',e=>{if(e.target.tagName==='TEXTAREA'&&/^text\./.test(e.target.dataset.k||''))lastTa=e.target});
+document.addEventListener('change',e=>{
+  if(e.target.id==='file'&&e.target.files[0])loadPhoto(e.target.files[0]);
+  if(e.target.name==='prov'){d.prov=e.target.value;save()}
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button,a');if(!b)return;
+  if(b.dataset.go){go(+b.dataset.go);return}
+  if(b.dataset.set){const k=b.dataset.set,v=b.dataset.v;d[k]=(k==='value'&&d[k]===v)?'':v;save();const y=scrollY;render();scrollTo(0,y);return}
+  if(b.id==='ocr'){readPhoto();return}
+  if(b.id==='rmphoto'){photoMem='';d.photo='';save();render();return}
+  if(b.dataset.theme!==undefined){const on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('#tpills .pill').forEach(p=>p.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed',String(!on));$('#tview').innerHTML=on?'':themeView(b.dataset.theme);return}
+  if(b.dataset.add!==undefined){const x=b.dataset.add,i=d.bank.indexOf(x);if(i>-1)d.bank.splice(i,1);else d.bank.push(x);save();
+    b.setAttribute('aria-pressed',String(i<0));b.textContent=i<0?'✓':'+';$('#bank').innerHTML=bankHtml();$('#bcount').textContent=d.bank.length+' phrases';return}
+  if(b.dataset.rm!==undefined){d.bank.splice(+b.dataset.rm,1);save();$('#bank').innerHTML=bankHtml();$('#bcount').textContent=d.bank.length+' phrases';
+    const open=document.querySelector('#tpills .pill[aria-pressed="true"]');if(open)$('#tview').innerHTML=themeView(open.dataset.theme);return}
+  if(b.dataset.ins!==undefined){const ta=lastTa||document.querySelector('textarea[data-k^="text."]');if(!ta)return;
+    const s=ta.selectionStart??ta.value.length,x=b.dataset.ins,pre=ta.value.slice(0,s),sp=pre&&!/\s$/.test(pre)?' ':'';
+    ta.value=pre+sp+x+' '+ta.value.slice(ta.selectionEnd??s);ta.focus();const p=s+sp.length+x.length+1;ta.setSelectionRange(p,p);
+    ta.dispatchEvent(new Event('input',{bubbles:true}));return}
+  if(b.dataset.past!==undefined){const c=past()[+b.dataset.past];$('#pastview').innerHTML=c?`<div class="clean" style="margin-top:10px"><b>${esc(c.title)}</b>${c.text.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`:'';return}
+  if(b.id==='finish'){
+    if(!d.done){const C=checks(),S=SELF.filter(Boolean);d.done=1;save();
+      window.synTrack&&synTrack('round',{lab:'katturai',score:C.filter(c=>c.ok).length+S.filter(s=>d.self[s.k]).length,of:C.length+S.length,words:words(allText().join(' '))});}
+    render();const cc=$('#cleancard');cc&&cc.scrollIntoView({behavior:'smooth'});return}
+  if(b.id==='copy'){navigator.clipboard&&navigator.clipboard.writeText(title()+'\n\n'+allText().join('\n\n')).then(()=>{b.textContent='Copied'});return}
+  if(b.id==='new'){if(!confirm('Start a new composition? This one is kept under “Finished compositions”.'))return;
+    const P=past();P.unshift({title:title(),at:Date.now(),words:words(allText().join(' ')),text:allText()});try{localStorage.setItem(HKEY,JSON.stringify(P.slice(0,20)))}catch(e){}
+    d=blank();photoMem='';save();render();window.scrollTo({top:0});return}
+});
+render();
+</script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
+<script src="assets/pay.js" defer></script>
+</body>
+</html>
