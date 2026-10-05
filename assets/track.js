@@ -102,16 +102,14 @@
     overlay = document.createElement('div'); overlay.id = 'syn-ov';
     overlay.innerHTML =
       '<form id="syn-card" role="dialog" aria-modal="true" aria-labelledby="syn-h" novalidate>' +
-      '<h2 id="syn-h">' + (gate ? 'Sign up to keep going' : 'Welcome to Synapse Tamil') + '</h2>' +
-      '<p>' + (
-        gate ? 'Your first question was free. Enter your details to keep practising. It takes 30 seconds.' : 'Enter your details to start. It takes 30 seconds.') + '</p>' +
+      '<h2 id="syn-h">Sign in to continue</h2>' +
       '<label class="f" for="syn-name">Name</label><input id="syn-name" type="text" autocomplete="name" maxlength="80" required>' +
       '<label class="f" for="syn-school">School</label><input id="syn-school" type="text" autocomplete="organization" maxlength="80" required>' +
       '<label class="f" for="syn-level">Level</label><select id="syn-level" required><option value="">Choose…</option><option>Primary 3</option><option>Primary 4</option><option>Primary 5</option><option>Primary 6</option><option>Other</option></select>' +
       '<label class="f" for="syn-email">Email (yours or a parent\'s)</label><input id="syn-email" type="email" autocomplete="email" maxlength="120" required>' +
-      '<p class="small">We use your details to see who is using Synapse Tamil and how, and keep them private. Your details cannot be changed here after you sign up' + (CFG.contact ? '. To see, correct or delete them, email ' + CFG.contact.replace(/[<>&"]/g, '') : '') + '.</p>' +
+      (CFG.contact ? '<p class="small">Questions? Email ' + CFG.contact.replace(/[<>&"]/g, '') + '.</p>' : '') +
       '<div id="syn-err" role="alert"></div>' +
-      '<div class="row"><button type="submit" class="p">' + 'Start' + '</button>' +
+      '<div class="row"><button type="submit" class="p">' + 'Continue' + '</button>' +
       (gate ? '' : '<button type="button" id="syn-skip">Close</button>') +
       '</div></form>';
     document.body.appendChild(overlay);
@@ -142,7 +140,7 @@
   function label() {
     if (!navLink) return;
     var on = profile && profile.name;
-    navLink.textContent = on ? 'Hi, ' + profile.name.split(' ')[0].slice(0, 12) : 'Sign up';
+    navLink.textContent = on ? 'Hi, ' + profile.name.split(' ')[0].slice(0, 12) : 'Sign in';
     if (on) { navLink.removeAttribute('href'); navLink.style.cursor = 'default'; navLink.setAttribute('aria-disabled', 'true'); }
     else { navLink.href = '#'; navLink.style.cursor = ''; navLink.removeAttribute('aria-disabled'); }
   }
