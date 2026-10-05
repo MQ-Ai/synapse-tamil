@@ -49,7 +49,10 @@
     var parts = String(key).split(':');
     return parts[0] + (SUBS[parts[1]] ? ':' + parts[1] : '');
   }
+  var TESTPAY = false;
+  try { if (/[?&]testpay=1/.test(location.search)) sessionStorage.setItem('syn-testpay', '1'); TESTPAY = sessionStorage.getItem('syn-testpay') === '1'; } catch (e) {}
   function unlocked(key) {
+    if (TESTPAY) return false; /* TEST BRANCH ONLY: ?testpay=1 skips the free round */
     var sec = section(key), u = get(UK) || { done: {}, tries: {}, cases: {} };
     if (/:paper$/.test(sec)) return false;
     if (sec === 'data') {
