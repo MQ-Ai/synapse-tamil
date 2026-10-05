@@ -163,10 +163,11 @@
     return false;
   };
   /* exam papers: each question on a paper counts as a question. Answer inputs sit
-     inside .q blocks; a blocked choice is undone, then replayed after sign-up. */
+     inside .q blocks; a blocked choice is undone, then replayed after sign-up
+     (or after a pass is bought: pay.js wraps synAllow). */
   document.addEventListener('change', function (e) {
     var el = e.target, q = el && el.closest ? el.closest('.q') : null;
-    if (!q || profile || !/^(INPUT|SELECT)$/.test(el.tagName)) return;
+    if (!q || !/^(INPUT|SELECT)$/.test(el.tagName)) return;
     var box = q.parentNode, qs = box ? Array.prototype.indexOf.call(box.querySelectorAll('.q'), q) : -1;
     var chip = box && box.querySelector('.paperhead .chip');
     var key = page() + ':paper:' + (chip ? chip.textContent.trim() : '') + ':' + qs;
