@@ -22,3 +22,11 @@ window.SYNAPSE_PAY = {
   short: 'Every lab and exam paper',
   parent: true
 };
+
+/* Challenge-of-the-day reminders (assets/app.js, api/push.js). Paste the PUBLIC key
+   from `npx web-push generate-vapid-keys` here. While it is empty, the reminder
+   button stays hidden; the app install and the daily challenge work either way.
+   The private key never goes in this file: it lives in Vercel (see docs/app/SETUP.md). */
+window.SYNAPSE_PUSH = {
+  publicKey: ''
+};

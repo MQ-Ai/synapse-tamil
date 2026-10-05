@@ -1,0 +1,11 @@
+{
+  "name": "synapse-tamil",
+  "private": true,
+  "description": "Static site; package.json only exists for the reminder sender in api/push.js.",
+  "scripts": {
+    "build-daily": "node scripts/build-daily.js"
+  },
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}

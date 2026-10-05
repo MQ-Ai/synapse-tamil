@@ -21,6 +21,7 @@
  *                (you can also type "refunded" in the status cell to cancel a pass by hand)
  *   Devices      extra devices unlocked with an emailed code
  *   Codes        unlock codes waiting to be used (rows are removed once used)
+ *   Push         one row per device that switched on reminders (made by apps-script-push.gs)
  * Join Events to Signups on the uid column.
  */
 var HEADERS = {
@@ -71,6 +72,7 @@ function doPost(e) {
   var lock = LockService.getScriptLock();
   try {
     var p = JSON.parse(e.postData.contents);
+    if (p && /^push_/.test(String(p.event))) return pushPost_(p); // reminders: apps-script-push.gs
     if (!p || !LEVELS_OK.hasOwnProperty(p.app) || p.v !== 1 || !UID_RE.test(String(p.uid))) return json_({ ok: false });
     var uid = String(p.uid), now = new Date(), ev = String(p.event), app = p.app;
     lock.waitLock(20000);
@@ -164,6 +166,7 @@ function untilFor_(app, uid) {
 
 function doGet(e) {
   var p = (e && e.parameter) || {}, app = p.app, lock = LockService.getScriptLock();
+  if (/^push_/.test(String(p.a))) return pushGet_(p); // reminders: apps-script-push.gs
   if (!PASSES.hasOwnProperty(app)) return json_({ ok: false });
   try {
     lock.waitLock(20000);
