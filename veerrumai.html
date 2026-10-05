@@ -627,7 +627,21 @@ function onChoice(btn, idx, item) {
     </div>
   `;
 
-  document.getElementById('d-conf').hidden = false;
+  const confEl = document.getElementById('d-conf');
+  if (isCorrect) {
+    confEl.innerHTML = `<p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
+      <div class="conf-row">
+        <button class="conf-btn knew"    id="btn-knew">✓ Knew it</button>
+        <button class="conf-btn guessed" id="btn-guessed">↺ Guessed</button>
+      </div>`;
+    confEl.hidden = false;
+    document.getElementById('btn-knew').addEventListener('click', () => onConf(true));
+    document.getElementById('btn-guessed').addEventListener('click', () => onConf(false));
+  } else {
+    confEl.innerHTML = `<div class="conf-row"><button class="conf-btn guessed" id="btn-next-wrong">Next →</button></div>`;
+    confEl.hidden = false;
+    document.getElementById('btn-next-wrong').addEventListener('click', () => onConf(false));
+  }
 }
 
 function onConf(knew) {
@@ -718,10 +732,8 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 /* ──────────────────────────────────────────────────────────────
-   CONFIDENCE BUTTONS & RESTART
+   RESTART
 ────────────────────────────────────────────────────────────── */
-document.getElementById('btn-knew').addEventListener('click', () => onConf(true));
-document.getElementById('btn-guessed').addEventListener('click', () => onConf(false));
 document.getElementById('btn-restart').addEventListener('click', () => {
   document.getElementById('drill-done').hidden = true;
   document.getElementById('drill-card').hidden = false;
