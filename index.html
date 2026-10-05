@@ -751,8 +751,33 @@ footer {
   <div class="hero-cta">
     <a href="#labs" class="btn-primary">Start Practice →</a>
     <a href="/daily" class="btn-secondary">Challenge of the day ✨</a>
-    <a href="#science" class="btn-secondary">Why it works</a>
+    <span id="hero-install-wrap" style="position:relative;display:inline-block">
+      <button id="hero-install" class="btn-secondary" style="display:none" aria-label="Install app">Install App 📲</button>
+      <div id="hero-ios-tip" role="tooltip" style="display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#0D1B2A;color:#F0EDE6;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;font-size:13px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:20">
+        In Safari: tap <b>Share</b> ↑ then <b>Add to Home Screen</b>
+        <div style="position:absolute;top:100%;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #0D1B2A"></div>
+      </div>
+    </span>
   </div>
+  <script>
+  (function(){
+    function wire(){
+      var app = window.synApp; if(!app) return;
+      var btn = document.getElementById('hero-install');
+      var tip = document.getElementById('hero-ios-tip');
+      function update(){
+        if(app.standalone()){ btn.style.display='none'; return; }
+        if(app.canInstall()){ btn.style.display=''; btn.textContent='Install App 📲'; btn.onclick=function(){ app.install(); }; return; }
+        if(app.isIOS){ btn.style.display=''; btn.textContent='Install App ↑'; btn.onclick=function(e){ e.stopPropagation(); tip.style.display=tip.style.display==='none'?'':'none'; }; document.addEventListener('click',function(){ tip.style.display='none'; }); return; }
+        btn.style.display='none';
+      }
+      update(); app.onChange(update);
+    }
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',wire); else wire();
+    /* app.js may load after this inline script; retry once it arrives */
+    window.addEventListener('load', wire);
+  })();
+  </script>
 
   <div class="scroll-hint" aria-hidden="true">
     <span>scroll</span>
