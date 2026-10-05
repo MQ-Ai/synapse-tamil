@@ -305,7 +305,7 @@ let dq=[],cur=null,round={seen:0,first:0},firstSet=new Set();
 function startDrill(){dq=shuffle(ITEMS.map((_,i)=>i)).sort((a,b)=>(box[a]||0)-(box[b]||0)).slice(0,10);round={seen:0,first:0};firstSet=new Set();next()}
 function next(){
   const el=document.getElementById('dcard');
-  if(!dq.length){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
+  if(!dq.length){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;window.synTrack&&synTrack('round',{lab:'echam',score:round.first,of:round.seen});
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div><div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
     <p class="hint">${m} of ${ITEMS.length} sentences mastered.</p><div class="row"><button class="btn primary" id="again">Next round</button><button class="btn" id="toexam">Try an A3 paper</button></div>`;
     document.getElementById('again').onclick=startDrill;document.getElementById('toexam').onclick=()=>show('exam');return}
@@ -320,6 +320,7 @@ function stepKind(){
   document.getElementById('stage').innerHTML=`<p class="step">Step 1 · Look right</p><p class="hint" style="margin:0 0 8px">What does the highlighted word after the blank need?</p>
     <div class="kinds">${SITES.map(k=>`<button class="kind" data-k="${k}">${KINDS[k].label}<small>${KINDS[k].ta} · ${KINDS[k].end}</small></button>`).join('')}</div>`;
   document.querySelectorAll('#stage .kind').forEach(b=>b.onclick=()=>{
+    if(window.synAllow&&!synAllow('echam:'+cur.i,()=>b.click()))return;
     const ok=b.dataset.k===it.t;cur.kindOk=ok;
     document.querySelectorAll('#stage .kind').forEach(c=>{c.disabled=true;if(c.dataset.k===it.t)c.classList.add('good');else if(c===b)c.classList.add('bad')});
     const note=document.createElement('p');note.className='cue';note.style.margin='8px 0 0';
@@ -336,7 +337,7 @@ function stepPick(){
   wrap.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k));
 }
 function answer(k){
-  if(cur.done)return;cur.done=true;const {i,it}=cur,ok=k===it.a;
+  if(cur.done)return;if(window.synAllow&&!synAllow('echam:'+cur.i,()=>answer(k)))return;cur.done=true;const {i,it}=cur,ok=k===it.a;
   document.querySelectorAll('#stage .opt').forEach(b=>{b.disabled=true;if(+b.dataset.k===it.a)b.classList.add('good');else if(+b.dataset.k===k)b.classList.add('bad')});
   document.getElementById('sent').innerHTML=sentHTML(it,it.o[it.a],ok?'good':'bad');
   if(!firstSet.has(i)){firstSet.add(i);round.seen++;if(ok)round.first++}
@@ -379,7 +380,7 @@ function checkExam(){
     document.getElementById(`lb-${k}-${it.a}`).classList.add('good');const r=document.getElementById('er-'+k);
     if(v===it.a){score+=2;r.innerHTML='✓ '+esc(it.w)}
     else{if(v>=0)document.getElementById(`lb-${k}-${v}`).classList.add('bad');r.innerHTML=`✗ ${v<0?'No answer.':'You chose ('+(v+1)+').'} ${esc(it.w)}`;box[i]=0}});
-  save();meter();
+  save();meter();window.synTrack&&synTrack('paper',{lab:'echam',set:exam.label,score,of:10});
   document.getElementById('escore').innerHTML=`<div class="score">${score} / 10<small>${score===10?'Full marks':'Missed sentences go back into your drill'}</small></div>`;
 }
 
@@ -390,5 +391,7 @@ function show(p){
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
 meter();startDrill();makeExam(0);
 </script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
 </body>
 </html>

@@ -389,7 +389,7 @@ function nextCard(){
   el.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.w)));
 }
 function choose(w){
-  if(answered)return;answered=true;
+  if(answered)return;if(window.synAllow&&!synAllow('oli:'+cur,()=>choose(w)))return;answered=true;
   const it=ITEMS[cur],ok=w===it.a;
   document.querySelectorAll('.choice').forEach(b=>{
     b.disabled=true;
@@ -425,6 +425,7 @@ function grade(sure){
 }
 function advance(){meter();nextCard()}
 function endRound(){
+  window.synTrack&&synTrack('round',{lab:'oli',score:round.first,of:round.seen});
   const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;
   document.getElementById('dcard').innerHTML=`
     <div class="chips"><span class="chip">Round complete</span></div>
@@ -491,7 +492,7 @@ function checkExam(){
       box[i]=0;
     }
   });
-  save();meter();
+  save();meter();window.synTrack&&synTrack('paper',{lab:'oli',set:exam.label,score,of:exam.marks});
   document.getElementById('escore').innerHTML=`<div class="score">${score} / ${exam.marks}<small>${score===exam.marks?'Full marks':'Missed sentences go back into your drill'}</small></div>`;
 }
 
@@ -540,6 +541,7 @@ function cstart(){
 function cnext(){
   const el=document.getElementById('ccard');
   if(!cq.length){
+    window.synTrack&&synTrack('round',{lab:'oli-pairs',score:cround.first,of:cround.seen});
     const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length;
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
       <div class="score">${cround.first} / ${cround.seen}<small>right on the first try</small></div>
@@ -557,7 +559,7 @@ function cnext(){
   el.querySelectorAll('.choice').forEach(b=>b.onclick=()=>canswer(b.dataset.w));
 }
 function canswer(w){
-  if(ccur.done)return;ccur.done=true;const {o,k}=ccur,ans=o.w[k],ok=w===ans;
+  if(ccur.done)return;if(window.synAllow&&!synAllow('oli:pair:'+cid(ccur.o),()=>canswer(w)))return;ccur.done=true;const {o,k}=ccur,ans=o.w[k],ok=w===ans;
   document.querySelectorAll('#ccard .choice').forEach(b=>{b.disabled=true;if(b.dataset.w===ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
   const key=cid(o);if(!cfirst.has(key)){cfirst.add(key);cround.seen++;if(ok)cround.first++}
   const pair=`<div class="pair">${o.w.map((x,i)=>`<span class="w">${hlG(x,o.w)}</span><span>${esc(o.m[i]||'')}</span>`).join('')}</div><p class="cue">${esc(FAM[o.f].cue)}</p>`;
@@ -585,5 +587,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>show
 
 buildRound();meter();nextCard();makeExam(0);renderPairs();cmeter();cstart();
 </script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
 </body>
 </html>

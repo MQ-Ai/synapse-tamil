@@ -453,6 +453,7 @@ function startDrill(){dq=weakest(10);dround={seen:0,first:0};dfirst=new Set();ne
 function nextDrill(){
   const el=document.getElementById('dcard');
   if(!dq.length){
+    window.synTrack&&synTrack('round',{lab:'seyyul',score:dround.first,of:dround.seen});
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
       <div class="score">${dround.first} / ${dround.seen}<small>right on the first try</small></div>
       <p class="hint">A line counts as word-perfect after three sure, correct answers.</p>
@@ -486,7 +487,7 @@ function renderDrill(it,opts,src){
   el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answerDrill(b.dataset.w));
 }
 function answerDrill(w){
-  if(dcur.done)return;dcur.done=true;
+  if(dcur.done)return;if(window.synAllow&&!synAllow('seyyul:'+dcur.it.id,()=>answerDrill(w)))return;dcur.done=true;
   const {it,bi,ans}=dcur,ok=w===ans;
   document.querySelectorAll('#dcard .opt').forEach(b=>{b.disabled=true;
     if(b.dataset.w===ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
@@ -540,7 +541,7 @@ function renderTiles(){
   t.querySelectorAll('.tile').forEach(b=>b.onclick=()=>placeTile(+b.dataset.i,b));
 }
 function placeTile(wi,btn){
-  if(bcur.done)return;
+  if(bcur.done)return;if(window.synAllow&&!synAllow('seyyul:build:'+bcur.it.id,()=>placeTile(wi,btn)))return;
   const {it,placed}=bcur,need=placed.length;
   // same word text may repeat (e.g. சொல்லிற்), accept any tile whose text matches the next word
   if(it.words[wi].w===it.words[need].w){
@@ -614,7 +615,7 @@ function checkExam(){
       r.innerHTML=`✗ ${v<0?'No answer.':'You chose ('+(v+1)+').'} Full line: <b>${esc(q.it.lines.join(' '))}</b>. ${esc(q.it.m)}`;
       st.box[q.it.id]=0}
   });
-  save();meter();
+  save();meter();window.synTrack&&synTrack('paper',{lab:'seyyul',set:exam.label,score,of:10});
   document.getElementById('escore').innerHTML=`<div class="score">${score} / 10<small>${score===10?'Full marks':'Missed lines go back into your drill'}</small></div>`;
 }
 
@@ -640,5 +641,7 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
 
 meter();startDrill();startBuild();makeExam(0);renderBook();
 </script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
 </body>
 </html>

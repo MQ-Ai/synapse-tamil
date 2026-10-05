@@ -317,7 +317,7 @@ function makeQ(v){
 function next(){
   const el=document.getElementById('dcard');
   if(!dq.length){
-    const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;
+    const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;window.synTrack&&synTrack('round',{lab:'sol',score:round.first,of:round.seen});
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div><div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
       <p class="hint">${m} of ${P.length} words mastered on the selected pages.</p><div class="row"><button class="btn primary" id="again">Next round</button></div>`;
     document.getElementById('again').onclick=startDrill;return}
@@ -328,7 +328,7 @@ function next(){
   el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(b.dataset.w));
 }
 function answer(w){
-  if(cur.done)return;cur.done=true;const {v,q}=cur,ok=w===q.ans;
+  if(cur.done)return;if(window.synAllow&&!synAllow('sol:'+cur.v.id,()=>answer(w)))return;cur.done=true;const {v,q}=cur,ok=w===q.ans;
   document.querySelectorAll('#dcard .opt').forEach(b=>{b.disabled=true;if(b.dataset.w===q.ans)b.classList.add('good');else if(b.dataset.w===w)b.classList.add('bad')});
   if(!firstSet.has(v.id)){firstSet.add(v.id);round.seen++;if(ok)round.first++}
   const card=`<div class="row" style="align-items:baseline"><span class="word" style="font-size:24px">${esc(v.w)}</span><span class="eng">${esc(v.e)}</span></div><div class="syns">${v.s.map(x=>`<span class="syn">${esc(x)}</span>`).join('')}</div>`;
@@ -353,6 +353,7 @@ function nextPhrase(){
     <p class="hint" style="margin:0">Which feeling or scene does this phrase describe?</p><p class="phrase">${esc(x)}</p>
     <div class="opts4">${opts.map(o=>`<button class="opt" data-t="${esc(o.t)}" style="font-size:16px">${esc(o.t)}<span class="n">${esc(o.e)}</span></button>`).join('')}</div><div id="pfb"></div>`;
   el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(window.synAllow&&!synAllow('sol:phrase:'+x,()=>b.click()))return;
     const ok=b.dataset.t===t.t;pr.seen++;if(ok)pr.ok++;
     el.querySelectorAll('.opt').forEach(c=>{c.disabled=true;if(c.dataset.t===t.t)c.classList.add('good');else if(c===b)c.classList.add('bad')});
     document.getElementById('pfb').innerHTML=`<div class="fb ${ok?'good':'bad'}"><h3>${ok?'சரி!':'It describes '+esc(t.t)+'.'} Other ways to write ${esc(t.e.toLowerCase())}:</h3><ul style="margin:0;padding-left:18px">${t.x.filter(y=>y!==x).slice(0,3).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="row"><button class="btn primary" id="pn">Next phrase</button></div></div>`;
@@ -378,5 +379,7 @@ function show(p){
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
 meter();startDrill();nextPhrase();renderList();
 </script>
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
 </body>
 </html>
