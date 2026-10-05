@@ -6,6 +6,13 @@
 <title>Synapse Tamil · Admin view</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0D1B2A">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Synapse Tamil">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <style>
 :root{--bg:#f7f5ee;--ink:#15302e;--mut:#5b6b68;--line:#dad8cc;--acc:#1e5a55}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1715;--ink:#e6eeea;--mut:#98a9a4;--line:#2a3834;--acc:#7fc3b8}}
@@ -36,5 +43,6 @@ const K='synapse-architect',set=on=>{try{on?localStorage.setItem(K,'1'):localSto
 set(true);
 document.getElementById('off').onclick=()=>{set(false);document.getElementById('h').textContent='Admin view is off';document.getElementById('msg').textContent='This browser now sees the student view. Visit /synapsearchitect again to turn it back on.';document.getElementById('off').hidden=true};
 </script>
+<script src="assets/app.js" defer></script>
 </body>
 </html>

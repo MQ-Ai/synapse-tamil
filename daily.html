@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Three quick Tamil questions a day for upper primary kids. Keep your streak going!">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0D1B2A">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Synapse Tamil">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>Challenge of the day · Synapse Tamil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tiro+Tamil&display=swap">
+<style>
+:root{
+  --bg:#0D1B2A;--bg2:#132233;--card:#1A2E42;--card2:#1F3550;--border:#2A4060;
+  --gold:#F5B800;--gold-text:#F5B800;--teal:#00C9B1;--text:#F0EDE6;--text2:#A8B8C8;--text3:#6A7D90;
+  --red:#FF6B6B;--green:#52E3A1;--ok-bg:rgba(82,227,161,.14);--no-bg:rgba(255,107,107,.14);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#FAF7F0;--bg2:#F0EDE6;--card:#FFFFFF;--card2:#F5F2EB;--border:#DDD8CF;
+    --text:#0D1B2A;--text2:#3A4A5C;--text3:#6F7F91;--gold-text:#9A6B00;--red:#C93C3C;--green:#16875A;
+    --ok-bg:rgba(22,135,90,.1);--no-bg:rgba(201,60,60,.1);color-scheme:light;
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;min-height:100vh;overflow-x:hidden}
+.tamil{font-family:'Tiro Tamil',serif}
+.mix{font-family:'Inter','Tiro Tamil',system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:24px 16px 64px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+h1{font-size:28px;line-height:1.2;margin:6px 0 2px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--text2);font-size:15px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:16px}
+/* streak */
+.streak{display:flex;align-items:center;gap:14px}
+.flame{font-size:40px;line-height:1;filter:grayscale(var(--gray,0))}
+.streak-num{font-size:34px;font-weight:800;line-height:1;color:var(--gold-text)}
+.streak-lbl{font-size:13px;color:var(--text2)}
+.week{display:flex;justify-content:space-between;gap:4px;margin-top:16px}
+.week span{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text3);background:var(--card2);border:1px solid var(--border)}
+.week span.on{background:var(--gold);color:#0D1B2A;border-color:var(--gold)}
+.week span.today{outline:2px solid var(--teal);outline-offset:1px}
+.note{font-size:13px;color:var(--text2);margin-top:12px}
+/* question */
+.progress{display:flex;gap:6px;margin-bottom:14px}
+.progress i{flex:1;height:5px;border-radius:3px;background:var(--card2)}
+.progress i.done{background:var(--teal)}
+.lab{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+.q{font-size:21px;line-height:1.6;margin:8px 0 18px}
+.q .gap{display:inline-block;min-width:3.2em;border-bottom:2px solid var(--gold);margin:0 2px}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;font-size:18px;text-align:left;padding:13px 16px;border-radius:12px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);cursor:pointer;transition:border-color .15s,transform .1s}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt:active:not(:disabled){transform:scale(.99)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--green);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--red);background:var(--no-bg)}
+.why{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--card2);font-size:15px;color:var(--text2)}
+.why b{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:16px;padding:13px 20px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;background:var(--gold);color:#0D1B2A;margin-top:16px;width:100%}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn:disabled{opacity:.6;cursor:default}
+/* done */
+.big{font-size:56px;text-align:center;line-height:1.1}
+.done-title{text-align:center;font-size:24px;font-weight:800;margin-top:8px}
+.done-sub{text-align:center;color:var(--text2);margin-top:4px}
+.extra h2{font-size:17px;font-weight:700;margin-bottom:4px}
+.extra p{font-size:14px;color:var(--text2)}
+.steps{margin:10px 0 0 20px;font-size:14px;color:var(--text2)}
+.steps li{margin:4px 0}
+.small{font-size:13px;color:var(--text3);margin-top:10px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">Home</a>
+    <a href="veerrumai.html" data-page="veerrumai">A1 வேற்றுமை</a>
+    <a href="seyyul.html" data-page="seyyul">A2 செய்யுள்</a>
+    <a href="echam.html" data-page="echam">A3 எச்சம்</a>
+    <a href="oli.html" data-page="oli">C6 ஒலி</a>
+    <a href="sol.html" data-page="sol">சொல் திறன்</a>
+  </div>
+</nav>
+
+<main>
+  <div class="eyebrow">Challenge of the day</div>
+  <h1><span class="tamil">இன்றைய சவால்</span></h1>
+  <p class="sub" id="date"></p>
+
+  <section class="card" aria-label="Your streak">
+    <div class="streak">
+      <div class="flame" id="flame" aria-hidden="true">🔥</div>
+      <div>
+        <div class="streak-num" id="streak-num">0</div>
+        <div class="streak-lbl" id="streak-lbl">day streak</div>
+      </div>
+    </div>
+    <div class="week" id="week" aria-hidden="true"></div>
+    <p class="note" id="streak-note"></p>
+  </section>
+
+  <section class="card" id="play" aria-live="polite">
+    <div class="progress" id="progress"></div>
+    <div class="lab" id="lab"></div>
+    <div class="q" id="q"></div>
+    <div class="opts" id="opts"></div>
+    <div class="why" id="why" hidden></div>
+    <button class="btn" id="next" hidden>Next →</button>
+  </section>
+
+  <section class="card" id="done" hidden>
+    <div class="big" aria-hidden="true">🎉</div>
+    <div class="done-title" id="done-title"></div>
+    <p class="done-sub" id="done-sub"></p>
+    <a class="btn" id="more" href="/">Play more</a>
+    <button class="btn ghost" id="again">Try today's again</button>
+  </section>
+
+  <section class="card extra" id="remind" hidden>
+    <h2>🔔 Get a nudge every day</h2>
+    <p id="remind-text">We'll send one friendly reminder in the evening when a new challenge is ready. That's it, no spam.</p>
+    <ol class="steps" id="ios-steps" hidden>
+      <li>Tap the <b>Share</b> button <span aria-hidden="true">⬆︎</span> at the bottom of Safari.</li>
+      <li>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</li>
+      <li>Open Synapse Tamil from your Home Screen and come back here to switch reminders on.</li>
+    </ol>
+    <button class="btn" id="remind-btn">Turn on reminders</button>
+    <p class="small" id="remind-small"></p>
+  </section>
+
+  <section class="card extra" id="install" hidden>
+    <h2>📲 Put Synapse Tamil on your home screen</h2>
+    <p>It opens like an app, with its own icon, and works even with patchy Wi-Fi.</p>
+    <button class="btn ghost" id="install-btn">Add to home screen</button>
+  </section>
+</main>
+
+<script src="assets/config.js"></script>
+<script src="assets/track.js" defer></script>
+<script src="assets/app.js"></script>
+<script src="assets/daily-pick.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var app = window.synApp, D = window.synDaily, today = D.dayNum();
+  var picks = [], idx = 0, score = 0, replay = false;
+  var CHEERS = ['Nice one!', 'Super!', 'You got it!', 'Brain power! 🧠', 'சூப்பர்!'];
+  var OOPS = ['So close!', 'Good try!', 'Tricky one!', 'Now you know!'];
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function rand(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+  $('date').textContent = new Date().toLocaleDateString('en-SG', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Asia/Singapore' }) +
+    ' · 3 quick questions';
+
+  /* ---------- streak card ---------- */
+  function drawStreak() {
+    var s = app.streak(), days = {}, w = $('week'), i, html = '';
+    s.days.forEach(function (d) { days[d] = 1; });
+    $('streak-num').textContent = s.count;
+    $('flame').style.setProperty('--gray', s.count ? 0 : 1);
+    for (i = 6; i >= 0; i--) {
+      var d = today - i, label = new Date((d * 864e5)).toLocaleDateString('en-SG', { weekday: 'narrow', timeZone: 'UTC' });
+      html += '<span class="' + (days[d] ? 'on' : '') + (i === 0 ? ' today' : '') + '">' + label + '</span>';
+    }
+    w.innerHTML = html;
+    $('streak-note').textContent = s.doneToday ? 'Done for today! Come back tomorrow to keep the fire going.'
+      : s.count ? 'Finish today\'s 3 questions to make it ' + (s.count + 1) + ' days in a row.'
+      : s.lost ? 'Your ' + s.lost + '-day streak took a nap. Start a new one today!'
+      : 'Do one challenge a day and watch your streak grow.';
+    if (s.best > 1) $('streak-note').textContent += ' Best so far: ' + s.best + ' days.';
+  }
+
+  /* ---------- questions ---------- */
+  function show() {
+    var p = picks[idx], it = p.item, prog = '';
+    for (var i = 0; i < picks.length; i++) prog += '<i class="' + (i < idx ? 'done' : '') + '"></i>';
+    $('progress').innerHTML = prog;
+    $('lab').textContent = (idx + 1) + ' of ' + picks.length + ' · ' + p.labName;
+    $('q').innerHTML = it.ask ? '<span class="mix">' + esc(it.ask) + '</span>'
+      : '<span class="mix">' + esc(it.q).replace(/_{2,}/g, '<span class="gap"></span>') + '</span>';
+    $('opts').innerHTML = it.o.map(function (o, k) { return '<button class="opt mix" data-k="' + k + '">' + esc(o) + '</button>'; }).join('');
+    $('why').hidden = true; $('next').hidden = true;
+  }
+  $('opts').addEventListener('click', function (e) {
+    var b = e.target.closest('.opt');
+    if (!b || b.disabled) return;
+    var it = picks[idx].item, k = +b.getAttribute('data-k'), ok = k === it.a, all = $('opts').querySelectorAll('.opt');
+    Array.prototype.forEach.call(all, function (x, j) { x.disabled = true; if (j === it.a) x.classList.add('right'); });
+    if (!ok) b.classList.add('wrong'); else score++;
+    $('why').innerHTML = '<b>' + (ok ? rand(CHEERS) : rand(OOPS)) + '</b> <span class="mix">' + esc(it.why || '') + '</span>';
+    $('why').hidden = false;
+    $('next').textContent = idx < picks.length - 1 ? 'Next →' : 'Finish 🎉';
+    $('next').hidden = false; $('next').focus();
+  });
+  $('next').addEventListener('click', function () {
+    if (++idx < picks.length) return show();
+    finish();
+  });
+
+  function finish() {
+    var was = app.streak().doneToday, s = was ? app.streak() : app.markDone({ score: score, of: picks.length });
+    if (!replay && window.synTrack) synTrack('round', { lab: 'daily', set: String(today), score: score, of: picks.length });
+    showDone(s, score);
+  }
+  function showDone(s, sc) {
+    $('play').hidden = true; $('done').hidden = false;
+    $('done-title').textContent = sc === picks.length ? 'Perfect score! ' + sc + ' out of ' + picks.length
+      : sc ? sc + ' out of ' + picks.length + '. Nicely done!'
+      : 'Good warm-up! Tomorrow is a new try.';
+    $('done-sub').textContent = s.count > 1 ? '🔥 ' + s.count + ' days in a row. Keep it going tomorrow!'
+      : 'Day 1 of your streak. See you tomorrow for a new one!';
+    var last = picks[picks.length - 1];
+    $('more').href = '/' + last.href; $('more').textContent = 'Play more ' + last.labName.toLowerCase() + ' →';
+    drawStreak(); drawExtras();
+  }
+  $('again').addEventListener('click', function () {
+    replay = true; idx = 0; score = 0; $('done').hidden = true; $('play').hidden = false; show();
+  });
+
+  /* ---------- install + reminders ---------- */
+  function drawExtras() {
+    var st = app.pushState(), done = app.streak().doneToday;
+    $('install').hidden = !app.canInstall() || app.standalone();
+    var r = $('remind'), btn = $('remind-btn'), small = $('remind-small');
+    r.hidden = st === 'off' || (!done && st !== 'on');
+    $('ios-steps').hidden = st !== 'needs-install';
+    btn.hidden = st === 'needs-install' || st === 'blocked';
+    small.textContent = '';
+    if (st === 'needs-install') $('remind-text').textContent = 'On iPhone and iPad, reminders work once Synapse Tamil is on your Home Screen (iOS 16.4 or newer):';
+    else if (st === 'blocked') $('remind-text').textContent = 'Reminders are switched off for this site in your settings. You can allow notifications for Synapse Tamil there any time.';
+    else if (st === 'on') { $('remind-text').textContent = 'Reminders are on. We\'ll nudge you once a day when a new challenge is ready.'; btn.textContent = 'Turn reminders off'; btn.className = 'btn ghost'; }
+    else { $('remind-text').textContent = 'We\'ll send one friendly reminder in the evening when a new challenge is ready. That\'s it, no spam.'; btn.textContent = 'Turn on reminders'; btn.className = 'btn'; }
+  }
+  $('remind-btn').addEventListener('click', function () {
+    var btn = this, on = app.pushState() === 'on';
+    btn.disabled = true;
+    (on ? app.disablePush() : app.enablePush()).then(function () {
+      btn.disabled = false; drawExtras();
+      if (!on) $('remind-small').textContent = 'All set! 🔔';
+    }, function () {
+      btn.disabled = false; drawExtras();
+      if (app.pushState() !== 'blocked') $('remind-small').textContent = 'That didn\'t work this time. Please try again in a moment.';
+    });
+  });
+  $('install-btn').addEventListener('click', function () { app.install().then(drawExtras); });
+  app.onChange(drawExtras);
+
+  /* ---------- start ---------- */
+  drawStreak();
+  fetch('/assets/daily.json').then(function (r) { return r.json(); }).then(function (pool) {
+    picks = D.pick(pool, today);
+    var s = app.streak();
+    if (s.doneToday && s.result) { replay = true; showDone(s, s.result.score); }
+    else { show(); drawExtras(); }
+  }).catch(function () {
+    $('q').textContent = 'Today\'s challenge needs a connection the first time. Please try again when you\'re online.';
+  });
+})();
+</script>
+</body>
+</html>
