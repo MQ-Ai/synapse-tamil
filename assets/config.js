@@ -16,8 +16,8 @@ window.SYNAPSE_TRACK = {
   parent: true shows "Ask a parent to pay" with a WhatsApp share link. */
 window.SYNAPSE_PAY = {
   app: 'synapse-tamil',
-  year: { link: '', price: 'S$49', until: '31 Dec 2027' },
-  month: { link: '', price: 'S$12' },
+  year: { link: 'https://buy.stripe.com/test_4gMeVccpk4f9gOl4B11oI00', price: 'S$49', until: '31 Dec 2027' },
+  month: { link: 'https://buy.stripe.com/test_14AeVc9d89ztfKh1oP1oI01', price: 'S$12' },
   covers: 'every round and every exam paper in all five labs',
   short: 'Every lab and exam paper',
   parent: true
