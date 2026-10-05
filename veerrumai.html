@@ -486,8 +486,8 @@ const PAPERS = [
   },
 ];
 
-/* source names (schools, worksheets) show only in the admin view (?view=architect); students see Paper 1, Paper 2… instead */
-const ARCHITECT = new URLSearchParams(location.search).get('view') === 'architect';
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
 if (!ARCHITECT) {
   const SETS = { 'Xinmin 2026':'Paper 1', 'Meridian 2026':'Paper 2', 'PL2 2025':'Paper 3', 'PL4 2025':'Paper 4' };
   ITEMS.forEach(it => { for (const k in SETS) if (it.src.startsWith(k)) it.src = SETS[k] + it.src.slice(k.length); });

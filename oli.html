@@ -355,8 +355,8 @@ BANKS.forEach(B=>{
   const idx=B.qs.map(q=>{ITEMS.push({s:q.s,a:q.a,b:q.b,f:q.f,src:B.short+' · Q'+q.q,pid:B.id,q:q.q});return ITEMS.length-1});
   if(!B.noexam)PAPERS.push({id:B.id,name:B.name,group:B.group,short:B.short,bank:B.bank,qs:idx});
 });
-/* source names (schools, worksheets) show only in the admin view (?view=architect); students see Paper 1, Paper 2… instead */
-const ARCHITECT=new URLSearchParams(location.search).get('view')==='architect';
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
 PAPERS.forEach(P=>P.full=P.name);
 if(!ARCHITECT){
   let n=0;PAPERS.forEach(P=>{if(/prelim|practice/i.test(P.group)){n++;P.group='Full papers';P.name=P.short='Paper '+n}else{P.group=P.group.replace('Classkick ','');P.name=P.name.replace('Classkick w','W')}});

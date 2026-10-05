@@ -400,8 +400,8 @@ const PAPERS=[
   {id:find("மோப்பக் குழையும்"),show:"மோப்பக் குழையும் அனிச்சம் முகந்திரிந்து / நோக்கக் குழையும் ___.",opts:["நட்பு", "உறவு", "விருந்து", "மருந்து"],a:2},
   {id:find("மனம்போன போக்கு"),show:"மனம்போன ___ எல்லாம் போக வேண்டாம்.",opts:["வழி", "திசை", "இடம்", "போக்கு"],a:3}]}
 ];
-/* source names (schools, worksheets) show only in the admin view (?view=architect); students see Paper 1, Paper 2… instead */
-const ARCHITECT=new URLSearchParams(location.search).get('view')==='architect';
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
 PAPERS.forEach(P=>P.full=P.name);
 if(!ARCHITECT)PAPERS.forEach((P,n)=>{P.name=P.src='Paper '+(n+1)});
 const TESTED={};

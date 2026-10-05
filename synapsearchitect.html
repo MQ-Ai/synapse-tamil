@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Synapse Tamil · Admin view</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f7f5ee;--ink:#15302e;--mut:#5b6b68;--line:#dad8cc;--acc:#1e5a55}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1715;--ink:#e6eeea;--mut:#98a9a4;--line:#2a3834;--acc:#7fc3b8}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:32px 16px 64px}
+h1{font:800 28px/1.2 system-ui,sans-serif;margin:0 0 4px}
+.mut{color:var(--mut);font-size:14px}
+a{color:var(--acc)} ul{padding-left:20px}
+button{font:600 15px/1 system-ui,sans-serif;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<p class="mut"><a href="index.html">← Synapse Tamil</a></p>
+<h1 id="h">Admin view is on</h1>
+<p id="msg">This browser now shows question sources (school, prelim and worksheet names) in every lab. Students never see them.</p>
+<ul>
+<li><a href="oli.html">ஒலி வேறுபாடு (C6)</a></li>
+<li><a href="echam.html">எச்சம் (A3)</a></li>
+<li><a href="seyyul.html">செய்யுள் (A2)</a></li>
+<li><a href="veerrumai.html">வேற்றுமை (A1)</a></li>
+</ul>
+<p><button id="off">Turn admin view off</button></p>
+</main>
+<script>
+/* visiting /synapsearchitect switches the labs' admin view on for this browser (labs read the same key) */
+const K='synapse-architect',set=on=>{try{on?localStorage.setItem(K,'1'):localStorage.removeItem(K)}catch(e){}};
+set(true);
+document.getElementById('off').onclick=()=>{set(false);document.getElementById('h').textContent='Admin view is off';document.getElementById('msg').textContent='This browser now sees the student view. Visit /synapsearchitect again to turn it back on.';document.getElementById('off').hidden=true};
+</script>
+</body>
+</html>
