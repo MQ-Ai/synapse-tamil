@@ -47,13 +47,14 @@ Until the Payment Links are pasted into `assets/config.js`, nothing changes for 
    | Synapse Econs | 30-day pass | 15.00 | same as above |
 
    For each link: **After payment → Don't show confirmation page → Redirect** to the address above, typed exactly, including `{CHECKOUT_SESSION_ID}`. Leave quantity fixed at 1 and promotion codes off. The script tells the passes apart by price, so every price must be different.
-3. **Key for the script.** In Stripe, **Developers → API keys → Create restricted key**. Give it **Read** on **Checkout Sessions** and nothing else. In the Apps Script editor open **Project Settings → Script Properties**, add `STRIPE_KEY` with that key. Never put it in the website.
+3. **Key for the script.** In Stripe, **Developers → API keys → Create restricted key**. Give it **Read** on **Checkout Sessions** and **Read** on **Refunds**, and nothing else. In the Apps Script editor open **Project Settings → Script Properties**, add `STRIPE_KEY` with that key. Never put it in the website. Without Refunds access, payments still work but refunds must be marked by hand.
 4. **Update the script.** Paste the new `apps-script.gs` and **Deploy → Manage deployments → edit → New version** (same URL). Then select `installSync` in the editor's function menu and click **Run**. Approve the new permissions (Stripe access, sending email, timed runs).
 5. **Paste the links.** Put each Payment Link (`https://buy.stripe.com/...`) into `link` in each site's `assets/config.js`, then deploy.
-6. **Test with real money.** Buy a 30-day pass with PayNow, check that the site unlocks and a row appears in `Payments`, then refund it in Stripe and set that row's status to `refunded`.
+6. **Receipts.** In Stripe, **Settings → Customer emails**, turn on **Successful payments**, so buyers get the receipt the thank-you screen promises.
+7. **Test first.** Stripe has a test mode (sandbox) with its own links and key. Do steps 2 to 5 there first, with the sandbox restricted key and the `buy.stripe.com/test_...` links on a branch, and pay with card `4242 4242 4242 4242`. Check the site unlocks and a row appears in `Payments`, then refund it in Stripe and confirm the row changes to `refunded` within 10 minutes. Then repeat steps 2 to 5 with live keys and links on `main`, and do one live S$12 PayNow purchase and refund.
 
 ## Running it
-- **Refunds:** refund in the Stripe dashboard, then type `refunded` in the row's `status` cell in `Payments`. The pass stops on its devices within a day.
+- **Refunds:** refund in the Stripe dashboard. Within about 10 minutes the script sets the row's `status` to `refunded` (a PayNow refund counts as soon as it is pending), and the pass stops on its devices within a day. Partial refunds don't cancel a pass. If the key has no Refunds access, type `refunded` in the cell yourself.
 - **More devices for one family:** add a row to `Devices` with the same `session` and the new device's id, or ask me to raise `MAX_DEVICES`.
 - **Changing prices or the end date:** change the Payment Link in Stripe, `PASSES` at the top of the pass section in `apps-script.gs`, and `price` / `until` in `assets/config.js`, all together.
 - Email codes come from your Gmail; Google allows about 100 a day on a personal account.

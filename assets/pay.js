@@ -138,7 +138,7 @@
   }
   function view(mode) {
     var p = profile() || {};
-    var foot = '<p class="small">One-off payment by PayNow or card. Nothing renews. Full refund within 7 days' +
+    var foot = '<p class="small">One-off payment by PayNow or card. A PayNow QR code lasts 1 hour; if it expires, open the link again. Nothing renews. Full refund within 7 days' +
       (CONTACT ? ': email ' + CONTACT : '') + '. <a href="terms" target="_blank" rel="noopener">Terms and privacy</a></p>';
     if (mode === 'offer') {
       var wa = C.parent && C.year ? 'https://wa.me/?text=' + encodeURIComponent(NAME + ' exam-year pass for ' + (p.name || 'my child') +

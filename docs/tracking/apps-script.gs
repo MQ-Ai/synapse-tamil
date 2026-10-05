@@ -17,7 +17,8 @@
  *   Signups      one row per student: name, school, level, email, consent time
  *   Events       one row per page view, finished round, case or paper
  *   Withdrawals  uid and time, when a student deletes their details
- *   Payments     one row per paid Stripe checkout (type "refunded" in status to cancel a pass)
+ *   Payments     one row per paid Stripe checkout; refunds in Stripe set status to "refunded" within 10 minutes
+ *                (you can also type "refunded" in the status cell to cancel a pass by hand)
  *   Devices      extra devices unlocked with an emailed code
  *   Codes        unlock codes waiting to be used (rows are removed once used)
  * Join Events to Signups on the uid column.
@@ -26,7 +27,7 @@ var HEADERS = {
   Signups: ['updated', 'uid', 'name', 'school', 'level', 'email', 'consent_at', 'consent_v', 'app'],
   Events: ['received', 'uid', 'event', 'page', 'lab', 'set', 'score', 'of', 'client_ts', 'app'],
   Withdrawals: ['received', 'uid', 'app'],
-  Payments: ['received', 'app', 'session', 'email', 'uid', 'pass', 'amount', 'until', 'status'],
+  Payments: ['received', 'app', 'session', 'email', 'uid', 'pass', 'amount', 'until', 'status', 'payment_intent'],
   Devices: ['linked', 'app', 'session', 'uid', 'email'],
   Codes: ['created', 'app', 'email', 'code', 'tries']
 };
@@ -144,7 +145,7 @@ function record_(s) {
   var paidAt = new Date(s.created * 1000);
   var until = def.until ? new Date(def.until) : new Date(paidAt.getTime() + def.days * 864e5);
   var email = clean_(((s.customer_details || {}).email || '').toLowerCase(), 120);
-  var row = [paidAt, app, s.id, email, uid, def.pass, s.amount_total / 100, until, 'paid'];
+  var row = [paidAt, app, s.id, email, uid, def.pass, s.amount_total / 100, until, 'paid', String(s.payment_intent || '')];
   sheet_('Payments').appendRow(row);
   return row;
 }
@@ -237,8 +238,30 @@ function syncPayments() {
       after = list.data[list.data.length - 1].id;
     }
     props.setProperty('SYNC_SINCE', String(start));
+    syncRefunds_();
   } finally {
     lock.releaseLock();
+  }
+}
+/** Mark a payment refunded once Stripe has refunded all of it (a pending PayNow refund counts). Needs
+ *  Refunds: Read on the restricted key; without it this logs a warning and payments still sync. */
+function syncRefunds_() {
+  try {
+    var sh = sheet_('Payments'), pays = rows_('Payments'), sums = {}, after = '';
+    var from = Math.floor(Date.now() / 1000) - 120 * 86400; // PayNow refunds are allowed up to 90 days
+    for (var page = 0; page < 10; page++) {
+      var list = stripe_('refunds?limit=100&created[gte]=' + from + (after ? '&starting_after=' + after : ''));
+      list.data.forEach(function (r) {
+        if ((r.status === 'succeeded' || r.status === 'pending') && r.payment_intent) sums[r.payment_intent] = (sums[r.payment_intent] || 0) + r.amount;
+      });
+      if (!list.has_more || !list.data.length) break;
+      after = list.data[list.data.length - 1].id;
+    }
+    pays.forEach(function (p, i) {
+      if (String(p[8]).toLowerCase() === 'paid' && p[9] && sums[p[9]] >= Math.round(Number(p[6]) * 100)) sh.getRange(i + 2, 9).setValue('refunded');
+    });
+  } catch (err) {
+    console.warn('Refund sync skipped: ' + err);
   }
 }
 /** Run once from the editor after setting STRIPE_KEY. Safe to run again. */
