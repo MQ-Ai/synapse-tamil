@@ -30,7 +30,8 @@ var HEADERS = {
   Withdrawals: ['received', 'uid', 'app'],
   Payments: ['received', 'app', 'session', 'email', 'uid', 'pass', 'amount', 'until', 'status', 'payment_intent'],
   Devices: ['linked', 'app', 'session', 'uid', 'email'],
-  Codes: ['created', 'app', 'email', 'code', 'tries']
+  Codes: ['created', 'app', 'email', 'code', 'tries'],
+  Flags: ['received', 'uid', 'app', 'lab', 'src', 'sent', 'vm', 'choices', 'ans']
 };
 var UID_RE = /^[0-9a-f-]{16,64}$/i;
 var EVENTS_OK = { view: 1, round: 1, 'case': 1, paper: 1 };
@@ -73,6 +74,11 @@ function doPost(e) {
   try {
     var p = JSON.parse(e.postData.contents);
     if (p && /^push_/.test(String(p.event))) return pushPost_(p); // reminders: apps-script-push.gs
+    if (p && String(p.event) === 'question_flag' && LEVELS_OK.hasOwnProperty(p.app) && p.v === 1) {
+      var d = p.data || {};
+      sheet_('Flags').appendRow([new Date(), String(p.uid || ''), p.app, String(d.lab || ''), String(d.src || ''), String(d.sent || ''), String(d.vm || ''), JSON.stringify(d.choices || []), String(d.ans || '')]);
+      return json_({ ok: true });
+    }
     if (!p || !LEVELS_OK.hasOwnProperty(p.app) || p.v !== 1 || !UID_RE.test(String(p.uid))) return json_({ ok: false });
     var uid = String(p.uid), now = new Date(), ev = String(p.event), app = p.app;
     lock.waitLock(20000);

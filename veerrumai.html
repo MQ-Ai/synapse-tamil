@@ -136,7 +136,10 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outlin
 .bar{flex:1;height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .4s}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:18px;position:relative}
+.flag-btn{position:absolute;top:10px;right:12px;background:none;border:none;font-size:13px;color:var(--muted);cursor:pointer;padding:2px 5px;border-radius:4px;opacity:0.55;line-height:1}
+.flag-btn:hover{opacity:1}
+.flag-btn.flagged{color:var(--bad);opacity:1;cursor:default}
 .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .chip{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:99px;background:var(--teal-soft);color:var(--teal)}
 .chip.src{background:var(--accent-soft);color:var(--accent)}
@@ -258,6 +261,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
       </div>
 
       <div class="card" id="drill-card">
+        <button class="flag-btn" id="btn-flag" title="Report a mistake in this question">🚩</button>
         <!-- chips -->
         <div class="chips" id="d-chips"></div>
         <!-- sentence -->
@@ -349,40 +353,40 @@ const ITEMS = [
 
   /* ── 3rd வேற்றுமை (ஆல்) ── */
   { sent:"அவன் கையால் பந்த___ பிடித்தான்.", blank:"ை", choices:["ை","இல்","இன்","க்கு"], ans:0, vm:3, explain:"Wait, here கையால் is already present; பந்தை = object (2nd). Reframe: அவன் ___ பந்தை அடித்தான் → Answer: கையால் (3rd வேற்றுமை, instrument)", src:"A1 drill" },
-  { sent:"மரம் காற்றினால்___ விழுந்தது.", blank:"", choices:["காற்றினால்","காற்றில்","காற்றின்","காற்றிற்கு"], ans:0, vm:3, explain:"காற்று = instrument/agent of விழுந்தது → 3rd வேற்றுமை suffix ஆல் / இனால்", src:"A1 drill" },
+  { sent:"மரம் ___ விழுந்தது.", blank:"", choices:["காற்றினால்","காற்றில்","காற்றின்","காற்றிற்கு"], ans:0, vm:3, explain:"காற்று = instrument/agent of விழுந்தது → 3rd வேற்றுமை suffix ஆல் / இனால்", src:"A1 drill" },
   { sent:"கத்தி___ அவன் கரும்பை வெட்டினான்.", blank:"யால்", choices:["யால்","யை","யில்","யின்"], ans:0, vm:3, explain:"கத்தி ends in vowel → யால் (3rd வேற்றுமை) = with a knife", src:"A1 drill" },
   { sent:"அவள் தன் விரல்க___ வீணை மீட்டினாள்.", blank:"ளால்", choices:["ளால்","ளை","ளில்","ளுக்கு"], ans:0, vm:3, explain:"விரல்கள் = instrument → plural suffix ளால் (3rd வேற்றுமை)", src:"A1 drill" },
   { sent:"மழையினால் வீதிகள்___ நனைந்தன.", blank:"", choices:["மழையினால்","மழையில்","மழையை","மழையின்"], ans:0, vm:3, explain:"மழை = cause/instrument of நனைந்தன → இனால் suffix (3rd வேற்றுமை)", src:"A1 drill" },
 
   /* ── 4th வேற்றுமை (க்கு) ── */
-  { sent:"அம்மா அவனுக்கு___ சாப்பாடு வைத்தாள்.", blank:"", choices:["அவனுக்கு","அவனை","அவனில்","அவனால்"], ans:0, vm:4, explain:"Recipient of வைத்தாள் = அவன் → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
+  { sent:"அம்மா ___ சாப்பாடு வைத்தாள்.", blank:"", choices:["அவனுக்கு","அவனை","அவனில்","அவனால்"], ans:0, vm:4, explain:"Recipient of வைத்தாள் = அவன் → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
   { sent:"ஊரில் வாழும் மக்கள்___ குடிநீர் வேண்டும்.", blank:"க்கு", choices:["க்கு","ஐ","ஆல்","இல்"], ans:0, vm:4, explain:"மக்கள் = beneficiary → 4th வேற்றுமை suffix க்கு", src:"Xinmin 2026" },
   { sent:"பாடசாலை___ வழி காட்டினான்.", blank:"க்கு", choices:["க்கு","ஐ","இல்","ஆல்"], ans:0, vm:4, explain:"Direction to school → 4th வேற்றுமை (destination/direction)", src:"A1 drill" },
-  { sent:"அவளுக்காக___ அனைவரும் காத்திருந்தனர்.", blank:"", choices:["அவளுக்காக","அவளை","அவளால்","அவளிடம்"], ans:0, vm:4, explain:"க்காக = purpose/for the sake of → extended 4th வேற்றுமை", src:"A1 drill" },
-  { sent:"பசிக்கு___ உணவு, தாகத்திற்கு நீர்.", blank:"", choices:["பசிக்கு","பசியை","பசியால்","பசியில்"], ans:0, vm:4, explain:"4th வேற்றுமை expresses what is needed for hunger", src:"A1 drill" },
+  { sent:"___ அனைவரும் காத்திருந்தனர்.", blank:"", choices:["அவளுக்காக","அவளை","அவளால்","அவளிடம்"], ans:0, vm:4, explain:"க்காக = purpose/for the sake of → extended 4th வேற்றுமை", src:"A1 drill" },
+  { sent:"___ உணவு, தாகத்திற்கு நீர்.", blank:"", choices:["பசிக்கு","பசியை","பசியால்","பசியில்"], ans:0, vm:4, explain:"4th வேற்றுமை expresses what is needed for hunger", src:"A1 drill" },
   { sent:"ஆசிரியர் மாணவர்க___ விளக்கம் அளித்தார்.", blank:"ளுக்கு", choices:["ளுக்கு","ளை","ளால்","ளில்"], ans:0, vm:4, explain:"மாணவர்கள் = recipient → ளுக்கு (4th வேற்றுமை plural)", src:"A1 drill" },
 
   /* ── 5th வேற்றுமை (இலிருந்து / விட) ── */
-  { sent:"அவன் சென்னையிலிருந்து___ வந்தான்.", blank:"", choices:["சென்னையிலிருந்து","சென்னையில்","சென்னையை","சென்னைக்கு"], ans:0, vm:5, explain:"Source of movement → 5th வேற்றுமை suffix இலிருந்து (from Chennai)", src:"A1 drill" },
-  { sent:"ராமன் அவனைவிட___ உயரமானவன்.", blank:"", choices:["அவனைவிட","அவனுக்கு","அவனால்","அவனில்"], ans:0, vm:5, explain:"Comparison 'taller than him' → 5th வேற்றுமை with விட suffix", src:"A1 drill" },
-  { sent:"மரத்திலிருந்து___ இலை விழுந்தது.", blank:"", choices:["மரத்திலிருந்து","மரத்தில்","மரத்தை","மரத்தின்"], ans:0, vm:5, explain:"From the tree (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026" },
-  { sent:"வீட்டிலிருந்து___ பள்ளி வரை ஒரு கிலோமீட்டர்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"Distance from a point → 5th வேற்றுமை (from home)", src:"A1 drill" },
-  { sent:"அவளைவிட___ அவன் வேகமாக ஓடினான்.", blank:"", choices:["அவளைவிட","அவளை","அவளால்","அவளிடம்"], ans:0, vm:5, explain:"Comparison (faster than her) → ஐவிட = 5th வேற்றுமை comparison", src:"A1 drill" },
+  { sent:"அவன் ___ வந்தான்.", blank:"", choices:["சென்னையிலிருந்து","சென்னையில்","சென்னையை","சென்னைக்கு"], ans:0, vm:5, explain:"Source of movement → 5th வேற்றுமை suffix இலிருந்து (from Chennai)", src:"A1 drill" },
+  { sent:"ராமன் ___ உயரமானவன்.", blank:"", choices:["அவனைவிட","அவனுக்கு","அவனால்","அவனில்"], ans:0, vm:5, explain:"Comparison 'taller than him' → 5th வேற்றுமை with விட suffix", src:"A1 drill" },
+  { sent:"___ இலை விழுந்தது.", blank:"", choices:["மரத்திலிருந்து","மரத்தில்","மரத்தை","மரத்தின்"], ans:0, vm:5, explain:"From the tree (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026" },
+  { sent:"___ பள்ளி வரை ஒரு கிலோமீட்டர்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"Distance from a point → 5th வேற்றுமை (from home)", src:"A1 drill" },
+  { sent:"___ அவன் வேகமாக ஓடினான்.", blank:"", choices:["அவளைவிட","அவளை","அவளால்","அவளிடம்"], ans:0, vm:5, explain:"Comparison (faster than her) → ஐவிட = 5th வேற்றுமை comparison", src:"A1 drill" },
 
   /* ── 6th வேற்றுமை (இன் / உடைய) ── */
-  { sent:"மரத்தின்___ இலைகள் பசுமையாக இருந்தன.", blank:"", choices:["மரத்தின்","மரத்தை","மரத்தில்","மரத்திற்கு"], ans:0, vm:6, explain:"Possession: leaves of the tree → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
-  { sent:"ஆசிரியரின்___ குரல் இனிமையாக ஒலித்தது.", blank:"", choices:["ஆசிரியரின்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:6, explain:"Teacher's voice (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
-  { sent:"அவனுடைய___ புத்தகம் மேசையில் இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனுக்கு","அவனால்"], ans:0, vm:6, explain:"His book (genitive possession) → 6th வேற்றுமை உடைய form", src:"A1 drill" },
-  { sent:"இந்த வீட்டின்___ கதவு மரத்தால் செய்யப்பட்டது.", blank:"", choices:["வீட்டின்","வீட்டை","வீட்டில்","வீட்டால்"], ans:0, vm:6, explain:"Door of the house → 6th வேற்றுமை suffix இன் (genitive)", src:"Meridian 2026" },
-  { sent:"பூனையின்___ கண்கள் பளபளத்தன.", blank:"", choices:["பூனையின்","பூனையை","பூனையில்","பூனையால்"], ans:0, vm:6, explain:"Cat's eyes (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"___ இலைகள் பசுமையாக இருந்தன.", blank:"", choices:["மரத்தின்","மரத்தை","மரத்தில்","மரத்திற்கு"], ans:0, vm:6, explain:"Possession: leaves of the tree → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"___ குரல் இனிமையாக ஒலித்தது.", blank:"", choices:["ஆசிரியரின்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:6, explain:"Teacher's voice (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"___ புத்தகம் மேசையில் இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனுக்கு","அவனால்"], ans:0, vm:6, explain:"His book (genitive possession) → 6th வேற்றுமை உடைய form", src:"A1 drill" },
+  { sent:"இந்த ___ கதவு மரத்தால் செய்யப்பட்டது.", blank:"", choices:["வீட்டின்","வீட்டை","வீட்டில்","வீட்டால்"], ans:0, vm:6, explain:"Door of the house → 6th வேற்றுமை suffix இன் (genitive)", src:"Meridian 2026" },
+  { sent:"___ கண்கள் பளபளத்தன.", blank:"", choices:["பூனையின்","பூனையை","பூனையில்","பூனையால்"], ans:0, vm:6, explain:"Cat's eyes (possession) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
 
   /* ── 7th வேற்றுமை (இல் / இடம்) ── */
-  { sent:"குழந்தைகள் பூங்காவில்___ விளையாடினர்.", blank:"", choices:["பூங்காவில்","பூங்காவை","பூங்காவால்","பூங்காவுக்கு"], ans:0, vm:7, explain:"Location (in the park) → 7th வேற்றுமை suffix இல்", src:"Xinmin 2026" },
-  { sent:"அவனிடம்___ நிறைய புத்தகங்கள் இருந்தன.", blank:"", choices:["அவனிடம்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:7, explain:"'At him' / 'with him' (in his possession) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
-  { sent:"கடையில்___ நல்ல பழங்கள் கிடைத்தன.", blank:"", choices:["கடையில்","கடையை","கடையால்","கடைக்கு"], ans:0, vm:7, explain:"In the shop (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
-  { sent:"ஆசிரியரிடம்___ கேள்வி கேட்டான்.", blank:"", choices:["ஆசிரியரிடம்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:7, explain:"'To the teacher' (person-location) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
-  { sent:"மாமரத்தில்___ மாங்காய்கள் நிறைய தொங்கின.", blank:"", choices:["மாமரத்தில்","மாமரத்தை","மாமரத்தால்","மாமரத்துக்கு"], ans:0, vm:7, explain:"On the mango tree (location) → 7th வேற்றுமை suffix இல்", src:"PL2 2025" },
-  { sent:"மேசையின்கண்___ புத்தகம் வைக்கப்பட்டது.", blank:"", choices:["மேசையின்கண்","மேசையை","மேசையால்","மேசைக்கு"], ans:0, vm:7, explain:"கண் = locative 'at/on' → 7th வேற்றுமை variant கண்", src:"A1 drill" },
+  { sent:"குழந்தைகள் ___ விளையாடினர்.", blank:"", choices:["பூங்காவில்","பூங்காவை","பூங்காவால்","பூங்காவுக்கு"], ans:0, vm:7, explain:"Location (in the park) → 7th வேற்றுமை suffix இல்", src:"Xinmin 2026" },
+  { sent:"___ நிறைய புத்தகங்கள் இருந்தன.", blank:"", choices:["அவனிடம்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:7, explain:"'At him' / 'with him' (in his possession) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
+  { sent:"___ நல்ல பழங்கள் கிடைத்தன.", blank:"", choices:["கடையில்","கடையை","கடையால்","கடைக்கு"], ans:0, vm:7, explain:"In the shop (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"___ கேள்வி கேட்டான்.", blank:"", choices:["ஆசிரியரிடம்","ஆசிரியரை","ஆசிரியரால்","ஆசிரியருக்கு"], ans:0, vm:7, explain:"'To the teacher' (person-location) → இடம் = 7th வேற்றுமை", src:"A1 drill" },
+  { sent:"___ மாங்காய்கள் நிறைய தொங்கின.", blank:"", choices:["மாமரத்தில்","மாமரத்தை","மாமரத்தால்","மாமரத்துக்கு"], ans:0, vm:7, explain:"On the mango tree (location) → 7th வேற்றுமை suffix இல்", src:"PL2 2025" },
+  { sent:"___ புத்தகம் வைக்கப்பட்டது.", blank:"", choices:["மேசையின்கண்","மேசையை","மேசையால்","மேசைக்கு"], ans:0, vm:7, explain:"கண் = locative 'at/on' → 7th வேற்றுமை variant கண்", src:"A1 drill" },
 
   /* ── 8th வேற்றுமை (விளி) ── */
   { sent:"___ இங்கே வா!", blank:"அம்மா", choices:["அம்மா","அம்மாவை","அம்மாவால்","அம்மாவிடம்"], ans:0, vm:8, explain:"Direct address (calling mother) → 8th வேற்றுமை (vocative), no suffix, intonation alone", src:"A1 drill" },
@@ -392,42 +396,42 @@ const ITEMS = [
   { sent:"அவன் தன் தோழன்___ உதவி கேட்டான்.", blank:"இடம்", choices:["இடம்","ஐ","ஆல்","இன்"], ans:0, vm:7, explain:"Asking 'from a person' → இடம் = 7th வேற்றுமை (person-locative)", src:"A1 drill" },
   { sent:"மாணவன் மும்பை___ சென்னைக்கு வந்தான்.", blank:"யிலிருந்து", choices:["யிலிருந்து","யில்","யை","யின்"], ans:0, vm:5, explain:"From Mumbai (source of movement) → 5th வேற்றுமை suffix யிலிருந்து", src:"Meridian 2026" },
   { sent:"இந்த வேலை___ செய்ய அவனுக்கு நேரமில்லை.", blank:"ஐ", choices:["ஐ","இல்","க்கு","ஆல்"], ans:0, vm:2, explain:"வேலை = object of செய்ய → 2nd வேற்றுமை suffix ஐ", src:"A1 drill" },
-  { sent:"நதியின்___ நீர் தெளிவாக ஓடியது.", blank:"", choices:["நதியின்","நதியை","நதியில்","நதியால்"], ans:0, vm:6, explain:"River's water (possession/genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
-  { sent:"பள்ளியிலிருந்து___ வீடு வரை நடந்தான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"From school (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025" },
+  { sent:"___ நீர் தெளிவாக ஓடியது.", blank:"", choices:["நதியின்","நதியை","நதியில்","நதியால்"], ans:0, vm:6, explain:"River's water (possession/genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"___ வீடு வரை நடந்தான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"From school (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025" },
   { sent:"குழந்தை தாய்___ அணைத்துக்கொண்டது.", blank:"யை", choices:["யை","யால்","யில்","யிடம்"], ans:0, vm:2, explain:"தாய் = object of அணைத்தது → 2nd வேற்றுமை suffix யை (after vowel)", src:"A1 drill" },
-  { sent:"அரசன் வாளினால்___ எதிரியை வெட்டினான்.", blank:"", choices:["வாளினால்","வாளை","வாளில்","வாளுக்கு"], ans:0, vm:3, explain:"Sword = instrument → 3rd வேற்றுமை suffix இனால்", src:"A1 drill" },
-  { sent:"அவள் கடையிலிருந்து___ பொருட்களை வாங்கினாள்.", blank:"", choices:["கடையிலிருந்து","கடையில்","கடையை","கடைக்கு"], ans:0, vm:5, explain:"From the shop (source) → 5th வேற்றுமை", src:"Xinmin 2026" },
+  { sent:"அரசன் ___ எதிரியை வெட்டினான்.", blank:"", choices:["வாளினால்","வாளை","வாளில்","வாளுக்கு"], ans:0, vm:3, explain:"Sword = instrument → 3rd வேற்றுமை suffix இனால்", src:"A1 drill" },
+  { sent:"அவள் ___ பொருட்களை வாங்கினாள்.", blank:"", choices:["கடையிலிருந்து","கடையில்","கடையை","கடைக்கு"], ans:0, vm:5, explain:"From the shop (source) → 5th வேற்றுமை", src:"Xinmin 2026" },
   { sent:"மழை நீர் மண்___ இறங்கியது.", blank:"ணில்", choices:["ணில்","ணை","ணால்","ணுக்கு"], ans:0, vm:7, explain:"Into the soil (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
   { sent:"நான் என் தோழி___ கடிதம் எழுதினேன்.", blank:"க்கு", choices:["க்கு","யை","யால்","யில்"], ans:0, vm:4, explain:"Wrote to my friend → 4th வேற்றுமை (recipient) suffix க்கு", src:"A1 drill" },
   { sent:"குழந்தை அம்மா___ பால் கேட்டது.", blank:"விடம்", choices:["விடம்","யை","யால்","யின்"], ans:0, vm:7, explain:"Asked from mother (person-locative) → விடம் / இடம் = 7th வேற்றுமை", src:"A1 drill" },
-  { sent:"சூரியன் கிழக்கில்___ உதிக்கிறது.", blank:"", choices:["கிழக்கில்","கிழக்கை","கிழக்கால்","கிழக்கிற்கு"], ans:0, vm:7, explain:"In the east (location/direction) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
-  { sent:"அவனின்___ தந்தை ஆசிரியர்.", blank:"", choices:["அவனின்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His father (genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
+  { sent:"சூரியன் ___ உதிக்கிறது.", blank:"", choices:["கிழக்கில்","கிழக்கை","கிழக்கால்","கிழக்கிற்கு"], ans:0, vm:7, explain:"In the east (location/direction) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"___ தந்தை ஆசிரியர்.", blank:"", choices:["அவனின்","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His father (genitive) → 6th வேற்றுமை suffix இன்", src:"A1 drill" },
   { sent:"இந்த மருந்தை நீ___ கலந்து குடி.", blank:"ரில்", choices:["ரால்","ரை","ரில்","ருக்கு"], ans:2, vm:7, explain:"Dissolve in water (location) → 7th வேற்றுமை suffix இல் → நீ+ரில் = நீரில்", src:"A1 drill" },
-  { sent:"நேற்று அவள் வீட்டில்___ இருந்தாள்.", blank:"", choices:["வீட்டில்","வீட்டை","வீட்டால்","வீட்டுக்கு"], ans:0, vm:7, explain:"At home (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
-  { sent:"அப்பா அவளுக்கு___ பரிசு வாங்கினார்.", blank:"", choices:["அவளுக்கு","அவளை","அவளால்","அவளில்"], ans:0, vm:4, explain:"Gift for her (dative/recipient) → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
+  { sent:"நேற்று அவள் ___ இருந்தாள்.", blank:"", choices:["வீட்டில்","வீட்டை","வீட்டால்","வீட்டுக்கு"], ans:0, vm:7, explain:"At home (location) → 7th வேற்றுமை suffix இல்", src:"A1 drill" },
+  { sent:"அப்பா ___ பரிசு வாங்கினார்.", blank:"", choices:["அவளுக்கு","அவளை","அவளால்","அவளில்"], ans:0, vm:4, explain:"Gift for her (dative/recipient) → 4th வேற்றுமை suffix க்கு", src:"A1 drill" },
 
   /* ── PAPER-BASED questions ── */
   { sent:"வயல்வெளியில் விவசாயி ஏர்___ உழுதான்.", blank:"ஆல்", choices:["ஆல்","ஐ","இல்","க்கு"], ans:0, vm:3, explain:"ஏர் (plough) = instrument → 3rd வேற்றுமை suffix ஆல்", src:"Xinmin 2026 A1 Q1" },
   { sent:"அந்தக் குழந்தை தன் தாயார்___ அழுதது.", blank:"இடம்", choices:["இடம்","ஐ","ஆல்","இன்"], ans:0, vm:7, explain:"Crying 'to' mother (person-locative) → 7th வேற்றுமை இடம்", src:"Xinmin 2026 A1 Q2" },
   { sent:"ஊர்___ நூலகம் மிகவும் பெரியது.", blank:"இன்", choices:["இன்","ஐ","இல்","க்கு"], ans:0, vm:6, explain:"Town's library (genitive) → 6th வேற்றுமை suffix இன்", src:"Xinmin 2026 A1 Q3" },
-  { sent:"பள்ளியிலிருந்து___ வந்த பிறகு சாப்பிட்டான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"After coming from school → 5th வேற்றுமை suffix இலிருந்து", src:"Xinmin 2026 A1 Q4" },
-  { sent:"கோவிலில் பக்தர்கள் கடவுளை___ வணங்கினர்.", blank:"", choices:["கடவுளை","கடவுளால்","கடவுளில்","கடவுளுக்கு"], ans:0, vm:2, explain:"Worshipped God (object) → 2nd வேற்றுமை suffix ஐ", src:"Xinmin 2026 A1 Q5" },
+  { sent:"___ வந்த பிறகு சாப்பிட்டான்.", blank:"", choices:["பள்ளியிலிருந்து","பள்ளியில்","பள்ளியை","பள்ளிக்கு"], ans:0, vm:5, explain:"After coming from school → 5th வேற்றுமை suffix இலிருந்து", src:"Xinmin 2026 A1 Q4" },
+  { sent:"கோவிலில் பக்தர்கள் ___ வணங்கினர்.", blank:"", choices:["கடவுளை","கடவுளால்","கடவுளில்","கடவுளுக்கு"], ans:0, vm:2, explain:"Worshipped God (object) → 2nd வேற்றுமை suffix ஐ", src:"Xinmin 2026 A1 Q5" },
 
-  { sent:"அவன் கால்களால்___ உதைத்தான்.", blank:"", choices:["கால்களால்","கால்களை","கால்களில்","கால்களுக்கு"], ans:0, vm:3, explain:"Kicked with his legs (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"Meridian 2026 A1 Q1" },
+  { sent:"அவன் ___ உதைத்தான்.", blank:"", choices:["கால்களால்","கால்களை","கால்களில்","கால்களுக்கு"], ans:0, vm:3, explain:"Kicked with his legs (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"Meridian 2026 A1 Q1" },
   { sent:"அவள் தந்தை___ ஒரு பரிசு வாங்கினாள்.", blank:"க்கு", choices:["க்கு","ஐ","ஆல்","இல்"], ans:0, vm:4, explain:"Bought for father (recipient) → 4th வேற்றுமை suffix க்கு", src:"Meridian 2026 A1 Q2" },
-  { sent:"நகரின்___ தெருக்கள் நேர்த்தியாக இருந்தன.", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"City's streets (genitive) → 6th வேற்றுமை suffix இன்", src:"Meridian 2026 A1 Q3" },
-  { sent:"தேனீக்கள் பூக்களிலிருந்து___ தேன் சேகரித்தன.", blank:"", choices:["பூக்களிலிருந்து","பூக்களில்","பூக்களை","பூக்களுக்கு"], ans:0, vm:5, explain:"From flowers (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026 A1 Q4" },
-  { sent:"ஆசிரியர் மாணவர்களை___ அன்புடன் பார்த்தார்.", blank:"", choices:["மாணவர்களை","மாணவர்களால்","மாணவர்களில்","மாணவர்களுக்கு"], ans:0, vm:2, explain:"Looked at students (object) → 2nd வேற்றுமை suffix ஐ", src:"Meridian 2026 A1 Q5" },
+  { sent:"___ தெருக்கள் நேர்த்தியாக இருந்தன.", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"City's streets (genitive) → 6th வேற்றுமை suffix இன்", src:"Meridian 2026 A1 Q3" },
+  { sent:"தேனீக்கள் ___ தேன் சேகரித்தன.", blank:"", choices:["பூக்களிலிருந்து","பூக்களில்","பூக்களை","பூக்களுக்கு"], ans:0, vm:5, explain:"From flowers (source) → 5th வேற்றுமை suffix இலிருந்து", src:"Meridian 2026 A1 Q4" },
+  { sent:"ஆசிரியர் ___ அன்புடன் பார்த்தார்.", blank:"", choices:["மாணவர்களை","மாணவர்களால்","மாணவர்களில்","மாணவர்களுக்கு"], ans:0, vm:2, explain:"Looked at students (object) → 2nd வேற்றுமை suffix ஐ", src:"Meridian 2026 A1 Q5" },
 
-  { sent:"அவள் மலரால்___ கண்ணை மூடினாள்.", blank:"", choices:["மலரால்","மலரை","மலரில்","மலருக்கு"], ans:0, vm:3, explain:"With flower (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"PL2 2025 A1 Q1" },
+  { sent:"அவள் ___ கண்ணை மூடினாள்.", blank:"", choices:["மலரால்","மலரை","மலரில்","மலருக்கு"], ans:0, vm:3, explain:"With flower (instrument) → 3rd வேற்றுமை suffix ஆல்", src:"PL2 2025 A1 Q1" },
   { sent:"குழந்தை தாய்___ பால் கேட்டது.", blank:"யிடம்", choices:["யிடம்","யை","யால்","யின்"], ans:0, vm:7, explain:"Asked of mother (person-locative) → யிடம் = 7th வேற்றுமை after vowel", src:"PL2 2025 A1 Q2" },
-  { sent:"இந்த நகரின்___ பெயர் என்ன?", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"Name of this city (genitive) → 6th வேற்றுமை suffix இன்", src:"PL2 2025 A1 Q3" },
-  { sent:"வீட்டிலிருந்து___ சைகை காட்டினாள்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"From the house (source/location) → 5th வேற்றுமை suffix இலிருந்து", src:"PL2 2025 A1 Q4" },
-  { sent:"மாணவன் ஆசிரியரை___ மரியாதையுடன் வணங்கினான்.", blank:"", choices:["ஆசிரியரை","ஆசிரியரால்","ஆசிரியரில்","ஆசிரியருக்கு"], ans:0, vm:2, explain:"Respected teacher (object) → 2nd வேற்றுமை suffix ஐ", src:"PL2 2025 A1 Q5" },
+  { sent:"இந்த ___ பெயர் என்ன?", blank:"", choices:["நகரின்","நகரை","நகரில்","நகருக்கு"], ans:0, vm:6, explain:"Name of this city (genitive) → 6th வேற்றுமை suffix இன்", src:"PL2 2025 A1 Q3" },
+  { sent:"___ சைகை காட்டினாள்.", blank:"", choices:["வீட்டிலிருந்து","வீட்டில்","வீட்டை","வீட்டுக்கு"], ans:0, vm:5, explain:"From the house (source/location) → 5th வேற்றுமை suffix இலிருந்து", src:"PL2 2025 A1 Q4" },
+  { sent:"மாணவன் ___ மரியாதையுடன் வணங்கினான்.", blank:"", choices:["ஆசிரியரை","ஆசிரியரால்","ஆசிரியரில்","ஆசிரியருக்கு"], ans:0, vm:2, explain:"Respected teacher (object) → 2nd வேற்றுமை suffix ஐ", src:"PL2 2025 A1 Q5" },
 
-  { sent:"கடலில்___ மீனவர்கள் மீன் பிடித்தனர்.", blank:"", choices:["கடலில்","கடலை","கடலால்","கடலுக்கு"], ans:0, vm:7, explain:"In the sea (location) → 7th வேற்றுமை suffix இல்", src:"PL4 2025 A1 Q1" },
-  { sent:"கிணற்றிலிருந்து___ நீர் இறைத்தனர்.", blank:"", choices:["கிணற்றிலிருந்து","கிணற்றில்","கிணற்றை","கிணற்றுக்கு"], ans:0, vm:5, explain:"From the well (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025 A1 Q2" },
-  { sent:"அவனுடைய___ அன்னையின் முகம் அழகாக இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His mother's face (double genitive) → 6th வேற்றுமை உடைய form", src:"PL4 2025 A1 Q3" },
+  { sent:"___ மீனவர்கள் மீன் பிடித்தனர்.", blank:"", choices:["கடலில்","கடலை","கடலால்","கடலுக்கு"], ans:0, vm:7, explain:"In the sea (location) → 7th வேற்றுமை suffix இல்", src:"PL4 2025 A1 Q1" },
+  { sent:"___ நீர் இறைத்தனர்.", blank:"", choices:["கிணற்றிலிருந்து","கிணற்றில்","கிணற்றை","கிணற்றுக்கு"], ans:0, vm:5, explain:"From the well (source) → 5th வேற்றுமை suffix இலிருந்து", src:"PL4 2025 A1 Q2" },
+  { sent:"___ அன்னையின் முகம் அழகாக இருந்தது.", blank:"", choices:["அவனுடைய","அவனை","அவனால்","அவனுக்கு"], ans:0, vm:6, explain:"His mother's face (double genitive) → 6th வேற்றுமை உடைய form", src:"PL4 2025 A1 Q3" },
   { sent:"சிறுமி தன் நண்பி___ இனிப்பு பகிர்ந்தாள்.", blank:"க்கு", choices:["க்கு","யை","யால்","யில்"], ans:0, vm:4, explain:"Shared with friend (recipient) → 4th வேற்றுமை suffix க்கு", src:"PL4 2025 A1 Q4" },
   { sent:"கோழி தன் இறக்கைக___ குஞ்சுகளை மறைத்தது.", blank:"ளால்", choices:["ளால்","ளை","ளில்","ளுக்கு"], ans:0, vm:3, explain:"With its wings (instrument) → 3rd வேற்றுமை suffix ளால்", src:"PL4 2025 A1 Q5" },
 ];
@@ -567,6 +571,10 @@ function showDrillCard() {
   document.getElementById('d-chips').innerHTML =
     `<span class="chip src">${item.src}</span>` +
     (vm ? `<span class="chip vm">${item.vm}வது வேற்றுமை</span>` : '');
+
+  // reset flag button
+  const flagBtn = document.getElementById('btn-flag');
+  if (flagBtn) { flagBtn.classList.remove('flagged'); flagBtn.title = 'Report a mistake in this question'; flagBtn.textContent = '🚩'; flagBtn.disabled = false; }
 
   // sentence, find blank marker and highlight
   let sentHTML = item.sent.replace('___', '<span class="blank" id="blank-word">___</span>');
@@ -728,6 +736,22 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('[role="tabpanel"]').forEach(p => p.hidden = true);
     document.getElementById(paneId).hidden = false;
   });
+});
+
+/* ──────────────────────────────────────────────────────────────
+   FLAG BUTTON
+────────────────────────────────────────────────────────────── */
+document.getElementById('btn-flag').addEventListener('click', () => {
+  const entry = deck[deckIdx];
+  if (!entry) return;
+  const item = ITEMS[entry.idx];
+  const btn = document.getElementById('btn-flag');
+  if (btn.classList.contains('flagged')) return;
+  btn.classList.add('flagged');
+  btn.textContent = '🚩 Reported';
+  btn.title = 'Thanks — we will review this question';
+  btn.disabled = true;
+  window.synTrack && synTrack('question_flag', { lab: 'veerrumai', src: item.src || '', sent: item.sent, vm: item.vm, choices: item.choices, ans: item.ans });
 });
 
 /* ──────────────────────────────────────────────────────────────
