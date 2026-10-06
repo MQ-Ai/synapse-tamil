@@ -243,16 +243,11 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
     <h1>ஒலி வேறுபாட்டுச் சொற்கள் <small class="en">Sound-alike words</small></h1>
-    <p class="lede">Section <b>C6</b>: four sentences, a box of eight look-alike words, <b>8 marks</b>. Every word in the box has a twin that sounds almost the same. Train your ear and eye on the one letter that changes the meaning.</p>
+    <p class="lede">Four sentences, a box of eight look-alike words. Every word has a twin that sounds almost the same — train your eye on the one letter that changes the meaning.</p>
   </header>
 
-  <section aria-label="Paper 2 map">
-    <div class="map" id="map"></div>
-    <div class="mapnote">Paper 2 sections and marks, as set in the 2026 prelims (90 marks). C6 is the only section where the trap is a single letter.</div>
-  </section>
-
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" id="t-drill" aria-selected="true" data-p="drill">பயிற்சி <small>Drill</small></button>
+    <button class="tab" role="tab" id="t-drill" aria-selected="true" data-p="drill">பயிற்சி <small>Practice</small></button>
     <button class="tab" role="tab" id="t-core" aria-selected="false" data-p="core">அடிப்படை <small>Core pairs</small></button>
     <button class="tab" role="tab" id="t-exam" aria-selected="false" data-p="exam">தேர்வு <small>C6 paper</small></button>
     <button class="tab" role="tab" id="t-pairs" aria-selected="false" data-p="pairs">சொல் இணைகள் <small>Pairs</small></button>
@@ -277,8 +272,6 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
 </div>
 
 <script>
-const MAP=[["A1","வேற்றுமை",10],["A2","செய்யுள்",10],["A3","அடைமொழி",10],["A4","முன்னுணர்வு",10],["B5","தெரிவுவிடை",10],["C6","ஒலி",8],["D7","விளக்கப்படம்",10],["D8","சுயவிடை",22]];
-document.getElementById('map').innerHTML=MAP.map(([c,n,m])=>`<div class="seg${c==='C6'?' on':''}" title="${n}"><b>${c}</b>${m} m</div>`).join('');
 
 const FAM={
   l:{label:"ல · ள · ழ",name:"ல, ள, ழ",cue:"ல: tongue tip taps just behind the top teeth (light). ள: tongue tip curls back and touches the roof of the mouth (heavy). ழ: tongue curls back further and does not touch, the sound in தமிழ்."},

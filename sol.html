@@ -264,16 +264,16 @@ body.cover .vrow .d.show{filter:none}
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Vocabulary</div>
     <h1>சொல்வளம் <small class="en">Vocabulary</small></h1>
-    <p class="lede">The P5–P6 vocabulary list: <b>315 words</b> with their Tamil meanings, in the same pages as the handout. Comprehension questions ask for the word that means the same (<b>ஈடான சொல்</b>), and the phrase bank feeds <b>Paper 1</b> compositions.</p>
+    <p class="lede">Upper primary vocabulary words with Tamil meanings. Comprehension asks for the word that means the same (<b>ஈடான சொல்</b>), and the phrase bank feeds Paper 1 compositions.</p>
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-p="drill">பொருள் <small>Meaning drill</small></button>
+    <button class="tab" role="tab" aria-selected="true" data-p="drill">பொருள் <small>Meaning</small></button>
     <button class="tab" role="tab" aria-selected="false" data-p="phr">சொற்றொடர் <small>Composition phrases</small></button>
     <button class="tab" role="tab" aria-selected="false" data-p="list">பட்டியல் <small>Full list</small></button>
   </nav>
 
-  <div class="levels" id="pages"><span class="lab">பக்கங்கள் <small class="en">Handout pages</small></span></div>
+  <div class="levels" id="pages" hidden></div>
 
   <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
     <div class="row" style="justify-content:space-between">
@@ -392,7 +392,7 @@ document.getElementById('cover').onclick=e=>{const on=document.body.classList.to
 function show(p){
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
   ['drill','phr','list'].forEach(x=>{const el=document.getElementById('p-'+x);el.hidden=x!==p;el.style.display=x===p?'flex':''});
-  document.getElementById('pages').hidden=p==='phr';
+  /* pages picker removed */
 }
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
 meter();startDrill();nextPhrase();renderList();
