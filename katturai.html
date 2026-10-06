@@ -165,6 +165,17 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .bank{display:flex;flex-wrap:wrap;gap:6px}
 .bk{font:500 14px var(--body);padding:4px 10px;border-radius:8px;background:var(--accent-soft);color:var(--ink);border:1px solid transparent;cursor:pointer;text-align:left}
 .bk.used{background:var(--good-soft);color:var(--good)}
+.hws{display:flex;flex-wrap:wrap;gap:6px}
+.hw{display:inline-flex;align-items:center;gap:2px;font:600 15px var(--body);padding:3px 4px 3px 12px;border-radius:99px;border:1px solid transparent}
+.hw.q{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.tip .hw.q{background:var(--surface)}
+.hw.me{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+.hw.ro{padding-right:12px}
+.hw button{font:700 15px var(--mono);width:26px;height:26px;border:0;border-radius:99px;background:transparent;color:inherit;cursor:pointer;opacity:.7}
+.key{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:99px;margin-right:6px;vertical-align:-1px}
+.key i.q{background:var(--accent)}
+.key i.me{background:var(--teal)}
 .bk.used::before{content:"✓ "}
 .dock{position:sticky;bottom:0;z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 -6px 20px rgba(0,0,0,.06);max-height:40vh;overflow:auto}
 .dock .stats{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 13px var(--mono);color:var(--muted)}
@@ -279,10 +290,40 @@ const TARGET=200; /* suggested minimum words; change here if teachers ask for a 
 
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const $=s=>document.querySelector(s);
+const splitWords=t=>String(t||'').split(/[,،;\n]+/).map(s=>s.trim()).filter(Boolean);
+/* Find the helping words a question prints, e.g. "உதவிச் சொற்கள்: பூங்கா, மழை, குடை" or a box of words
+   under a line like "கீழ்க்காணும் சொற்களைப் பயன்படுத்தலாம்". Works on typed text and on what the photo reader returns. */
+const HW_CUE=/(உதவி|துணை|குறிப்பு|பயன்படுத்|கொடுக்கப்பட்ட|helping|key\s*words|given\s+words|words\s+(given|below))/i;
+const HW_WORD=/(சொற்க|சொல்|word)/i;
+const HW_NOT=/(சொந்த|\d+\s*(சொற்க|words)|own\s+words)/i; /* "use your own words", "at least 150 words" */
+function findHelping(q){
+  const L=String(q||'').replace(/[\u200c\u200d]/g,'').split('\n').map(s=>s.trim());
+  for(let i=0;i<L.length;i++){
+    const l=L[i];if(!HW_CUE.test(l)||!HW_WORD.test(l)||HW_NOT.test(l))continue;
+    let parts=[];
+    const par=l.match(/\(([^)]+)\)\s*\.?$/);
+    const src=par?par[1]:l,c=src.search(/[:：]/);
+    if(c>-1)parts.push(src.slice(c+1));else if(par)parts.push(par[1]);
+    /* words printed on the lines below, until a blank line or a long sentence */
+    for(let j=i+1;j<L.length&&L[j]&&L[j].length<=60;j++)parts.push(L[j]);
+    const out=[];
+    parts.forEach(p=>{
+      let bits=p.split(/[,،;/|•·▪●○◦]+|\s[-–—]\s|\s{2,}/);
+      /* a line of single words with only spaces between them, as a word box often reads */
+      if(bits.length===1&&p.trim().split(/\s+/).length>=3)bits=p.trim().split(/\s+/);
+      bits.forEach(b=>{b=b.replace(/^\s*(\d+|[அ-ஔ]|[a-z])[.)]\s+/i,'').replace(/^[\s"'“”‘’.\-–—*]+|[\s"'“”‘’.\-–—*]+$/g,'').trim();
+        if(b&&[...b].length<=30&&b.split(/\s+/).length<=3&&!out.includes(b))out.push(b)});
+    });
+    if(out.length)return out.slice(0,15);
+  }
+  return [];
+}
 const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
-const blank=()=>({type:'pic',n:4,q:'',hw:'',photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
+const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
 let d=blank();
-try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step)d=Object.assign(blank(),s)}catch(e){}
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object.assign(blank(),s);
+  /* older saves kept helping words as one typed string */
+  if(!s.myhw&&s.hw)d.myhw=splitWords(s.hw)}}catch(e){}
 let photoMem=d.photo;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){try{localStorage.setItem(KEY,JSON.stringify(Object.assign({},d,{photo:''})))}catch(e2){}}};
 const past=()=>{try{return JSON.parse(localStorage.getItem(HKEY)||'[]')}catch(e){return[]}};
@@ -307,7 +348,13 @@ function paras(){
     ask:['How did it end? How do you feel when you think about it now?','What lesson did you learn? What will you do differently?','Where does your proverb fit?']});
   return out;
 }
-const helping=()=>d.hw.split(/[,،;\n]+/).map(s=>s.trim()).filter(Boolean);
+/* helping words: the ones printed in the question (read from its text) plus the student's own */
+const fromQ=()=>findHelping(d.q).filter(w=>!d.qhwOff.includes(w));
+const helping=()=>[...new Set([...fromQ(),...d.myhw])];
+const hwChips=edit=>{const q=fromQ(),me=d.myhw.filter(w=>!q.includes(w));
+  const chip=(w,c,i)=>`<span class="hw ${c}${edit?'':' ro'}">${esc(w)}${edit?`<button data-hwrm="${c}:${i}" aria-label="Remove ${esc(w)}">×</button>`:''}</span>`;
+  return q.map((w,i)=>chip(w,'q',i)).join('')+d.myhw.map((w,i)=>me.includes(w)?chip(w,'me',i):'').join('')};
+const hwKey=()=>`<div class="key"><span><i class="q"></i>from the question</span><span><i class="me"></i>your own</span></div>`;
 const allText=()=>paras().map(p=>(d.text[p.id]||'').trim()).filter(Boolean);
 /* Tamil words change their endings (பந்து → பந்தை), so match on the word without its last letter or two */
 function stem(w){const c=[...w];return c.length>=4?c.slice(0,c.length-2).join(''):w}
@@ -344,8 +391,10 @@ function sQuestion(){
     </div>
     <label class="f">The question <small>Type it, or tap “Read the words from the photo”, then fix any mistakes.</small>
       <textarea data-k="q" rows="4" placeholder="${d.type==='pic'?'எ.கா. கீழே கொடுக்கப்பட்டுள்ள படங்களைப் பார்த்துக் கட்டுரை எழுதுக.':'எ.கா. தலைப்பு: மறக்க முடியாத ஒரு நாள்'}">${val('q')}</textarea></label>
-    <label class="f">Helping words <small>If the paper gives words you must use, type them here, separated by commas.</small>
-      <input type="text" data-k="hw" value="${val('hw')}" placeholder="எ.கா. பூங்கா, மழை, உதவி"></label>
+    <div class="f"><label for="hwadd" class="f">Helping words <small>Words printed in the question are filled in for you. Add any of your own too.</small></label>
+      <div class="hws" id="hwlist">${hwChips(true)}</div>
+      <div class="row" style="flex-wrap:nowrap"><input type="text" id="hwadd" placeholder="Add your own word" enterkeyhint="done"><button class="btn sm" id="hwaddb">Add</button></div>
+      ${hwKey()}</div>
     ${d.type==='pic'?`<div class="row"><span class="hint">How many pictures?</span><div class="seg2" role="group" aria-label="Number of pictures">${[3,4,5].map(n=>`<button data-set="n" data-v="${n}" aria-pressed="${+d.n===n}">${n}</button>`).join('')}</div></div>`:''}
     ${nav(0,2,'Understand the question')}
   </section>
@@ -445,7 +494,7 @@ function sWrite(){
   return `<section class="card">
     <h2>எழுது <small>Step 5 · Write</small></h2>
     <p class="hint">Write one paragraph at a time with your notes beside you. Tap a phrase in the box at the bottom to drop it in where your cursor is, then make it fit your sentence.</p>
-    ${hw.length?`<div class="tip"><b>Helping words to use:</b> ${esc(hw.join(', '))}</div>`:''}
+    ${hw.length?`<div class="tip" style="display:flex;flex-direction:column;gap:8px"><b>Helping words to use:</b><div class="hws">${hwChips(false)}</div>${hwKey()}</div>`:''}
     ${P.map(p=>`<div class="para">
       <h3>${p.ta} <small>${p.en}</small></h3>
       ${(d.plan[p.id]||(p.pic>=0&&d.pics[p.pic]))?`<div class="notes">${p.pic>=0&&d.pics[p.pic]?`<b>Picture:</b> ${esc(d.pics[p.pic])}\n`:''}${d.plan[p.id]?`<b>Plan:</b> ${esc(d.plan[p.id])}`:''}</div>`:`<p class="goal">${p.goal}</p>`}
@@ -538,7 +587,8 @@ async function readPhoto(){
     const t=r.data.text.replace(/[\u200c\u200d]/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
     if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
     d.q=(d.q?d.q.trim()+'\n':'')+t;save();render();
-    $('#ocrmsg').textContent='Done. Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
+    const n=fromQ().length;
+    $('#ocrmsg').textContent='Done. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below. `:'')+'Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
   }catch(e){msg.textContent='Could not load the reader. Check your connection, or type the question instead.';b.disabled=false}
 }
 
@@ -551,8 +601,14 @@ function render(){
 }
 function share(){const a=$('#wa');if(a)a.href='https://wa.me/?text='+encodeURIComponent(title()+'\n\n'+allText().join('\n\n'))}
 let tm;
+const hwRefresh=()=>{const l=$('#hwlist');if(l)l.innerHTML=hwChips(true)};
+function hwAdd(){const i=$('#hwadd');if(!i)return;const q=fromQ();
+  splitWords(i.value).forEach(w=>{if(!q.includes(w)&&!d.myhw.includes(w))d.myhw.push(w)});
+  i.value='';save();hwRefresh();i.focus()}
+document.addEventListener('keydown',e=>{if(e.target.id==='hwadd'&&e.key==='Enter'){e.preventDefault();hwAdd()}});
 document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(!k)return;
   setK(k,e.target.type==='checkbox'?e.target.checked:e.target.value);clearTimeout(tm);tm=setTimeout(save,300);
+  if(k==='q')hwRefresh();
   if(d.step===5)dock();
   if(d.step===6&&e.target.type==='checkbox'){save();const y=scrollY;render();scrollTo(0,y)}});
 document.addEventListener('focusin',e=>{if(e.target.tagName==='TEXTAREA'&&/^text\./.test(e.target.dataset.k||''))lastTa=e.target});
@@ -565,6 +621,8 @@ document.addEventListener('click',e=>{
   if(b.dataset.go){go(+b.dataset.go);return}
   if(b.dataset.set){const k=b.dataset.set,v=b.dataset.v;d[k]=(k==='value'&&d[k]===v)?'':v;save();const y=scrollY;render();scrollTo(0,y);return}
   if(b.id==='ocr'){readPhoto();return}
+  if(b.id==='hwaddb'){hwAdd();return}
+  if(b.dataset.hwrm){const[c,i]=b.dataset.hwrm.split(':');if(c==='q')d.qhwOff.push(fromQ()[+i]);else d.myhw.splice(+i,1);save();hwRefresh();return}
   if(b.id==='rmphoto'){photoMem='';d.photo='';save();render();return}
   if(b.dataset.theme!==undefined){const on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('#tpills .pill').forEach(p=>p.setAttribute('aria-pressed','false'));
     b.setAttribute('aria-pressed',String(!on));$('#tview').innerHTML=on?'':themeView(b.dataset.theme);return}
