@@ -351,7 +351,7 @@ function answer(w){
   if(!firstSet.has(v.id)){firstSet.add(v.id);round.seen++;if(ok)round.first++}
   const card=`<div class="row" style="align-items:baseline"><span class="word" style="font-size:24px">${esc(v.w)}</span><span class="eng">${esc(v.e)}</span></div><div class="syns">${v.s.map(x=>`<span class="syn">${esc(x)}</span>`).join('')}</div>`;
   const fb=document.getElementById('fb');
-  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி!</h3>${card}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="g">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
+  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி!</h3>${card}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="g">யூகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('s').onclick=()=>{st.box[v.id]=Math.min(MASTER,(st.box[v.id]||0)+1);save();meter();next()};
     document.getElementById('g').onclick=()=>{st.box[v.id]=Math.max(1,st.box[v.id]||0);save();meter();next()};document.getElementById('s').focus();}
   else{st.box[v.id]=0;save();meter();dq.splice(Math.min(3,dq.length),0,v);

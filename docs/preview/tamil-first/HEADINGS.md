@@ -51,7 +51,7 @@ Pattern: Tamil first, English after it in the small grey style (like **உன்
 | அடுத்தது | Next |
 | அடுத்த சுற்று | Next round |
 | உறுதியாகத் தெரியும் | I was sure |
-| ஊகித்தேன் | I guessed |
+| யூகித்தேன் | I guessed |
 | வேறு தொகுப்பு | Random set |
 | தாள் | Paper |
 | தேர்ச்சி | Mastered |
@@ -62,7 +62,7 @@ Pattern: Tamil first, English after it in the small grey style (like **உன்
 |---|---|
 | வேற்றுமை ஆய்வகம் | Case markers lab |
 | பயிற்சி / தேர்வு / அட்டவணை | Drill / A1 papers / Chart |
-| ✓ தெரியும் / ↺ ஊகித்தேன் | Knew it / Guessed |
+| ✓ தெரியும் / ↺ யூகித்தேன் | Knew it / Guessed |
 | பயிற்சி முடிந்தது! | Session complete |
 | மீண்டும் பயிற்சி | Drill again |
 | எட்டு வேற்றுமைகள் | The 8 case markers |
@@ -80,7 +80,7 @@ Pattern: Tamil first, English after it in the small grey style (like **உன்
 | வரிகளை அடுக்கு | Build the lines instead |
 | ⚠ திரும்பு | Undo |
 | முதல் சொல்லைக் காட்டு | Show first word |
-| ஆம், உறுதி / கொஞ்சம் ஊகித்தேன் | Yes, sure / Some guessing |
+| ஆம், உறுதி / கொஞ்சம் யூகித்தேன் | Yes, sure / Some guessing |
 | அடுத்த வரி | Next line |
 | தொடக்கநிலை 3 | Primary 3 (level headings in the full list) |
 
