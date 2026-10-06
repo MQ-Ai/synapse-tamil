@@ -516,7 +516,7 @@ function answerDrill(w){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! Say the whole line once aloud.</h3>
       <p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="ds">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="dg">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
+      <div class="row"><button class="btn primary" id="ds">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="dg">யூகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('ds').onclick=()=>{grade(it.id,true,true);nextDrill()};
     document.getElementById('dg').onclick=()=>{grade(it.id,true,false);nextDrill()};
     document.getElementById('ds').focus();
@@ -579,7 +579,7 @@ function finishBuild(){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>Word-perfect, no slips.</h3>
       <p class="ask">Were you sure of every word?</p>
-      <div class="row"><button class="btn primary" id="bs">ஆம், உறுதி <small class="en">Yes, sure</small></button><button class="btn" id="bg">கொஞ்சம் ஊகித்தேன் <small class="en">Some guessing</small></button></div></div>`;
+      <div class="row"><button class="btn primary" id="bs">ஆம், உறுதி <small class="en">Yes, sure</small></button><button class="btn" id="bg">கொஞ்சம் யூகித்தேன் <small class="en">Some guessing</small></button></div></div>`;
     document.getElementById('bs').onclick=()=>{grade(it.id,true,true);nextBuild()};
     document.getElementById('bg').onclick=()=>{grade(it.id,true,false);nextBuild()};
   }else{

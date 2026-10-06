@@ -418,7 +418,7 @@ function choose(w){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(it.a)} fits here.</h3>${pair}
       <p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="sure">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="guess">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
+      <div class="row"><button class="btn primary" id="sure">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="guess">யூகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('sure').onclick=()=>grade(true);
     document.getElementById('guess').onclick=()=>grade(false);
     document.getElementById('sure').focus();
@@ -580,7 +580,7 @@ function canswer(w){
   const fb=document.getElementById('cfb');
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(ans)}</h3>${pair}<p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="cs">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="cg">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
+      <div class="row"><button class="btn primary" id="cs">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="cg">யூகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('cs').onclick=()=>{cbox[key]=Math.min(MASTER,(cbox[key]||0)+1);csave();cmeter();cnext()};
     document.getElementById('cg').onclick=()=>{cbox[key]=Math.max(1,cbox[key]||0);csave();cmeter();cnext()};
     document.getElementById('cs').focus();

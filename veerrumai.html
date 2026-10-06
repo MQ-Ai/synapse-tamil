@@ -280,7 +280,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
           <p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
           <div class="conf-row">
             <button class="conf-btn knew"    id="btn-knew">✓ தெரியும் <small class="en">Knew it</small></button>
-            <button class="conf-btn guessed" id="btn-guessed">↺ ஊகித்தேன் <small class="en">Guessed</small></button>
+            <button class="conf-btn guessed" id="btn-guessed">↺ யூகித்தேன் <small class="en">Guessed</small></button>
           </div>
         </div>
       </div>
@@ -646,7 +646,7 @@ function onChoice(btn, idx, item) {
     confEl.innerHTML = `<p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
       <div class="conf-row">
         <button class="conf-btn knew"    id="btn-knew">✓ தெரியும் <small class="en">Knew it</small></button>
-        <button class="conf-btn guessed" id="btn-guessed">↺ ஊகித்தேன் <small class="en">Guessed</small></button>
+        <button class="conf-btn guessed" id="btn-guessed">↺ யூகித்தேன் <small class="en">Guessed</small></button>
       </div>`;
     confEl.hidden = false;
     document.getElementById('btn-knew').addEventListener('click', () => onConf(true));
