@@ -140,9 +140,16 @@
   function label() {
     if (!navLink) return;
     var on = profile && profile.name;
-    navLink.textContent = on ? 'Hi, ' + profile.name.split(' ')[0].slice(0, 12) : 'Sign in';
-    if (on) { navLink.removeAttribute('href'); navLink.style.cursor = 'default'; navLink.setAttribute('aria-disabled', 'true'); }
-    else { navLink.href = '#'; navLink.style.cursor = ''; navLink.removeAttribute('aria-disabled'); }
+    if (on) {
+      var initial = profile.name.charAt(0).toUpperCase();
+      navLink.innerHTML = '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#F5B800;color:#0D1B2A;font-weight:700;font-size:12px;font-family:inherit;vertical-align:middle;flex-shrink:0">' + initial + '</span>';
+      navLink.title = 'Hi, ' + profile.name.split(' ')[0];
+      navLink.removeAttribute('href'); navLink.style.cursor = 'default'; navLink.setAttribute('aria-disabled', 'true');
+    } else {
+      navLink.textContent = 'Sign in';
+      navLink.title = '';
+      navLink.href = '#'; navLink.style.cursor = ''; navLink.removeAttribute('aria-disabled');
+    }
   }
   function init() {
     var links = document.querySelector('.nav-links');
