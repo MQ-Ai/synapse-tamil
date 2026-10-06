@@ -493,7 +493,7 @@ const PAPERS = [
   },
 ];
 
-/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… in the paper picker and no source or "Tested" tags */
 const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
 if (!ARCHITECT) {
   const SETS = { 'Xinmin 2026':'Paper 1', 'Meridian 2026':'Paper 2', 'PL2 2025':'Paper 3', 'PL4 2025':'Paper 4' };
@@ -565,7 +565,7 @@ function showDrillCard() {
   // chips
   const vm = VM_REF.find(v => v.num === item.vm);
   document.getElementById('d-chips').innerHTML =
-    `<span class="chip src">${item.src}</span>` +
+    (ARCHITECT ? `<span class="chip src">${item.src}</span>` : '') +
     (vm ? `<span class="chip vm">${item.vm}வது வேற்றுமை</span>` : '');
 
   // sentence, find blank marker and highlight

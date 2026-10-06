@@ -362,7 +362,7 @@ BANKS.forEach(B=>{
   const idx=B.qs.map(q=>{ITEMS.push({s:q.s,a:q.a,b:q.b,f:q.f,src:B.short+' · Q'+q.q,pid:B.id,q:q.q});return ITEMS.length-1});
   if(!B.noexam)PAPERS.push({id:B.id,name:B.name,group:B.group,short:B.short,bank:B.bank,qs:idx});
 });
-/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… instead */
+/* source names (schools, worksheets) show only in the admin view (/synapsearchitect or ?view=architect); students see Paper 1, Paper 2… in the paper picker and no source or "Tested" tags */
 const ARCHITECT=(()=>{try{return new URLSearchParams(location.search).get('view')==='architect'||localStorage.getItem('synapse-architect')==='1'}catch(e){return false}})();
 PAPERS.forEach(P=>P.full=P.name);
 if(!ARCHITECT){
@@ -407,7 +407,7 @@ function nextCard(){
   const opts=shuffle([it.a,it.b]);
   const el=document.getElementById('dcard');
   el.innerHTML=`
-    <div class="chips"><span class="chip">${FAM[it.f].label}</span>${it.src?`<span class="chip src">${esc(it.src)}</span>`:''}</div>
+    <div class="chips"><span class="chip">${FAM[it.f].label}</span>${ARCHITECT&&it.src?`<span class="chip src">${esc(it.src)}</span>`:''}</div>
     <p class="sent" id="sent">${sentHTML(it.s)}</p>
     <div class="choices">${opts.map(o=>`<button class="choice" data-w="${esc(o)}">${esc(o)}</button>`).join('')}</div>
     <div id="fb"></div>`;
