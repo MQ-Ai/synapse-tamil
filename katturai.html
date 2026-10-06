@@ -670,8 +670,13 @@ const hwChips=edit=>{const q=fromQ(),me=d.myhw.filter(w=>!q.includes(w));
    Nothing is filled in on a guess. */
 const tamilOf=s=>(String(s).match(/[\u0B80-\u0BFF]+/g)||[]).join(' ');
 function maybeWords(){const have=fromQ(),off=d.qhwOff||[],out=[];
+  /* PDF mode: d.maybe already holds clean Tamil words found in the page text but missed by the box parser */
+  if(!d.ocr){
+    (d.maybe||[]).forEach(w=>{if(!have.includes(w)&&!off.includes(w)&&!out.includes(w))out.push(w)});
+    return out.slice(0,6);
+  }
   const close=(a,b)=>lev(a,b)/Math.max(a.length,b.length);
-  /* a scrap that looks like a word already shown is that word misread, not a new one */
+  /* OCR mode: a scrap that looks like a word already shown is that word misread, not a new one */
   (d.maybe||[]).forEach(s=>{const t=tamilOf(s),g=gr(t);if(g.length<3||near(lookup(t))||[...have,...off].some(w=>close(g,gr(w))<=.5))return;
     const t0=gr(t.split(' ')[0]);let best=null;
     for(const x of WORDS){
@@ -683,9 +688,13 @@ function maybeWords(){const have=fromQ(),off=d.qhwOff||[],out=[];
   /* box words are often two-word phrases whose second word gets lost: மலிவு may be மலிவு விலையில் */
   have.forEach(w=>{if(/\s/.test(w))return;const x=WORDS.find(x=>x.t.startsWith(w+' '));if(x&&!off.includes(x.t)&&!out.includes(x.t))out.push(x.t)});
   return out.slice(0,6)}
-const hwMaybe=()=>{if(!d.ocr)return'';const m=maybeWords(),n=fromQ().length,box=d.boxn||0;
-  if(!m.length&&!(box>n))return'';
-  return `<span class="hint">${box>n?`The box seems to hold ${box} words; ${n} were read clearly. `:''}${m.length?'Did the box also have these? Tap the ones that match.':'Add the rest below.'}</span>`+
+const hwMaybe=()=>{const m=maybeWords(),n=fromQ().length,box=d.boxn||0;
+  if(!m.length&&!(d.ocr&&box>n))return'';
+  const hint=d.ocr
+    ?`${box>n?`The box seems to hold ${box} words; ${n} were read clearly. `:''}${m.length?'Did the box also have these? Tap the ones that match.':'Add the rest below.'}`
+    :`${m.length?'These words also appear in the PDF — were they in the helping-words box? Tap any that were.':''}`;
+  if(!hint)return'';
+  return `<span class="hint">${hint}</span>`+
     m.map(w=>`<button class="hw sug" data-hwsug="${esc(w)}">+ ${esc(w)}<small>${esc(meaning(w))}</small></button>`).join(' ')};
 const hwKey=()=>`<div class="key"><span><i class="q"></i>from the question</span><span><i class="me"></i>your own</span></div>`;
 const allText=()=>paras().map(p=>(d.text[p.id]||'').trim()).filter(Boolean);
@@ -964,7 +973,10 @@ async function showPdfPage(n){
   const hw=findHelping(t),known=hw.filter(w=>{const m=lookup(w);return m&&!m.k}).length,
     bad=(t.match(/(^|[^\u0B95-\u0BB9])[\u0BBE-\u0BCD\u0BD7]/gm)||[]).length;
   if((t.match(/[\u0B80-\u0BFF]/g)||[]).length>=20&&bad<2&&(!hw.length||known/hw.length>=.6)){
-    d.ocrhw=hw;d.maybe=[];d.boxn=0;d.qhwOff=[];d.q=fixInstr(questionPart(t))||t;d.ocr=0;save();render();
+    /* scan the full page text for any WORDS not caught by the box parser (e.g. present but misformatted) */
+    const qtext=fixInstr(questionPart(t))||t;
+    const pdfMore=WORDS.filter(x=>!hw.includes(x.t)&&t.includes(x.t)&&!qtext.includes(x.t)).map(x=>x.t).slice(0,6);
+    d.ocrhw=hw;d.maybe=pdfMore;d.boxn=0;d.qhwOff=[];d.q=qtext;d.ocr=0;save();render();
     const n=fromQ().length;$('#ocrmsg').textContent='Done: the words were taken straight from the PDF. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below.`:'');
   }else readPhoto();
 }
@@ -1010,13 +1022,19 @@ function crop(src,y0,y1,k){return new Promise(ok=>{const img=new Image();img.onl
 /* The instructions are the opening lines of the page. They end at the first line that looks like something else:
    a column gap (the word box), mostly Latin letters (the reader guessing at a drawing), or only a few letters. */
 function questionPart(t){
-  const out=[];
+  /* Bridge over picture rows (noise) between the two halves of the instruction.
+     Stop only when we hit a word-box line (column gaps) or a long noise run (>8 lines). */
+  const out=[];let gapnoise=0;
   for(const l of t.split('\n')){
-    if(!l.trim()){if(out.length)out.push('');continue}
+    if(!l.trim()){continue}
     const ta=(l.match(/[\u0B80-\u0BFF]/g)||[]).length,la=(l.match(/[A-Za-z]/g)||[]).length;
-    const noise=/\S\s{3,}\S/.test(l)||ta<6||la>.3*(ta+la);
-    if(noise){if(out.length)break;continue}
-    out.push(l.trim());
+    const wordbox=/\S\s{3,}\S/.test(l);
+    const noise=wordbox||ta<6||la>.3*(ta+la);
+    if(noise){
+      if(out.length){if(wordbox)break;gapnoise++;if(gapnoise>8)break;}
+      continue;
+    }
+    gapnoise=0;out.push(l.trim());
   }
   return out.join('\n').trim();
 }
