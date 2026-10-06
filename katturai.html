@@ -172,7 +172,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .hw.me{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
 .hw.ro{padding-right:12px}
 .hw button{font:700 15px var(--mono);width:26px;height:26px;border:0;border-radius:99px;background:transparent;color:inherit;cursor:pointer;opacity:.7}
-.key{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
+.key{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
 .key i{display:inline-block;width:10px;height:10px;border-radius:99px;margin-right:6px;vertical-align:-1px}
 .key i.q{background:var(--accent)}
 .key i.me{background:var(--teal)}
@@ -291,34 +291,58 @@ const TARGET=200; /* suggested minimum words; change here if teachers ask for a 
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const $=s=>document.querySelector(s);
 const splitWords=t=>String(t||'').split(/[,،;\n]+/).map(s=>s.trim()).filter(Boolean);
-/* Find the helping words a question prints, e.g. "உதவிச் சொற்கள்: பூங்கா, மழை, குடை" or a box of words
-   under a line like "கீழ்க்காணும் சொற்களைப் பயன்படுத்தலாம்". Works on typed text and on what the photo reader returns. */
+/* Find the helping words a question prints. Two layouts:
+   1. labelled: "உதவிச் சொற்கள்: பூங்கா, மழை" or "(உதவிச் சொற்கள்: …)" or a short header line with the words under it;
+   2. unlabelled: a box of short words under the pictures, often in two columns, with no header at all.
+   Works on typed text and on what the photo reader returns (which marks wide column gaps with 3 spaces). */
 const HW_CUE=/(உதவி|துணை|குறிப்பு|பயன்படுத்|கொடுக்கப்பட்ட|helping|key\s*words|given\s+words|words\s+(given|below))/i;
 const HW_WORD=/(சொற்க|சொல்|word)/i;
 const HW_NOT=/(சொந்த|\d+\s*(சொற்க|words)|own\s+words)/i; /* "use your own words", "at least 150 words" */
+const HW_END=/முற்றும்|^[\s*\-–—_=.]*$|^\(?\d+\)?$/; /* "***முற்றும்***", rules, picture numbers */
+const TA=/[\u0B80-\u0BFF]/;
+function hwBits(p,ta,box){
+  let bits=p.split(/[,،;/|•·▪●○◦]+|\s[-–—]\s|\s{2,}|\t/);
+  /* a line of single words with only spaces between them, as a word box often reads */
+  if(!box&&bits.length===1&&p.trim().split(/\s+/).length>=4)bits=p.trim().split(/\s+/);
+  const out=[];out.long=false;
+  bits.forEach(b=>{
+    b=b.replace(/^\s*(\d+|[அ-ஔ]|[a-z])[.)]\s+/i,'');
+    /* in a Tamil paper, stray Latin letters are the photo reader misreading a smudge */
+    if(ta)b=b.split(/\s+/).filter(w=>TA.test(w)).join(' ');
+    b=b.replace(/^[\s"'“”‘’.\-–—*_]+|[\s"'“”‘’.\-–—*_]+$/g,'').trim();
+    const n=ta?[...b].filter(c=>TA.test(c)).length:b.replace(/[^a-z]/gi,'').length;
+    if(b&&n>=3&&[...b].length<=30&&b.split(/\s+/).length<=3)out.push(b);else if(b.split(/\s+/).length>3)out.long=true;
+  });
+  return out;
+}
 function findHelping(q){
-  const L=String(q||'').replace(/[\u200c\u200d]/g,'').split('\n').map(s=>s.trim());
+  const L=String(q||'').replace(/[\u200c\u200d]/g,'').split('\n').map(s=>s.replace(/\s+$/,'').replace(/^\s+/,''));
+  const ta=TA.test(q||''),uniq=a=>[...new Set(a)].slice(0,15);
+  /* 1. labelled */
   for(let i=0;i<L.length;i++){
     const l=L[i];if(!HW_CUE.test(l)||!HW_WORD.test(l)||HW_NOT.test(l))continue;
-    let parts=[];
-    const par=l.match(/\(([^)]+)\)\s*\.?$/);
-    const src=par?par[1]:l,c=src.search(/[:：]/);
-    if(c>-1)parts.push(src.slice(c+1));else if(par)parts.push(par[1]);
-    /* words printed on the lines below, until a blank line or a long sentence */
+    const par=l.match(/\(([^)]+)\)\s*\.?$/),src=par?par[1]:l,c=src.search(/[:：]/);
+    const header=c<0&&!par&&l.length<=30&&!/[.?!]$/.test(l);
+    if(c<0&&!header)continue; /* a sentence that only mentions helping words, e.g. "படத்தின் அடியில் உதவிச்சொற்கள் கொடுக்கப்பட்டுள்ளன" */
+    const parts=c>-1?[src.slice(c+1)]:[];
     for(let j=i+1;j<L.length&&L[j]&&L[j].length<=60;j++)parts.push(L[j]);
-    const out=[];
-    parts.forEach(p=>{
-      let bits=p.split(/[,،;/|•·▪●○◦]+|\s[-–—]\s|\s{2,}/);
-      /* a line of single words with only spaces between them, as a word box often reads */
-      if(bits.length===1&&p.trim().split(/\s+/).length>=3)bits=p.trim().split(/\s+/);
-      bits.forEach(b=>{b=b.replace(/^\s*(\d+|[அ-ஔ]|[a-z])[.)]\s+/i,'').replace(/^[\s"'“”‘’.\-–—*]+|[\s"'“”‘’.\-–—*]+$/g,'').trim();
-        if(b&&[...b].length<=30&&b.split(/\s+/).length<=3&&!out.includes(b))out.push(b)});
-    });
-    if(out.length)return out.slice(0,15);
+    const out=[];parts.forEach(p=>out.push(...hwBits(p,ta)));
+    if(out.length)return uniq(out);
   }
-  return [];
-}
-const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
+  /* 2. unlabelled box: the last run of short, word-only lines (the box sits under the pictures) */
+  let best=[],run=[],gap=0;
+  const close=()=>{if(run.length>=3)best=run;run=[];gap=0};
+  L.forEach(l=>{
+    if(!l){if(++gap>1)close();return}
+    if(HW_END.test(l))return;
+    const bits=hwBits(l,ta,true);
+    /* a sentence (the instructions), not a list of words */
+    if(bits.long||l.split(/\s{2,}|\t/).some(c=>/[.?!:]\s+\S|:\s*$/.test(c))||(HW_CUE.test(l)&&HW_WORD.test(l))){close();return}
+    if(bits.length){run.push(...bits);gap=0}
+  });
+  close();
+  return uniq(best);
+}const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
 const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
 let d=blank();
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object.assign(blank(),s);
@@ -577,6 +601,23 @@ function loadPhoto(file){
   img.src=url;
 }
 function loadScript(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+/* Rebuild the text line by line so a box of words in two columns keeps its column gap (as 3 spaces),
+   and drop the tall, low-confidence "lines" the reader finds in the drawings. */
+function ocrText(D){
+  const tidy=t=>t.replace(/[\u200c\u200d]/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+  const lines=(D.lines||[]).filter(l=>l.words&&l.words.length);
+  if(!lines.length)return tidy(D.text||'');
+  const H=l=>l.bbox.y1-l.bbox.y0,good=lines.filter(l=>l.confidence>=60).map(H).sort((a,b)=>a-b);
+  const mid=good.length?good[good.length>>1]:0;
+  return lines.filter(l=>!(mid&&l.confidence<50&&H(l)>1.6*mid)).map(l=>{
+    const h=H(l);let o='',px=null;
+    l.words.slice().sort((a,b)=>a.bbox.x0-b.bbox.x0).forEach(w=>{
+      /* the reader often sees the ை sign, which is printed before its letter, as an 8: இ8ளஞன் → இளைஞன் */
+      const t=tidy(w.text).replace(/(?<=[\u0B80-\u0BFF])8([க-ஹ])/g,'$1ை');if(!t)return;
+      if(px!==null)o+=(w.bbox.x0-px>1.5*h)?'   ':' ';o+=t;px=w.bbox.x1});
+    return o;
+  }).join('\n').replace(/[\u200c\u200d]/g,'');
+}
 async function readPhoto(){
   const msg=$('#ocrmsg'),b=$('#ocr');b.disabled=true;
   try{
@@ -584,7 +625,7 @@ async function readPhoto(){
     if(!window.Tesseract)await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
     const w=await Tesseract.createWorker('tam+eng',1,{logger:m=>{if(m.status==='recognizing text')msg.textContent='Reading… '+Math.round(m.progress*100)+'%'}});
     const r=await w.recognize(photoMem);await w.terminate();
-    const t=r.data.text.replace(/[\u200c\u200d]/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();
+    const t=ocrText(r.data);
     if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
     d.q=(d.q?d.q.trim()+'\n':'')+t;save();render();
     const n=fromQ().length;
