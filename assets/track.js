@@ -102,15 +102,15 @@
     overlay = document.createElement('div'); overlay.id = 'syn-ov';
     overlay.innerHTML =
       '<form id="syn-card" role="dialog" aria-modal="true" aria-labelledby="syn-h" novalidate>' +
-      '<h2 id="syn-h">Sign in to continue</h2>' +
-      '<label class="f" for="syn-name">Name</label><input id="syn-name" type="text" autocomplete="name" maxlength="80" required>' +
-      '<label class="f" for="syn-school">School</label><input id="syn-school" type="text" autocomplete="organization" maxlength="80" required>' +
-      '<label class="f" for="syn-level">Level</label><select id="syn-level" required><option value="">Choose…</option><option>Primary 3</option><option>Primary 4</option><option>Primary 5</option><option>Primary 6</option><option>Other</option></select>' +
-      '<label class="f" for="syn-email">Email (yours or a parent\'s)</label><input id="syn-email" type="email" autocomplete="email" maxlength="120" required>' +
+      '<h2 id="syn-h">தொடர உள்நுழைக <small class="en b">Sign in to continue</small></h2>' +
+      '<label class="f" for="syn-name">பெயர் <small class="en">Name</small></label><input id="syn-name" type="text" autocomplete="name" maxlength="80" required>' +
+      '<label class="f" for="syn-school">பள்ளி <small class="en">School</small></label><input id="syn-school" type="text" autocomplete="organization" maxlength="80" required>' +
+      '<label class="f" for="syn-level">வகுப்பு <small class="en">Level</small></label><select id="syn-level" required><option value="">Choose…</option><option>Primary 3</option><option>Primary 4</option><option>Primary 5</option><option>Primary 6</option><option>Other</option></select>' +
+      '<label class="f" for="syn-email">மின்னஞ்சல் <small class="en">Email (yours or a parent\'s)</small></label><input id="syn-email" type="email" autocomplete="email" maxlength="120" required>' +
       (CFG.contact ? '<p class="small">Questions? Email ' + CFG.contact.replace(/[<>&"]/g, '') + '.</p>' : '') +
       '<div id="syn-err" role="alert"></div>' +
-      '<div class="row"><button type="submit" class="p">' + 'Continue' + '</button>' +
-      (gate ? '' : '<button type="button" id="syn-skip">Close</button>') +
+      '<div class="row"><button type="submit" class="p">' + 'தொடர் · Continue' + '</button>' +
+      (gate ? '' : '<button type="button" id="syn-skip">மூடு · Close</button>') +
       '</div></form>';
     document.body.appendChild(overlay);
     document.addEventListener('keydown', onKey, true);
@@ -146,7 +146,7 @@
       navLink.title = 'Hi, ' + profile.name.split(' ')[0];
       navLink.removeAttribute('href'); navLink.style.cursor = 'default'; navLink.setAttribute('aria-disabled', 'true');
     } else {
-      navLink.textContent = 'Sign in';
+      navLink.innerHTML = 'உள்நுழை<small>Sign in</small>';
       navLink.title = '';
       navLink.href = '#'; navLink.style.cursor = ''; navLink.removeAttribute('aria-disabled');
     }

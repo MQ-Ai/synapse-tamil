@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -210,13 +215,13 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Case markers</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -231,7 +236,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
 <div class="wrap">
   <div>
     <div class="eyebrow">Synapse Tamil · A1</div>
-    <h1>வேற்றுமை ஆய்வகம்</h1>
+    <h1>வேற்றுமை ஆய்வகம் <small class="en">Case markers lab</small></h1>
     <p class="lede">Master all <b>8 case markers</b>. Choose the correct உருபு in sentence context, the same format as Paper 2 Section A1. <b>10 marks</b> up for grabs.</p>
   </div>
 
@@ -253,9 +258,9 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
   <!-- Tabs -->
   <div>
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true"  aria-controls="pane-drill"  id="tab-drill">Drill <small id="drill-count"></small></button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-paper"  id="tab-paper">A1 Papers <small>5</small></button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-ref"    id="tab-ref">வேற்றுமை Chart</button>
+      <button class="tab" role="tab" aria-selected="true"  aria-controls="pane-drill"  id="tab-drill">பயிற்சி <small>Drill <span id="drill-count"></span></small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-paper"  id="tab-paper">தேர்வு <small>A1 papers · 5</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="pane-ref"    id="tab-ref">அட்டவணை <small>Chart</small></button>
     </div>
 
     <!-- ═══ DRILL PANE ═══════════════════════════════════════════ -->
@@ -273,8 +278,8 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
         <div class="flag-form" id="flag-form">
           <textarea id="flag-note" placeholder="What's wrong with this question?" maxlength="300"></textarea>
           <div class="flag-form-row">
-            <button class="flag-send" id="flag-send" disabled>Send report</button>
-            <button class="flag-cancel" id="flag-cancel">Cancel</button>
+            <button class="flag-send" id="flag-send" disabled>அனுப்பு <small class="en">Send report</small></button>
+            <button class="flag-cancel" id="flag-cancel">வேண்டாம் <small class="en">Cancel</small></button>
           </div>
         </div>
         <!-- chips -->
@@ -289,8 +294,8 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
         <div id="d-conf" hidden>
           <p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
           <div class="conf-row">
-            <button class="conf-btn knew"    id="btn-knew">✓ Knew it</button>
-            <button class="conf-btn guessed" id="btn-guessed">↺ Guessed</button>
+            <button class="conf-btn knew"    id="btn-knew">✓ தெரியும் <small class="en">Knew it</small></button>
+            <button class="conf-btn guessed" id="btn-guessed">↺ ஊகித்தேன் <small class="en">Guessed</small></button>
           </div>
         </div>
       </div>
@@ -298,11 +303,11 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
       <!-- done screen -->
       <div id="drill-done" hidden class="card done-box">
         <div class="done-num" id="done-score"></div>
-        <h2>session complete</h2>
+        <h2>பயிற்சி முடிந்தது! <small class="en">Session complete</small></h2>
         <p style="color:var(--muted);max-width:36ch;margin:0">
           Items you guessed will come back next session. Keep drilling until every card hits MASTER&nbsp;3.
         </p>
-        <button class="restart-btn" id="btn-restart">Drill again →</button>
+        <button class="restart-btn" id="btn-restart">மீண்டும் பயிற்சி → <small class="en">Drill again</small></button>
       </div>
     </div>
 
@@ -314,7 +319,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
     <!-- ═══ REFERENCE PANE ══════════════════════════════════════ -->
     <div id="pane-ref" role="tabpanel" aria-labelledby="tab-ref" hidden style="padding-top:20px;display:flex;flex-direction:column;gap:20px">
       <div>
-        <h2 class="section-hd">எட்டு வேற்றுமைகள்</h2>
+        <h2 class="section-hd">எட்டு வேற்றுமைகள் <small class="en">The 8 case markers</small></h2>
         <p class="section-sub">All 8 Tamil case markers with suffixes, roles, and examples</p>
       </div>
       <div class="table-wrap">
@@ -322,18 +327,18 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
           <thead>
             <tr>
               <th>#</th>
-              <th>வேற்றுமை</th>
-              <th>உருபு (suffix)</th>
-              <th>Role in sentence</th>
-              <th>Example</th>
+              <th>வேற்றுமை <small class="en">Case</small></th>
+              <th>உருபு <small class="en">Suffix</small></th>
+              <th>பங்கு <small class="en">Role in sentence</small></th>
+              <th>எடுத்துக்காட்டு <small class="en">Example</small></th>
             </tr>
           </thead>
           <tbody id="vm-tbody"></tbody>
         </table>
       </div>
       <div class="card" style="font-size:14px;color:var(--muted);gap:10px">
-        <p style="margin:0"><b style="color:var(--ink)">Exam tip:</b> Read the blank's position relative to the verb. The verb tells you what role the noun plays, subject (1st), object (2nd), instrument (3rd), recipient (4th), ablative (5th), genitive (6th), locative (7th), or vocative (8th).</p>
-        <p style="margin:0"><b style="color:var(--ink)">Sandhi note:</b> Many suffixes change with the final phoneme of the noun: ஐ → யை after vowels; இல் / இலிருந்து → ல் / லிருந்து after vowel stems. Watch the junction carefully.</p>
+        <p style="margin:0"><b style="color:var(--ink)">தேர்வுக் குறிப்பு <small class="en">Exam tip</small>:</b> Read the blank's position relative to the verb. The verb tells you what role the noun plays, subject (1st), object (2nd), instrument (3rd), recipient (4th), ablative (5th), genitive (6th), locative (7th), or vocative (8th).</p>
+        <p style="margin:0"><b style="color:var(--ink)">புணர்ச்சி <small class="en">Sandhi note</small>:</b> Many suffixes change with the final phoneme of the noun: ஐ → யை after vowels; இல் / இலிருந்து → ல் / லிருந்து after vowel stems. Watch the junction carefully.</p>
       </div>
     </div>
   </div>
@@ -655,14 +660,14 @@ function onChoice(btn, idx, item) {
   if (isCorrect) {
     confEl.innerHTML = `<p style="font-size:13px;color:var(--muted);margin:0 0 8px">Did you know it or did you guess?</p>
       <div class="conf-row">
-        <button class="conf-btn knew"    id="btn-knew">✓ Knew it</button>
-        <button class="conf-btn guessed" id="btn-guessed">↺ Guessed</button>
+        <button class="conf-btn knew"    id="btn-knew">✓ தெரியும் <small class="en">Knew it</small></button>
+        <button class="conf-btn guessed" id="btn-guessed">↺ ஊகித்தேன் <small class="en">Guessed</small></button>
       </div>`;
     confEl.hidden = false;
     document.getElementById('btn-knew').addEventListener('click', () => onConf(true));
     document.getElementById('btn-guessed').addEventListener('click', () => onConf(false));
   } else {
-    confEl.innerHTML = `<div class="conf-row"><button class="conf-btn guessed" id="btn-next-wrong">Next →</button></div>`;
+    confEl.innerHTML = `<div class="conf-row"><button class="conf-btn guessed" id="btn-next-wrong">அடுத்தது → <small class="en">Next</small></button></div>`;
     confEl.hidden = false;
     document.getElementById('btn-next-wrong').addEventListener('click', () => onConf(false));
   }

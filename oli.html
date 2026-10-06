@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -216,13 +221,13 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Case markers</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -237,7 +242,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
-    <h1>ஒலி வேறுபாட்டுச் சொற்கள்</h1>
+    <h1>ஒலி வேறுபாட்டுச் சொற்கள் <small class="en">Sound-alike words</small></h1>
     <p class="lede">Section <b>C6</b>: four sentences, a box of eight look-alike words, <b>8 marks</b>. Every word in the box has a twin that sounds almost the same. Train your ear and eye on the one letter that changes the meaning.</p>
   </header>
 
@@ -254,13 +259,13 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
   </nav>
 
   <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
-    <div class="meter"><span>Mastered</span><div class="bar"><i id="mbar"></i></div><span class="num" id="mnum"></span></div>
+    <div class="meter"><span>தேர்ச்சி <small class="en">Mastered</small></span><div class="bar"><i id="mbar"></i></div><span class="num" id="mnum"></span></div>
     <div class="card" id="dcard"></div>
   </section>
 
   <section id="p-core" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
     <p class="cue" style="margin:0" id="core-cue">The highest-frequency word pairs, most important first. Match each meaning to its spelling before you meet the pair in a sentence.</p>
-    <div class="meter"><span>Core pairs mastered</span><div class="bar"><i id="cbar"></i></div><span class="num" id="cnum"></span></div>
+    <div class="meter"><span>அடிப்படை இணைகள் <small class="en">Core pairs mastered</small></span><div class="bar"><i id="cbar"></i></div><span class="num" id="cnum"></span></div>
     <div class="card" id="ccard"></div>
   </section>
 
@@ -420,14 +425,14 @@ function choose(w){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(it.a)} fits here.</h3>${pair}
       <p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="sure">I was sure</button><button class="btn" id="guess">I guessed</button></div></div>`;
+      <div class="row"><button class="btn primary" id="sure">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="guess">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('sure').onclick=()=>grade(true);
     document.getElementById('guess').onclick=()=>grade(false);
     document.getElementById('sure').focus();
   }else{
     fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(it.a)}. You chose ${esc(w)}.</h3>${pair}
       <p class="ask">This sentence comes back in three cards.</p>
-      <div class="row"><button class="btn primary" id="nx">Next</button></div></div>`;
+      <div class="row"><button class="btn primary" id="nx">அடுத்தது <small class="en">Next</small></button></div></div>`;
     box[cur]=0;save();
     queue.splice(Math.min(3,queue.length),0,cur);
     document.getElementById('nx').onclick=advance;
@@ -447,7 +452,7 @@ function endRound(){
     <div class="chips"><span class="chip">Round complete</span></div>
     <div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
     <p class="cue">${m} of ${ITEMS.length} sentences mastered. A sentence counts as mastered after you get it right and feel sure three times.</p>
-    <div class="row"><button class="btn primary" id="again">Start next round</button><button class="btn" id="toexam">Try a full C6 paper</button></div>`;
+    <div class="row"><button class="btn primary" id="again">அடுத்த சுற்று <small class="en">Start next round</small></button><button class="btn" id="toexam">முழு C6 தாளை முயல் <small class="en">Try a full C6 paper</small></button></div>`;
   document.getElementById('again').onclick=()=>{buildRound();nextCard()};
   document.getElementById('toexam').onclick=()=>show('exam');
 }
@@ -472,11 +477,11 @@ function renderExam(){
   const groups=[...new Set(PAPERS.map(P=>P.group))];
   p.innerHTML=`
     <div class="row">
-      <label class="hint" for="papersel">Paper</label>
+      <label class="hint" for="papersel">தாள் <small class="en">Paper</small></label>
       <select id="papersel" class="psel">${groups.map(g=>`<optgroup label="${esc(g)}">${PAPERS.map((P,i)=>P.group===g?`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.short)}</option>`:'').join('')}</optgroup>`).join('')}</select>
-      <button class="btn" id="newset">Random set</button>
+      <button class="btn" id="newset">வேறு தொகுப்பு <small class="en">Random set</small></button>
     </div>
-    <div class="paperhead"><h2>C6 ஒலி வேறுபாட்டுச் சொற்கள்</h2><span class="chip ${exam.paper?'src':''}">${esc(exam.label)}</span></div>
+    <div class="paperhead"><h2>C6 ஒலி வேறுபாட்டுச் சொற்கள் <small class="en">Sound-alike words</small></h2><span class="chip ${exam.paper?'src':''}">${esc(exam.label)}</span></div>
     <p class="instr">பின்வரும் பகுதியில் Q${st} முதல் Q${en} வரையுள்ள கோடிட்ட இடங்களை நிரப்புவதற்குப் பொருத்தமான சொல்லின் எண்ணைத் தேர்ந்தெடு. (${exam.marks} மதிப்பெண்கள்)</p>
     ${exam.qs.map((i,k)=>`<div class="q"><span class="qn">Q${st+k}</span><div>
       <p>${esc(ITEMS[i].s).replace('___',`<select id="ex-${k}" aria-label="Q${st+k} answer"><option value="">__</option>${exam.bank.map((_,m)=>`<option value="${m}">${m+1}</option>`).join('')}</select>`)}</p>
@@ -484,7 +489,7 @@ function renderExam(){
     <div class="bank" id="bank">${exam.bank.map((w,m)=>`<span data-n="${m}">(${m+1}) ${esc(w)}</span>`).join('')}</div>
     <div class="row" style="align-items:center;justify-content:space-between">
       <div id="escore"></div>
-      <button class="btn primary" id="check">சரிபார் · Check</button>
+      <button class="btn primary" id="check">சரிபார் <small class="en">Check</small></button>
     </div>`;
   exam.qs.forEach((_,k)=>document.getElementById('ex-'+k).addEventListener('change',strike));
   document.getElementById('check').onclick=checkExam;
@@ -562,7 +567,7 @@ function cnext(){
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
       <div class="score">${cround.first} / ${cround.seen}<small>right on the first try</small></div>
       <p class="cue">${m} of ${CORE.length} core pairs mastered.</p>
-      <div class="row"><button class="btn primary" id="cagain">Next round</button><button class="btn" id="ctodrill">Practise them in sentences</button></div>`;
+      <div class="row"><button class="btn primary" id="cagain">அடுத்த சுற்று <small class="en">Next round</small></button><button class="btn" id="ctodrill">வாக்கியங்களில் பயிற்சி செய் <small class="en">Practise them in sentences</small></button></div>`;
     document.getElementById('cagain').onclick=cstart;document.getElementById('ctodrill').onclick=()=>show('drill');return;
   }
   ccur=cq.shift();ccur.done=false;const {o,k}=ccur;
@@ -582,14 +587,14 @@ function canswer(w){
   const fb=document.getElementById('cfb');
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(ans)}</h3>${pair}<p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="cs">I was sure</button><button class="btn" id="cg">I guessed</button></div></div>`;
+      <div class="row"><button class="btn primary" id="cs">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="cg">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('cs').onclick=()=>{cbox[key]=Math.min(MASTER,(cbox[key]||0)+1);csave();cmeter();cnext()};
     document.getElementById('cg').onclick=()=>{cbox[key]=Math.max(1,cbox[key]||0);csave();cmeter();cnext()};
     document.getElementById('cs').focus();
   }else{
     cbox[key]=0;csave();cmeter();cq.splice(Math.min(3,cq.length),0,{o,k:(k+1)%o.w.length});
     fb.innerHTML=`<div class="fb bad"><h3>It is ${esc(ans)}, not ${esc(w)}.</h3>${pair}<p class="ask">This pair comes back in three cards, asking for the other word.</p>
-      <div class="row"><button class="btn primary" id="cn">Next</button></div></div>`;
+      <div class="row"><button class="btn primary" id="cn">அடுத்தது <small class="en">Next</small></button></div></div>`;
     document.getElementById('cn').onclick=cnext;document.getElementById('cn').focus();
   }
 }

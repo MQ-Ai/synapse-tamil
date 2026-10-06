@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -233,13 +238,13 @@ body.cover .entry .v.show{filter:none}
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Case markers</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -254,7 +259,7 @@ body.cover .entry .v.show{filter:none}
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
-    <h1>அடைமொழி / எச்சம்</h1>
+    <h1>அடைமொழி / எச்சம் <small class="en">Describing words & participles</small></h1>
     <p class="lede">Section <b>A3</b>: five sentences, pick the word form that fits, <b>10 marks</b>. Most A3 questions give four forms of the <b>same verb</b>. The word right after the blank tells you which form to choose.</p>
   </header>
 
@@ -265,12 +270,12 @@ body.cover .entry .v.show{filter:none}
   </nav>
 
   <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
-    <div class="meter"><span>Mastered</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="meter"><span>தேர்ச்சி <small class="en">Mastered</small></span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
     <div class="card" id="dcard"></div>
   </section>
 
   <section id="p-rules" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
-    <div class="bigtip"><b>Look right, then choose.</b> Cover the options. Read the word straight after the blank and ask: is it a <b>thing</b>, an <b>action</b>, a <b>try / want</b>, or <b>how</b>? That tells you the ending. Only then look at the options.</div>
+    <div class="bigtip"><b>வலப்பக்கம் பார், பிறகு தேர்ந்தெடு.</b> <small class="en b">Look right, then choose.</small> Cover the options. Read the word straight after the blank and ask: is it a <b>thing</b>, an <b>action</b>, a <b>try / want</b>, or <b>how</b>? That tells you the ending. Only then look at the options.</div>
     <div class="rules" id="rules"></div>
   </section>
 
@@ -323,7 +328,7 @@ function next(){
   const el=document.getElementById('dcard');
   if(!dq.length){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length;window.synTrack&&synTrack('round',{lab:'echam',score:round.first,of:round.seen});
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div><div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
-    <p class="hint">${m} of ${ITEMS.length} sentences mastered.</p><div class="row"><button class="btn primary" id="again">Next round</button><button class="btn" id="toexam">Try an A3 paper</button></div>`;
+    <p class="hint">${m} of ${ITEMS.length} sentences mastered.</p><div class="row"><button class="btn primary" id="again">அடுத்த சுற்று <small class="en">Next round</small></button><button class="btn" id="toexam">A3 தாளை முயல் <small class="en">Try an A3 paper</small></button></div>`;
     document.getElementById('again').onclick=startDrill;document.getElementById('toexam').onclick=()=>show('exam');return}
   const i=dq.shift(),it=ITEMS[i];cur={i,it,done:false,kindOk:null};
   const form=isForm(it);
@@ -334,7 +339,7 @@ function next(){
 function stepKind(){
   const it=cur.it;
   document.getElementById('stage').innerHTML=`<p class="step">Step 1 · Look right</p><p class="hint" style="margin:0 0 8px">What does the highlighted word after the blank need?</p>
-    <div class="kinds">${SITES.map(k=>`<button class="kind" data-k="${k}">${KINDS[k].label}<small>${KINDS[k].ta} · ${KINDS[k].end}</small></button>`).join('')}</div>`;
+    <div class="kinds">${SITES.map(k=>`<button class="kind" data-k="${k}">${KINDS[k].ta}<small>${KINDS[k].label} · ${KINDS[k].end}</small></button>`).join('')}</div>`;
   document.querySelectorAll('#stage .kind').forEach(b=>b.onclick=()=>{
     if(window.synAllow&&!synAllow('echam:'+cur.i,()=>b.click()))return;
     const ok=b.dataset.k===it.t;cur.kindOk=ok;
@@ -358,17 +363,17 @@ function answer(k){
   document.getElementById('sent').innerHTML=sentHTML(it,it.o[it.a],ok?'good':'bad');
   if(!firstSet.has(i)){firstSet.add(i);round.seen++;if(ok)round.first++}
   const fb=document.getElementById('fb');const why=`<p class="cue" style="margin:0">${esc(it.w)}</p>`;
-  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(it.o[it.a])}</h3>${why}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">I was sure</button><button class="btn" id="g">I guessed</button></div></div>`;
+  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி! ${esc(it.o[it.a])}</h3>${why}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="g">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('s').onclick=()=>{box[i]=cur.kindOk===false?Math.max(1,box[i]||0):Math.min(MASTER,(box[i]||0)+1);save();meter();next()};
     document.getElementById('g').onclick=()=>{box[i]=Math.max(1,box[i]||0);save();meter();next()};document.getElementById('s').focus();}
   else{box[i]=0;save();meter();dq.splice(Math.min(3,dq.length),0,i);
-    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(it.o[it.a])}, not ${esc(it.o[k])}.</h3>${why}<p class="ask">This sentence comes back in three cards.</p><div class="row"><button class="btn primary" id="n">Next</button></div></div>`;
+    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(it.o[it.a])}, not ${esc(it.o[k])}.</h3>${why}<p class="ask">This sentence comes back in three cards.</p><div class="row"><button class="btn primary" id="n">அடுத்தது <small class="en">Next</small></button></div></div>`;
     document.getElementById('n').onclick=next;document.getElementById('n').focus();}
 }
 
 /* rules */
 const exFor=k=>ITEMS.filter(it=>it.t===k&&it.src).slice(0,2);
-document.getElementById('rules').innerHTML=['pe','vi','inf','adv','rep','mean'].map(k=>`<div class="rule"><span class="tag">${KINDS[k].ta}${KINDS[k].end?' · '+KINDS[k].end:''}</span><h3>${KINDS[k].label}</h3><p>${esc(KINDS[k].rule)}</p>
+document.getElementById('rules').innerHTML=['pe','vi','inf','adv','rep','mean'].map(k=>`<div class="rule">${KINDS[k].end?`<span class="tag">${KINDS[k].end}</span>`:''}<h3>${KINDS[k].ta} <small class="en">${KINDS[k].label}</small></h3><p>${esc(KINDS[k].rule)}</p>
   ${exFor(k).map(it=>`<p class="ex">${sentHTML(it,it.o[it.a]).replace('class="blank ','class="blank good ')}${ARCHITECT?`<br><small class="hint">${esc(it.src)}</small>`:''}</p>`).join('')}</div>`).join('');
 
 /* exam */
@@ -381,12 +386,12 @@ function makeExam(pi){
 }
 function renderExam(){
   const p=document.getElementById('paper');
-  p.innerHTML=`<div class="row"><label class="hint" for="papersel">Paper</label><select id="papersel" class="psel">${PAPERS.map((P,i)=>`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.name)}</option>`).join('')}</select><button class="btn" id="enew">Random set</button></div>
-    <div class="paperhead"><h2>A3 அடைமொழி/எச்சம்</h2><span class="chip ${exam.pi!=null?'src':''}">${esc(exam.label)}</span></div>
+  p.innerHTML=`<div class="row"><label class="hint" for="papersel">தாள் <small class="en">Paper</small></label><select id="papersel" class="psel">${PAPERS.map((P,i)=>`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.name)}</option>`).join('')}</select><button class="btn" id="enew">வேறு தொகுப்பு <small class="en">Random set</small></button></div>
+    <div class="paperhead"><h2>A3 அடைமொழி/எச்சம் <small class="en">Describing words & participles</small></h2><span class="chip ${exam.pi!=null?'src':''}">${esc(exam.label)}</span></div>
     <p class="instr">Q11 முதல் Q15 வரையுள்ள கோடிட்ட இடங்களை நிறைவு செய்வதற்கு ஏற்ற மிகப் பொருத்தமான அடைமொழியை/எச்சத்தைக் கொடுக்கப்பட்டிருக்கும் சொற்களிலிருந்து தேர்ந்தெடு. (10 மதிப்பெண்கள்)</p>
     ${exam.qs.map((i,k)=>{const it=ITEMS[i];return `<div class="q"><span class="qn">Q${11+k}</span><div><p class="verse" style="font:500 17px/1.9 var(--body)">${esc(it.s).replace('___','<span class="blank">&nbsp;</span>')}</p>
       <div class="qopts">${it.o.map((o,n)=>`<label id="lb-${k}-${n}"><input type="radio" name="eq-${k}" id="eq-${k}-${n}" value="${n}"> (${n+1}) ${esc(o)}</label>`).join('')}</div><div class="res" id="er-${k}"></div></div></div>`}).join('')}
-    <div class="row" style="justify-content:space-between"><div id="escore"></div><button class="btn primary" id="echeck">சரிபார் · Check</button></div>`;
+    <div class="row" style="justify-content:space-between"><div id="escore"></div><button class="btn primary" id="echeck">சரிபார் <small class="en">Check</small></button></div>`;
   document.getElementById('echeck').onclick=checkExam;document.getElementById('enew').onclick=()=>makeExam(null);
   document.getElementById('papersel').onchange=e=>makeExam(+e.target.value);
 }

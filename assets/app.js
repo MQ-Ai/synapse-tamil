@@ -116,7 +116,7 @@
     if (!links || links.querySelector('[data-page="daily"]')) return;
     var a = document.createElement('a'), s = streak();
     a.href = '/daily'; a.setAttribute('data-page', 'daily');
-    a.textContent = s.count ? '🔥 ' + s.count : 'Today ✨';
+    a.innerHTML = s.count ? '🔥 ' + s.count + '<small>Streak</small>' : 'இன்று ✨<small>Today</small>';
     a.title = 'Challenge of the day';
     if (/\/daily(\.html)?$/.test(location.pathname)) a.className = 'active';
     var home = links.querySelector('[data-page="home"]');
