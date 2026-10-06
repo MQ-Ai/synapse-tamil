@@ -247,7 +247,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" id="t-drill" aria-selected="true" data-p="drill">பயிற்சி <small>Practice</small></button>
+    <button class="tab" role="tab" id="t-drill" aria-selected="true" data-p="drill">வாக்கியம் <small>Sentences</small></button>
     <button class="tab" role="tab" id="t-core" aria-selected="false" data-p="core">அடிப்படை <small>Core pairs</small></button>
     <button class="tab" role="tab" id="t-exam" aria-selected="false" data-p="exam">தேர்வு <small>C6 paper</small></button>
     <button class="tab" role="tab" id="t-pairs" aria-selected="false" data-p="pairs">சொல் இணைகள் <small>Pairs</small></button>
@@ -560,7 +560,7 @@ function cnext(){
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
       <div class="score">${cround.first} / ${cround.seen}<small>right on the first try</small></div>
       <p class="cue">${m} of ${CORE.length} core pairs mastered.</p>
-      <div class="row"><button class="btn primary" id="cagain">அடுத்த சுற்று <small class="en">Next round</small></button><button class="btn" id="ctodrill">வாக்கியங்களில் பயிற்சி செய் <small class="en">Practise them in sentences</small></button></div>`;
+      <div class="row"><button class="btn primary" id="cagain">அடுத்த சுற்று <small class="en">Next round</small></button><button class="btn" id="ctodrill">வாக்கியங்களில் <small class="en">Try in sentences</small></button></div>`;
     document.getElementById('cagain').onclick=cstart;document.getElementById('ctodrill').onclick=()=>show('drill');return;
   }
   ccur=cq.shift();ccur.done=false;const {o,k}=ccur;
