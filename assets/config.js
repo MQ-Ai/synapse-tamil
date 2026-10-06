@@ -11,13 +11,13 @@ window.SYNAPSE_TRACK = {
    into `link`. While the link is empty, everything stays free after sign-in.
    The prices here are only what the pay screen shows: the amount charged is set in
    Stripe, and must match PASSES in docs/tracking/apps-script.gs.
-   covers: 'every round and every exam paper in all five labs',
+   covers: 'every round and every exam paper in all six labs, including the composition guide',
   short: 'Every lab and exam paper',
   parent: true shows "Ask a parent to pay" with a WhatsApp share link. */
 window.SYNAPSE_PAY = {
   app: 'synapse-tamil',
   year: { link: 'https://buy.stripe.com/dRmcN42Xk7hy0L6dkQ1sQ00', price: 'S$49' },
-  covers: 'every round and every exam paper in all five labs',
+  covers: 'every round and every exam paper in all six labs, including the composition guide',
   short: 'Every lab and exam paper',
   parent: true
 };
