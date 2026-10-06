@@ -773,7 +773,7 @@ function sQuestion(){
     </div>
     <div class="photo">
       ${photoMem?`<img src="${photoMem}" alt="Your question paper">
-        ${pdfDoc&&pdfDoc.numPages>1?`<div class="row"><span class="hint">PDF page</span><div class="seg2" role="group" aria-label="PDF page">${Array.from({length:Math.min(pdfDoc.numPages,12)},(_,i)=>`<button data-pdfpage="${i+1}" aria-pressed="${pdfPage===i+1}">${i+1}</button>`).join('')}</div></div>`:''}
+
         <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
       :`<label class="up"><input type="file" accept="image/*,application/pdf,.pdf" id="file">📷 Take or upload a photo or PDF of the question</label>`}
     </div>
@@ -992,6 +992,7 @@ async function loadPdf(file){
   try{
     if(!window.pdfjsLib){await loadScript(PDFJS+'pdf.min.js');pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js'}
     pdfDoc=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise;
+    if(pdfDoc.numPages>1){pdfDoc=null;alert('Please upload only the first page of the PDF (one page at a time). Try cropping or printing just page 1.');return;}
     await showPdfPage(1);
   }catch(e){pdfDoc=null;alert('Could not open this PDF. Try a photo of the page instead.')}
 }
