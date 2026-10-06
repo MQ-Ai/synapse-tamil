@@ -377,105 +377,6 @@ section { padding: 80px 24px; }
   margin-bottom: 48px;
 }
 
-/* ─── FORGETTING CURVE ───────────────────────────────── */
-.curve-section {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.curve-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-@media (max-width: 700px) {
-  .curve-layout { grid-template-columns: 1fr; gap: 40px; }
-}
-
-.curve-text h2 { margin-bottom: 20px; }
-.curve-text p {
-  font-size: 16px;
-  color: var(--text2);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-.curve-text p strong { color: var(--text); }
-
-#curve-svg {
-  width: 100%;
-  max-width: 500px;
-  aspect-ratio: 4/3;
-}
-
-/* ─── SCIENCE PRINCIPLES ─────────────────────────────── */
-.principles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 48px;
-}
-.principle-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px 24px;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.principle-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.principle-card[data-color="gold"]::after  { background: radial-gradient(circle at 0 0, rgba(245,184,0,0.08), transparent 60%); }
-.principle-card[data-color="teal"]::after  { background: radial-gradient(circle at 0 0, rgba(0,201,177,0.08), transparent 60%); }
-.principle-card[data-color="red"]::after   { background: radial-gradient(circle at 0 0, rgba(255,107,107,0.08), transparent 60%); }
-.principle-card[data-color="green"]::after { background: radial-gradient(circle at 0 0, rgba(82,227,161,0.08), transparent 60%); }
-.principle-card:hover { border-color: var(--text3); transform: translateY(-3px); }
-.principle-card:hover::after { opacity: 1; }
-
-.principle-icon {
-  font-size: 28px;
-  margin-bottom: 16px;
-  display: block;
-}
-.principle-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 8px;
-}
-.principle-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-.principle-body {
-  font-size: 14px;
-  color: var(--text2);
-  line-height: 1.65;
-}
-.principle-cite {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 11px;
-  color: var(--text3);
-  font-style: italic;
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
-  width: 100%;
-}
-
 /* ─── LABS GRID ──────────────────────────────────────── */
 .labs-grid {
   display: grid;
@@ -637,31 +538,6 @@ section { padding: 80px 24px; }
 .step-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
 .step-body { font-size: 14px; color: var(--text2); line-height: 1.65; }
 
-/* ─── BRAIN METRICS ──────────────────────────────────── */
-.metrics-band {
-  background: var(--card);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 40px 24px;
-}
-.metrics-inner {
-  max-width: 1080px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 40px;
-  align-items: center;
-}
-.metric { text-align: center; }
-.metric-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.metric-label { font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.4; }
-.metric-source { font-size: 11px; color: var(--text3); font-style: italic; margin-top: 4px; }
-
 /* ─── FOOTER ─────────────────────────────────────────── */
 footer {
   background: var(--bg2);
@@ -725,14 +601,12 @@ footer {
   <canvas id="neural-canvas" aria-hidden="true"></canvas>
   <div class="hero-tamil-bg" aria-hidden="true">சினாப்ஸ்</div>
 
-  <div class="hero-badge">Neuroscience-backed PSLE prep</div>
-
   <h1 class="hero-title">
-    Learn Tamil the way<br>your <em>brain</em> actually works
+    Tamil practice<br>that feels like <em>play</em>
   </h1>
-  <p class="hero-subtitle-tamil">மூளை விஞ்ஞானத்துடன் தமிழ் கற்போம்</p>
+  <p class="hero-subtitle-tamil">விளையாட்டாகத் தமிழ் கற்போம்</p>
   <p class="hero-desc">
-    Synapse Tamil applies retrieval practice, spaced repetition and confidence calibration to the hardest sections of PSLE Tamil Paper 2. Built for upper primary students who are done with passive revision.
+    Short, playful challenges on the trickiest parts of PSLE Tamil Paper 2, for upper primary kids. A few minutes at a time, and the tricky ones come back until they stick.
   </p>
 
   <div class="hero-stats">
@@ -789,143 +663,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══ METRICS BAND ═══════════════════════════════════════════ -->
-<div class="metrics-band fade-in">
-  <div class="metrics-inner">
-    <div class="metric">
-      <div class="metric-num" style="color:var(--red)">90%</div>
-      <div class="metric-label">of memorised material forgotten within a week without practice</div>
-      <div class="metric-source">Ebbinghaus, 1885</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num" style="color:var(--teal)">2×</div>
-      <div class="metric-label">better retention with retrieval practice vs. re-reading</div>
-      <div class="metric-source">Roediger & Karpicke, 2006</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num" style="color:var(--gold)">40%</div>
-      <div class="metric-label">improvement when spacing is added to retrieval</div>
-      <div class="metric-source">Kornell & Bjork, 2008</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num" style="color:var(--green)">30%</div>
-      <div class="metric-label">accuracy gain from confidence calibration training</div>
-      <div class="metric-source">Dunlosky et al., 2013</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ FORGETTING CURVE ════════════════════════════════════════ -->
-<section class="curve-section" id="science">
-  <div class="section-inner">
-    <div class="curve-layout">
-      <div class="curve-text fade-in">
-        <div class="eyebrow">The Ebbinghaus Problem</div>
-        <h2 class="section-title">Your memory is leaking right now</h2>
-        <p>Hermann Ebbinghaus discovered in 1885 that we forget exponentially. Without active recall, <strong>80% of new material vanishes within 24 hours</strong>. Rereading your notes creates an illusion of knowing. You feel familiar with the material, not fluent in it.</p>
-        <p>Every Synapse lab forces retrieval: you produce the answer from memory before seeing it. That act of effortful recall, even when you get it wrong, rewires the neural pathway. Psychologists call it the <strong>testing effect</strong>.</p>
-        <p>When you flag uncertainty ("I guessed"), the system returns that item sooner. Items you know cold are spaced out. This mirrors how memory consolidation actually works during sleep.</p>
-      </div>
-      <div class="fade-in">
-        <svg id="curve-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Forgetting curve chart showing memory retention over time, with spaced repetition recovering the curve">
-          <!-- Grid -->
-          <line x1="60" y1="20" x2="60" y2="270" stroke="var(--border)" stroke-width="1"/>
-          <line x1="60" y1="270" x2="400" y2="270" stroke="var(--border)" stroke-width="1"/>
-          <!-- Y axis labels -->
-          <text x="50" y="24" font-size="10" fill="var(--text3)" text-anchor="end" font-family="Inter">100%</text>
-          <text x="50" y="94" font-size="10" fill="var(--text3)" text-anchor="end" font-family="Inter">75%</text>
-          <text x="50" y="162" font-size="10" fill="var(--text3)" text-anchor="end" font-family="Inter">50%</text>
-          <text x="50" y="232" font-size="10" fill="var(--text3)" text-anchor="end" font-family="Inter">25%</text>
-          <!-- Horizontal grid lines -->
-          <line x1="60" y1="24" x2="400" y2="24" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,4"/>
-          <line x1="60" y1="94" x2="400" y2="94" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,4"/>
-          <line x1="60" y1="162" x2="400" y2="162" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,4"/>
-          <line x1="60" y1="232" x2="400" y2="232" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="3,4"/>
-          <!-- X axis labels -->
-          <text x="60" y="285" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="Inter">Now</text>
-          <text x="145" y="285" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="Inter">1 day</text>
-          <text x="230" y="285" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="Inter">3 days</text>
-          <text x="315" y="285" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="Inter">1 week</text>
-          <text x="395" y="285" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="Inter">1 month</text>
-
-          <!-- Forgetting curve, red area fill -->
-          <path d="M60,24 C90,40 120,100 145,170 S190,240 400,258" fill="none" stroke="#FF6B6B" stroke-width="2.5" id="forget-path" stroke-linecap="round"/>
-          <path d="M60,24 C90,40 120,100 145,170 S190,240 400,258 L400,270 L60,270 Z" fill="rgba(255,107,107,0.08)" id="forget-fill"/>
-
-          <!-- Spaced repetition recoveries -->
-          <!-- Day 1 review: bump back up -->
-          <path d="M145,170 C148,160 150,100 160,60" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="4,3"/>
-          <path d="M160,60 C190,76 220,140 245,180" fill="none" stroke="var(--teal)" stroke-width="2"/>
-          <!-- Day 3 review -->
-          <path d="M245,180 C248,170 250,110 260,70" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="4,3"/>
-          <path d="M260,70 C290,84 320,130 345,164" fill="none" stroke="var(--teal)" stroke-width="2"/>
-          <!-- Day 7 review -->
-          <path d="M345,164 C348,154 350,90 360,54" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="4,3"/>
-          <path d="M360,54 C375,62 390,80 400,90" fill="none" stroke="var(--teal)" stroke-width="2"/>
-
-          <!-- Review dots -->
-          <circle cx="145" cy="170" r="5" fill="var(--teal)" id="dot1"/>
-          <circle cx="245" cy="180" r="5" fill="var(--teal)" id="dot2"/>
-          <circle cx="345" cy="164" r="5" fill="var(--teal)" id="dot3"/>
-
-          <!-- Labels -->
-          <text x="200" y="58" font-size="10" fill="#FF6B6B" font-family="Inter" font-weight="600">Forgetting curve</text>
-          <text x="370" y="108" font-size="10" fill="var(--teal)" font-family="Inter" font-weight="600">With</text>
-          <text x="370" y="120" font-size="10" fill="var(--teal)" font-family="Inter" font-weight="600">Synapse</text>
-
-          <!-- Review event markers -->
-          <text x="152" y="148" font-size="9" fill="var(--teal)" font-family="Inter">review</text>
-          <text x="252" y="158" font-size="9" fill="var(--teal)" font-family="Inter">review</text>
-          <text x="352" y="142" font-size="9" fill="var(--teal)" font-family="Inter">review</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SCIENCE PRINCIPLES ══════════════════════════════════════ -->
-<section>
-  <div class="section-inner">
-    <div class="eyebrow">Cognitive Science</div>
-    <h2 class="section-title fade-in">Four principles powering every drill</h2>
-    <p class="section-lead fade-in">Every interaction in Synapse is engineered around peer-reviewed findings in cognitive psychology and memory neuroscience.</p>
-
-    <div class="principles-grid">
-      <div class="principle-card fade-in" data-color="teal">
-        <span class="principle-icon">🧠</span>
-        <div class="principle-num">Principle 01</div>
-        <div class="principle-name">Retrieval Practice (Testing Effect)</div>
-        <p class="principle-body">Generating an answer from memory, even unsuccessfully, produces stronger recall than rereading. The act of retrieval itself strengthens the memory trace. This is why Synapse never shows you the answer first.</p>
-        <span class="principle-cite">Roediger & Karpicke, Science 2006 · Kornell & Son, 2009</span>
-      </div>
-
-      <div class="principle-card fade-in" data-color="gold">
-        <span class="principle-icon">📅</span>
-        <div class="principle-num">Principle 02</div>
-        <div class="principle-name">Spaced Repetition (SRS)</div>
-        <p class="principle-body">Items you know well are shown less often. Items you struggle with return sooner. Synapse tracks each item individually. If you guessed, it comes back in 3 cards. If you knew it cold, it returns next session.</p>
-        <span class="principle-cite">Ebbinghaus 1885 · Cepeda et al., Psych. Bulletin 2006</span>
-      </div>
-
-      <div class="principle-card fade-in" data-color="red">
-        <span class="principle-icon">⚡</span>
-        <div class="principle-num">Principle 03</div>
-        <div class="principle-name">Desirable Difficulties</div>
-        <p class="principle-body">Learning that feels harder produces better retention. Synapse interleaves question types (fill-the-blank, build-the-line, contrast pairs) rather than blocking them. The confusion is the point, it forces deeper processing.</p>
-        <span class="principle-cite">Bjork & Bjork, 1992 · Kornell & Bjork, 2008</span>
-      </div>
-
-      <div class="principle-card fade-in" data-color="green">
-        <span class="principle-icon">🎯</span>
-        <div class="principle-num">Principle 04</div>
-        <div class="principle-name">Confidence Calibration</div>
-        <p class="principle-body">After each answer, Synapse asks: did you know it, or did you guess? This metacognitive check of rating your own certainty is itself a retrieval cue that improves future recall by 30%. Overclaiming is the hidden enemy.</p>
-        <span class="principle-cite">Dunlosky et al., Psych. Science Public Interest 2013</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ THE LABS ══════════════════════════════════════════════════ -->
 <section id="labs" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="section-inner">
@@ -943,11 +680,11 @@ footer {
         <div class="lab-body">
           <div class="lab-name-tamil">வேற்றுமை பயிற்சி</div>
           <div class="lab-name-en">Case Markers</div>
-          <p class="lab-desc">Master all 8 case markers with spaced repetition: suffixes, sandhi changes, role identification. 60 questions, 5 past paper sets.</p>
+          <p class="lab-desc">Master all 8 case markers: suffixes, sandhi changes, role identification. 60 questions, 5 past paper sets.</p>
           <div class="lab-features">
             <span class="lab-feature">60 items</span>
             <span class="lab-feature">5 paper sets</span>
-            <span class="lab-feature">SRS engine</span>
+            <span class="lab-feature">Tricky ones return</span>
             <span class="lab-feature">Reference chart</span>
           </div>
           <div class="lab-action">
@@ -1014,7 +751,7 @@ footer {
             <span class="lab-feature">158 word pairs</span>
             <span class="lab-feature">46 paper sets</span>
             <span class="lab-feature">242 sentences</span>
-            <span class="lab-feature">SRS spacing</span>
+            <span class="lab-feature">Tricky ones return</span>
           </div>
           <div class="lab-action">
             <span class="lab-action-text">தொடங்கு →</span>
