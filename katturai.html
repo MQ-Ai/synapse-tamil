@@ -346,7 +346,7 @@ function findHelping(q){
   close();
   return uniq(best);
 }const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
-const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],ocr:0,photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
+const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],ocr:0,ocrhw:[],photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
 let d=blank();
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object.assign(blank(),s);
   /* older saves kept helping words as one typed string */
@@ -654,7 +654,7 @@ function hwFix(b,ocr){
 /* helping words: the ones printed in the question (read from its text) plus the student's own.
    From a photo, unknown scraps are dropped: very short ones are bits of the drawings, and once most of
    the box matched known words the rest are misreads too. */
-const fromQ=()=>{const o=!!d.ocr;let L=findHelping(d.q).map(b=>hwFix(b,o));
+const fromQ=()=>{const o=!!d.ocr;let L=[...findHelping(d.q),...(d.ocrhw||[])].map(b=>hwFix(b,o));
   if(o){L=L.filter(x=>!x.unk||gr(x.w).length>3);if(L.length&&L.filter(x=>!x.unk).length/L.length>=.6)L=L.filter(x=>!x.unk)}
   return [...new Set(L.map(x=>x.w))].filter(w=>!d.qhwOff.includes(w))};
 const helping=()=>[...new Set([...fromQ(),...d.myhw])];
@@ -936,6 +936,19 @@ function forOcr(src){return new Promise(ok=>{const img=new Image();img.onload=()
   c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);const x=c.getContext('2d');
   x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);
   ok(c.toDataURL('image/png'))};img.onerror=()=>ok(src);img.src=src})}
+/* The instructions are the opening lines of the page. They end at the first line that looks like something else:
+   a column gap (the word box), mostly Latin letters (the reader guessing at a drawing), or only a few letters. */
+function questionPart(t){
+  const out=[];
+  for(const l of t.split('\n')){
+    if(!l.trim()){if(out.length)out.push('');continue}
+    const ta=(l.match(/[\u0B80-\u0BFF]/g)||[]).length,la=(l.match(/[A-Za-z]/g)||[]).length;
+    const noise=/\S\s{3,}\S/.test(l)||ta<6||la>.3*(ta+la);
+    if(noise){if(out.length)break;continue}
+    out.push(l.trim());
+  }
+  return out.join('\n').trim();
+}
 async function readPhoto(){
   const msg=$('#ocrmsg'),b=$('#ocr');b.disabled=true;
   try{
@@ -945,7 +958,9 @@ async function readPhoto(){
     const r=await w.recognize(await forOcr(photoMem));await w.terminate();
     const t=ocrText(r.data);
     if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
-    d.q=(d.q?d.q.trim()+'\n':'')+t;d.ocr=1;save();render();
+    /* the question box gets only the instructions; the word box goes to the helping-word chips,
+       and the scraps read from the drawings are left out. Each read replaces the last one. */
+    d.ocrhw=findHelping(t);d.q=questionPart(t)||t;d.ocr=1;save();render();
     const n=fromQ().length;
     $('#ocrmsg').textContent='Done. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below. `:'')+'Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
   }catch(e){msg.textContent='Could not load the reader. Check your connection, or type the question instead.';b.disabled=false}
