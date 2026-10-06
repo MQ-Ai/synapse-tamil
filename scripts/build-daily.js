@@ -59,5 +59,15 @@ var labs = [
   { id: 'sol', name: 'Vocabulary', href: 'sol', items: shuffle(sol, r) },
   { id: 'veerrumai', name: 'Case markers', href: 'veerrumai', items: shuffle(veerrumai, r) }
 ];
+/* An option that starts with a bare vowel sign (ை, ே, ா, ், …) has no letter to sit on and shows
+   as a broken glyph, so stop the build and name it; give the lab question whole-word options instead. */
+labs.forEach(function (l) {
+  l.items.forEach(function (x) {
+    x.o.forEach(function (o) {
+      if (/^[ா-்ௗ]/.test(o)) throw new Error(l.id + ': option "' + o + '" starts with a bare vowel sign in: ' + (x.q || x.ask));
+    });
+  });
+});
+
 fs.writeFileSync(path.join(ROOT, 'assets/daily.json'), JSON.stringify({ v: 1, labs: labs }) + '\n');
 console.log('assets/daily.json: ' + labs.map(function (l) { return l.id + ' ' + l.items.length; }).join(', '));
