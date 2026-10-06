@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/veerrumai", "destination": "/vetrumai", "permanent": true },
+    { "source": "/veerrumai.html", "destination": "/vetrumai", "permanent": true }
+  ],
   "functions": {
     "api/push.js": { "maxDuration": 60 }
   },
