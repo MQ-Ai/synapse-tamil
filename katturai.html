@@ -251,6 +251,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 })();
 </script>
 
+<script src="assets/tamil-type.js"></script>
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 1</div>
@@ -765,6 +766,7 @@ function sQuestion(){
   return `<section class="card">
     <h2>உன் கேள்வி <small>Step 1 · Your question</small></h2>
     <p class="hint">Snap the composition question, or type it in. The photo stays on this device.</p>
+    <p class="hint">No Tamil keyboard? Type the sounds in English letters and they turn into Tamil, or tap ⌨ தமிழ் keyboard under a box. A phone’s own Tamil keyboard or Tamil voice typing works here too.</p>
     <div class="seg2" role="group" aria-label="Type of composition">
       <button data-set="type" data-v="pic" aria-pressed="${d.type==='pic'}">படக்கட்டுரை · pictures</button>
       <button data-set="type" data-v="topic" aria-pressed="${d.type==='topic'}">தலைப்புக் கட்டுரை · topic</button>
@@ -905,6 +907,7 @@ function sWrite(){
   return `<section class="card">
     <h2>எழுது <small>Step 5 · Write</small></h2>
     <p class="hint">Write one paragraph at a time with your notes beside you. Tap a phrase in the box at the bottom to drop it in where your cursor is, then make it fit your sentence.</p>
+    <p class="hint">No Tamil keyboard? Type the sounds in English letters (<b>naan</b> → நான்) or tap ⌨ தமிழ் keyboard. A phone’s own Tamil keyboard or Tamil voice typing works here too.</p>
     ${hw.length?`<div class="tip" style="display:flex;flex-direction:column;gap:8px"><b>Helping words to use:</b><div class="hws">${hwChips(false)}</div>${hwKey()}</div>`:''}
     ${P.map(p=>`<div class="para">
       <h3>${p.ta} <small>${p.en}</small></h3>
@@ -1179,6 +1182,17 @@ document.addEventListener('click',e=>{
   if(b.id==='new'){newQuestion();return}
 });
 render();
+/* Typing Tamil with an English keyboard: English letters turn into Tamil as they type, with word suggestions
+   from the lists above, plus an on-screen Tamil keyboard. On by default where the box is meant for Tamil. */
+const COMMON='அம்மா அப்பா அக்கா அண்ணன் அண்ணா தம்பி தங்கை தாத்தா பாட்டி மாமா அத்தை குடும்பம் நண்பன் நண்பர்கள் தோழி ஆசிரியர் ஆசிரியை மாணவர்கள் வகுப்பு பள்ளி வீடு நான் நாங்கள் நாம் அவன் அவள் அவர் அவர்கள் என் எனக்கு என்னை என்னுடைய ஒரு நாள் அன்று மிகவும் நல்ல பெரிய சிறிய அழகான மகிழ்ச்சி கவலை பயம் கோபம் சென்றேன் வந்தேன் பார்த்தேன் கேட்டேன் கூறினேன் சொன்னேன் நினைத்தேன் உணர்ந்தேன் ஓடினேன் விழுந்தான் அழுதான் சிரித்தான் உதவினார் நன்றி மன்னிப்பு பேருந்து ரயில் மிதிவண்டி சாலை மருத்துவமனை காவலர் மழை தண்ணீர் உணவு பணம் பணப்பை கைப்பேசி விளையாட்டு பந்து போட்டி பரிசு பிறந்தநாள் விடுமுறை';
+TamilType.init({
+  fields:'textarea[data-k],input[type=text][data-k],#hwadd',
+  on:el=>!/^(pics|plan|hwadd)/.test(el.dataset.k||el.id),
+  priority:()=>[...helping(),...d.bank,...(d.prov?[d.prov]:[]),...LINKS],
+  meanings:()=>WORDS,
+  vocab:()=>[...WORDS.map(x=>x.t),...COMMON.split(' '),...LINKS.flatMap(l=>[l,...l.split(' ')]),
+    ...THEMES.flatMap(t=>t.x.join(' ').split(/\s+/)),...PROVERBS.flatMap(p=>p.p.split(/\s+/))]
+});
 </script>
 <script src="assets/config.js"></script>
 <script src="assets/track.js" defer></script>
