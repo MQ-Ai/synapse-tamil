@@ -992,9 +992,48 @@ async function loadPdf(file){
   try{
     if(!window.pdfjsLib){await loadScript(PDFJS+'pdf.min.js');pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js'}
     pdfDoc=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise;
-    if(pdfDoc.numPages>1){pdfDoc=null;alert('Please upload only the first page of the PDF (one page at a time). Try cropping or printing just page 1.');return;}
+    if(pdfDoc.numPages>1){await pickPdfPage();return;}
     await showPdfPage(1);
   }catch(e){pdfDoc=null;alert('Could not open this PDF. Try a photo of the page instead.')}
+}
+async function pickPdfPage(){
+  /* render small thumbnails of every page and ask the user to tap one */
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);overflow-y:auto;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px';
+  const heading=document.createElement('p');
+  heading.style.cssText='color:#fff;font:600 16px var(--display,sans-serif);margin:0';
+  heading.textContent=`This PDF has ${pdfDoc.numPages} pages. Tap the page with the question:`;
+  overlay.appendChild(heading);
+  const grid=document.createElement('div');
+  grid.style.cssText='display:flex;flex-wrap:wrap;gap:10px;justify-content:center';
+  overlay.appendChild(grid);
+  document.body.appendChild(overlay);
+  /* render each page as a thumbnail */
+  for(let i=1;i<=pdfDoc.numPages;i++){
+    const page=await pdfDoc.getPage(i),vp1=page.getViewport({scale:1});
+    const s=Math.min(1,180/Math.max(vp1.width,vp1.height)),vp=page.getViewport({scale:s});
+    const c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);
+    const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);
+    await page.render({canvasContext:ctx,viewport:vp}).promise;
+    const wrap=document.createElement('div');
+    wrap.style.cssText='cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px';
+    const img=document.createElement('img');img.src=c.toDataURL('image/jpeg',.8);
+    img.style.cssText='border-radius:6px;border:2px solid transparent;max-width:160px';
+    img.alt='Page '+i;
+    const lbl=document.createElement('span');lbl.style.cssText='color:#fff;font:500 13px var(--body,sans-serif)';lbl.textContent='Page '+i;
+    wrap.appendChild(img);wrap.appendChild(lbl);
+    wrap.addEventListener('click',async()=>{
+      document.body.removeChild(overlay);
+      await showPdfPage(i);
+    });
+    wrap.addEventListener('mouseenter',()=>img.style.borderColor='var(--teal,#0bc)');
+    wrap.addEventListener('mouseleave',()=>img.style.borderColor='transparent');
+    grid.appendChild(wrap);
+  }
+  const cancel=document.createElement('button');
+  cancel.className='btn sm ghost';cancel.textContent='Cancel';cancel.style.marginTop='8px';
+  cancel.addEventListener('click',()=>{pdfDoc=null;document.body.removeChild(overlay)});
+  overlay.appendChild(cancel);
 }
 /* lay out the PDF's text line by line; a wide gap (a second column) becomes 3 spaces, as the photo reader does */
 function pdfText(tc){
