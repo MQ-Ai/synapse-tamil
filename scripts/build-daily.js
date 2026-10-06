@@ -33,7 +33,7 @@ var echam = grab('echam.html', 'ITEMS')
   .filter(function (x) { return x.s.indexOf('___') > -1 && x.o.length === 4; })
   .map(function (x) { return { q: x.s, o: x.o, a: x.a, why: x.w }; });
 
-var veerrumai = grab('veerrumai.html', 'ITEMS')
+var vetrumai = grab('vetrumai.html', 'ITEMS')
   .filter(function (x) { return x.sent.indexOf('___') > -1 && !/wait|reframe/i.test(x.explain); })
   .map(function (x) { return { q: x.sent, o: x.choices, a: x.ans, why: x.explain }; });
 
@@ -57,7 +57,8 @@ var labs = [
   { id: 'oli', name: 'Sound pairs', href: 'oli', items: shuffle(oli, r) },
   { id: 'echam', name: 'Participles', href: 'echam', items: shuffle(echam, r) },
   { id: 'sol', name: 'Vocabulary', href: 'sol', items: shuffle(sol, r) },
-  { id: 'veerrumai', name: 'Case markers', href: 'veerrumai', items: shuffle(veerrumai, r) }
+  /* id stays 'veerrumai' so saved daily progress keeps working; the page itself is /vetrumai */
+  { id: 'veerrumai', name: 'Case markers', href: 'vetrumai', items: shuffle(vetrumai, r) }
 ];
 /* An option that starts with a bare vowel sign (ை, ே, ா, ், …) has no letter to sit on and shows
    as a broken glyph, so stop the build and name it; give the lab question whole-word options instead. */
