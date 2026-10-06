@@ -351,7 +351,7 @@ let d=blank();
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object.assign(blank(),s);
   /* older saves kept helping words as one typed string */
   if(!s.myhw&&s.hw)d.myhw=splitWords(s.hw)}}catch(e){}
-let photoMem=d.photo;
+let photoMem=d.photo,hiMem='',pdfDoc=null,pdfPage=1; /* hiMem: a sharp render of a PDF page, read instead of the preview */
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){try{localStorage.setItem(KEY,JSON.stringify(Object.assign({},d,{photo:''})))}catch(e2){}}};
 const past=()=>{try{return JSON.parse(localStorage.getItem(HKEY)||'[]')}catch(e){return[]}};
 
@@ -695,8 +695,9 @@ function sQuestion(){
     </div>
     <div class="photo">
       ${photoMem?`<img src="${photoMem}" alt="Your question paper">
+        ${pdfDoc&&pdfDoc.numPages>1?`<div class="row"><span class="hint">PDF page</span><div class="seg2" role="group" aria-label="PDF page">${Array.from({length:Math.min(pdfDoc.numPages,12)},(_,i)=>`<button data-pdfpage="${i+1}" aria-pressed="${pdfPage===i+1}">${i+1}</button>`).join('')}</div></div>`:''}
         <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
-      :`<label class="up"><input type="file" accept="image/*" id="file">📷 Take or upload a photo of the question</label>`}
+      :`<label class="up"><input type="file" accept="image/*,application/pdf,.pdf" id="file">📷 Take or upload a photo or PDF of the question</label>`}
     </div>
     <label class="f">The question <small>Type it, or tap “Read the words from the photo”, then fix any mistakes.</small>
       <textarea data-k="q" rows="4" placeholder="${d.type==='pic'?'எ.கா. கீழே கொடுக்கப்பட்டுள்ள படங்களைப் பார்த்துக் கட்டுரை எழுதுக.':'எ.கா. தலைப்பு: மறக்க முடியாத ஒரு நாள்'}">${val('q')}</textarea></label>
@@ -903,6 +904,45 @@ function sCheck(){
 function title(){const q=(d.q||'').split('\n').map(s=>s.trim()).find(s=>s.length>3)||'';return q?q.slice(0,60):(d.type==='pic'?'படக்கட்டுரை':'கட்டுரை')}
 
 /* ---------- photo + reading the words ---------- */
+/* ---------- PDF: a typed PDF already holds the exact words, so they are taken as they are;
+   a scanned PDF is drawn sharply and read like a photo ---------- */
+const PDFJS='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/';
+async function loadPdf(file){
+  try{
+    if(!window.pdfjsLib){await loadScript(PDFJS+'pdf.min.js');pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js'}
+    pdfDoc=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise;
+    await showPdfPage(1);
+  }catch(e){pdfDoc=null;alert('Could not open this PDF. Try a photo of the page instead.')}
+}
+/* lay out the PDF's text line by line; a wide gap (a second column) becomes 3 spaces, as the photo reader does */
+function pdfText(tc){
+  const it=tc.items.filter(i=>i.str&&i.str.trim()),rows=[];
+  it.forEach(i=>{const y=i.transform[5],h=Math.abs(i.transform[3])||i.height||10;
+    let r=rows.find(r=>Math.abs(r.y-y)<h*.5);if(!r){r={y,h,items:[]};rows.push(r)}r.items.push(i)});
+  return rows.sort((a,b)=>b.y-a.y).map(r=>{let o='',end=null;
+    r.items.sort((a,b)=>a.transform[4]-b.transform[4]).forEach(i=>{const x=i.transform[4];
+      if(end!==null){const g=x-end;o+=g>2*r.h?'   ':g>r.h*.15&&!/\s$/.test(o)&&!/^\s/.test(i.str)?' ':''}
+      o+=i.str;end=x+i.width});
+    return o.replace(/[\u200c\u200d]/g,'')}).join('\n');
+}
+async function showPdfPage(n){
+  pdfPage=n;const page=await pdfDoc.getPage(n),vp1=page.getViewport({scale:1});
+  const k=Math.min(4,2400/Math.max(vp1.width,vp1.height)),vp=page.getViewport({scale:k}),c=document.createElement('canvas');
+  c.width=Math.round(vp.width);c.height=Math.round(vp.height);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);
+  await page.render({canvasContext:x,viewport:vp}).promise;
+  hiMem=c.toDataURL('image/png');
+  const p=document.createElement('canvas'),s=Math.min(1,1600/Math.max(c.width,c.height));p.width=Math.round(c.width*s);p.height=Math.round(c.height*s);
+  p.getContext('2d').drawImage(c,0,0,p.width,p.height);photoMem=p.toDataURL('image/jpeg',.9);d.photo=photoMem;save();render();
+  const t=pdfText(await page.getTextContent());
+  /* typed PDFs: use the text itself. Scanned PDFs, and PDFs whose fonts store Tamil letters out of order or with
+     vowel signs missing (common: ொ comes out as ெ+க+ா, நிலையம் as நலயம்), are read from the sharp picture instead */
+  const hw=findHelping(t),known=hw.filter(w=>{const m=lookup(w);return m&&!m.k}).length,
+    bad=(t.match(/(^|[^\u0B95-\u0BB9])[\u0BBE-\u0BCD\u0BD7]/gm)||[]).length;
+  if((t.match(/[\u0B80-\u0BFF]/g)||[]).length>=20&&bad<2&&(!hw.length||known/hw.length>=.6)){
+    d.ocrhw=hw;d.qhwOff=[];d.q=fixInstr(questionPart(t))||t;d.ocr=0;save();render();
+    const n=fromQ().length;$('#ocrmsg').textContent='Done: the words were taken straight from the PDF. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below.`:'');
+  }else readPhoto();
+}
 function loadPhoto(file){
   const img=new Image(),url=URL.createObjectURL(file);
   img.onload=()=>{const m=1600,s=Math.min(1,m/Math.max(img.width,img.height)),c=document.createElement('canvas');
@@ -975,7 +1015,7 @@ async function readPhoto(){
     msg.textContent='Getting the reader ready (first time takes a little while)…';
     if(!window.Tesseract)await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
     const w=await Tesseract.createWorker('tam+eng',1,{logger:m=>{if(m.status==='recognizing text')msg.textContent='Reading… '+Math.round(m.progress*100)+'%'}});
-    const img=await forOcr(photoMem),r=await w.recognize(img);
+    const img=await forOcr(hiMem||photoMem),r=await w.recognize(img);
     const t=ocrText(r.data);let hw=findHelping(t);
     /* two closer looks at just the word box, at different sizes, pick up words the first read garbled; only words that match
        the word list are added from it */
@@ -1015,7 +1055,8 @@ document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset
   if(d.step===6&&e.target.type==='checkbox'){save();const y=scrollY;render();scrollTo(0,y)}});
 document.addEventListener('focusin',e=>{if(e.target.tagName==='TEXTAREA'&&/^text\./.test(e.target.dataset.k||''))lastTa=e.target});
 document.addEventListener('change',e=>{
-  if(e.target.id==='file'&&e.target.files[0])loadPhoto(e.target.files[0]);
+  if(e.target.id==='file'&&e.target.files[0]){const f=e.target.files[0];hiMem='';pdfDoc=null;
+    if(f.type==='application/pdf'||/\.pdf$/i.test(f.name))loadPdf(f);else loadPhoto(f)}
   if(e.target.name==='prov'){d.prov=e.target.value;save()}
 });
 document.addEventListener('click',e=>{
@@ -1025,7 +1066,8 @@ document.addEventListener('click',e=>{
   if(b.id==='ocr'){readPhoto();return}
   if(b.id==='hwaddb'){hwAdd();return}
   if(b.dataset.hwrm){const[c,i]=b.dataset.hwrm.split(':');if(c==='q')d.qhwOff.push(fromQ()[+i]);else d.myhw.splice(+i,1);save();hwRefresh();return}
-  if(b.id==='rmphoto'){photoMem='';d.photo='';save();render();return}
+  if(b.id==='rmphoto'){photoMem='';hiMem='';pdfDoc=null;d.photo='';save();render();return}
+  if(b.dataset.pdfpage){showPdfPage(+b.dataset.pdfpage);return}
   if(b.dataset.theme!==undefined){const on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('#tpills .pill').forEach(p=>p.setAttribute('aria-pressed','false'));
     b.setAttribute('aria-pressed',String(!on));$('#tview').innerHTML=on?'':themeView(b.dataset.theme);return}
   if(b.dataset.add!==undefined){const x=b.dataset.add,i=d.bank.indexOf(x);if(i>-1)d.bank.splice(i,1);else d.bank.push(x);save();
