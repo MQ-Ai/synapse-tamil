@@ -148,7 +148,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px 60px;
+  /* bottom padding leaves room for the scroll hint so it never sits behind the buttons */
+  padding: 80px 24px 120px;
   overflow: hidden;
 }
 
@@ -762,8 +763,10 @@ footer {
   </div>
   <script>
   (function(){
+    var wired = false;
     function wire(){
-      var app = window.synApp; if(!app) return;
+      var app = window.synApp; if(!app || wired) return;
+      wired = true;
       var btn = document.getElementById('hero-install');
       var tip = document.getElementById('hero-ios-tip');
       function update(){
@@ -1049,7 +1052,7 @@ footer {
         </div>
         <div class="lab-body">
           <div class="lab-name-tamil">கட்டுரை வழிகாட்டி</div>
-          <div class="lab-name-en">Katturai: Composition Guide</div>
+          <div class="lab-name-en">Composition Guide</div>
           <p class="lab-desc">Snap a composition question and build the story step by step: understand it, plan each paragraph, collect phrases and a proverb, write, then check it the way a marker would.</p>
           <div class="lab-features">
             <span class="lab-feature">Photo or typed question</span>
