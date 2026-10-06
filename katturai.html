@@ -149,6 +149,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .pill[aria-pressed="true"] small{color:var(--bg);opacity:.8}
 .pill.sug{border:2px solid var(--teal)}
 .pill.sug::before{content:"★ ";color:var(--teal)}
+.pill-hw{display:block;font-size:.65em;color:var(--teal);opacity:.85;margin-top:2px;white-space:normal;line-height:1.2}
 
 .para{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
 .para .goal{font-size:14px;color:var(--muted);margin:0}
@@ -863,15 +864,27 @@ function storyThemes(){
   CLUES.forEach(([re,th])=>{if(re.test(t))th.forEach(x=>{if(!out.includes(x))out.push(x)})});
   return out;
 }
+function storyThemeReasons(){
+  const reasons=new Map(),hw=helping(),isTamil=TA.test(d.q||'');
+  hw.forEach(w=>{
+    const test=isTamil?w.replace(/[A-Za-z]+/g,' '):w;
+    CLUES.forEach(([re,themes])=>{if(re.test(test))themes.forEach(th=>{
+      if(!reasons.has(th))reasons.set(th,[]);
+      if(!reasons.get(th).includes(w))reasons.get(th).push(w);
+    })});
+  });
+  return reasons;
+}
 function sPhrases(){
   const fromStory=storyThemes(),sug=new Set(fromStory.length?[...fromStory,...(SUGGEST[d.value]||[])]:[...(SUGGEST[d.value]||['Shock','Scared','Celebration / Happiness']),...SCENES.slice(0,3)]);
+  const reasons=storyThemeReasons();
   const order=[...THEMES].sort((a,b)=>(sug.has(b.e)-sug.has(a.e)));
   const provs=PROVERBS.filter(p=>!d.value||p.v.includes(d.value));
   const rest=PROVERBS.filter(p=>!provs.includes(p));
   return `<section class="card">
     <h2>சொல்வளம் <small>Step 4 · Phrases</small></h2>
     <p class="hint">Tap <b>+</b> to put a phrase in your bank. Aim for <b>5 or more</b>: one for the scene, a few for feelings at the problem, one for the ending. Themes marked <b>★</b> suit your story: they come from your question, its helping words and your plan.</p>
-    <div class="pills" id="tpills">${order.map(t=>`<button class="pill${sug.has(t.e)?' sug':''}" data-theme="${esc(t.e)}" aria-pressed="false">${esc(t.t)}<small>${esc(t.e)}</small></button>`).join('')}</div>
+    <div class="pills" id="tpills">${order.map(t=>{const hw=reasons.get(t.e);return`<button class="pill${sug.has(t.e)?' sug':''}" data-theme="${esc(t.e)}" aria-pressed="false">${esc(t.t)}<small>${esc(t.e)}</small>${hw&&hw.length?`<span class="pill-hw">${hw.map(esc).join(' · ')}</span>`:''}</button>`}).join('')}</div>
     <div id="tview"></div>
     <h3>Your bank <small id="bcount">${d.bank.length} phrases</small></h3>
     <div class="bank" id="bank">${bankHtml()}</div>
