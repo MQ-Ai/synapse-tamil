@@ -772,9 +772,9 @@ function sQuestion(){
       <button data-set="type" data-v="topic" aria-pressed="${d.type==='topic'}">தலைப்புக் கட்டுரை · topic</button>
     </div>
     <div class="photo">
-      ${photoMem?`<img src="${photoMem}" alt="Your question paper">
+      ${photoMem?`<img src="${photoMem}" alt="Your question paper" id="qphoto" style="cursor:zoom-in" title="Tap to zoom">
 
-        <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
+        <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm" id="zoomphoto">🔍 Zoom</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
       :`<label class="up"><input type="file" accept="image/*,application/pdf,.pdf" id="file">📷 Take or upload a photo or PDF of the question</label>`}
     </div>
     <label class="f">Title <small>Give your composition a title for easy retrieval when saved.</small>
@@ -1078,6 +1078,41 @@ function loadPhoto(file){
   img.src=url;
 }
 function loadScript(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+function openZoom(){
+  const src=hiMem||photoMem;if(!src)return;
+  const ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:60;background:#000;display:flex;align-items:center;justify-content:center;touch-action:none;overflow:hidden';
+  ov.setAttribute('role','dialog');ov.setAttribute('aria-label','Zoom view — pinch or scroll to zoom');
+  const img=document.createElement('img');img.src=src;img.alt='Question paper (zoom)';
+  img.style.cssText='max-width:100%;max-height:100%;object-fit:contain;transform-origin:center center;transition:transform .1s';
+  let scale=1,lastDist=0,ox=0,oy=0,dragging=false,dx=0,dy=0;
+  const clamp=s=>Math.min(8,Math.max(1,s));
+  const apply=()=>{img.style.transform=`translate(${ox}px,${oy}px) scale(${scale})`};
+  /* wheel zoom */
+  ov.addEventListener('wheel',e=>{e.preventDefault();scale=clamp(scale*(e.deltaY<0?1.15:1/1.15));apply()},{passive:false});
+  /* pinch zoom */
+  ov.addEventListener('touchstart',e=>{if(e.touches.length===2){const t=e.touches;lastDist=Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)}},true);
+  ov.addEventListener('touchmove',e=>{
+    if(e.touches.length===2){e.preventDefault();const t=e.touches;
+      const d=Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+      if(lastDist)scale=clamp(scale*d/lastDist);lastDist=d;apply()}
+  },{passive:false});
+  ov.addEventListener('touchend',e=>{if(e.touches.length<2)lastDist=0});
+  /* drag when zoomed */
+  ov.addEventListener('mousedown',e=>{if(e.target===img&&scale>1){dragging=true;dx=e.clientX-ox;dy=e.clientY-oy;img.style.cursor='grabbing'}});
+  document.addEventListener('mousemove',mv=>{if(!dragging)return;ox=mv.clientX-dx;oy=mv.clientY-dy;apply()});
+  document.addEventListener('mouseup',()=>{dragging=false;if(scale>1)img.style.cursor='grab';});
+  /* close on tap/click outside image, or Escape */
+  ov.addEventListener('click',e=>{if(e.target===ov)close()});
+  document.addEventListener('keydown',kh=>{if(kh.key==='Escape'){close();document.removeEventListener('keydown',kh)}});
+  const close=()=>{if(ov.parentNode)document.body.removeChild(ov)};
+  const hint=document.createElement('div');
+  hint.style.cssText='position:absolute;top:12px;right:12px;display:flex;gap:8px';
+  const closeBtn=document.createElement('button');closeBtn.className='btn sm ghost';closeBtn.textContent='✕ Close';
+  closeBtn.style.cssText='background:rgba(0,0,0,.6);color:#fff;border-color:rgba(255,255,255,.3)';
+  closeBtn.addEventListener('click',close);hint.appendChild(closeBtn);
+  ov.appendChild(img);ov.appendChild(hint);document.body.appendChild(ov);
+}
 /* Rebuild the text line by line so a box of words in two columns keeps its column gap (as 3 spaces),
    and drop the tall, low-confidence "lines" the reader finds in the drawings. */
 function ocrText(D){
@@ -1194,6 +1229,7 @@ document.addEventListener('change',e=>{
   if(e.target.name==='prov'){d.prov=e.target.value;save()}
 });
 document.addEventListener('click',e=>{
+  if(e.target.id==='qphoto'){openZoom();return}
   const b=e.target.closest('button,a');if(!b)return;
   if(b.dataset.go){go(+b.dataset.go);return}
   if(b.dataset.set){const k=b.dataset.set,v=b.dataset.v;d[k]=(k==='value'&&d[k]===v)?'':v;save();const y=scrollY;render();scrollTo(0,y);return}
@@ -1202,6 +1238,7 @@ document.addEventListener('click',e=>{
   if(b.dataset.hwsug){d.ocrhw=[...(d.ocrhw||[]),b.dataset.hwsug];save();hwRefresh();return}
   if(b.dataset.hwrm){const[c,i]=b.dataset.hwrm.split(':');if(c==='q')d.qhwOff.push(fromQ()[+i]);else d.myhw.splice(+i,1);save();hwRefresh();return}
   if(b.id==='rmphoto'){photoMem='';hiMem='';pdfDoc=null;d.photo='';save();render();return}
+  if(b.id==='zoomphoto'||b.id==='qphoto'){openZoom();return}
   if(b.dataset.pdfpage){showPdfPage(+b.dataset.pdfpage);return}
   if(b.dataset.theme!==undefined){const on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('#tpills .pill').forEach(p=>p.setAttribute('aria-pressed','false'));
     b.setAttribute('aria-pressed',String(!on));$('#tview').innerHTML=on?'':themeView(b.dataset.theme);return}
