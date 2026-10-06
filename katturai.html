@@ -656,7 +656,9 @@ function hwFix(b,ocr){
    the box matched known words the rest are misreads too. */
 const fromQ=()=>{const o=!!d.ocr;let L=[...findHelping(d.q),...(d.ocrhw||[])].map(b=>hwFix(b,o));
   if(o){L=L.filter(x=>!x.unk||gr(x.w).length>3);if(L.length&&L.filter(x=>!x.unk).length/L.length>=.6)L=L.filter(x=>!x.unk)}
-  return [...new Set(L.map(x=>x.w))].filter(w=>!d.qhwOff.includes(w))};
+  const W=[...new Set(L.map(x=>x.w))];
+  /* a phrase's second half read on its own (கொடுத்தனர் beside புகார் கொடுத்தனர்) is the same word twice */
+  return W.filter(w=>!W.some(v=>v!==w&&(' '+v+' ').includes(' '+w+' '))).filter(w=>!d.qhwOff.includes(w))};
 const helping=()=>[...new Set([...fromQ(),...d.myhw])];
 const hwChips=edit=>{const q=fromQ(),me=d.myhw.filter(w=>!q.includes(w));
   const chip=(w,c,i)=>{const m=meaning(w);return `<span class="hw ${c}${edit?'':' ro'}">${esc(w)}${m?`<small>${esc(m)}</small>`:''}${edit?`<button data-hwrm="${c}:${i}" aria-label="Remove ${esc(w)}">×</button>`:''}</span>`};
@@ -936,6 +938,10 @@ function forOcr(src){return new Promise(ok=>{const img=new Image();img.onload=()
   c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);const x=c.getContext('2d');
   x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);
   ok(c.toDataURL('image/png'))};img.onerror=()=>ok(src);img.src=src})}
+function crop(src,y0,y1,k){return new Promise(ok=>{const img=new Image();img.onload=()=>{
+  const top=Math.max(0,Math.round(y0)),h=Math.min(img.height,Math.round(y1))-top,c=document.createElement('canvas');
+  c.width=Math.round(img.width*k);c.height=Math.round(h*k);const x=c.getContext('2d');x.imageSmoothingQuality='high';
+  x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,top,img.width,h,0,0,c.width,c.height);ok(c.toDataURL('image/png'))};img.src=src})}
 /* The instructions are the opening lines of the page. They end at the first line that looks like something else:
    a column gap (the word box), mostly Latin letters (the reader guessing at a drawing), or only a few letters. */
 function questionPart(t){
@@ -949,18 +955,40 @@ function questionPart(t){
   }
   return out.join('\n').trim();
 }
+/* Standard instructions printed on papers. When the photo reader's version is close to one of these, the clean
+   wording replaces it (keeping the word counts the reader found, if it read them). Add more as they turn up. */
+const INSTR=[
+  {t:'கீழ்க்காணும் படத்தொடரை அடிப்படையாகக் கொண்டு {a} - {b} சொற்களுக்குக் குறையாமல் ஒரு கட்டுரை / கதை எழுது. படத்தின் அடியில் உதவிச்சொற்கள் கொடுக்கப்பட்டுள்ளன. நீ அவற்றைக் கட்டுரை / கதை எழுதுவதற்கு உதவியாகப் பயன்படுத்திக் கொள்ளலாம்.',a:60,b:80},
+];
+function fixInstr(q){
+  if(!q)return q;
+  const bare=x=>gr(x.replace(/[^\u0B80-\u0BFF]/g,'')),g=bare(q);
+  for(const I of INSTR){const tg=bare(I.t);
+    if(lev(g,tg)<=tg.length*.2){const m=q.match(/(\d{2,3})\s*[-–]\s*(\d{2,3})/);
+      return I.t.replace('{a}',m?m[1]:I.a).replace('{b}',m?m[2]:I.b)}}
+  /* otherwise just drop the stray Latin letters the reader puts in for Tamil it could not read */
+  return TA.test(q)?q.split('\n').map(l=>l.replace(/(^|\s)[A-Za-z]{1,4}(?=\s|$)/g,'$1').replace(/ {2,}/g,' ')).join('\n'):q;
+}
 async function readPhoto(){
   const msg=$('#ocrmsg'),b=$('#ocr');b.disabled=true;
   try{
     msg.textContent='Getting the reader ready (first time takes a little while)…';
     if(!window.Tesseract)await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
     const w=await Tesseract.createWorker('tam+eng',1,{logger:m=>{if(m.status==='recognizing text')msg.textContent='Reading… '+Math.round(m.progress*100)+'%'}});
-    const r=await w.recognize(await forOcr(photoMem));await w.terminate();
-    const t=ocrText(r.data);
+    const img=await forOcr(photoMem),r=await w.recognize(img);
+    const t=ocrText(r.data);let hw=findHelping(t);
+    /* two closer looks at just the word box, at different sizes, pick up words the first read garbled; only words that match
+       the word list are added from it */
+    try{const box=(r.data.lines||[]).filter(l=>hw.some(b=>b.split(/\s+/).some(x=>x.length>2&&l.text.includes(x))));
+      if(box.length){const h=box[0].bbox.y1-box[0].bbox.y0,y0=Math.min(...box.map(l=>l.bbox.y0))-1.5*h,y1=Math.max(...box.map(l=>l.bbox.y1))+1.5*h;
+        msg.textContent='Taking a closer look at the helping words…';
+        for(const k of [1.6,2.2]){const r2=await w.recognize(await crop(img,y0,y1,k));
+          findHelping(ocrText(r2.data)).forEach(b=>{if(near(lookup(b))&&!hw.includes(b))hw.push(b)})}}}catch(e){}
+    await w.terminate();
     if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
     /* the question box gets only the instructions; the word box goes to the helping-word chips,
        and the scraps read from the drawings are left out. Each read replaces the last one. */
-    d.ocrhw=findHelping(t);d.q=questionPart(t)||t;d.ocr=1;save();render();
+    d.ocrhw=hw;d.qhwOff=[];d.q=fixInstr(questionPart(t))||t;d.ocr=1;save();render();
     const n=fromQ().length;
     $('#ocrmsg').textContent='Done. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below. `:'')+'Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
   }catch(e){msg.textContent='Could not load the reader. Check your connection, or type the question instead.';b.disabled=false}
