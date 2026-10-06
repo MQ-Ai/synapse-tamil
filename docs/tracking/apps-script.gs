@@ -108,9 +108,11 @@ function doPost(e) {
  * a restricted Stripe key with read access to Checkout Sessions; then run
  * installSync() once from the editor.
  */
+/* One 12-month pass per app (the larger amount). The 30-day amounts are retired but kept so
+ * older payments still match. */
 var PASSES = {
-  'synapse-tamil': { 4900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1200: { pass: 'month', days: 30 } },
-  'synapse-econs': { 6900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1500: { pass: 'month', days: 30 } }
+  'synapse-tamil': { 4900: { pass: 'year', days: 365 }, 1200: { pass: 'month', days: 30 } },
+  'synapse-econs': { 6900: { pass: 'year', days: 365 }, 1500: { pass: 'month', days: 30 } }
 };
 var MAX_DEVICES = 3, CODE_MINUTES = 15, CODES_PER_HOUR = 3;
 var SESSION_RE = /^cs_(live|test)_[A-Za-z0-9]{10,200}$/;

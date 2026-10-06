@@ -38,13 +38,11 @@ Until the Payment Links are pasted into `assets/config.js`, nothing changes for 
 
 ## One-time setup (about 30 minutes plus Stripe's identity check)
 1. **Stripe account.** Sign up at stripe.com as a Singapore business (sole proprietor is fine). Under **Settings → Payment methods**, turn on **PayNow** and cards.
-2. **Products and links.** Create four Payment Links, one per pass, in SGD:
+2. **Products and links.** Create two Payment Links, one per app, in SGD:
    | App | Pass | Price | After payment, redirect to |
    | --- | --- | --- | --- |
-   | Synapse Tamil | Exam-year pass (to 31 Dec 2027) | 49.00 | `https://synapse-tamil.vercel.app/?paid={CHECKOUT_SESSION_ID}` |
-   | Synapse Tamil | 30-day pass | 12.00 | same as above |
-   | Synapse Econs | Exam-year pass (to 31 Dec 2027) | 69.00 | `https://synapse-econs.vercel.app/?paid={CHECKOUT_SESSION_ID}` |
-   | Synapse Econs | 30-day pass | 15.00 | same as above |
+   | Synapse Tamil | 12-month pass | 49.00 | `https://synapse-tamil.vercel.app/?paid={CHECKOUT_SESSION_ID}` |
+   | Synapse Econs | 12-month pass | 69.00 | `https://synapse-econs.vercel.app/?paid={CHECKOUT_SESSION_ID}` |
 
    For each link: **After payment → Don't show confirmation page → Redirect** to the address above, typed exactly, including `{CHECKOUT_SESSION_ID}`. Leave quantity fixed at 1 and promotion codes off. The script tells the passes apart by price, so every price must be different.
 3. **Key for the script.** In Stripe, **Developers → API keys → Create restricted key**. Give it **Read** on **Checkout Sessions** and **Read** on **Refunds**, and nothing else. In the Apps Script editor open **Project Settings → Script Properties**, add `STRIPE_KEY` with that key. Never put it in the website. Without Refunds access, payments still work but refunds must be marked by hand.
