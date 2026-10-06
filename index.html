@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -78,7 +83,7 @@ body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)
 <title>Synapse Tamil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Tiro+Tamil:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Tiro+Tamil:ital@0;1&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 /* ─── TOKENS ─────────────────────────────────────────── */
 :root {
@@ -203,10 +208,10 @@ body {
 
 .hero-title {
   position: relative;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(48px, 9vw, 96px);
-  font-weight: 600;
-  line-height: 1.0;
+  font-family: 'Tiro Tamil', serif;
+  font-size: clamp(36px, 7vw, 76px);
+  font-weight: 400;
+  line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text);
   text-wrap: balance;
@@ -217,6 +222,16 @@ body {
   color: var(--gold);
 }
 
+.hero-title-en {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 500;
+  color: var(--text2);
+  letter-spacing: 0;
+  margin-top: 14px;
+}
+.hero-title-en em { font-style: italic; color: var(--gold); }
 .hero-subtitle-tamil {
   position: relative;
   font-family: 'Tiro Tamil', serif;
@@ -369,6 +384,18 @@ section { padding: 80px 24px; }
   text-wrap: balance;
   margin-bottom: 16px;
 }
+.section-title-en {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text3);
+  margin-top: 8px;
+}
+.stat-label small { display: block; font-family: "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 0; text-transform: none; font-size: 10px; margin-top: 2px; }
+.btn-primary, .btn-secondary { flex-direction: column; gap: 2px; line-height: 1.25; }
+.btn-primary .en, .btn-secondary .en { font-size: 11px; font-weight: 500; }
+.lab-action-text .en { margin-left: 4px; }
 .section-lead {
   font-size: 17px;
   color: var(--text2);
@@ -578,13 +605,13 @@ footer {
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Word endings</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -602,9 +629,9 @@ footer {
   <div class="hero-tamil-bg" aria-hidden="true">சினாப்ஸ்</div>
 
   <h1 class="hero-title">
-    Tamil practice<br>that feels like <em>play</em>
+    விளையாட்டாகத் தமிழ் கற்போம்
+    <span class="hero-title-en">Tamil practice that feels like <em>play</em></span>
   </h1>
-  <p class="hero-subtitle-tamil">விளையாட்டாகத் தமிழ் கற்போம்</p>
   <p class="hero-desc">
     Short, playful challenges on the trickiest parts of PSLE Tamil Paper 2, for upper primary kids. A few minutes at a time, and the tricky ones come back until they stick.
   </p>
@@ -612,23 +639,23 @@ footer {
   <div class="hero-stats">
     <div class="stat">
       <div class="stat-num">6</div>
-      <div class="stat-label">practice labs</div>
+      <div class="stat-label">ஆய்வகங்கள்<small>practice labs</small></div>
     </div>
     <div class="stat">
       <div class="stat-num">850+</div>
-      <div class="stat-label">practice items</div>
+      <div class="stat-label">பயிற்சிகள்<small>practice items</small></div>
     </div>
     <div class="stat">
       <div class="stat-num">0</div>
-      <div class="stat-label">passive reading</div>
+      <div class="stat-label">வெறும் வாசிப்பு<small>passive reading</small></div>
     </div>
   </div>
 
   <div class="hero-cta">
-    <a href="#labs" class="btn-primary">Start Practice →</a>
-    <a href="/daily" class="btn-secondary">Challenge of the day ✨</a>
+    <a href="#labs" class="btn-primary">பயிற்சி தொடங்கு →<small class="en">Start practice</small></a>
+    <a href="/daily" class="btn-secondary">இன்றைய சவால் ✨<small class="en">Challenge of the day</small></a>
     <span id="hero-install-wrap" style="position:relative;display:inline-block">
-      <button id="hero-install" class="btn-secondary" style="display:none" aria-label="Install app">Install App 📲</button>
+      <button id="hero-install" class="btn-secondary" style="display:none" aria-label="Install app">செயலியை நிறுவு 📲<small class="en">Install app</small></button>
       <div id="hero-ios-tip" role="tooltip" style="display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#0D1B2A;color:#F0EDE6;border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;font-size:13px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:20">
         In Safari: tap <b>Share</b> ↑ then <b>Add to Home Screen</b>
         <div style="position:absolute;top:100%;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #0D1B2A"></div>
@@ -645,8 +672,8 @@ footer {
       var tip = document.getElementById('hero-ios-tip');
       function update(){
         if(app.standalone()){ btn.style.display='none'; return; }
-        if(app.canInstall()){ btn.style.display=''; btn.textContent='Install App 📲'; btn.onclick=function(){ app.install(); }; return; }
-        if(app.isIOS){ btn.style.display=''; btn.textContent='Install App ↑'; btn.onclick=function(e){ e.stopPropagation(); tip.style.display=tip.style.display==='none'?'':'none'; }; document.addEventListener('click',function(){ tip.style.display='none'; }); return; }
+        if(app.canInstall()){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு 📲<small class="en">Install app</small>'; btn.onclick=function(){ app.install(); }; return; }
+        if(app.isIOS){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு ↑<small class="en">Install app</small>'; btn.onclick=function(e){ e.stopPropagation(); tip.style.display=tip.style.display==='none'?'':'none'; }; document.addEventListener('click',function(){ tip.style.display='none'; }); return; }
         btn.style.display='none';
       }
       update(); app.onChange(update);
@@ -666,9 +693,9 @@ footer {
 <!-- ═══ THE LABS ══════════════════════════════════════════════════ -->
 <section id="labs" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="section-inner">
-    <div class="eyebrow">Practice Labs</div>
-    <h2 class="section-title fade-in">Six labs. Zero excuses.</h2>
-    <p class="section-lead fade-in">Each lab targets a specific Paper 2 section, built with real past-year questions, school worksheets and teacher-compiled word lists. Open any lab and start drilling immediately.</p>
+    <div class="eyebrow">பயிற்சி ஆய்வகங்கள் · Practice labs</div>
+    <h2 class="section-title fade-in">ஆறு ஆய்வகங்கள், சாக்குப்போக்கு வேண்டாம் <span class="section-title-en">Six labs. Zero excuses.</span></h2>
+    <p class="section-lead fade-in">Each lab targets a specific Paper 2 skill. Open any lab and start practising straight away.</p>
 
     <div class="labs-grid">
 
@@ -679,16 +706,14 @@ footer {
         </div>
         <div class="lab-body">
           <div class="lab-name-tamil">வேற்றுமை பயிற்சி</div>
-          <div class="lab-name-en">Case Markers</div>
-          <p class="lab-desc">Master all 8 case markers: suffixes, sandhi changes, role identification. 60 questions, 5 past paper sets.</p>
+          <div class="lab-name-en">Word Endings</div>
+          <p class="lab-desc">Master all 8 word endings: suffixes, sandhi changes, role in the sentence. Tricky ones come back until they stick.</p>
           <div class="lab-features">
-            <span class="lab-feature">60 items</span>
-            <span class="lab-feature">5 paper sets</span>
             <span class="lab-feature">Tricky ones return</span>
             <span class="lab-feature">Reference chart</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow" style="background:rgba(180,144,240,0.15);color:#B490F0">→</div>
           </div>
         </div>
@@ -702,15 +727,13 @@ footer {
         <div class="lab-body">
           <div class="lab-name-tamil">செய்யுள் பயிற்சி</div>
           <div class="lab-name-en">Verses & Proverbs</div>
-          <p class="lab-desc">Commit all 92 syllabus lines to memory. Fill-the-gap and build-the-line drills, exactly as they appear in Paper 2.</p>
+          <p class="lab-desc">Commit all syllabus lines to memory. Fill-the-gap and build-the-line practice, exactly as they appear in Paper 2.</p>
           <div class="lab-features">
-            <span class="lab-feature">92 syllabus lines</span>
-            <span class="lab-feature">5 prelim papers</span>
             <span class="lab-feature">Fill-gap + Build</span>
             <span class="lab-feature">Full verse view</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow">→</div>
           </div>
         </div>
@@ -726,13 +749,11 @@ footer {
           <div class="lab-name-en">Participles</div>
           <p class="lab-desc">Identify பெயரெச்சம், வினையெச்சம் and other participle patterns, then choose the correct form in sentence context.</p>
           <div class="lab-features">
-            <span class="lab-feature">52 sentences</span>
-            <span class="lab-feature">5 paper sets</span>
-            <span class="lab-feature">Name pattern drill</span>
+            <span class="lab-feature">Name patterns</span>
             <span class="lab-feature">Context choice</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow">→</div>
           </div>
         </div>
@@ -746,15 +767,13 @@ footer {
         <div class="lab-body">
           <div class="lab-name-tamil">ஒலி பயிற்சி</div>
           <div class="lab-name-en">Sound Pairs</div>
-          <p class="lab-desc">Master ல/ள/ழ · ர/ற · ந/ன/ண distinctions. 158 word pairs, 46 paper sets with full sentence context.</p>
+          <p class="lab-desc">Master ல/ள/ழ · ர/ற · ந/ன/ண distinctions. One wrong letter changes the meaning — train your eye on the difference.</p>
           <div class="lab-features">
-            <span class="lab-feature">158 word pairs</span>
-            <span class="lab-feature">46 paper sets</span>
-            <span class="lab-feature">242 sentences</span>
+            <span class="lab-feature">Core pairs first</span>
             <span class="lab-feature">Tricky ones return</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow">→</div>
           </div>
         </div>
@@ -768,15 +787,13 @@ footer {
         <div class="lab-body">
           <div class="lab-name-tamil">சொல் பயிற்சி</div>
           <div class="lab-name-en">Vocabulary</div>
-          <p class="lab-desc">315 upper primary vocabulary words and 108 composition phrases across 25 emotional themes. Build the word bank for Paper 1 and 2.</p>
+          <p class="lab-desc">Upper primary vocabulary words and composition phrases across emotional themes. Build the word bank for Paper 1 and 2.</p>
           <div class="lab-features">
-            <span class="lab-feature">315 words</span>
-            <span class="lab-feature">108 phrases</span>
-            <span class="lab-feature">25 themes</span>
             <span class="lab-feature">Flashcard mode</span>
+            <span class="lab-feature">Phrase bank</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow">→</div>
           </div>
         </div>
@@ -798,7 +815,7 @@ footer {
             <span class="lab-feature">Marker checklist</span>
           </div>
           <div class="lab-action">
-            <span class="lab-action-text">தொடங்கு →</span>
+            <span class="lab-action-text">தொடங்கு <small class="en">Start</small></span>
             <div class="lab-arrow">→</div>
           </div>
         </div>

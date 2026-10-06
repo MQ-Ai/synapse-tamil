@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -78,14 +83,14 @@ body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)
 <title>Synapse Seyyul Lab</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Tiro+Tamil&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 :root{
   --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
   --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
   --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
-  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
-  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --display:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
+  --body:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){
@@ -213,13 +218,13 @@ body.cover .entry .v.show{filter:none}
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Word endings</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -234,8 +239,8 @@ body.cover .entry .v.show{filter:none}
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 2</div>
-    <h1>செய்யுள் / பழமொழி</h1>
-    <p class="lede">Section <b>A2</b>: five lines from the syllabus list, each with one word missing, <b>10 marks</b>. Students know the line but lose marks on a look-alike word, like திருத்தி for திருந்த. This lab trains the exact word, using the real options from five 2026 prelim and practice papers.</p>
+    <h1>செய்யுள் / பழமொழி <small class="en">Verses & proverbs</small></h1>
+    <p class="lede">Five lines from the syllabus list, each with one word missing. Train the exact word — look-alikes like திருத்தி vs திருந்த are the common traps.</p>
     <div class="types" id="types"></div>
   </header>
 
@@ -246,15 +251,15 @@ body.cover .entry .v.show{filter:none}
     <button class="tab" role="tab" aria-selected="false" data-p="book">நூல் <small>Full list</small></button>
   </nav>
 
-  <div class="levels" id="levels"><span class="lab">Levels</span></div>
+  <div class="levels" id="levels"><span class="lab">நிலைகள் <small class="en">Levels</small></span></div>
 
   <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
-    <div class="meter"><span>Word-perfect</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="meter"><span>பிழையின்றி <small class="en">Word-perfect</small></span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
     <div class="card" id="dcard"></div>
   </section>
 
   <section id="p-build" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:16px">
-    <div class="meter"><span>Word-perfect</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="meter"><span>பிழையின்றி <small class="en">Word-perfect</small></span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
     <div class="card" id="bcard"></div>
   </section>
 
@@ -263,7 +268,7 @@ body.cover .entry .v.show{filter:none}
   </section>
 
   <section id="p-book" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:8px">
-    <div class="row"><button class="btn" id="cover" aria-pressed="false">Cover the lines</button><span class="hint">Say each line from its meaning, then tap it to check.</span></div>
+    <div class="row"><button class="btn" id="cover" aria-pressed="false">வரிகளை மறை <small class="en">Cover the lines</small></button><span class="hint">Say each line from its meaning, then tap it to check.</span></div>
     <div id="book"></div>
   </section>
 </div>
@@ -471,7 +476,7 @@ function nextDrill(){
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div>
       <div class="score">${dround.first} / ${dround.seen}<small>right on the first try</small></div>
       <p class="hint">A line counts as word-perfect after three sure, correct answers.</p>
-      <div class="row"><button class="btn primary" id="dagain">Next round</button><button class="btn" id="tobuild">Build the lines instead</button></div>`;
+      <div class="row"><button class="btn primary" id="dagain">அடுத்த சுற்று <small class="en">Next round</small></button><button class="btn" id="tobuild">வரிகளை அடுக்கு <small class="en">Build the lines instead</small></button></div>`;
     document.getElementById('dagain').onclick=startDrill;
     document.getElementById('tobuild').onclick=()=>show('build');return;
   }
@@ -511,7 +516,7 @@ function answerDrill(w){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>சரி! Say the whole line once aloud.</h3>
       <p class="ask">Were you sure, or did you guess?</p>
-      <div class="row"><button class="btn primary" id="ds">I was sure</button><button class="btn" id="dg">I guessed</button></div></div>`;
+      <div class="row"><button class="btn primary" id="ds">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="dg">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('ds').onclick=()=>{grade(it.id,true,true);nextDrill()};
     document.getElementById('dg').onclick=()=>{grade(it.id,true,false);nextDrill()};
     document.getElementById('ds').focus();
@@ -520,7 +525,7 @@ function answerDrill(w){
     fb.innerHTML=`<div class="fb bad"><h3>The word is ${esc(ans)}, not ${esc(w)}.</h3>
       <p class="full">${fullHTML(it)}</p>
       <p class="ask">Read the line twice, then look away and say it. It comes back in three cards.</p>
-      <div class="row"><button class="btn primary" id="dn">Next</button></div></div>`;
+      <div class="row"><button class="btn primary" id="dn">அடுத்தது <small class="en">Next</small></button></div></div>`;
     document.getElementById('dn').onclick=nextDrill;document.getElementById('dn').focus();
   }
 }
@@ -538,7 +543,7 @@ function nextBuild(){
     <p class="meaning"><b>Meaning:</b> ${esc(it.m)}</p>
     <div class="slots" id="slots" aria-live="polite"></div>
     <div class="tiles" id="tiles"></div>
-    <div class="row"><button class="btn ghost" id="bundo">Undo</button><button class="btn ghost" id="bpeek">Show first word</button></div>
+    <div class="row"><button class="btn ghost" id="bundo">திரும்பு <small class="en">Undo</small></button><button class="btn ghost" id="bpeek">முதல் சொல்லைக் காட்டு <small class="en">Show first word</small></button></div>
     <div id="bfb"></div>`;
   renderTiles();
   document.getElementById('bundo').onclick=()=>{if(bcur.done)return;bcur.placed.pop();renderTiles()};
@@ -574,14 +579,14 @@ function finishBuild(){
   if(ok){
     fb.innerHTML=`<div class="fb good"><h3>Word-perfect, no slips.</h3>
       <p class="ask">Were you sure of every word?</p>
-      <div class="row"><button class="btn primary" id="bs">Yes, sure</button><button class="btn" id="bg">Some guessing</button></div></div>`;
+      <div class="row"><button class="btn primary" id="bs">ஆம், உறுதி <small class="en">Yes, sure</small></button><button class="btn" id="bg">கொஞ்சம் ஊகித்தேன் <small class="en">Some guessing</small></button></div></div>`;
     document.getElementById('bs').onclick=()=>{grade(it.id,true,true);nextBuild()};
     document.getElementById('bg').onclick=()=>{grade(it.id,true,false);nextBuild()};
   }else{
     grade(it.id,false);bq.splice(Math.min(2,bq.length),0,it);
     fb.innerHTML=`<div class="fb bad"><h3>Done with ${mistakes} slip${mistakes>1?'s':''}.</h3>
       <p class="ask">The line comes back soon. Say it aloud once before moving on.</p>
-      <div class="row"><button class="btn primary" id="bn">Next line</button></div></div>`;
+      <div class="row"><button class="btn primary" id="bn">அடுத்த வரி <small class="en">Next line</small></button></div></div>`;
     document.getElementById('bn').onclick=nextBuild;
   }
 }
@@ -603,8 +608,8 @@ function makeExam(pi){
 function renderExam(){
   const p=document.getElementById('paper');
   p.innerHTML=`
-    <div class="row"><label class="hint" for="papersel">Paper</label><select id="papersel" class="psel">${PAPERS.map((P,i)=>`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.name)}</option>`).join('')}</select><button class="btn" id="enew">Random set</button></div>
-    <div class="paperhead"><h2>A2 செய்யுள்/பழமொழி</h2><span class="chip ${exam.paper?'src':''}">${exam.label}</span></div>
+    <div class="row"><label class="hint" for="papersel">தாள் <small class="en">Paper</small></label><select id="papersel" class="psel">${PAPERS.map((P,i)=>`<option value="${i}" ${exam.pi===i?'selected':''}>${esc(P.name)}</option>`).join('')}</select><button class="btn" id="enew">வேறு தொகுப்பு <small class="en">Random set</small></button></div>
+    <div class="paperhead"><h2>A2 செய்யுள்/பழமொழி <small class="en">Verses & proverbs</small></h2><span class="chip ${exam.paper?'src':''}">${exam.label}</span></div>
     <p class="instr">Q6 முதல் Q10 வரையுள்ள செய்யுளை/பழமொழியை நிறைவு செய்வதற்கு ஏற்ற சொல்லைத் தேர்ந்தெடு. (10 மதிப்பெண்கள்)</p>
     ${exam.qs.map((q,k)=>`<div class="q"><span class="qn">Q${6+k}</span><div>
       <p class="verse">${q.show?blankHTML(q.show):verseHTML(q.it,q.bi)}</p>
@@ -612,7 +617,7 @@ function renderExam(){
       <div class="res" id="er-${k}"></div></div></div>`).join('')}
     <div class="row" style="justify-content:space-between">
       <div id="escore"></div>
-      <button class="btn primary" id="echeck">சரிபார் · Check</button>
+      <button class="btn primary" id="echeck">சரிபார் <small class="en">Check</small></button>
     </div>`;
   document.getElementById('echeck').onclick=checkExam;
   document.getElementById('enew').onclick=()=>makeExam(null);
@@ -639,11 +644,11 @@ function renderBook(){
   const topHTML=ARCHITECT&&top.length?`<div class="topbox"><h3 class="lvhead">Tested more than once<span>${top.length} lines · ${PAPERS.length} papers</span></h3>`+top.map(([id,t])=>`<div class="entry"><span class="t">×${t.length}</span><p class="v" tabindex="0">${fullHTML(ITEMS[id])}</p><span class="m">${esc(ITEMS[id].m)} <b class="tested">· ${t.join(', ')}</b></span></div>`).join('')+'</div>':'';
   document.getElementById('book').innerHTML=topHTML+LEVELS.filter(l=>st.lv.includes(l)).map(l=>{
     const list=ITEMS.filter(it=>it.lv===l);
-    return `<h3 class="lvhead">தொடக்கநிலை ${l.slice(1)}<span>${list.length} lines</span></h3>`+list.map(it=>`
+    return `<h3 class="lvhead">தொடக்கநிலை ${l.slice(1)}<span>Primary ${l.slice(1)} · ${list.length} lines</span></h3>`+list.map(it=>`
       <div class="entry"><span class="t">${it.t}</span><p class="v" tabindex="0">${fullHTML(it)}</p><span class="m">${esc(it.m)}${ARCHITECT&&TESTED[it.id]?` <b class="tested">· Tested: ${TESTED[it.id].join(', ')}</b>`:''}</span></div>`).join('')}).join('');
   document.querySelectorAll('#book .v').forEach(v=>{const t=()=>v.classList.toggle('show');v.onclick=t;v.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
 }
-document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Show all lines':'Cover the lines';document.querySelectorAll('#book .v.show').forEach(v=>v.classList.remove('show'))};
+document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.innerHTML=on?'எல்லா வரிகளையும் காட்டு <small class=\"en\">Show all lines</small>':'வரிகளை மறை <small class="en">Cover the lines</small>';document.querySelectorAll('#book .v.show').forEach(v=>v.classList.remove('show'))};
 
 /* tabs */
 function show(p){

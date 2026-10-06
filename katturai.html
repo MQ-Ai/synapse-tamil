@@ -57,6 +57,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -71,14 +76,14 @@ body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)
 <title>Synapse Katturai Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Tiro+Tamil&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 :root{
   --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
   --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
   --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
-  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
-  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --display:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
+  --body:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){
@@ -133,6 +138,9 @@ input[type=text],textarea{font:16px/1.7 var(--body);padding:10px 12px;border-rad
 textarea{resize:vertical;min-height:3.4em}
 textarea.big{min-height:9em}
 label.up{display:flex;align-items:center;justify-content:center;gap:10px;border:2px dashed var(--line);border-radius:12px;padding:18px;cursor:pointer;font:600 16px var(--display);color:var(--teal);text-align:center}
+label.up{flex-wrap:wrap}
+label.up .en{flex-basis:100%}
+.steps button span i{font-style:normal}
 label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .photo{display:flex;flex-direction:column;gap:10px}
 .photo img{max-width:100%;max-height:460px;object-fit:contain;border-radius:10px;border:1px solid var(--line);background:var(--sunk)}
@@ -217,7 +225,8 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
   .card{padding:16px}
   .grid2{grid-template-columns:1fr}
   .steps button{font-size:11px;padding:5px 2px}
-  .steps button span{display:none}
+  .steps button span{font-size:8px;letter-spacing:0}
+  .steps button span i{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media print{
@@ -233,13 +242,13 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Word endings</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -255,7 +264,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Paper 1</div>
-    <h1>கட்டுரை வழிகாட்டி</h1>
+    <h1>கட்டுரை வழிகாட்டி <small class="en">Composition guide</small></h1>
     <p class="lede">Snap your composition question, then build the story one step at a time: <b>understand</b> it, <b>plan</b> it, gather <b>phrases</b>, <b>write</b>, and <b>check</b> it against what markers look for. Your work saves on this device as you go.</p>
   </header>
 
@@ -264,7 +273,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
   <main id="stage" style="display:flex;flex-direction:column;gap:16px"></main>
 
   <footer class="why">
-    <h3>How this builds a better composition</h3>
+    <h3>இது எப்படி உதவுகிறது <small>How this builds a better composition</small></h3>
     <ul>
       <li><b>Think before you write.</b> Answering who, where, when, what went wrong and what was learnt first keeps the story on the question.</li>
       <li><b>One paragraph, one job.</b> Every picture or event gets its own paragraph, so nothing is left out.</li>
@@ -394,10 +403,10 @@ let mineOpen=false;
 const when=t=>new Date(t).toLocaleDateString('en-SG',{day:'numeric',month:'short'});
 function renderBar(){const P=past();
   const where=c=>c.done?'finished':(c.step?`step ${c.step} of 6`:'finished');
-  $('#workbar').innerHTML=`<button class="btn primary sm" id="newq">＋ New question</button>
-    <details class="mine" ${mineOpen?'open':''}><summary>My compositions <small class="hint">${P.length+(hasWork()?1:0)}</small></summary>
+  $('#workbar').innerHTML=`<button class="btn primary sm" id="newq">＋ புதிய கேள்வி <small class="en">New question</small></button>
+    <details class="mine" ${mineOpen?'open':''}><summary>என் கட்டுரைகள் <small class="en">My compositions</small> <small class="hint">${P.length+(hasWork()?1:0)}</small></summary>
     ${hasWork()?`<div class="past now"><span>${esc(title())} <small class="hint">open now · ${where(d)}</small></span></div>`:''}
-    ${P.map(c=>`<div class="past"><span>${esc(c.title)} <small class="hint">${when(c.at)} · ${where(c)} · ${c.words} words</small></span><span class="row"><button class="btn sm" data-open="${c.id}">${c.state?'Open':'Read'}</button><button class="btn sm ghost del" data-del="${c.id}" aria-label="Delete ${esc(c.title)}">Delete</button></span></div><div id="pv${c.id}"></div>`).join('')}
+    ${P.map(c=>`<div class="past"><span>${esc(c.title)} <small class="hint">${when(c.at)} · ${where(c)} · ${c.words} words</small></span><span class="row"><button class="btn sm" data-open="${c.id}">${c.state?'திற <small class="en">Open</small>':'படி <small class="en">Read</small>'}</button><button class="btn sm ghost del" data-del="${c.id}" aria-label="Delete ${esc(c.title)}">நீக்கு <small class="en">Delete</small></button></span></div><div id="pv${c.id}"></div>`).join('')}
     ${!P.length&&!hasWork()?'<p class="hint">Your compositions will be kept here.</p>':''}</details>
 `;
   $('#workbar .mine').addEventListener('toggle',e=>{mineOpen=e.target.open})}
@@ -750,7 +759,7 @@ const words=t=>t.split(/\s+/).filter(Boolean).length;
 
 const STEPS=[['கேள்வி','Question'],['புரிதல்','Understand'],['திட்டம்','Plan'],['சொல்வளம்','Phrases'],['எழுது','Write'],['சரிபார்','Check']];
 function renderSteps(){
-  $('#steps').innerHTML=STEPS.map((s,i)=>`<button data-go="${i+1}" ${d.step===i+1?'aria-current="step"':''} class="${i+1<d.step?'done':''}" ${i>0&&!d.ok?'disabled':''}>${s[0]}<span>${i+1} ${s[1]}</span></button>`).join('');
+  $('#steps').innerHTML=STEPS.map((s,i)=>`<button data-go="${i+1}" ${d.step===i+1?'aria-current="step"':''} class="${i+1<d.step?'done':''}" ${i>0&&!d.ok?'disabled':''}>${s[0]}<span><i>${i+1} </i>${s[1]}</span></button>`).join('');
 }
 function go(n){
   if(n>1&&!d.ok){
@@ -759,7 +768,7 @@ function go(n){
   }
   d.step=n;save();render();window.scrollTo({top:0,behavior:'smooth'});
 }
-const nav=(back,next,label)=>`<div class="row noprint" style="justify-content:space-between">${back?`<button class="btn ghost" data-go="${back}">← Back</button>`:'<span></span>'}${next?`<button class="btn primary" data-go="${next}">${label} →</button>`:''}</div>`;
+const nav=(back,next,label)=>`<div class="row noprint" style="justify-content:space-between">${back?`<button class="btn ghost" data-go="${back}">← பின்செல் <small class="en">Back</small></button>`:'<span></span>'}${next?`<button class="btn primary" data-go="${next}">${label} →</button>`:''}</div>`;
 
 /* ---------- 1 question ---------- */
 function sQuestion(){
@@ -774,20 +783,20 @@ function sQuestion(){
     <div class="photo">
       ${photoMem?`<img src="${photoMem}" alt="Your question paper" id="qphoto" style="cursor:zoom-in" title="Tap to zoom">
 
-        <div class="row"><button class="btn sm" id="ocr">Read the words from the photo</button><button class="btn sm" id="zoomphoto">🔍 Zoom</button><button class="btn sm ghost" id="rmphoto">Remove photo</button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
-      :`<label class="up"><input type="file" accept="image/*,application/pdf,.pdf" id="file">📷 Take or upload a photo or PDF of the question</label>`}
+        <div class="row"><button class="btn sm" id="ocr">படத்திலுள்ள சொற்களைப் படி <small class="en">Read the words from the photo</small></button><button class="btn sm" id="zoomphoto">🔍 பெரிதாக்கு <small class="en">Zoom</small></button><button class="btn sm ghost" id="rmphoto">படத்தை நீக்கு <small class="en">Remove photo</small></button></div><p class="ocr" id="ocrmsg" aria-live="polite"></p>`
+      :`<label class="up"><input type="file" accept="image/*,application/pdf,.pdf" id="file">📷 கேள்வியைப் படம் எடு அல்லது பதிவேற்று <small class="en">Take or upload a photo or PDF of the question</small></label>`}
     </div>
-    <label class="f">Title <small>Give your composition a title for easy retrieval when saved.</small>
+    <label class="f">தலைப்பு <small>Title · Give your composition a title for easy retrieval when saved.</small>
       <input type="text" data-k="title" value="${val('title')}" placeholder="e.g. My lost wallet · தொலைந்த பணப்பை"></label>
-    <label class="f">Instructions (Tamil translation) <small>Type it, or tap “Read the words from the photo”, then fix any mistakes.</small>
+    <label class="f">அறிவுறுத்தல்கள் <small>Instructions (Tamil translation) · Type it, or tap “Read the words from the photo”, then fix any mistakes.</small>
       <textarea data-k="q" rows="4" placeholder="${d.type==='pic'?'எ.கா. கீழே கொடுக்கப்பட்டுள்ள படங்களைப் பார்த்துக் கட்டுரை எழுதுக.':'எ.கா. தலைப்பு: மறக்க முடியாத ஒரு நாள்'}">${val('q')}</textarea></label>
-    <div class="f"><label for="hwadd" class="f">Helping words <small>Words printed in the question are filled in for you. Add any of your own too.</small></label>
+    <div class="f"><label for="hwadd" class="f">உதவிச் சொற்கள் <small>Helping words · Words printed in the question are filled in for you. Add any of your own too.</small></label>
       <div class="hws" id="hwlist">${hwChips(true)}</div>
       <div class="hws hwmaybe" id="hwmaybe">${hwMaybe()}</div>
-      <div class="row" style="flex-wrap:nowrap"><input type="text" id="hwadd" list="wlist" placeholder="Add a word, in Tamil or English" enterkeyhint="done"><datalist id="wlist">${WORDS.map(x=>`<option value="${esc(x.t)}">${esc(x.e)}</option>`).join('')}</datalist><button class="btn sm" id="hwaddb">Add</button></div>
+      <div class="row" style="flex-wrap:nowrap"><input type="text" id="hwadd" list="wlist" placeholder="Add a word, in Tamil or English" enterkeyhint="done"><datalist id="wlist">${WORDS.map(x=>`<option value="${esc(x.t)}">${esc(x.e)}</option>`).join('')}</datalist><button class="btn sm" id="hwaddb">சேர் <small class="en">Add</small></button></div>
       ${hwKey()}</div>
-    ${d.type==='pic'?`<div class="row"><span class="hint">How many pictures?</span><div class="seg2" role="group" aria-label="Number of pictures">${[3,4,5].map(n=>`<button data-set="n" data-v="${n}" aria-pressed="${+d.n===n}">${n}</button>`).join('')}</div></div>`:''}
-    ${nav(0,2,'Understand the question')}
+    ${d.type==='pic'?`<div class="row"><span class="hint">எத்தனை படங்கள்? <small class="en">How many pictures?</small></span><div class="seg2" role="group" aria-label="Number of pictures">${[3,4,5].map(n=>`<button data-set="n" data-v="${n}" aria-pressed="${+d.n===n}">${n}</button>`).join('')}</div></div>`:''}
+    ${nav(0,2,'கேள்வியைப் புரிந்துகொள் <small class="en">Understand the question</small>')}
   </section>`;
 }
 
@@ -799,9 +808,9 @@ function sUnderstand(){
     <h2>கேள்வியைப் புரிந்துகொள் <small>Step 2 · Understand it</small></h2>
     ${d.q?`<div class="notes"><b>Instructions:</b> ${esc(d.q)}${helping().length?`\n<b>Helping words:</b> ${esc(helping().join(', '))}`:''}</div>`:''}
     <div class="tip"><b>Read the question twice.</b> Find the topic words and any helping words. ${d.type==='pic'?'Every picture must appear in your story, in order.':'Your whole story must answer the topic, not just touch it.'}</div>
-    ${d.type==='pic'?`<h3>Look at each picture <small>Who is there? What are they doing? How do they feel?</small></h3>
+    ${d.type==='pic'?`<h3>ஒவ்வொரு படத்தையும் பார் <small>Look at each picture · Who is there? What are they doing? How do they feel?</small></h3>
       ${Array.from({length:n},(_,i)=>`<label class="f">படம் ${i+1}<textarea data-k="pics.${i}" rows="2" placeholder="Who, doing what, feeling how?">${val('pics.'+i)}</textarea></label>`).join('')}`:''}
-    <h3>Your story in six answers</h3>
+    <h3>ஆறு பதில்களில் உன் கதை <small>Your story in six answers</small></h3>
     <div class="grid2">
       ${Q('who','யார்?','Who is the main character? Give them a name.','எ.கா. நான், என் தம்பி கவின்')}
       ${Q('where','எங்கே?','Where does it happen?','எ.கா. வீட்டருகே உள்ள பூங்கா')}
@@ -810,12 +819,12 @@ function sUnderstand(){
       ${Q('end','எப்படி முடிந்தது?','How is it solved?','எ.கா. ஒரு பெரியவர் உதவினார்')}
       ${Q('lesson','என்ன பாடம்?','What lesson is learnt?','எ.கா. கவனமாக இருக்க வேண்டும்')}
     </div>
-    <h3>What is the story really about? <small>Pick one value</small></h3>
+    <h3>கதையின் கரு என்ன? <small>What is the story really about? Pick one value</small></h3>
     <div class="pills">${VALUES.map(v=>`<button class="pill" data-set="value" data-v="${v.k}" aria-pressed="${d.value===v.k}">${v.t}<small>${v.e}</small></button>`).join('')}</div>
-    <h3>Who tells the story?</h3>
+    <h3>கதையைச் சொல்வது யார்? <small>Who tells the story?</small></h3>
     <div class="seg2" role="group" aria-label="Point of view"><button data-set="pov" data-v="first" aria-pressed="${d.pov==='first'}">நான் · I was there</button><button data-set="pov" data-v="third" aria-pressed="${d.pov==='third'}">அவன் / அவள் · about someone else</button></div>
     <p class="hint">Follow the question if it says which. Whichever you pick, keep it the same all the way through.</p>
-    ${nav(1,3,'Plan the paragraphs')}
+    ${nav(1,3,'பத்திகளைத் திட்டமிடு <small class="en">Plan the paragraphs</small>')}
   </section>`;
 }
 
@@ -837,7 +846,7 @@ function sPlan(){
       <ul class="ask">${p.ask.map(a=>`<li>${a}</li>`).join('')}</ul>
       <textarea data-k="plan.${p.id}" rows="2" placeholder="Notes for this paragraph">${val('plan.'+p.id)}</textarea>
     </div>`).join('')}
-    ${nav(2,4,'Collect phrases')}
+    ${nav(2,4,'சொற்றொடர்களைச் சேகரி <small class="en">Collect phrases</small>')}
   </section>`;
 }
 
@@ -877,7 +886,7 @@ function sPhrases(){
     <p class="hint">Tap <b>+</b> to put a phrase in your bank. Aim for <b>5 or more</b>: one for the scene, a few for feelings at the problem, one for the ending. Themes marked <b>★</b> suit your story: they come from your question, its helping words and your plan.</p>
     <div class="pills" id="tpills">${order.map(t=>`<button class="pill${sug.has(t.e)?' sug':''}" data-theme="${esc(t.e)}" aria-pressed="false">${esc(t.t)}<small>${esc(t.e)}</small></button>`).join('')}</div>
     <div id="tview"></div>
-    <h3>Your bank <small id="bcount">${d.bank.length} phrases</small></h3>
+    <h3>உன் சொற்றொடர்கள் <small>Your bank · <span id="bcount">${d.bank.length} phrases</span></small></h3>
     <div class="bank" id="bank">${bankHtml()}</div>
   </section>
   <section class="card">
@@ -890,7 +899,7 @@ function sPhrases(){
     <h2>இணைப்புச் சொற்கள் <small>Linking words</small></h2>
     <p class="hint">Use at least three to move the story along. The check step counts them.</p>
     <div class="bank">${LINKS.map(l=>`<span class="bk" style="cursor:default">${l}</span>`).join('')}</div>
-    ${nav(3,5,'Start writing')}
+    ${nav(3,5,'எழுதத் தொடங்கு <small class="en">Start writing</small>')}
   </section>`;
 }
 const provHtml=p=>`<label class="ph" style="cursor:pointer"><input type="radio" name="prov" value="${esc(p.p)}" ${d.prov===p.p?'checked':''} style="accent-color:var(--teal);width:18px;height:18px;margin-top:5px"><span>${esc(p.p)}<em>${esc(p.e)}</em></span></label>`;
@@ -917,7 +926,7 @@ function sWrite(){
       ${p.id==='end'&&d.prov?`<div class="notes"><b>Your proverb:</b> ${esc(d.prov)}</div>`:''}
       <textarea class="big" data-k="text.${p.id}" lang="ta" placeholder="${p.ta}…">${val('text.'+p.id)}</textarea>
     </div>`).join('')}
-    ${nav(4,6,'Check my composition')}
+    ${nav(4,6,'கட்டுரையைச் சரிபார் <small class="en">Check my composition</small>')}
   </section>
   <div class="dock noprint" id="dock"></div>`;
 }
@@ -970,16 +979,16 @@ function sCheck(){
   return `<section class="card">
     <h2>சரிபார் <small>Step 6 · Check</small></h2>
     <p class="hint">Markers look at three things: <b>content</b> (உள்ளடக்கம்), <b>language</b> (மொழி) and <b>organisation</b> (அமைப்பு). The first list is checked for you; the second is yours to tick honestly.</p>
-    <div class="score">${ok+so} / ${C.length+S.length}<small>checks passed</small></div>
+    <div class="score">${ok+so} / ${C.length+S.length}<small>சரிபார்ப்புகள் · checks passed</small></div>
     ${groups.map(g=>{const c=C.filter(x=>x.g===g),s=S.filter(x=>x.g===g);if(!c.length&&!s.length)return '';
-      return `<h3>${g}</h3><ul class="chk">${c.map(x=>`<li><span class="m ${x.ok?'ok':'no'}">${x.ok?'✓':'!'}</span><span>${esc(x.t)}${!x.ok&&x.why?`<small>${esc(x.why)}</small>`:''}</span></li>`).join('')}
+      return `<h3>${g.split(' · ')[0]} <small>${g.split(' · ')[1]}</small></h3><ul class="chk">${c.map(x=>`<li><span class="m ${x.ok?'ok':'no'}">${x.ok?'✓':'!'}</span><span>${esc(x.t)}${!x.ok&&x.why?`<small>${esc(x.why)}</small>`:''}</span></li>`).join('')}
         ${s.map(x=>`<li><label><input type="checkbox" data-k="self.${x.k}" ${d.self[x.k]?'checked':''}><span>${esc(x.t)}${x.s?`<small>${esc(x.s)}</small>`:''}${x.l?`<small><a href="${x.l}" style="color:var(--teal)">${esc(x.lt)}</a></small>`:''}</span></label></li>`).join('')}</ul>`}).join('')}
-    <div class="row noprint" style="justify-content:space-between"><button class="btn ghost" data-go="5">← Back to writing</button><button class="btn primary" id="finish">${d.done?'Show my clean copy':'I’m done: show my clean copy'}</button></div>
+    <div class="row noprint" style="justify-content:space-between"><button class="btn ghost" data-go="5">← எழுதுவதற்குத் திரும்பு <small class="en">Back to writing</small></button><button class="btn primary" id="finish">${d.done?'இறுதிப் பிரதியைக் காட்டு <small class="en">Show my clean copy</small>':'முடித்துவிட்டேன் <small class="en">I’m done: show my clean copy</small>'}</button></div>
   </section>
   <section class="card" id="cleancard" ${d.done?'':'hidden'}>
     <h2>${esc(title())} <small>${words(allText().join(' '))} words</small></h2>
     <div class="clean" id="clean">${allText().map(t=>`<p>${esc(t)}</p>`).join('')}</div>
-    <div class="row noprint"><button class="btn" id="copy">Copy</button><button class="btn" onclick="print()">Print</button><a class="btn" id="wa" target="_blank" rel="noopener">Send to a parent or teacher</a><button class="btn ghost" id="new">Start a new composition</button></div>
+    <div class="row noprint"><button class="btn" id="copy">நகலெடு <small class="en">Copy</small></button><button class="btn" onclick="print()">அச்சிடு <small class="en">Print</small></button><a class="btn" id="wa" target="_blank" rel="noopener">பெற்றோர் அல்லது ஆசிரியருக்கு அனுப்பு <small class="en">Send to a parent or teacher</small></a><button class="btn ghost" id="new">புதிய கட்டுரை <small class="en">Start a new composition</small></button></div>
   </section>`;
 }
 function title(){if((d.title||'').trim())return d.title.trim().slice(0,80);const q=(d.q||'').split('\n').map(s=>s.trim()).find(s=>s.length>3)||'';return q?q.slice(0,60):(d.type==='pic'?'படக்கட்டுரை':'கட்டுரை')}
@@ -1031,7 +1040,7 @@ async function pickPdfPage(){
     grid.appendChild(wrap);
   }
   const cancel=document.createElement('button');
-  cancel.className='btn sm ghost';cancel.textContent='Cancel';cancel.style.marginTop='8px';
+  cancel.className='btn sm ghost';cancel.innerHTML='வேண்டாம் <small class="en">Cancel</small>';cancel.style.marginTop='8px';
   cancel.addEventListener('click',()=>{pdfDoc=null;document.body.removeChild(overlay)});
   overlay.appendChild(cancel);
 }
@@ -1108,7 +1117,7 @@ function openZoom(){
   const close=()=>{if(ov.parentNode)document.body.removeChild(ov)};
   const hint=document.createElement('div');
   hint.style.cssText='position:absolute;top:12px;right:12px;display:flex;gap:8px';
-  const closeBtn=document.createElement('button');closeBtn.className='btn sm ghost';closeBtn.textContent='✕ Close';
+  const closeBtn=document.createElement('button');closeBtn.className='btn sm ghost';closeBtn.innerHTML='✕ மூடு <small class="en">Close</small>';
   closeBtn.style.cssText='background:rgba(0,0,0,.6);color:#fff;border-color:rgba(255,255,255,.3)';
   closeBtn.addEventListener('click',close);hint.appendChild(closeBtn);
   ov.appendChild(img);ov.appendChild(hint);document.body.appendChild(ov);
@@ -1257,7 +1266,7 @@ document.addEventListener('click',e=>{
     if(!d.done){const C=checks(),S=SELF.filter(Boolean);d.done=1;save();
       window.synTrack&&synTrack('round',{lab:'katturai',score:C.filter(c=>c.ok).length+S.filter(s=>d.self[s.k]).length,of:C.length+S.length,words:words(allText().join(' '))});}
     render();const cc=$('#cleancard');cc&&cc.scrollIntoView({behavior:'smooth'});return}
-  if(b.id==='copy'){navigator.clipboard&&navigator.clipboard.writeText(title()+'\n\n'+allText().join('\n\n')).then(()=>{b.textContent='Copied'});return}
+  if(b.id==='copy'){navigator.clipboard&&navigator.clipboard.writeText(title()+'\n\n'+allText().join('\n\n')).then(()=>{b.innerHTML='நகலெடுக்கப்பட்டது <small class="en">Copied</small>'});return}
   if(b.id==='new'){newQuestion();return}
 });
 render();

@@ -64,6 +64,11 @@
   .nav-logo{font-size:13px;margin-right:12px}
   .nav-links a{font-size:11px;padding:5px 8px}
 }
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
 /* Override nav bg for light pages */
 body.light-nav #site-nav{
   background:rgba(250,247,240,0.95);
@@ -73,19 +78,20 @@ body.light-nav .nav-logo{color:#A8741A}
 body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
 body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
 body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+.seg2 button .en{display:block;font-size:11px}
 </style>
 
 <title>Synapse Sol Lab</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Tiro+Tamil&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 :root{
   --bg:#F7F6F1; --surface:#FFFFFF; --sunk:#EEEDE5; --ink:#15302E; --muted:#5B6B68; --line:#DAD8CC;
   --accent:#A8741A; --accent-soft:#F3E6C8; --teal:#1E5A55; --teal-soft:#DCE9E5;
   --good:#2C7A4B; --good-soft:#DDF0E3; --bad:#B03A33; --bad-soft:#F8E1DE; --onacc:#FFFFFF;
-  --display:"Catamaran","Noto Sans Tamil",system-ui,sans-serif;
-  --body:"Noto Sans Tamil","Catamaran",system-ui,sans-serif;
+  --display:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
+  --body:'Tiro Tamil',"Catamaran",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme: dark){
@@ -236,13 +242,13 @@ body.cover .vrow .d.show{filter:none}
 <nav id="site-nav" aria-label="Synapse Tamil navigation">
   <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
   <div class="nav-links">
-    <a href="index.html" data-page="home">Home</a>
-    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை</a>
-    <a href="seyyul.html" data-page="seyyul">செய்யுள்</a>
-    <a href="echam.html" data-page="echam">எச்சம்</a>
-    <a href="oli.html" data-page="oli">ஒலி</a>
-    <a href="sol.html" data-page="sol">சொல் திறன்</a>
-    <a href="katturai.html" data-page="katturai">கட்டுரை</a>
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Word endings</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
   </div>
 </nav>
 <script>
@@ -257,23 +263,23 @@ body.cover .vrow .d.show{filter:none}
 <div class="wrap">
   <header>
     <div class="eyebrow">Synapse · PSLE Tamil · Vocabulary</div>
-    <h1>சொல்வளம்</h1>
-    <p class="lede">The P5–P6 vocabulary list: <b>315 words</b> with their Tamil meanings, in the same pages as the handout. Comprehension questions ask for the word that means the same (<b>ஈடான சொல்</b>), and the phrase bank feeds <b>Paper 1</b> compositions.</p>
+    <h1>சொல்வளம் <small class="en">Vocabulary</small></h1>
+    <p class="lede">Upper primary vocabulary words with Tamil meanings. Comprehension asks for the word that means the same (<b>ஈடான சொல்</b>), and the phrase bank feeds Paper 1 compositions.</p>
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-p="drill">பொருள் <small>Meaning drill</small></button>
+    <button class="tab" role="tab" aria-selected="true" data-p="drill">பொருள் <small>Meaning</small></button>
     <button class="tab" role="tab" aria-selected="false" data-p="phr">சொற்றொடர் <small>Composition phrases</small></button>
     <button class="tab" role="tab" aria-selected="false" data-p="list">பட்டியல் <small>Full list</small></button>
   </nav>
 
-  <div class="levels" id="pages"><span class="lab">Handout pages</span></div>
+  <div class="levels" id="pages" hidden></div>
 
   <section id="p-drill" role="tabpanel" style="display:flex;flex-direction:column;gap:16px">
     <div class="row" style="justify-content:space-between">
-      <div class="seg2" role="group" aria-label="Direction"><button id="d-fwd" aria-pressed="true">Word → meaning</button><button id="d-rev" aria-pressed="false">Meaning → word</button></div>
+      <div class="seg2" role="group" aria-label="Direction"><button id="d-fwd" aria-pressed="true">சொல் → பொருள் <small class="en">Word → meaning</small></button><button id="d-rev" aria-pressed="false">பொருள் → சொல் <small class="en">Meaning → word</small></button></div>
     </div>
-    <div class="meter"><span>Mastered</span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
+    <div class="meter"><span>தேர்ச்சி <small class="en">Mastered</small></span><div class="bar"><i class="mbar"></i></div><span class="num mnum"></span></div>
     <div class="card" id="dcard"></div>
   </section>
 
@@ -283,7 +289,7 @@ body.cover .vrow .d.show{filter:none}
   </section>
 
   <section id="p-list" role="tabpanel" hidden style="display:flex;flex-direction:column;gap:8px">
-    <div class="row"><button class="btn" id="cover" aria-pressed="false">Cover the meanings</button><span class="hint">Say the meaning, then tap to check.</span></div>
+    <div class="row"><button class="btn" id="cover" aria-pressed="false">பொருளை மறை <small class="en">Cover the meanings</small></button><span class="hint">Say the meaning, then tap to check.</span></div>
     <div id="vlist"></div>
   </section>
 </div>
@@ -306,7 +312,7 @@ const pickRound=(ids,lv)=>{const s=shuffle(ids),learn=s.filter(i=>lv(i)>0&&lv(i)
 const pgEl=document.getElementById('pages');
 for(let p=1;p<=12;p++){const b=document.createElement('button');b.className='lv';b.textContent=p;b.setAttribute('aria-pressed',st.pg.includes(p));
   b.onclick=()=>{const on=st.pg.includes(p);if(on&&st.pg.length===1)return;st.pg=on?st.pg.filter(x=>x!==p):[...st.pg,p].sort((a,b)=>a-b);b.setAttribute('aria-pressed',!on);save();meter();startDrill();renderList()};pgEl.appendChild(b)}
-const allBtn=document.createElement('button');allBtn.className='lv';allBtn.textContent='All';allBtn.onclick=()=>{st.pg=[1,2,3,4,5,6,7,8,9,10,11,12];pgEl.querySelectorAll('.lv').forEach(b=>b!==allBtn&&b.setAttribute('aria-pressed',true));save();meter();startDrill();renderList()};pgEl.appendChild(allBtn);
+const allBtn=document.createElement('button');allBtn.className='lv';allBtn.innerHTML='எல்லாம் <small class="en">All</small>';allBtn.onclick=()=>{st.pg=[1,2,3,4,5,6,7,8,9,10,11,12];pgEl.querySelectorAll('.lv').forEach(b=>b!==allBtn&&b.setAttribute('aria-pressed',true));save();meter();startDrill();renderList()};pgEl.appendChild(allBtn);
 
 function meter(){const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length,l=P.filter(v=>(st.box[v.id]||0)>0).length-m;
   document.querySelector('.mbar').style.width=(P.length?m/P.length*100:0)+'%';document.querySelector('.mnum').textContent=`${m} / ${P.length}`+(l?` · ${l} learning`:'')}
@@ -331,7 +337,7 @@ function next(){
   if(!dq.length){
     const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length;window.synTrack&&synTrack('round',{lab:'sol',score:round.first,of:round.seen});
     el.innerHTML=`<div class="chips"><span class="chip">Round complete</span></div><div class="score">${round.first} / ${round.seen}<small>right on the first try</small></div>
-      <p class="hint">${m} of ${P.length} words mastered on the selected pages.</p><div class="row"><button class="btn primary" id="again">Next round</button></div>`;
+      <p class="hint">${m} of ${P.length} words mastered on the selected pages.</p><div class="row"><button class="btn primary" id="again">அடுத்த சுற்று <small class="en">Next round</small></button></div>`;
     document.getElementById('again').onclick=startDrill;return}
   const v=dq.shift();const q=makeQ(v);cur={v,q,done:false};
   el.innerHTML=`<div class="chips"><span class="chip">Page ${v.p}</span></div>
@@ -345,11 +351,11 @@ function answer(w){
   if(!firstSet.has(v.id)){firstSet.add(v.id);round.seen++;if(ok)round.first++}
   const card=`<div class="row" style="align-items:baseline"><span class="word" style="font-size:24px">${esc(v.w)}</span><span class="eng">${esc(v.e)}</span></div><div class="syns">${v.s.map(x=>`<span class="syn">${esc(x)}</span>`).join('')}</div>`;
   const fb=document.getElementById('fb');
-  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி!</h3>${card}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">I was sure</button><button class="btn" id="g">I guessed</button></div></div>`;
+  if(ok){fb.innerHTML=`<div class="fb good"><h3>சரி!</h3>${card}<p class="ask">Were you sure, or did you guess?</p><div class="row"><button class="btn primary" id="s">உறுதியாகத் தெரியும் <small class="en">I was sure</small></button><button class="btn" id="g">ஊகித்தேன் <small class="en">I guessed</small></button></div></div>`;
     document.getElementById('s').onclick=()=>{st.box[v.id]=Math.min(MASTER,(st.box[v.id]||0)+1);save();meter();next()};
     document.getElementById('g').onclick=()=>{st.box[v.id]=Math.max(1,st.box[v.id]||0);save();meter();next()};document.getElementById('s').focus();}
   else{st.box[v.id]=0;save();meter();dq.splice(Math.min(3,dq.length),0,v);
-    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(q.ans)}.</h3>${card}<p class="ask">This word comes back in three cards.</p><div class="row"><button class="btn primary" id="n">Next</button></div></div>`;
+    fb.innerHTML=`<div class="fb bad"><h3>The answer is ${esc(q.ans)}.</h3>${card}<p class="ask">This word comes back in three cards.</p><div class="row"><button class="btn primary" id="n">அடுத்தது <small class="en">Next</small></button></div></div>`;
     document.getElementById('n').onclick=next;document.getElementById('n').focus();}
 }
 function setDir(d){st.dir=d;save();document.getElementById('d-fwd').setAttribute('aria-pressed',d==='fwd');document.getElementById('d-rev').setAttribute('aria-pressed',d==='rev');startDrill()}
@@ -368,25 +374,25 @@ function nextPhrase(){
     if(window.synAllow&&!synAllow('sol:phrase:'+x,()=>b.click()))return;
     const ok=b.dataset.t===t.t;pr.seen++;if(ok)pr.ok++;
     el.querySelectorAll('.opt').forEach(c=>{c.disabled=true;if(c.dataset.t===t.t)c.classList.add('good');else if(c===b)c.classList.add('bad')});
-    document.getElementById('pfb').innerHTML=`<div class="fb ${ok?'good':'bad'}"><h3>${ok?'சரி!':'It describes '+esc(t.t)+'.'} Other ways to write ${esc(t.e.toLowerCase())}:</h3><ul style="margin:0;padding-left:18px">${t.x.filter(y=>y!==x).slice(0,3).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="row"><button class="btn primary" id="pn">Next phrase</button></div></div>`;
+    document.getElementById('pfb').innerHTML=`<div class="fb ${ok?'good':'bad'}"><h3>${ok?'சரி!':'It describes '+esc(t.t)+'.'} Other ways to write ${esc(t.e.toLowerCase())}:</h3><ul style="margin:0;padding-left:18px">${t.x.filter(y=>y!==x).slice(0,3).map(y=>`<li>${esc(y)}</li>`).join('')}</ul><div class="row"><button class="btn primary" id="pn">அடுத்த சொற்றொடர் <small class="en">Next phrase</small></button></div></div>`;
     document.getElementById('pn').onclick=nextPhrase;document.getElementById('pn').focus();
   });
 }
-document.getElementById('themes').innerHTML=`<h2 class="lvhead" style="font:700 20px var(--display)">Phrase bank <span style="font:500 12px var(--mono);color:var(--muted)">${THEMES.length} themes · ${THEMES.reduce((a,t)=>a+t.x.length,0)} phrases</span></h2>`+
+document.getElementById('themes').innerHTML=`<h2 class="lvhead" style="font:700 20px var(--display)">சொற்றொடர் வங்கி <span style="font:500 12px var(--mono);color:var(--muted)">Phrase bank · ${THEMES.length} themes · ${THEMES.reduce((a,t)=>a+t.x.length,0)} phrases</span></h2>`+
   THEMES.map(t=>`<div class="theme"><h3>${esc(t.t)} <span>${esc(t.e)}</span></h3><ul>${t.x.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
 
 /* ---------- list ---------- */
 function renderList(){
-  document.getElementById('vlist').innerHTML=st.pg.map(p=>`<h3 class="lvhead">Page ${p}<span>${VOCAB.filter(v=>v.p===p).length} words</span></h3>`+
+  document.getElementById('vlist').innerHTML=st.pg.map(p=>`<h3 class="lvhead">பக்கம் ${p}<span>Page ${p} · ${VOCAB.filter(v=>v.p===p).length} words</span></h3>`+
     VOCAB.filter(v=>v.p===p).map((v,i)=>`<div class="vrow"><span class="n">${i+1}</span><span class="w">${esc(v.w)}</span><span class="d" tabindex="0">${esc(v.s.join(' / '))}<small>${esc(v.e)}</small></span></div>`).join('')).join('');
   document.querySelectorAll('#vlist .d').forEach(d=>{const t=()=>d.classList.toggle('show');d.onclick=t;d.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
 }
-document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Show all meanings':'Cover the meanings'};
+document.getElementById('cover').onclick=e=>{const on=document.body.classList.toggle('cover');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.innerHTML=on?'எல்லாப் பொருளையும் காட்டு <small class="en">Show all meanings</small>':'பொருளை மறை <small class="en">Cover the meanings</small>'};
 
 function show(p){
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.p===p));
   ['drill','phr','list'].forEach(x=>{const el=document.getElementById('p-'+x);el.hidden=x!==p;el.style.display=x===p?'flex':''});
-  document.getElementById('pages').hidden=p==='phr';
+  /* pages picker removed */
 }
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(t.dataset.p));
 meter();startDrill();nextPhrase();renderList();
