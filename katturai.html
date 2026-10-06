@@ -172,6 +172,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .tip .hw.q{background:var(--surface)}
 .hw.me{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
 .hw.ro{padding-right:12px}
+.hw small{font:500 12px var(--body);color:var(--muted);margin-left:6px}
 .hw button{font:700 15px var(--mono);width:26px;height:26px;border:0;border-radius:99px;background:transparent;color:inherit;cursor:pointer;opacity:.7}
 .key{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted)}
 .key i{display:inline-block;width:10px;height:10px;border-radius:99px;margin-right:6px;vertical-align:-1px}
@@ -345,7 +346,7 @@ function findHelping(q){
   close();
   return uniq(best);
 }const KEY='synapse-katturai-v1',HKEY='synapse-katturai-past-v1';
-const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
+const blank=()=>({type:'pic',n:4,q:'',hw:'',myhw:[],qhwOff:[],ocr:0,photo:'',pics:[],who:'',where:'',when:'',problem:'',end:'',lesson:'',value:'',pov:'first',hook:'scene',plan:{},bank:[],prov:'',text:{},self:{},step:1,ok:0,done:0,started:Date.now()});
 let d=blank();
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object.assign(blank(),s);
   /* older saves kept helping words as one typed string */
@@ -374,11 +375,291 @@ function paras(){
     ask:['How did it end? How do you feel when you think about it now?','What lesson did you learn? What will you do differently?','Where does your proverb fit?']});
   return out;
 }
-/* helping words: the ones printed in the question (read from its text) plus the student's own */
-const fromQ=()=>findHelping(d.q).filter(w=>!d.qhwOff.includes(w));
+/* Helping words seen in compositions, with their English meaning. Used to show the meaning on each chip and,
+   for words read from a photo, to fix the reader's misspellings by snapping each one to the nearest word here. */
+const WORDS=`
+கடைத்தொகுதி|shopping centre
+பேரங்காடி|supermarket
+பல்பொருள் அங்காடி|department store
+கடை|shop
+சந்தை|market
+ஈரச்சந்தை|wet market
+உணவங்காடி நிலையம்|hawker centre
+உணவங்காடி|hawker centre
+உணவகம்|restaurant
+சிற்றுண்டிச்சாலை|canteen
+பூங்கா|park
+விளையாட்டுத் திடல்|playground
+விளையாட்டு மைதானம்|playground
+திடல்|field
+நூலகம்|library
+மருத்துவமனை|hospital
+மருந்தகம்|pharmacy
+மருத்துவர்|doctor
+பள்ளி|school
+பள்ளிக்கூடம்|school
+வகுப்பறை|classroom
+பேருந்து|bus
+பேருந்து நிறுத்தம்|bus stop
+பேருந்து நிலையம்|bus interchange
+பெருவிரைவு ரயில்|MRT train
+ரயில் நிலையம்|train station
+ரயில்|train
+வாடகை வண்டி|taxi
+மிதிவண்டி|bicycle
+மகிழுந்து|car
+சாலை|road
+சாலையைக் கடந்தான்|crossed the road
+போக்குவரத்து விளக்கு|traffic light
+நடைபாதை|footpath
+நடைபாலம்|overhead bridge
+மின்தூக்கி|lift
+மின்படிக்கட்டு|escalator
+வீவக புளோக்|HDB block
+வீவக வீடு|HDB flat
+வீடு|house
+அடுக்குமாடி|flat
+சமையலறை|kitchen
+கடற்கரை|beach
+கடல்|sea
+நீச்சல் குளம்|swimming pool
+தகவல் நிலையம்|information counter
+நிலையம்|station, counter
+மலிவு|cheap
+காவல் நிலையம்|police station
+தீயணைப்பு நிலையம்|fire station
+கோயில்|temple
+திரையரங்கம்|cinema
+விலங்கியல் தோட்டம்|zoo
+பறவைப் பூங்கா|bird park
+வாகன நிறுத்துமிடம்|car park
+சமூக மன்றம்|community centre
+காவலர்கள்|police officers
+காவலர்|police officer
+காவல்துறை|police
+காவல் அதிகாரி|police officer
+தீயணைப்பு வீரர்கள்|firefighters
+தீயணைப்பு வண்டி|fire engine
+மருத்துவ உதவியாளர்கள்|paramedics
+அவசர ஊர்தி|ambulance
+தாதி|nurse
+ஆசிரியர்|teacher
+ஆசிரியை|teacher (woman)
+தலைமையாசிரியர்|principal
+மாணவர்கள்|students
+மாணவன்|student (boy)
+மாணவி|student (girl)
+நண்பன்|friend (boy)
+நண்பர்கள்|friends
+தோழி|friend (girl)
+அம்மா|mother
+அப்பா|father
+பெற்றோர்|parents
+தாத்தா|grandfather
+பாட்டி|grandmother
+முதியவர்|elderly man
+மூதாட்டி|elderly woman
+இளைஞன்|young man
+இளைஞர்கள்|young people
+இளம்பெண்|young woman
+சிறுவன்|boy
+சிறுமி|girl
+குழந்தை|child
+தம்பி|younger brother
+தங்கை|younger sister
+அண்ணன்|elder brother
+அக்கா|elder sister
+அண்டை வீட்டார்|neighbours
+பாதுகாவலர்|security guard
+கடைக்காரர்|shopkeeper
+விற்பனையாளர்|salesperson
+வாடிக்கையாளர்|customer
+காசாளர்|cashier
+திருடன்|thief
+கொள்ளையன்|robber
+ஓட்டுநர்|driver
+பேருந்து ஓட்டுநர்|bus driver
+வழிப்போக்கர்கள்|passers-by
+பொதுமக்கள்|members of the public
+மக்கள்|people
+கூட்டம்|crowd
+பெண்மணி|lady
+ஆடவர்|man
+கைப்பை|handbag
+பணப்பை|wallet
+பணம்|money
+கைப்பேசி|mobile phone
+கைத்தொலைபேசி|mobile phone
+பை|bag
+புத்தகப்பை|schoolbag
+பந்து|ball
+பட்டம்|kite
+குடை|umbrella
+பரிசு|gift, prize
+பொம்மை|toy
+சாவி|key
+கடிகாரம்|watch, clock
+கண்காணிப்புப் படக்கருவி|CCTV camera
+ரசீது|receipt
+அடையாள அட்டை|identity card
+பொருள்கள்|things, items
+மளிகைப் பொருள்கள்|groceries
+தள்ளுவண்டி|trolley
+உணவு|food
+தண்ணீர்|water
+புகார் கொடுத்தனர்|made a report
+புகார் கொடுத்தார்|made a report
+புகார்|complaint, report
+கைது செய்தனர்|arrested
+கொடுத்தனர்|gave
+செய்தனர்|did
+கைது|arrest
+நன்றி கூறி|thanking
+நன்றி கூறினார்|thanked
+நன்றி கூறினாள்|thanked
+நன்றி|thanks
+கவனிக்கவில்லை|did not notice
+கவனித்தான்|noticed
+கவனித்தாள்|noticed
+மலிவு விலையில்|at a cheap price
+மலிவு விற்பனை|sale
+தள்ளுபடி|discount
+பிடுங்கிக்கொண்டு|snatching
+பறித்துக்கொண்டு|snatching
+பறித்தான்|snatched
+ஓடினான்|ran
+தப்பி ஓடினான்|ran away
+துரத்தினான்|chased
+துரத்தினர்|chased
+தேடினார்|searched
+தேடினாள்|searched
+கண்டுபிடித்தனர்|found
+தொலைந்தது|got lost
+தொலைத்தாள்|lost
+காணவில்லை|missing
+மறந்துவிட்டான்|forgot
+கீழே விழுந்தான்|fell down
+வழுக்கி விழுந்தான்|slipped and fell
+அடிபட்டது|got hurt
+காயம்|injury
+இரத்தம்|blood
+அழுதாள்|cried
+அழுதான்|cried
+கத்தினான்|shouted
+அலறினாள்|screamed
+உதவி|help
+உதவினான்|helped
+உதவிக்கு வந்தனர்|came to help
+அழைத்தார்|called
+தொலைபேசியில் அழைத்தான்|phoned
+ஒப்படைத்தான்|handed over
+திருப்பிக் கொடுத்தான்|gave it back
+பாராட்டினர்|praised
+பாராட்டு|praise
+மன்னிப்புக் கேட்டான்|apologised
+வருந்தினான்|felt sorry
+பயந்தான்|was scared
+அதிர்ச்சி|shock
+மகிழ்ச்சி|happiness
+கவலை|worry
+கோபம்|anger
+நேர்மை|honesty
+பொறுப்பு|responsibility
+அவசரம்|hurry
+விபத்து|accident
+தீ|fire
+தீப்பிடித்தது|caught fire
+புகை|smoke
+மழை|rain
+இடி|thunder
+மின்னல்|lightning
+வெள்ளம்|flood
+சண்டை|fight
+வாக்குவாதம்|argument
+விளையாடினர்|played
+பிறந்தநாள்|birthday
+கொண்டாட்டம்|celebration
+சுற்றுலா|outing, trip
+விடுமுறை|holidays
+வாங்கினார்|bought
+வரிசையில் நின்றனர்|stood in a queue
+வரிசை|queue
+பணம் செலுத்தினார்|paid
+அறிவிப்பு|announcement
+ஒலிபெருக்கி|loudspeaker
+திடீரென்று|suddenly
+உடனே|immediately
+பின்தொடர்ந்தான்|followed
+பிடிபட்டான்|was caught
+தண்டனை|punishment
+பாடம்|lesson
+கற்றுக்கொண்டான்|learnt
+எச்சரிக்கை|warning
+கவனமாக|carefully
+கவனக்குறைவு|carelessness
+பாதுகாப்பு|safety
+ஏமாற்றம்|disappointment
+பெருமை|pride
+வெட்கம்|shame
+தயக்கம்|hesitation
+நேர்மையாக|honestly
+விளையாட்டுப் போட்டி|sports competition
+போட்டி|competition
+வெற்றி|victory, win
+தோல்வி|defeat
+பயிற்சி|practice
+காற்பந்து|football
+நீச்சல்|swimming
+தேர்வு|exam
+மதிப்பெண்|marks
+வீட்டுப்பாடம்|homework
+தொண்டூழியம்|volunteering
+முதியோர் இல்லம்|old folks' home
+நன்கொடை|donation
+பகிர்ந்து|sharing
+பொறாமை|jealousy
+கேலி|teasing
+மிரட்டினான்|threatened
+பொய்|lie
+உண்மை|truth
+மன்னித்தார்|forgave
+நாய்|dog
+பூனை|cat
+பறவை|bird
+மரம்|tree
+செடி|plant
+பூ|flower
+குப்பை|rubbish
+சுத்தம்|cleanliness
+`.trim().split('\n').map(l=>{const[t,e]=l.split('|');return{t,e,g:gr(t)}});
+function gr(s){return String(s).replace(/\s+/g,'').match(/[^\u0BBE-\u0BCD\u0BD7](?:[\u0BBE-\u0BCD\u0BD7])*/g)||[]} /* letters, each with its vowel sign or pulli */
+/* look-alike letters the reader mixes up (ல/ள/ழ, ன/ண/ந, ர/ற), or the right letter with the wrong vowel sign, cost half */
+const LIKE=['லளழ','னணந','ரற'];
+function cost(x,y){if(x===y)return 0;const bx=x[0],by=y[0],sx=x.slice(1),sy=y.slice(1);
+  return bx===by||(sx===sy&&LIKE.some(g=>g.includes(bx)&&g.includes(by)))?.5:1}
+function lev(a,b){let p=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){const c=[i];for(let j=1;j<=b.length;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+cost(a[i-1],b[j-1]));p=c}return p[b.length]}
+function lookup(w){const g=gr(w);if(!g.length)return null;let best=null;
+  for(const x of WORDS){if(Math.abs(x.g.length-g.length)>2)continue;const k=lev(g,x.g);if(!best||k<best.k)best={t:x.t,e:x.e,k,n:Math.max(g.length,x.g.length)};if(!k)break}
+  return best}
+const near=m=>m&&m.k<=(m.n<=3?.5:m.n<=5?1:Math.round(m.n*.3)); /* allowed misread letters grow with word length */
+const meaning=w=>{const m=lookup(w);return m&&!m.k?m.e:''};
+function hwFix(b,ocr){
+  const m=lookup(b);
+  if(m&&(ocr?near(m):!m.k))return{w:m.t};
+  if(!ocr||!/\s/.test(b))return{w:b,unk:true};
+  /* a phrase the whole-phrase match missed: fix it word by word */
+  let unk=false;const w=b.split(/\s+/).map(x=>{const y=lookup(x);if(near(y))return y.t;unk=true;return x}).join(' ');
+  return{w,unk};
+}
+/* helping words: the ones printed in the question (read from its text) plus the student's own.
+   From a photo, unknown scraps are dropped: very short ones are bits of the drawings, and once most of
+   the box matched known words the rest are misreads too. */
+const fromQ=()=>{const o=!!d.ocr;let L=findHelping(d.q).map(b=>hwFix(b,o));
+  if(o){L=L.filter(x=>!x.unk||gr(x.w).length>3);if(L.length&&L.filter(x=>!x.unk).length/L.length>=.6)L=L.filter(x=>!x.unk)}
+  return [...new Set(L.map(x=>x.w))].filter(w=>!d.qhwOff.includes(w))};
 const helping=()=>[...new Set([...fromQ(),...d.myhw])];
 const hwChips=edit=>{const q=fromQ(),me=d.myhw.filter(w=>!q.includes(w));
-  const chip=(w,c,i)=>`<span class="hw ${c}${edit?'':' ro'}">${esc(w)}${edit?`<button data-hwrm="${c}:${i}" aria-label="Remove ${esc(w)}">×</button>`:''}</span>`;
+  const chip=(w,c,i)=>{const m=meaning(w);return `<span class="hw ${c}${edit?'':' ro'}">${esc(w)}${m?`<small>${esc(m)}</small>`:''}${edit?`<button data-hwrm="${c}:${i}" aria-label="Remove ${esc(w)}">×</button>`:''}</span>`};
   return q.map((w,i)=>chip(w,'q',i)).join('')+d.myhw.map((w,i)=>me.includes(w)?chip(w,'me',i):'').join('')};
 const hwKey=()=>`<div class="key"><span><i class="q"></i>from the question</span><span><i class="me"></i>your own</span></div>`;
 const allText=()=>paras().map(p=>(d.text[p.id]||'').trim()).filter(Boolean);
@@ -664,7 +945,7 @@ async function readPhoto(){
     const r=await w.recognize(await forOcr(photoMem));await w.terminate();
     const t=ocrText(r.data);
     if(!t){msg.textContent='Could not find words in the photo. Try a sharper, straighter photo, or type the question.';b.disabled=false;return}
-    d.q=(d.q?d.q.trim()+'\n':'')+t;save();render();
+    d.q=(d.q?d.q.trim()+'\n':'')+t;d.ocr=1;save();render();
     const n=fromQ().length;
     $('#ocrmsg').textContent='Done. '+(n?`Found ${n} helping word${n>1?'s':''}; they are filled in below. `:'')+'Check the text below and fix any mistakes: the reader gets some Tamil letters wrong, and cannot read handwriting or describe the pictures.';
   }catch(e){msg.textContent='Could not load the reader. Check your connection, or type the question instead.';b.disabled=false}
