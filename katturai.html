@@ -197,6 +197,16 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
 .clean{font:17px/1.9 var(--body);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px}
 .clean p{margin:0 0 1em;text-indent:2em;white-space:pre-wrap}
 .past{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:8px;font-size:15px}
+.past{flex-wrap:wrap}
+.past>span:first-child{flex:1 1 180px;min-width:0;overflow-wrap:anywhere}
+.past .row{flex:none;flex-wrap:nowrap;gap:6px}
+.past .btn{white-space:nowrap}
+.btn.del{color:var(--bad)}
+.workbar{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:0 0 16px}
+.mine{align-self:stretch;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.mine summary{font:600 15px var(--display);cursor:pointer;padding:2px 0}
+.mine[open] summary{margin-bottom:8px}
+.mine .now{background:var(--teal-soft);border-radius:8px;padding:8px 10px;border:0}
 .why{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 .why h3{font:700 15px var(--display);color:var(--ink);margin:0 0 6px}
 .why ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
@@ -247,6 +257,7 @@ label.up input{position:absolute;opacity:0;width:1px;height:1px}
   </header>
 
   <nav class="steps" id="steps" aria-label="Steps"></nav>
+  <div class="workbar noprint" id="workbar"></div>
   <main id="stage" style="display:flex;flex-direction:column;gap:16px"></main>
 
   <footer class="why">
@@ -353,7 +364,40 @@ try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.step){d=Object
   if(!s.myhw&&s.hw)d.myhw=splitWords(s.hw)}}catch(e){}
 let photoMem=d.photo,hiMem='',pdfDoc=null,pdfPage=1; /* hiMem: a sharp render of a PDF page, read instead of the preview */
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){try{localStorage.setItem(KEY,JSON.stringify(Object.assign({},d,{photo:''})))}catch(e2){}}};
-const past=()=>{try{return JSON.parse(localStorage.getItem(HKEY)||'[]')}catch(e){return[]}};
+/* My compositions: every earlier composition, kept whole (minus the photo, which is too big to keep) so it can be
+   opened again where it was left. Entries from before this kept only the finished text: they open read-only. */
+const past=()=>{try{return JSON.parse(localStorage.getItem(HKEY)||'[]').map(c=>Object.assign({id:c.at},c))}catch(e){return[]}};
+const putPast=P=>{try{localStorage.setItem(HKEY,JSON.stringify(P));return true}catch(e){alert('This device is out of space for saved compositions. Delete an old one under “My compositions”, then try again.');return false}};
+const hasWork=()=>!!((d.q||'').trim()||Object.values(d.text||{}).some(t=>(t||'').trim())||d.myhw.length||photoMem);
+/* put the open composition into the list (replacing its older copy), so nothing is lost when another one takes its place */
+function stash(){if(!hasWork())return true;
+  const P=past().filter(c=>c.id!==d.started);
+  P.unshift({id:d.started,title:title(),at:Date.now(),words:words(allText().join(' ')),text:allText(),step:d.step,done:d.done,state:Object.assign({},d,{photo:''})});
+  return putPast(P)}
+function newQuestion(){
+  if(hasWork()&&!confirm('Start a new question? This composition is saved under “My compositions”, so you can open it again.'))return;
+  if(!stash())return;
+  d=blank();photoMem='';hiMem='';pdfDoc=null;mineOpen=false;save();render();window.scrollTo({top:0})}
+function openPast(id){const c=past().find(x=>x.id===id);if(!c)return;
+  if(!c.state){const v=$('#pv'+id);if(v)v.innerHTML=v.innerHTML?'':`<div class="clean" style="margin-top:10px"><b>${esc(c.title)}</b>${c.text.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`;return}
+  if(!stash())return;
+  /* the opened one is now the work on screen, so it leaves the list until it is put away again */
+  putPast(past().filter(x=>x.id!==id));
+  d=Object.assign(blank(),c.state);photoMem='';hiMem='';pdfDoc=null;mineOpen=false;save();render();window.scrollTo({top:0})}
+function deletePast(id){const c=past().find(x=>x.id===id);if(!c)return;
+  if(!confirm(`Delete “${c.title}”? It cannot be brought back.`))return;
+  putPast(past().filter(x=>x.id!==id));renderBar()}
+let mineOpen=false;
+const when=t=>new Date(t).toLocaleDateString('en-SG',{day:'numeric',month:'short'});
+function renderBar(){const P=past();
+  const where=c=>c.done?'finished':(c.step?`step ${c.step} of 6`:'finished');
+  $('#workbar').innerHTML=`<button class="btn primary sm" id="newq">＋ New question</button>
+    <details class="mine" ${mineOpen?'open':''}><summary>My compositions <small class="hint">${P.length+(hasWork()?1:0)}</small></summary>
+    ${hasWork()?`<div class="past now"><span>${esc(title())} <small class="hint">open now · ${where(d)}</small></span></div>`:''}
+    ${P.map(c=>`<div class="past"><span>${esc(c.title)} <small class="hint">${when(c.at)} · ${where(c)} · ${c.words} words</small></span><span class="row"><button class="btn sm" data-open="${c.id}">${c.state?'Open':'Read'}</button><button class="btn sm ghost del" data-del="${c.id}" aria-label="Delete ${esc(c.title)}">Delete</button></span></div><div id="pv${c.id}"></div>`).join('')}
+    ${!P.length&&!hasWork()?'<p class="hint">Your compositions will be kept here.</p>':''}</details>
+`;
+  $('#workbar .mine').addEventListener('toggle',e=>{mineOpen=e.target.open})}
 
 function getK(k){return k.split('.').reduce((o,p)=>o==null?undefined:o[p],d)}
 function setK(k,v){const ps=k.split('.');let o=d;ps.slice(0,-1).forEach(p=>{if(o[p]==null)o[p]=/^\d+$/.test(p)?[]:{};o=o[p]});o[ps[ps.length-1]]=v}
@@ -685,7 +729,6 @@ const nav=(back,next,label)=>`<div class="row noprint" style="justify-content:sp
 
 /* ---------- 1 question ---------- */
 function sQuestion(){
-  const P=past();
   return `<section class="card">
     <h2>உன் கேள்வி <small>Step 1 · Your question</small></h2>
     <p class="hint">Snap the composition question, or type it in. The photo stays on this device.</p>
@@ -707,8 +750,7 @@ function sQuestion(){
       ${hwKey()}</div>
     ${d.type==='pic'?`<div class="row"><span class="hint">How many pictures?</span><div class="seg2" role="group" aria-label="Number of pictures">${[3,4,5].map(n=>`<button data-set="n" data-v="${n}" aria-pressed="${+d.n===n}">${n}</button>`).join('')}</div></div>`:''}
     ${nav(0,2,'Understand the question')}
-  </section>
-  ${P.length?`<section class="card"><h3>Finished compositions <small>${P.length}</small></h3>${P.slice(0,8).map((c,i)=>`<div class="past"><span>${esc(c.title)} <small class="hint">${new Date(c.at).toLocaleDateString('en-SG',{day:'numeric',month:'short'})} · ${c.words} words</small></span><button class="btn sm" data-past="${i}">Read</button></div>`).join('')}<div id="pastview"></div></section>`:''}`;
+  </section>`;
 }
 
 /* ---------- 2 understand ---------- */
@@ -1036,7 +1078,7 @@ async function readPhoto(){
 
 /* ---------- render + events ---------- */
 function render(){
-  renderSteps();
+  renderSteps();renderBar();
   $('#stage').innerHTML=[null,sQuestion,sUnderstand,sPlan,sPhrases,sWrite,sCheck][d.step]();
   if(d.step===5)dock();
   if(d.step===6&&d.done)share();
@@ -1049,7 +1091,7 @@ function hwAdd(){const i=$('#hwadd');if(!i)return;const q=fromQ();
   i.value='';save();hwRefresh();i.focus()}
 document.addEventListener('keydown',e=>{if(e.target.id==='hwadd'&&e.key==='Enter'){e.preventDefault();hwAdd()}});
 document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(!k)return;
-  setK(k,e.target.type==='checkbox'?e.target.checked:e.target.value);clearTimeout(tm);tm=setTimeout(save,300);
+  setK(k,e.target.type==='checkbox'?e.target.checked:e.target.value);clearTimeout(tm);tm=setTimeout(()=>{save();renderBar()},300);
   if(k==='q')hwRefresh();
   if(d.step===5)dock();
   if(d.step===6&&e.target.type==='checkbox'){save();const y=scrollY;render();scrollTo(0,y)}});
@@ -1078,15 +1120,15 @@ document.addEventListener('click',e=>{
     const s=ta.selectionStart??ta.value.length,x=b.dataset.ins,pre=ta.value.slice(0,s),sp=pre&&!/\s$/.test(pre)?' ':'';
     ta.value=pre+sp+x+' '+ta.value.slice(ta.selectionEnd??s);ta.focus();const p=s+sp.length+x.length+1;ta.setSelectionRange(p,p);
     ta.dispatchEvent(new Event('input',{bubbles:true}));return}
-  if(b.dataset.past!==undefined){const c=past()[+b.dataset.past];$('#pastview').innerHTML=c?`<div class="clean" style="margin-top:10px"><b>${esc(c.title)}</b>${c.text.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`:'';return}
+  if(b.dataset.open){openPast(+b.dataset.open);return}
+  if(b.dataset.del){deletePast(+b.dataset.del);return}
+  if(b.id==='newq'){newQuestion();return}
   if(b.id==='finish'){
     if(!d.done){const C=checks(),S=SELF.filter(Boolean);d.done=1;save();
       window.synTrack&&synTrack('round',{lab:'katturai',score:C.filter(c=>c.ok).length+S.filter(s=>d.self[s.k]).length,of:C.length+S.length,words:words(allText().join(' '))});}
     render();const cc=$('#cleancard');cc&&cc.scrollIntoView({behavior:'smooth'});return}
   if(b.id==='copy'){navigator.clipboard&&navigator.clipboard.writeText(title()+'\n\n'+allText().join('\n\n')).then(()=>{b.textContent='Copied'});return}
-  if(b.id==='new'){if(!confirm('Start a new composition? This one is kept under “Finished compositions”.'))return;
-    const P=past();P.unshift({title:title(),at:Date.now(),words:words(allText().join(' ')),text:allText()});try{localStorage.setItem(HKEY,JSON.stringify(P.slice(0,20)))}catch(e){}
-    d=blank();photoMem='';save();render();window.scrollTo({top:0});return}
+  if(b.id==='new'){newQuestion();return}
 });
 render();
 </script>
