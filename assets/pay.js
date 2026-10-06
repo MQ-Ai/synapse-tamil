@@ -11,7 +11,7 @@
   'use strict';
   var T = window.SYNAPSE_TRACK || {}, C = window.SYNAPSE_PAY || {};
   var EP = T.endpoint || '', APP = C.app || '';
-  var PASSES = ['year', 'month'].filter(function (k) { return C[k] && /^https:\/\/buy\.stripe\.com\//.test(C[k].link || ''); });
+  var PASSES = ['year'].filter(function (k) { return C[k] && /^https:\/\/buy\.stripe\.com\//.test(C[k].link || ''); });
   if (!EP || !APP || !PASSES.length) return;
 
   var PK = APP + '-profile-v1', UK = APP + '-unlock-v1', SK = APP + '-pass-v1';
@@ -131,18 +131,18 @@
       (p.email ? '&prefilled_email=' + encodeURIComponent(p.email) : '');
   }
   function optHtml(k) {
-    var o = C[k], yr = k === 'year';
-    return '<a class="opt' + (yr ? ' p' : '') + '" data-k="' + k + '" href="' + esc(linkFor(k)) + '">' +
-      '<b>' + (yr ? 'Exam-year pass' : '30-day pass') + '<em>' + esc(o.price) + '</em></b>' +
-      '<span>' + esc(SHORT) + (yr ? ' until ' + esc(o.until) : ' for 30 days') + '</span></a>';
+    var o = C[k];
+    return '<a class="opt p" data-k="' + k + '" href="' + esc(linkFor(k)) + '">' +
+      '<b>Full access for 12 months<em>' + esc(o.price) + '</em></b>' +
+      '<span>' + esc(SHORT) + '</span></a>';
   }
   function view(mode) {
     var p = profile() || {};
     var foot = '<p class="small">One-off payment by PayNow or card. A PayNow QR code lasts 1 hour; if it expires, open the link again. Nothing renews. Full refund within 7 days' +
       (CONTACT ? ': email ' + CONTACT : '') + '. <a href="terms" target="_blank" rel="noopener">Terms and privacy</a></p>';
     if (mode === 'offer') {
-      var wa = C.parent && C.year ? 'https://wa.me/?text=' + encodeURIComponent(NAME + ' exam-year pass for ' + (p.name || 'my child') +
-        ' (' + C.year.price + ', until ' + C.year.until + '): ' + linkFor(PASSES[0])) : '';
+      var wa = C.parent && C.year ? 'https://wa.me/?text=' + encodeURIComponent(NAME + ' 12-month pass for ' + (p.name || 'my child') +
+        ' (' + C.year.price + '): ' + linkFor(PASSES[0])) : '';
       return '<h2 id="syn-ph">Unlock all of ' + NAME + '</h2>' +
         '<p>You\'ve had the free round here. A pass opens ' + esc(COVERS) + '.</p>' +
         PASSES.map(optHtml).join('') +

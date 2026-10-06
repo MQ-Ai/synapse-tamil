@@ -30,7 +30,8 @@ var HEADERS = {
   Withdrawals: ['received', 'uid', 'app'],
   Payments: ['received', 'app', 'session', 'email', 'uid', 'pass', 'amount', 'until', 'status', 'payment_intent'],
   Devices: ['linked', 'app', 'session', 'uid', 'email'],
-  Codes: ['created', 'app', 'email', 'code', 'tries']
+  Codes: ['created', 'app', 'email', 'code', 'tries'],
+  Flags: ['received', 'uid', 'app', 'lab', 'src', 'sent', 'vm', 'choices', 'ans', 'note']
 };
 var UID_RE = /^[0-9a-f-]{16,64}$/i;
 var EVENTS_OK = { view: 1, round: 1, 'case': 1, paper: 1 };
@@ -73,6 +74,11 @@ function doPost(e) {
   try {
     var p = JSON.parse(e.postData.contents);
     if (p && /^push_/.test(String(p.event))) return pushPost_(p); // reminders: apps-script-push.gs
+    if (p && String(p.event) === 'question_flag' && LEVELS_OK.hasOwnProperty(p.app) && p.v === 1) {
+      var d = p.data || {};
+      sheet_('Flags').appendRow([new Date(), String(p.uid || ''), p.app, String(d.lab || ''), String(d.src || ''), String(d.sent || ''), String(d.vm || ''), JSON.stringify(d.choices || []), String(d.ans || ''), String(d.note || '')]);
+      return json_({ ok: true });
+    }
     if (!p || !LEVELS_OK.hasOwnProperty(p.app) || p.v !== 1 || !UID_RE.test(String(p.uid))) return json_({ ok: false });
     var uid = String(p.uid), now = new Date(), ev = String(p.event), app = p.app;
     lock.waitLock(20000);
@@ -108,9 +114,11 @@ function doPost(e) {
  * a restricted Stripe key with read access to Checkout Sessions; then run
  * installSync() once from the editor.
  */
+/* One 12-month pass per app (the larger amount). The 30-day amounts are retired but kept so
+ * older payments still match. */
 var PASSES = {
-  'synapse-tamil': { 4900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1200: { pass: 'month', days: 30 } },
-  'synapse-econs': { 6900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1500: { pass: 'month', days: 30 } }
+  'synapse-tamil': { 4900: { pass: 'year', days: 365 }, 1200: { pass: 'month', days: 30 } },
+  'synapse-econs': { 6900: { pass: 'year', days: 365 }, 1500: { pass: 'month', days: 30 } }
 };
 var MAX_DEVICES = 3, CODE_MINUTES = 15, CODES_PER_HOUR = 3;
 var SESSION_RE = /^cs_(live|test)_[A-Za-z0-9]{10,200}$/;
