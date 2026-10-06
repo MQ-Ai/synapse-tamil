@@ -21,7 +21,6 @@
  *                (you can also type "refunded" in the status cell to cancel a pass by hand)
  *   Devices      extra devices unlocked with an emailed code
  *   Codes        unlock codes waiting to be used (rows are removed once used)
- *   Push         one row per device that switched on reminders (made by apps-script-push.gs)
  * Join Events to Signups on the uid column.
  */
 var HEADERS = {
@@ -72,7 +71,6 @@ function doPost(e) {
   var lock = LockService.getScriptLock();
   try {
     var p = JSON.parse(e.postData.contents);
-    if (p && /^push_/.test(String(p.event))) return pushPost_(p); // reminders: apps-script-push.gs
     if (!p || !LEVELS_OK.hasOwnProperty(p.app) || p.v !== 1 || !UID_RE.test(String(p.uid))) return json_({ ok: false });
     var uid = String(p.uid), now = new Date(), ev = String(p.event), app = p.app;
     lock.waitLock(20000);
@@ -108,9 +106,11 @@ function doPost(e) {
  * a restricted Stripe key with read access to Checkout Sessions; then run
  * installSync() once from the editor.
  */
+/* One 12-month pass per app (the larger amount). The 30-day amounts are retired but kept so
+ * older payments still match. */
 var PASSES = {
-  'synapse-tamil': { 4900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1200: { pass: 'month', days: 30 } },
-  'synapse-econs': { 6900: { pass: 'year', until: '2027-12-31T23:59:59+08:00' }, 1500: { pass: 'month', days: 30 } }
+  'synapse-tamil': { 4900: { pass: 'year', days: 365 }, 1200: { pass: 'month', days: 30 } },
+  'synapse-econs': { 6900: { pass: 'year', days: 365 }, 1500: { pass: 'month', days: 30 } }
 };
 var MAX_DEVICES = 3, CODE_MINUTES = 15, CODES_PER_HOUR = 3;
 var SESSION_RE = /^cs_(live|test)_[A-Za-z0-9]{10,200}$/;
@@ -166,7 +166,6 @@ function untilFor_(app, uid) {
 
 function doGet(e) {
   var p = (e && e.parameter) || {}, app = p.app, lock = LockService.getScriptLock();
-  if (/^push_/.test(String(p.a))) return pushGet_(p); // reminders: apps-script-push.gs
   if (!PASSES.hasOwnProperty(app)) return json_({ ok: false });
   try {
     lock.waitLock(20000);
