@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Quick, playful Tamil challenges for upper primary kids. Try a few minutes together, no pressure: they answer from memory, say if they guessed, and the tricky ones come back later. Free to try.">
-<meta property="og:title" content="Synapse Tamil: Tamil that feels like play, and sticks">
+<meta property="og:title" content="Synapse Tamil: Come and play in Tamil">
 <meta property="og:description" content="Quick, playful Tamil challenges for upper primary kids. Try a few minutes together, no pressure: they answer from memory, say if they guessed, and the tricky ones come back later. Free to try.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Synapse Tamil">
@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Synapse Tamil: learn Tamil for fun, remember it for longer. 850+ bite-sized challenges for upper primary.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Synapse Tamil: Tamil that feels like play, and sticks">
+<meta name="twitter:title" content="Synapse Tamil: Come and play in Tamil">
 <meta name="twitter:description" content="Quick, playful Tamil challenges for upper primary kids. Try a few minutes together, no pressure: they answer from memory, say if they guessed, and the tricky ones come back later. Free to try.">
 <meta name="twitter:image" content="https://synapse-tamil.vercel.app/assets/og-image.png">
 <meta name="twitter:image:alt" content="Synapse Tamil: learn Tamil for fun, remember it for longer. 850+ bite-sized challenges for upper primary.">
@@ -151,7 +151,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* "safe" keeps the title from being pushed up under the nav on short screens */
+  justify-content: safe center;
   text-align: center;
   /* bottom padding leaves room for the scroll hint so it never sits behind the buttons */
   padding: 80px 24px 120px;
@@ -209,12 +210,14 @@ body {
 .hero-title {
   position: relative;
   font-family: 'Tiro Tamil', serif;
-  font-size: clamp(36px, 7vw, 76px);
+  /* 8vw keeps the longest word (விளையாடலாம்) on one line on a 320px phone */
+  font-size: clamp(26px, 8vw, 64px);
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text);
   text-wrap: balance;
+  max-width: 100%;
   margin-bottom: 8px;
 }
 .hero-title em {
@@ -629,8 +632,8 @@ footer {
   <div class="hero-tamil-bg" aria-hidden="true">சினாப்ஸ்</div>
 
   <h1 class="hero-title">
-    விளையாட்டாகத் தமிழ் கற்போம்
-    <span class="hero-title-en">Tamil practice that feels like <em>play</em></span>
+    தமிழில் விளையாடலாம் வாங்க
+    <span class="hero-title-en">Come and <em>play</em> in Tamil</span>
   </h1>
   <p class="hero-desc">
     Short, playful challenges on the trickiest parts of PSLE Tamil Paper 2, for upper primary kids. A few minutes at a time, and the tricky ones come back until they stick.
@@ -652,7 +655,7 @@ footer {
   </div>
 
   <div class="hero-cta">
-    <a href="#labs" class="btn-primary">பயிற்சி தொடங்கு →<small class="en">Start practice</small></a>
+    <a href="#labs" class="btn-primary">ஆரம்பிக்கலாமா? →<small class="en">Shall we start?</small></a>
     <a href="/daily" class="btn-secondary">இன்றைய சவால் ✨<small class="en">Challenge of the day</small></a>
     <span id="hero-install-wrap" style="position:relative;display:inline-block">
       <button id="hero-install" class="btn-secondary" style="display:none" aria-label="Install app">செயலியை நிறுவு 📲<small class="en">Install app</small></button>
@@ -694,7 +697,7 @@ footer {
 <section id="labs" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="section-inner">
     <div class="eyebrow">பயிற்சி ஆய்வகங்கள் · Practice labs</div>
-    <h2 class="section-title fade-in">ஆறு ஆய்வகங்கள், சாக்குப்போக்கு வேண்டாம் <span class="section-title-en">Six labs. Zero excuses.</span></h2>
+    <h2 class="section-title fade-in">எங்கள் ஆய்வகங்கள், உங்கள் விளையாட்டுத் தளங்கள் <span class="section-title-en">Our labs, your playgrounds.</span></h2>
     <p class="section-lead fade-in">Each lab targets a specific Paper 2 skill. Open any lab and start practising straight away.</p>
 
     <div class="labs-grid">
