@@ -38,6 +38,11 @@
       s.best = Math.max(s.best || 0, s.count);
       s.days = (s.days || []).concat(today).slice(-60);
       s.last = today;
+      if (result && typeof result.score === 'number' && result.of) {
+        var h = get('synapse-tamil-history-v1') || [];
+        h.push({ e: 'daily', lab: 'daily', set: '', score: result.score, of: result.of, t: Date.now() });
+        set('synapse-tamil-history-v1', h.slice(-200));
+      }
     }
     s.result = result;
     set(SK, s);

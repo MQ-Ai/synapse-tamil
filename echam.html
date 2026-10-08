@@ -245,6 +245,7 @@ body.cover .entry .v.show{filter:none}
     <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
     <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
     <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress">முன்னேற்றம்<small>My progress</small></a>
   </div>
 </nav>
 <script>
@@ -318,7 +319,9 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(box))}catch(e){}};
 const MASTER=3;
 /* each round: up to 6 words already in progress (closest to mastered first), then new ones, so progress builds instead of every word waiting for the whole list */
 const pickRound=(ids,lv)=>{const s=shuffle(ids),learn=s.filter(i=>lv(i)>0&&lv(i)<MASTER).sort((x,y)=>lv(y)-lv(x)).slice(0,6);return shuffle([...learn,...s.filter(i=>lv(i)===0),...s.filter(i=>lv(i)>=MASTER)].slice(0,10))};
-function meter(){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;
+/* mastered count for the My progress page */
+function synM(k,m,n){try{const K='synapse-tamil-mastery-v1',p=JSON.parse(localStorage.getItem(K)||'{}')||{};p[k]={m:m,n:n,at:Date.now()};localStorage.setItem(K,JSON.stringify(p))}catch(e){}}
+function meter(){const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;synM('echam',m,ITEMS.length);
   document.querySelector('.mbar').style.width=(m/ITEMS.length*100)+'%';document.querySelector('.mnum').textContent=`${m} / ${ITEMS.length}`+(l?` · ${l} learning`:'')}
 
 /* drill */

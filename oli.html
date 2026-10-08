@@ -228,6 +228,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 1px
     <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
     <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
     <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress">முன்னேற்றம்<small>My progress</small></a>
   </div>
 </nav>
 <script>
@@ -384,8 +385,10 @@ let queue=[],cur=null,round={seen:0,first:0},firstTry=new Set(),answered=false;
 function buildRound(){
   queue=pickRound(ITEMS.map((_,i)=>i),i=>box[i]||0);round={seen:0,first:0};firstTry=new Set();
 }
+/* mastered count for the My progress page */
+function synM(k,m,n){try{const K='synapse-tamil-mastery-v1',p=JSON.parse(localStorage.getItem(K)||'{}')||{};p[k]={m:m,n:n,at:Date.now()};localStorage.setItem(K,JSON.stringify(p))}catch(e){}}
 function meter(){
-  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;
+  const m=ITEMS.filter((_,i)=>(box[i]||0)>=MASTER).length,l=ITEMS.filter((_,i)=>(box[i]||0)>0).length-m;synM('oli',m,ITEMS.length);
   document.getElementById('mbar').style.width=(m/ITEMS.length*100)+'%';
   document.getElementById('mnum').textContent=`${m} / ${ITEMS.length}`+(l?` · ${l} learning`:'');
 }
@@ -544,7 +547,7 @@ try{cbox=JSON.parse(localStorage.getItem(CKEY)||'{}')||{}}catch(e){cbox={}}
 const csave=()=>{try{localStorage.setItem(CKEY,JSON.stringify(cbox))}catch(e){}};
 const cid=o=>o.w.join('|');
 let cq=[],ccur=null,cround={seen:0,first:0},cfirst=new Set();
-function cmeter(){const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length,l=CORE.filter(o=>(cbox[cid(o)]||0)>0).length-m;
+function cmeter(){const m=CORE.filter(o=>(cbox[cid(o)]||0)>=MASTER).length,l=CORE.filter(o=>(cbox[cid(o)]||0)>0).length-m;synM('oli-pairs',m,CORE.length);
   document.getElementById('cbar').style.width=(m/CORE.length*100)+'%';document.getElementById('cnum').textContent=`${m} / ${CORE.length}`+(l?` · ${l} learning`:'');}
 function cstart(){
   // words in progress first, then new pairs in most-tested order

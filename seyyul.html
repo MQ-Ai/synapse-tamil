@@ -225,6 +225,7 @@ body.cover .entry .v.show{filter:none}
     <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
     <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
     <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress">முன்னேற்றம்<small>My progress</small></a>
   </div>
 </nav>
 <script>
@@ -433,7 +434,10 @@ LEVELS.forEach(l=>{const b=document.createElement('button');b.className='lv';b.t
     st.lv=on?st.lv.filter(x=>x!==l):LEVELS.filter(x=>x===l||st.lv.includes(x));
     b.setAttribute('aria-pressed',!on);save();meter();startDrill();startBuild();renderBook();};
   lvEl.appendChild(b)});
+/* mastered count for the My progress page */
+function synM(k,m,n){try{const K='synapse-tamil-mastery-v1',p=JSON.parse(localStorage.getItem(K)||'{}')||{};p[k]={m:m,n:n,at:Date.now()};localStorage.setItem(K,JSON.stringify(p))}catch(e){}}
 function meter(){
+  synM('seyyul',ITEMS.filter(it=>(st.box[it.id]||0)>=MASTER).length,ITEMS.length);
   const P=pool(),m=P.filter(it=>(st.box[it.id]||0)>=MASTER).length;
   document.querySelectorAll('.mbar').forEach(e=>e.style.width=(P.length?m/P.length*100:0)+'%');
   document.querySelectorAll('.mnum').forEach(e=>e.textContent=`${m} / ${P.length}`);
