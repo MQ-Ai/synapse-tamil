@@ -452,18 +452,20 @@ section { padding: 80px 24px; }
 .lab-card[data-accent="gold"] .lab-section-tag { color: var(--gold); background: rgba(245,184,0,0.12); }
 .lab-card[data-accent="teal"] .lab-section-tag { color: var(--teal); background: rgba(0,201,177,0.12); }
 .lab-card[data-accent="red"]  .lab-section-tag { color: var(--red);  background: rgba(255,107,107,0.12); }
-.lab-card[data-accent="green"]. lab-section-tag { color: var(--green);background: rgba(82,227,161,0.12); }
+.lab-card[data-accent="green"] .lab-section-tag { color: var(--green);background: rgba(82,227,161,0.12); }
 
 .lab-marks {
   font-family: 'Cormorant Garamond', serif;
   font-size: 32px;
   font-weight: 700;
   line-height: 1;
+  font-variant-numeric: lining-nums;
+  text-align: right;
 }
 .lab-card[data-accent="gold"] .lab-marks { color: var(--gold); }
 .lab-card[data-accent="teal"] .lab-marks { color: var(--teal); }
 .lab-card[data-accent="red"]  .lab-marks { color: var(--red); }
-.lab-card[data-accent="green"].lab-marks { color: var(--green); }
+.lab-card[data-accent="green"] .lab-marks { color: var(--green); }
 
 .lab-marks span {
   font-family: 'Inter', sans-serif;
@@ -526,7 +528,7 @@ section { padding: 80px 24px; }
 .lab-card[data-accent="gold"] .lab-action-text { color: var(--gold); }
 .lab-card[data-accent="teal"] .lab-action-text { color: var(--teal); }
 .lab-card[data-accent="red"]  .lab-action-text { color: var(--red); }
-.lab-card[data-accent="green"].lab-action-text { color: var(--green); }
+.lab-card[data-accent="green"] .lab-action-text { color: var(--green); }
 .lab-arrow {
   width: 32px; height: 32px;
   border-radius: 8px;
@@ -537,7 +539,7 @@ section { padding: 80px 24px; }
 .lab-card[data-accent="gold"] .lab-arrow { background: rgba(245,184,0,0.15); color: var(--gold); }
 .lab-card[data-accent="teal"] .lab-arrow { background: rgba(0,201,177,0.15); color: var(--teal); }
 .lab-card[data-accent="red"]  .lab-arrow { background: rgba(255,107,107,0.15); color: var(--red); }
-.lab-card[data-accent="green"].lab-arrow { background: rgba(82,227,161,0.15); color: var(--green); }
+.lab-card[data-accent="green"] .lab-arrow { background: rgba(82,227,161,0.15); color: var(--green); }
 .lab-card:hover .lab-arrow { transform: translateX(3px); }
 
 /* ─── COMING SOON CARD ───────────────────────────────── */
@@ -708,7 +710,7 @@ footer {
           <div class="lab-marks">10<span>marks</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">வேற்றுமை பயிற்சி</div>
+          <div class="lab-name-tamil">வேற்றுமை</div>
           <div class="lab-name-en">Word Endings</div>
           <p class="lab-desc">Master all 8 word endings: suffixes, sandhi changes, role in the sentence. Tricky ones come back until they stick.</p>
           <div class="lab-features">
@@ -728,7 +730,7 @@ footer {
           <div class="lab-marks">10<span>marks</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">செய்யுள் பயிற்சி</div>
+          <div class="lab-name-tamil">செய்யுள்</div>
           <div class="lab-name-en">Verses & Proverbs</div>
           <p class="lab-desc">Commit all syllabus lines to memory. Fill-the-gap and build-the-line practice, exactly as they appear in Paper 2.</p>
           <div class="lab-features">
@@ -748,7 +750,7 @@ footer {
           <div class="lab-marks">10<span>marks</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">எச்சம் பயிற்சி</div>
+          <div class="lab-name-tamil">எச்சம்</div>
           <div class="lab-name-en">Participles</div>
           <p class="lab-desc">Identify பெயரெச்சம், வினையெச்சம் and other participle patterns, then choose the correct form in sentence context.</p>
           <div class="lab-features">
@@ -768,7 +770,7 @@ footer {
           <div class="lab-marks">8<span>marks</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">ஒலி பயிற்சி</div>
+          <div class="lab-name-tamil">ஒலி</div>
           <div class="lab-name-en">Sound Pairs</div>
           <p class="lab-desc">Master ல/ள/ழ · ர/ற · ந/ன/ண distinctions. One wrong letter changes the meaning — train your eye on the difference.</p>
           <div class="lab-features">
@@ -784,11 +786,11 @@ footer {
 
       <a href="sol.html" class="lab-card fade-in" data-accent="green">
         <div class="lab-header">
-          <div class="lab-section-tag">சொல் திறன்</div>
-          <div class="lab-marks">vocab</div>
+          <div class="lab-section-tag">Paper 1 &amp; 2 · சொல்வளம்</div>
+          <div class="lab-marks">1 &amp; 2<span>paper</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">சொல் பயிற்சி</div>
+          <div class="lab-name-tamil">சொல்வளம்</div>
           <div class="lab-name-en">Vocabulary</div>
           <p class="lab-desc">Upper primary vocabulary words and composition phrases across emotional themes. Build the word bank for Paper 1 and 2.</p>
           <div class="lab-features">
@@ -805,16 +807,16 @@ footer {
       <a href="katturai.html" class="lab-card fade-in" data-accent="gold">
         <div class="lab-header">
           <div class="lab-section-tag">Paper 1 · கட்டுரை</div>
-          <div class="lab-marks">guide</div>
+          <div class="lab-marks">1<span>paper</span></div>
         </div>
         <div class="lab-body">
-          <div class="lab-name-tamil">கட்டுரை வழிகாட்டி</div>
-          <div class="lab-name-en">Composition Guide</div>
+          <div class="lab-name-tamil">கட்டுரை</div>
+          <div class="lab-name-en">Composition</div>
           <p class="lab-desc">Snap a composition question and build the story step by step: understand it, plan each paragraph, collect phrases and a proverb, write, then check it the way a marker would.</p>
           <div class="lab-features">
+            <span class="lab-feature">வழிகாட்டி · Step-by-step guide</span>
             <span class="lab-feature">Photo or typed question</span>
-            <span class="lab-feature">6 guided steps</span>
-            <span class="lab-feature">30 proverbs</span>
+            <span class="lab-feature">Proverb bank</span>
             <span class="lab-feature">Marker checklist</span>
           </div>
           <div class="lab-action">
