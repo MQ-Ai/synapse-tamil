@@ -4,7 +4,7 @@
 (function () {
   'use strict';
   var PUSH = window.SYNAPSE_PUSH || {}, TRACK = window.SYNAPSE_TRACK || {};
-  var SK = 'synapse-tamil-streak-v1', DK = 'synapse-tamil-device-v1', PK = 'synapse-tamil-push-v1';
+  var SK = 'synapse-tamil-streak-v1', DK = 'synapse-tamil-device-v1', PK = 'synapse-tamil-push-v1', RK = 'synapse-tamil-push-done-v1';
   var installEvt = null, listeners = [];
 
   function get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
@@ -42,6 +42,7 @@
     s.result = result;
     set(SK, s);
     changed();
+    reportDone();
     return streak();
   }
 
@@ -82,7 +83,16 @@
   }
   function saveSub(sub) {
     var j = sub.toJSON();
-    return post('push_sub', { sub: j }).then(function () { set(PK, j.endpoint); changed(); });
+    var today = dayNum();
+    return post('push_sub', { sub: j, done: streak().doneToday ? today : null }).then(function () {
+      set(PK, j.endpoint); if (streak().doneToday) set(RK, today); changed();
+    });
+  }
+  /* Today's practice is done: tell the sheet, so tonight's reminder skips this device. */
+  function reportDone() {
+    var today = dayNum(), ep = get(PK);
+    if (!ep || !streak().doneToday || get(RK) === today || !pushSupported()) return;
+    post('push_done', { endpoint: ep, day: today }).then(function () { set(RK, today); }, function () {});
   }
   function enablePush() {
     if (!pushSupported()) return Promise.reject(new Error('unsupported'));
@@ -107,7 +117,7 @@
     reg.pushManager.getSubscription().then(function (sub) {
       if (!sub) return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key(PUSH.publicKey) });
       return sub;
-    }).then(function (sub) { if (sub && sub.endpoint !== get(PK)) saveSub(sub); }).catch(function () {});
+    }).then(function (sub) { if (sub && sub.endpoint !== get(PK)) return saveSub(sub); reportDone(); }).catch(function () {});
   }
 
   /* ---------- nav: a "Today" link on every page ---------- */

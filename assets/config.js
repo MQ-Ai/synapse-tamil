@@ -27,5 +27,5 @@ window.SYNAPSE_PAY = {
    button stays hidden; the app install and the daily challenge work either way.
    The private key never goes in this file: it lives in Vercel (see docs/app/SETUP.md). */
 window.SYNAPSE_PUSH = {
-  publicKey: ''
+  publicKey: 'BN574nxXf-VveJwenLXpcCEn9E4pK-pHCZprjamFSnpIAFS9HhuGxiKkJq5B1qOB7s8kuFSniONGjUa6gUQb4g4'
 };

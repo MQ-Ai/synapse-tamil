@@ -50,15 +50,25 @@ module.exports = async function handler(req, res) {
   webpush.setVapidDetails(process.env.VAPID_SUBJECT || 'mailto:sage.synapse@gmail.com',
     process.env.VAPID_PUBLIC_KEY, process.env.VAPID_PRIVATE_KEY);
 
-  const msg = q.title || q.body
+  const custom = !!(q.title || q.body);
+  const msg = custom
     ? { title: String(q.title || 'Synapse Tamil').slice(0, 80), body: String(q.body || '').slice(0, 240), url: String(q.url || '/daily?source=push'), tag: 'news' }
     : todaysMessage();
 
   const list = await sheet('GET', null, 'app=' + APP + '&a=push_list&key=' + encodeURIComponent(secret));
   if (!list || !list.ok) return res.status(502).json({ ok: false, error: 'Apps Script refused push_list (check PUSH_SECRET)' });
   let subs = list.subs || [];
+  /* The daily reminder skips devices that already did today's challenge (push_done).
+     A custom message, or a test to one device, still goes to everyone asked for. */
+  let skipped = 0;
   if (q.to) subs = subs.filter((s) => s.uid === q.to);
-  if (q.dry) return res.json({ ok: true, dry: true, devices: subs.length, message: msg });
+  else if (!custom) {
+    const today = daily.dayNum();
+    const left = subs.filter((s) => s.done !== today);
+    skipped = subs.length - left.length;
+    subs = left;
+  }
+  if (q.dry) return res.json({ ok: true, dry: true, devices: subs.length, skipped, message: msg });
 
   let sent = 0, failed = 0;
   const gone = [];
@@ -78,6 +88,6 @@ module.exports = async function handler(req, res) {
     try { await sheet('POST', { app: APP, v: 1, event: 'push_gone', key: secret, endpoints: gone }); }
     catch (e) { console.warn('could not tidy the sheet', e.message); }
   }
-  console.log(JSON.stringify({ sent, failed, removed: gone.length }));
-  return res.json({ ok: true, devices: subs.length, sent, failed, removed: gone.length, message: msg.title });
+  console.log(JSON.stringify({ sent, failed, skipped, removed: gone.length }));
+  return res.json({ ok: true, devices: subs.length, sent, failed, skipped, removed: gone.length, message: msg.title });
 };
