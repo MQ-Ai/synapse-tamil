@@ -10,12 +10,13 @@
  *
  * Sheet "Push" (created on first use): one row per device.
  *   push_sub   from the site: save or refresh a device's subscription
+ *   push_done  from the site: today's challenge is done on this device, skip tonight's reminder
  *   push_off   from the site: the student switched reminders off
  *   push_gone  from the sender, with the secret: devices the push service says are gone
  *   push_list  (GET) from the sender, with the secret: every subscription for one app
  */
 var PUSH_SHEET = 'Push';
-var PUSH_HEADERS = ['updated', 'app', 'uid', 'endpoint', 'sub'];
+var PUSH_HEADERS = ['updated', 'app', 'uid', 'endpoint', 'sub', 'done_day'];
 var PUSH_APPS = { 'synapse-tamil': 1, 'synapse-econs': 1 };
 var PUSH_UID_RE = /^[0-9a-f-]{16,64}$/i;
 var PUSH_ENDPOINT_RE = /^https:\/\/[^\s]{10,1000}$/;
@@ -26,11 +27,20 @@ function pushJson_(o) {
 function pushSheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = ss.getSheetByName(PUSH_SHEET);
   if (!sh) { sh = ss.insertSheet(PUSH_SHEET); sh.appendRow(PUSH_HEADERS); sh.setFrozenRows(1); }
+  else if (sh.getRange(1, PUSH_HEADERS.length).getValue() !== PUSH_HEADERS[PUSH_HEADERS.length - 1]) {
+    sh.getRange(1, 1, 1, PUSH_HEADERS.length).setValues([PUSH_HEADERS]); /* sheets made before done_day */
+  }
   return sh;
 }
 function pushRows_(sh) {
   var last = sh.getLastRow();
   return last < 2 ? [] : sh.getRange(2, 1, last - 1, PUSH_HEADERS.length).getValues();
+}
+/* Singapore day number, the same as dayNum() in assets/daily-pick.js. */
+function pushToday_() { return Math.floor((Date.now() + 8 * 3600e3) / 864e5); }
+function pushDay_(x) {
+  var n = Number(x), t = pushToday_();
+  return Math.floor(n) === n && n >= t - 1 && n <= t + 1 ? n : '';
 }
 function pushSecretOk_(key) {
   var s = PropertiesService.getScriptProperties().getProperty('PUSH_SECRET');
@@ -55,9 +65,18 @@ function pushPost_(p) {
       if (!PUSH_ENDPOINT_RE.test(String(sub.endpoint)) || !/^[\w-]{20,200}$/.test(String(keys.p256dh)) ||
           !/^[\w-]{8,100}$/.test(String(keys.auth))) return pushJson_({ ok: false });
       var keep = JSON.stringify({ endpoint: sub.endpoint, keys: { p256dh: keys.p256dh, auth: keys.auth } });
-      var vals = [new Date(), p.app, String(p.uid), sub.endpoint, keep], row = 0;
+      var row = 0;
       for (i = 0; i < rows.length; i++) if (rows[i][3] === sub.endpoint) { row = i + 2; break; }
+      var done = pushDay_(d.done);
+      if (done === '' && row) done = rows[row - 2][5];
+      var vals = [new Date(), p.app, String(p.uid), sub.endpoint, keep, done];
       if (row) sh.getRange(row, 1, 1, vals.length).setValues([vals]); else sh.appendRow(vals);
+      return pushJson_({ ok: true });
+    }
+    if (ev === 'push_done') {
+      var day = pushDay_(d.day);
+      if (day === '') return pushJson_({ ok: false });
+      for (i = 0; i < rows.length; i++) if (rows[i][3] === d.endpoint && rows[i][1] === p.app) sh.getRange(i + 2, 6).setValue(day);
       return pushJson_({ ok: true });
     }
     if (ev === 'push_off') {
@@ -78,7 +97,7 @@ function pushGet_(p) {
   var subs = [];
   pushRows_(pushSheet_()).forEach(function (r) {
     if (r[1] !== p.app) return;
-    try { subs.push({ uid: r[2], sub: JSON.parse(r[4]) }); } catch (e) {}
+    try { subs.push({ uid: r[2], sub: JSON.parse(r[4]), done: r[5] === '' ? null : Number(r[5]) }); } catch (e) {}
   });
   return pushJson_({ ok: true, subs: subs });
 }

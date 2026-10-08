@@ -13,7 +13,8 @@
 - **Streak.** A 🔥 counter and a 7-day row, stored on the device. The nav shows the streak on
   every page. Doing today's challenge (any score) keeps it going.
 - **Reminders.** After finishing the challenge, "Turn on reminders". One notification a day
-  at about 7pm Singapore time with a teaser of the first question. Tapping it opens `/daily`.
+  at about 7pm Singapore time with a teaser of the first question, only on devices that have
+  not done today's challenge yet. Tapping it opens `/daily`.
 
 The install, the challenge and the streak work as soon as this is deployed. Reminders stay
 hidden until the steps below are done.
@@ -76,8 +77,11 @@ Commit and deploy. (Or tell Claude the public key and it will do this step.)
 1. Open the site, do today's challenge, tap **Turn on reminders** and allow notifications.
    On iPhone, add it to the Home Screen first and open it from there.
 2. Visit `https://synapse-tamil.vercel.app/api/push?key=THE_SECRET&dry=1`. It shows how many
-   devices are signed up and today's message, without sending.
-3. Send a real one to everyone: `.../api/push?key=THE_SECRET`
+   devices will get tonight's reminder, how many are `skipped` because they already did today's
+   challenge, and today's message, without sending.
+3. Your own phone is skipped tonight because you just did the challenge. To test it anyway,
+   copy your row's `uid` from the Push tab and visit `.../api/push?key=THE_SECRET&to=THE_UID`.
+4. Send a real one to everyone: `.../api/push?key=THE_SECRET`
    Or your own message: `.../api/push?key=THE_SECRET&title=Well%20done&body=Prelims%20tomorrow!`
 
 Treat links with the secret like a password: anyone with it can send a notification.
@@ -91,7 +95,11 @@ Treat links with the secret like a password: anyone with it can send a notificat
 - **Notifications can be switched off** by the student or a parent at any time in phone
   settings; dead devices are removed from the Push tab automatically on the next send.
 - **The streak lives on the device.** A new phone or cleared browser data starts it again.
-  The reminder is the same for everyone; it does not know who has kept their streak.
+  The reminder text is the same for everyone. Doing the challenge on one device only stops
+  that device's reminder (a child with the app on a phone and a tablet still gets one on the other).
+- **Already set up before the skip was added?** Paste the new `docs/tracking/apps-script-push.gs`
+  over the Push file and deploy a new version (step 3.5). Until then everyone still gets the
+  reminder, as before. The Push tab gains a `done_day` column by itself.
 - **Not in the App Store or Play Store.** Students install it from the website.
 
 ## If you later want store apps
