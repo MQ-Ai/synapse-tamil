@@ -249,6 +249,7 @@ body.cover .vrow .d.show{filter:none}
     <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
     <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
     <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress">முன்னேற்றம்<small>My progress</small></a>
   </div>
 </nav>
 <script>
@@ -314,7 +315,9 @@ for(let p=1;p<=12;p++){const b=document.createElement('button');b.className='lv'
   b.onclick=()=>{const on=st.pg.includes(p);if(on&&st.pg.length===1)return;st.pg=on?st.pg.filter(x=>x!==p):[...st.pg,p].sort((a,b)=>a-b);b.setAttribute('aria-pressed',!on);save();meter();startDrill();renderList()};pgEl.appendChild(b)}
 const allBtn=document.createElement('button');allBtn.className='lv';allBtn.innerHTML='எல்லாம் <small class="en">All</small>';allBtn.onclick=()=>{st.pg=[1,2,3,4,5,6,7,8,9,10,11,12];pgEl.querySelectorAll('.lv').forEach(b=>b!==allBtn&&b.setAttribute('aria-pressed',true));save();meter();startDrill();renderList()};pgEl.appendChild(allBtn);
 
-function meter(){const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length,l=P.filter(v=>(st.box[v.id]||0)>0).length-m;
+/* mastered count for the My progress page */
+function synM(k,m,n){try{const K='synapse-tamil-mastery-v1',p=JSON.parse(localStorage.getItem(K)||'{}')||{};p[k]={m:m,n:n,at:Date.now()};localStorage.setItem(K,JSON.stringify(p))}catch(e){}}
+function meter(){synM('sol',VOCAB.filter(v=>(st.box[v.id]||0)>=MASTER).length,VOCAB.length);const P=pool(),m=P.filter(v=>(st.box[v.id]||0)>=MASTER).length,l=P.filter(v=>(st.box[v.id]||0)>0).length-m;
   document.querySelector('.mbar').style.width=(P.length?m/P.length*100:0)+'%';document.querySelector('.mnum').textContent=`${m} / ${P.length}`+(l?` · ${l} learning`:'')}
 
 /* ---------- drill ---------- */

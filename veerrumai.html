@@ -222,6 +222,7 @@ mark{background:var(--mark);color:var(--markink);border-radius:3px;padding:0 2px
     <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
     <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
     <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress">முன்னேற்றம்<small>My progress</small></a>
   </div>
 </nav>
 <script>
@@ -513,6 +514,8 @@ if (!ARCHITECT) {
 /* ──────────────────────────────────────────────────────────────
    STORAGE
 ────────────────────────────────────────────────────────────── */
+/* mastered count for the My progress page */
+function synM(k,m,n){try{const K='synapse-tamil-mastery-v1',p=JSON.parse(localStorage.getItem(K)||'{}')||{};p[k]={m:m,n:n,at:Date.now()};localStorage.setItem(K,JSON.stringify(p))}catch(e){}}
 const SK = 'synapse_vm_v1';
 function loadState() {
   try { return JSON.parse(localStorage.getItem(SK)) || {}; } catch(e) { return {}; }
@@ -557,7 +560,7 @@ function initDrill() {
   deckIdx = 0; correct = 0; total = 0;
   document.getElementById('d-tot').textContent = deck.length;
   document.getElementById('drill-count').textContent = deck.length;
-  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length;
+  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length; synM('veerrumai', mastered, ITEMS.length);
   document.getElementById('d-mastered').textContent = mastered ? `${mastered} mastered` : '';
   showDrillCard();
 }
@@ -688,7 +691,7 @@ function showDone() {
   doneEl.hidden = false;
   const pct = total ? Math.round((correct/total)*100) : 0;
   document.getElementById('done-score').textContent = `${pct}%`;
-  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length;
+  const mastered = ITEMS.filter((_,i) => (state[i]?.score||0) >= 3).length; synM('veerrumai', mastered, ITEMS.length);
   document.getElementById('d-mastered').textContent = `${mastered} mastered`;
 }
 

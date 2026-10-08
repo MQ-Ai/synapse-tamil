@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ta-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Your own progress in Synapse Tamil: words mastered, streak and recent scores.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0D1B2A">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Synapse Tamil">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<style id="nav-shared">
+#site-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,27,42,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:0 20px;
+  display:flex;align-items:center;gap:0;
+  height:48px;
+  font-family:'Inter','Catamaran',system-ui,sans-serif;
+}
+.nav-logo{
+  font-size:15px;font-weight:700;color:#F5B800;
+  text-decoration:none;letter-spacing:-0.01em;
+  margin-right:auto;white-space:nowrap;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:rgba(240,237,230,0.6);
+  text-decoration:none;
+  padding:6px 10px;border-radius:6px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+  letter-spacing:0.02em;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.nav-links a:hover{color:#F0EDE6;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#F5B800;background:rgba(245,184,0,0.1)}
+@media(max-width:480px){
+  .nav-logo{font-size:13px;margin-right:12px}
+  .nav-links a{font-size:11px;padding:5px 8px}
+}
+/* Tamil first, English under it (same pattern as the katturai step headings) */
+.nav-links a{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.nav-links a small{font:500 9px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:0;opacity:.8;margin-top:1px}
+.en{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;font-style:normal;letter-spacing:0;text-transform:none;opacity:.72}
+.en.b{display:block;margin-top:2px}
+/* Override nav bg for light pages */
+body.light-nav #site-nav{
+  background:rgba(250,247,240,0.95);
+  border-bottom:1px solid #DDD8CF;
+}
+body.light-nav .nav-logo{color:#A8741A}
+body.light-nav .nav-links a{color:rgba(21,48,46,0.5)}
+body.light-nav .nav-links a:hover{color:#15302E;background:rgba(0,0,0,0.05)}
+body.light-nav .nav-links a.active{color:#A8741A;background:rgba(168,116,26,0.1)}
+</style>
+
+<title>My progress · Synapse Tamil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tiro+Tamil&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#0D1B2A;--bg2:#132233;--card:#1A2E42;--card2:#1F3550;--border:#2A4060;
+  --gold:#F5B800;--gold-text:#F5B800;--teal:#00C9B1;--text:#F0EDE6;--text2:#A8B8C8;--text3:#6A7D90;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#FAF7F0;--bg2:#F0EDE6;--card:#FFFFFF;--card2:#F5F2EB;--border:#DDD8CF;
+    --text:#0D1B2A;--text2:#3A4A5C;--text3:#6F7F91;--gold-text:#9A6B00;--teal:#00806F;color-scheme:light;
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;min-height:100vh;overflow-x:hidden}
+.tamil{font-family:'Tiro Tamil',serif}
+h1 .en,h2 .en{font-size:13px}
+main{max-width:620px;margin:0 auto;padding:24px 16px 64px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+h1{font-size:28px;line-height:1.2;margin:6px 0 2px;font-weight:800;letter-spacing:-.01em}
+h2{font-size:18px;font-weight:700;margin-bottom:12px}
+.sub{color:var(--text2);font-size:15px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--card2);border-radius:12px;padding:12px;text-align:center}
+.stat b{display:block;font-size:28px;font-weight:800;line-height:1.1;color:var(--gold-text);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--text2)}
+.labs{display:flex;flex-direction:column;gap:6px}
+.lab{display:block;padding:12px;margin:0 -12px;border-radius:12px;text-decoration:none;color:inherit}
+.lab:hover{background:var(--card2)}
+.lab-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.lab-name{font-weight:700}
+.lab-num{font:500 13px "IBM Plex Mono",ui-monospace,monospace;color:var(--text2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px}
+.lab-meta{font-size:13px;color:var(--text2)}
+.spark{display:inline-flex;align-items:flex-end;gap:2px;height:16px;vertical-align:-3px;margin-left:6px}
+.spark i{width:5px;background:var(--gold);border-radius:1px;opacity:.85}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:8px 4px;border-top:1px solid var(--border);vertical-align:top}
+tr:first-child td{border-top:0}
+td.r{text-align:right;font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.d{color:var(--text3);white-space:nowrap;font-size:13px;width:1%;padding-right:12px}
+.empty{color:var(--text2);font-size:14px}
+.note{font-size:13px;color:var(--text3);margin-top:16px}
+</style>
+</head>
+<body>
+
+<nav id="site-nav" aria-label="Synapse Tamil navigation">
+  <a class="nav-logo" href="index.html">⚡ Synapse Tamil</a>
+  <div class="nav-links">
+    <a href="index.html" data-page="home">முகப்பு<small>Home</small></a>
+    <a href="veerrumai.html" data-page="veerrumai">வேற்றுமை<small>Word endings</small></a>
+    <a href="seyyul.html" data-page="seyyul">செய்யுள்<small>Verses</small></a>
+    <a href="echam.html" data-page="echam">எச்சம்<small>Participles</small></a>
+    <a href="oli.html" data-page="oli">ஒலி<small>Sounds</small></a>
+    <a href="sol.html" data-page="sol">சொல் திறன்<small>Vocabulary</small></a>
+    <a href="katturai.html" data-page="katturai">கட்டுரை<small>Composition</small></a>
+    <a href="progress.html" data-page="progress" class="active">முன்னேற்றம்<small>My progress</small></a>
+  </div>
+</nav>
+
+<main>
+  <div class="eyebrow">Synapse Tamil</div>
+  <h1><span class="tamil">என் முன்னேற்றம்</span> <small class="en b">My progress</small></h1>
+  <p class="sub">How far you've come in each lab, and your latest scores.</p>
+
+  <section class="card" aria-label="Practice days">
+    <div class="stats">
+      <div class="stat"><b id="s-streak">0</b><span>🔥 streak</span></div>
+      <div class="stat"><b id="s-best">0</b><span>best streak</span></div>
+      <div class="stat"><b id="s-days">0</b><span>challenges done</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="tamil">பயிற்சிக் கூடங்கள்</span> <small class="en">Labs</small></h2>
+    <div class="labs" id="labs"></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="tamil">அண்மை மதிப்பெண்கள்</span> <small class="en">Recent scores</small></h2>
+    <div id="recent"></div>
+  </section>
+
+  <p class="note">Your progress is saved on this phone or computer only. If you use a different device or browser, or clear this site's data, it starts fresh.</p>
+</main>
+
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function get(k, d) { try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (e) { return d; } }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var LABS = [
+    { k: 'veerrumai', ta: 'வேற்றுமை', en: 'Word endings', unit: 'questions' },
+    { k: 'seyyul', ta: 'செய்யுள்', en: 'Verses', unit: 'verses' },
+    { k: 'echam', ta: 'எச்சம்', en: 'Participles', unit: 'sentences' },
+    { k: 'oli', ta: 'ஒலி', en: 'Sounds: sentences', unit: 'sentences' },
+    { k: 'oli-pairs', ta: 'ஒலி இணைகள்', en: 'Sounds: core pairs', unit: 'pairs', href: 'oli.html' },
+    { k: 'sol', ta: 'சொல் திறன்', en: 'Vocabulary', unit: 'words' },
+    { k: 'katturai', ta: 'கட்டுரை', en: 'Composition' },
+    { k: 'daily', ta: 'இன்றைய சவால்', en: 'Challenge of the day', href: '/daily' }
+  ];
+  var NAME = {}; LABS.forEach(function (l) { NAME[l.k] = l; });
+
+  var mastery = get('synapse-tamil-mastery-v1', {});
+  var hist = get('synapse-tamil-history-v1', []);
+  if (!Array.isArray(hist)) hist = [];
+  var past = get('synapse-katturai-past-v1', []);
+  if (!Array.isArray(past)) past = [];
+
+  /* streak */
+  var s = window.synApp ? synApp.streak() : { count: 0, best: 0, days: [] };
+  $('s-streak').textContent = s.count;
+  $('s-best').textContent = s.best || 0;
+  $('s-days').textContent = (s.days || []).length;
+
+  function pct(x) { return Math.round(x.score / x.of * 100); }
+  function spark(list) {
+    return '<span class="spark" aria-hidden="true">' + list.map(function (x) {
+      return '<i style="height:' + Math.max(2, Math.round(pct(x) / 100 * 16)) + 'px"></i>';
+    }).join('') + '</span>';
+  }
+
+  /* labs */
+  $('labs').innerHTML = LABS.map(function (l) {
+    var rounds = hist.filter(function (x) { return x.lab === l.k && x.e !== 'paper'; });
+    var papers = hist.filter(function (x) { return x.lab === l.k && x.e === 'paper'; });
+    var m = mastery[l.k], top = '', bar = '', meta = [];
+    if (l.k === 'katturai') {
+      top = past.length + ' saved';
+    } else if (l.k === 'daily') {
+      top = (s.days || []).length ? (s.days || []).length + ' done' : '';
+    } else if (m && m.n) {
+      top = m.m + ' / ' + m.n + ' ' + l.unit;
+      bar = '<div class="bar"><i style="width:' + (m.m / m.n * 100) + '%"></i></div>';
+    }
+    if (rounds.length) {
+      var last = rounds.slice(-10), r = rounds[rounds.length - 1];
+      meta.push('Last ' + (l.k === 'katturai' ? 'check' : 'round') + ': ' + r.score + '/' + r.of + spark(last));
+    }
+    if (papers.length) {
+      var best = papers.reduce(function (a, x) { return pct(x) > pct(a) ? x : a; });
+      meta.push('Best exam paper: ' + best.score + '/' + best.of + ' (' + papers.length + ' done)');
+    }
+    if (!top && !meta.length) meta.push('Not started yet');
+    return '<a class="lab" href="' + (l.href || l.k + '.html') + '">' +
+      '<div class="lab-top"><span class="lab-name"><span class="tamil">' + l.ta + '</span> <small class="en">' + l.en + '</small></span>' +
+      '<span class="lab-num">' + top + '</span></div>' + bar +
+      (meta.length ? '<div class="lab-meta">' + meta.join(' · ') + '</div>' : '') + '</a>';
+  }).join('');
+
+  /* recent scores */
+  var recent = hist.slice(-15).reverse();
+  var KIND = { round: 'Round', paper: 'Exam paper', daily: 'Daily', 'case': 'Case' };
+  $('recent').innerHTML = recent.length ? '<table>' + recent.map(function (x) {
+    var l = NAME[x.lab] || { ta: '', en: x.lab };
+    var d = new Date(x.t).toLocaleDateString('en-SG', { day: 'numeric', month: 'short' });
+    return '<tr><td class="d">' + d + '</td><td><span class="tamil">' + l.ta + '</span> <small class="en">' + esc(l.en) + '</small><br><small class="en">' +
+      (x.lab === 'katturai' ? 'Checklist' : KIND[x.e] || '') + (x.set ? ' · ' + esc(x.set) : '') + '</small></td>' +
+      '<td class="r">' + x.score + '/' + x.of + '</td></tr>';
+  }).join('') + '</table>' : '<p class="empty">Finish a round in any lab and your score will show up here.</p>';
+})();
+</script>
+</body>
+</html>

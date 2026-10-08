@@ -52,7 +52,20 @@
     set(QK, q);
     flush();
   }
-  window.synTrack = function (event, data) { try { send(event, data); } catch (e) {} };
+  /* keep the student's own round and paper scores on this device for the My progress page,
+     whether or not they signed up */
+  var HK = 'synapse-tamil-history-v1';
+  function remember(event, data) {
+    if (!data || typeof data.score !== 'number' || !data.of) return;
+    var h = get(HK) || [];
+    h.push({ e: event, lab: data.lab || page(), set: data.set || '', score: data.score, of: data.of, t: Date.now() });
+    if (h.length > 200) h = h.slice(h.length - 200);
+    set(HK, h);
+  }
+  window.synTrack = function (event, data) {
+    try { if (event === 'round' || event === 'paper' || event === 'case') remember(event, data); } catch (e) {}
+    try { send(event, data); } catch (e) {}
+  };
   window.addEventListener('online', flush);
   window.synAllow = function () { return true; }; /* replaced below once tracking is configured */
 
