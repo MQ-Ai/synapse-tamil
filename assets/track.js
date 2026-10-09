@@ -42,7 +42,25 @@
         .then(function () { done(true); }, function () { done(false); });
     } catch (e) { flushing = false; }
   }
+  /* Install events often happen before sign-up. Keep them on this device and send
+     them once the student signs up; nothing leaves the device before that. */
+  var HOLD = { install_click: 1, install_choice: 1, installed: 1, app_open: 1 }, HOLDK = 'synapse-tamil-held-v1';
+  function hold(event, data) {
+    var h = get(HOLDK) || [];
+    h.push({ event: event, ts: new Date().toISOString(), page: page(), data: data || {} });
+    set(HOLDK, h.slice(-20));
+  }
+  function sendHeld() {
+    var h = get(HOLDK) || [];
+    if (!h.length || !EP || !profile) return;
+    del(HOLDK);
+    var q = get(QK) || [];
+    h.forEach(function (x) { q.push({ app: 'synapse-tamil', v: 1, uid: profile.uid, event: x.event, ts: x.ts, page: x.page, data: x.data }); });
+    set(QK, q.slice(-QUEUE_MAX));
+    flush();
+  }
   function send(event, data, withProfile) {
+    if (EP && !profile && HOLD[event]) { hold(event, data); return; }
     if (!EP || !profile) return;
     var item = { app: 'synapse-tamil', v: 1, uid: profile.uid, event: event, ts: new Date().toISOString(), page: page(), data: data || {} };
     if (withProfile) item.profile = withProfile;
@@ -142,6 +160,7 @@
       set(PK, profile);
       send('signup', {}, { name: v.name, school: v.school, level: v.level, email: v.email, signed_up_at: profile.signed_up_at });
       send('view', {});
+      sendHeld();
       label(); close();
       if (pending) { var f = pending; pending = null; setTimeout(f, 60); }
     };
@@ -171,7 +190,7 @@
       navLink.onclick = function (e) { e.preventDefault(); if (!profile) open('new'); };
       links.appendChild(navLink); label();
     }
-    if (profile) { send('view', {}); flush(); }
+    if (profile) { send('view', {}); sendHeld(); flush(); }
   }
   /* first question free: let one question key through, then ask for sign-up */
   window.synAllow = function (key, resume) {
