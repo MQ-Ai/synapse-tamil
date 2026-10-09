@@ -313,7 +313,7 @@ h1{font-size:28px;line-height:1.2;margin:6px 0 2px;font-weight:800;letter-spacin
       if (app.pushState() !== 'blocked') $('remind-small').textContent = 'That didn\'t work this time. Please try again in a moment.';
     });
   });
-  $('install-btn').addEventListener('click', function () { app.install().then(drawExtras); });
+  $('install-btn').addEventListener('click', function () { app.install('daily').then(drawExtras); });
   app.onChange(drawExtras);
 
   /* ---------- start ---------- */

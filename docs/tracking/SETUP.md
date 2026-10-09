@@ -25,6 +25,21 @@ One question across the whole site is free: one drill card in any lab, one pair 
 ## Before pupils use it
 Users here are mostly under 13. Please check with whoever handles PDPA at your school that the one-line purpose notice is enough, and whether a parent's consent or email should be required.
 
+# Counting app installs
+
+The Events tab gets four extra kinds of row once the script below is updated:
+
+| event | when | lab | set |
+| --- | --- | --- | --- |
+| `install_click` | Install app tapped | `home` or `daily` | `android` or `ios` |
+| `install_choice` | answer to the browser's install prompt | `home` or `daily` | `accepted` or `dismissed` |
+| `installed` | the browser confirms the install (Android, desktop Chrome/Edge) | | `android` |
+| `app_open` | opened from the home screen, once per device per day | | `android` or `ios` |
+
+iPhones never tell a website it was installed, so iPhone installs show up only as `app_open` rows. People who have the app = distinct `uid`s with an `app_open` row. Install rows from someone who hasn't signed up yet wait on their device and are sent when they sign up.
+
+To switch it on, paste the new `apps-script.gs` and **Deploy → Manage deployments → edit → New version** (same URL). Until then the sheet quietly drops these rows.
+
 # Switching on passes (payments)
 
 Until the Payment Links are pasted into `assets/config.js`, nothing changes for users: everything stays free after sign-in. This is the same for Synapse Econs, which shares this script.

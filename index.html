@@ -676,8 +676,8 @@ footer {
       var tip = document.getElementById('hero-ios-tip');
       function update(){
         if(app.standalone()){ btn.style.display='none'; return; }
-        if(app.canInstall()){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு 📲<small class="en">Install app</small>'; btn.onclick=function(){ app.install(); }; return; }
-        if(app.isIOS){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு ↑<small class="en">Install app</small>'; btn.onclick=function(e){ e.stopPropagation(); tip.style.display=tip.style.display==='none'?'':'none'; }; document.addEventListener('click',function(){ tip.style.display='none'; }); return; }
+        if(app.canInstall()){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு 📲<small class="en">Install app</small>'; btn.onclick=function(){ app.install('home'); }; return; }
+        if(app.isIOS){ btn.style.display=''; btn.innerHTML='செயலியை நிறுவு ↑<small class="en">Install app</small>'; btn.onclick=function(e){ e.stopPropagation(); if(tip.style.display==='none'){ tip.style.display=''; app.track('install_click',{lab:'home',set:'ios'}); } else tip.style.display='none'; }; document.addEventListener('click',function(){ tip.style.display='none'; }); return; }
         btn.style.display='none';
       }
       update(); app.onChange(update);
