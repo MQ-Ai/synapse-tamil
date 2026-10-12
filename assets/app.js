@@ -22,7 +22,17 @@
     window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').then(syncPush, function () {}); });
   }
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); installEvt = e; changed(); });
-  window.addEventListener('appinstalled', function () { installEvt = null; changed(); });
+  window.addEventListener('appinstalled', function () { installEvt = null; changed(); track('installed', { set: 'android' }); });
+
+  /* ---------- install tracking: rows in the Events tab (track.js holds them until sign-up) ---------- */
+  function track(event, data) { try { if (window.synTrack) window.synTrack(event, data); } catch (e) {} }
+  /* Opened from the home screen: one app_open row per device per day. This is the only
+     sign of an iPhone install, since Safari tells the page nothing when one happens. */
+  window.addEventListener('load', function () {
+    if (!standalone() || get('synapse-tamil-app-open-v1') === dayNum()) return;
+    set('synapse-tamil-app-open-v1', dayNum());
+    track('app_open', { set: isIOS ? 'ios' : 'android' });
+  });
 
   /* ---------- streak (per device) ---------- */
   function dayNum() { return Math.floor((Date.now() + 8 * 3600e3) / 864e5); } /* Singapore day */
@@ -142,11 +152,18 @@
   window.synApp = {
     isIOS: isIOS, standalone: standalone, dayNum: dayNum,
     canInstall: function () { return !!installEvt; },
-    install: function () {
+    /* where: which button was tapped ('home' or 'daily'), kept in the lab column */
+    install: function (where) {
       if (!installEvt) return Promise.resolve(false);
+      track('install_click', { lab: where || '', set: 'android' });
       var e = installEvt; e.prompt();
-      return e.userChoice.then(function (c) { installEvt = null; changed(); return c.outcome === 'accepted'; });
+      return e.userChoice.then(function (c) {
+        installEvt = null; changed();
+        track('install_choice', { lab: where || '', set: c.outcome });
+        return c.outcome === 'accepted';
+      });
     },
+    track: track,
     streak: streak, markDone: markDone,
     pushState: pushState, enablePush: enablePush, disablePush: disablePush,
     onChange: function (f) { listeners.push(f); }

@@ -15,7 +15,7 @@
  *
  * Sheets (created on first use):
  *   Signups      one row per student: name, school, level, email, consent time
- *   Events       one row per page view, finished round, case or paper
+ *   Events       one row per page view, finished round, case or paper, and app install step
  *   Withdrawals  uid and time, when a student deletes their details
  *   Payments     one row per paid Stripe checkout; refunds in Stripe set status to "refunded" within 10 minutes
  *                (you can also type "refunded" in the status cell to cancel a pass by hand)
@@ -34,7 +34,11 @@ var HEADERS = {
   Flags: ['received', 'uid', 'app', 'lab', 'src', 'sent', 'vm', 'choices', 'ans', 'note']
 };
 var UID_RE = /^[0-9a-f-]{16,64}$/i;
-var EVENTS_OK = { view: 1, round: 1, 'case': 1, paper: 1 };
+/* install_click: Install app tapped (lab = which button, set = android or ios)
+ * install_choice: answer to the browser's install prompt (set = accepted or dismissed)
+ * installed: the browser confirmed the install (Android and desktop Chrome/Edge only)
+ * app_open: opened from the home screen, once per device per day (set = android or ios) */
+var EVENTS_OK = { view: 1, round: 1, 'case': 1, paper: 1, install_click: 1, install_choice: 1, installed: 1, app_open: 1 };
 var LEVELS_OK = {
   'synapse-econs': { JC1: 1, JC2: 1, Other: 1 },
   'synapse-tamil': { 'Primary 3': 1, 'Primary 4': 1, 'Primary 5': 1, 'Primary 6': 1, Other: 1 }
